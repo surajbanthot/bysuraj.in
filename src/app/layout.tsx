@@ -43,9 +43,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <header className="sticky top-0 z-30 bg-white/80 pt-3 backdrop-blur dark:bg-black/70">
-          <div className="px-4 pb-2 text-center text-xs font-medium uppercase tracking-widest text-zinc-500 dark:text-zinc-400 sm:px-8">
-            checking
-          </div>
           <nav
             className={`mx-auto flex w-full max-w-6xl items-center justify-center px-4 py-3 text-[10px] font-normal text-zinc-700 dark:text-zinc-200 sm:px-8 sm:text-sm ${pressStart.className}`}
           >
