@@ -14,18 +14,19 @@ export default function Home() {
       <header className="flex w-full items-start justify-between px-4 pt-4 sm:px-8 sm:pt-6">
         <div className="flex flex-col gap-1">
           <h1
-            className={`text-[28px] font-normal leading-tight tracking-tight text-black dark:text-zinc-50 sm:text-[40px] ${pressStart.className}`}
+            className={`text-[28px] font-light leading-tight tracking-tight text-black dark:text-zinc-50 sm:text-[40px] ${pressStart.className}`}
           >
             Suraj here
           </h1>
           <p
-            className={`text-[10px] font-normal text-zinc-600 dark:text-zinc-400 sm:text-sm ${pressStart.className}`}
+            className={`text-[10px] font-light text-zinc-600 dark:text-zinc-400 sm:text-sm ${pressStart.className}`}
           >
             Design engineer (tech.)
           </p>
         </div>
         <IstClock
-          className={`text-[10px] font-normal text-zinc-600 dark:text-zinc-400 sm:text-sm ${pressStart.className}`}
+          id="hero-clock"
+          className={`text-[10px] font-light text-zinc-600 transition-opacity duration-200 dark:text-zinc-400 sm:text-sm ${pressStart.className}`}
         />
       </header>
       <main className="flex w-full flex-1 items-center justify-center bg-white px-4 pb-10 dark:bg-black sm:px-8">

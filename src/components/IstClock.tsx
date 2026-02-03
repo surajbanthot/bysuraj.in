@@ -12,9 +12,10 @@ const formatter = new Intl.DateTimeFormat("en-GB", {
 
 type IstClockProps = {
   className?: string;
+  id?: string;
 };
 
-export default function IstClock({ className }: IstClockProps) {
+export default function IstClock({ className, id }: IstClockProps) {
   const [now, setNow] = useState(() => new Date());
 
   useEffect(() => {
@@ -31,6 +32,7 @@ export default function IstClock({ className }: IstClockProps) {
 
   return (
     <time
+      id={id}
       className={className}
       dateTime={now.toISOString()}
       suppressHydrationWarning

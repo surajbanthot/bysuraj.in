@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Geist, Geist_Mono, Press_Start_2P } from "next/font/google";
+import NavBarShell from "@/components/NavBarShell";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const pressStart = Press_Start_2P({
+  const pressStart = Press_Start_2P({
   weight: "400",
   subsets: ["latin"],
   display: "swap",
@@ -40,51 +40,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased font-light ${pressStart.className}`}
       >
-        <header className="sticky top-0 z-30 bg-white/80 pt-3 backdrop-blur dark:bg-black/70">
-          <nav
-            className={`mx-auto flex w-full max-w-6xl items-center justify-center px-4 py-3 text-[10px] font-normal text-zinc-700 dark:text-zinc-200 sm:px-8 sm:text-sm ${pressStart.className}`}
-          >
-            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6">
-              <Link
-                href="/"
-                className="border border-zinc-300/70 px-3 py-1.5 text-zinc-800 transition duration-200 hover:border-orange-300 hover:bg-orange-500/80 hover:text-white hover:shadow-[0_0_18px_rgba(251,146,60,0.75),0_8px_18px_rgba(0,0,0,0.35)] dark:border-zinc-500/70 dark:text-zinc-100 dark:hover:bg-orange-500/70 dark:hover:text-white"
-              >
-                Home
-              </Link>
-              <Link
-                href="/work"
-                className="border border-zinc-300/70 px-3 py-1.5 text-zinc-800 transition duration-200 hover:border-orange-300 hover:bg-orange-500/80 hover:text-white hover:shadow-[0_0_18px_rgba(251,146,60,0.75),0_8px_18px_rgba(0,0,0,0.35)] dark:border-zinc-500/70 dark:text-zinc-100 dark:hover:bg-orange-500/70 dark:hover:text-white"
-              >
-                Work
-              </Link>
-              <Link
-                href="/playground"
-                className="border border-zinc-300/70 px-3 py-1.5 text-zinc-800 transition duration-200 hover:border-orange-300 hover:bg-orange-500/80 hover:text-white hover:shadow-[0_0_18px_rgba(251,146,60,0.75),0_8px_18px_rgba(0,0,0,0.35)] dark:border-zinc-500/70 dark:text-zinc-100 dark:hover:bg-orange-500/70 dark:hover:text-white"
-              >
-                Playground
-              </Link>
-              <Link
-                href="/about"
-                className="border border-zinc-300/70 px-3 py-1.5 text-zinc-800 transition duration-200 hover:border-orange-300 hover:bg-orange-500/80 hover:text-white hover:shadow-[0_0_18px_rgba(251,146,60,0.75),0_8px_18px_rgba(0,0,0,0.35)] dark:border-zinc-500/70 dark:text-zinc-100 dark:hover:bg-orange-500/70 dark:hover:text-white"
-              >
-                About
-              </Link>
-              <Link
-                href="/timeline"
-                className="border border-zinc-300/70 px-3 py-1.5 text-zinc-800 transition duration-200 hover:border-orange-300 hover:bg-orange-500/80 hover:text-white hover:shadow-[0_0_18px_rgba(251,146,60,0.75),0_8px_18px_rgba(0,0,0,0.35)] dark:border-zinc-500/70 dark:text-zinc-100 dark:hover:bg-orange-500/70 dark:hover:text-white"
-              >
-                Timeline
-              </Link>
-              <Link
-                href="/contact"
-                className="border border-zinc-300/70 px-3 py-1.5 text-zinc-800 transition duration-200 hover:border-orange-300 hover:bg-orange-500/80 hover:text-white hover:shadow-[0_0_18px_rgba(251,146,60,0.75),0_8px_18px_rgba(0,0,0,0.35)] dark:border-zinc-500/70 dark:text-zinc-100 dark:hover:bg-orange-500/70 dark:hover:text-white"
-              >
-                Contact
-              </Link>
-            </div>
-          </nav>
+        <header className="sticky top-0 z-30 bg-white/80 pt-3 backdrop-blur dark:bg-black/70 relative after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-5 after:h-5 after:bg-gradient-to-b after:from-black/20 after:to-transparent dark:after:from-black/60">
+          <NavBarShell fontClassName={pressStart.className} />
         </header>
         {children}
       </body>

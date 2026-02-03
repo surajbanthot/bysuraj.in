@@ -12,7 +12,7 @@ export default function ScrollToTopButton() {
     <button
       type="button"
       onClick={handleClick}
-      className="fixed bottom-4 right-4 z-20 rounded-full bg-zinc-900 px-4 py-2 text-xs font-semibold text-white shadow-lg transition hover:bg-zinc-700 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
+      className="fixed bottom-4 right-4 z-20 rounded-full bg-zinc-900 px-4 py-2 text-xs font-normal text-white shadow-lg transition hover:bg-zinc-700 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
       aria-label="Scroll to top"
     >
       Top
