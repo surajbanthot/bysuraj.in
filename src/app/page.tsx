@@ -1,4 +1,5 @@
 import IstClock from "@/components/IstClock";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { Press_Start_2P } from "next/font/google";
 
 const pressStart = Press_Start_2P({
@@ -11,11 +12,18 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-zinc-50 font-sans dark:bg-black">
       <header className="flex w-full items-start justify-between px-4 pt-4 sm:px-8 sm:pt-6">
-        <h1
-          className={`text-[28px] font-normal leading-tight tracking-tight text-black dark:text-zinc-50 sm:text-[40px] ${pressStart.className}`}
-        >
-          Suraj here
-        </h1>
+        <div className="flex flex-col gap-1">
+          <h1
+            className={`text-[28px] font-normal leading-tight tracking-tight text-black dark:text-zinc-50 sm:text-[40px] ${pressStart.className}`}
+          >
+            Suraj here
+          </h1>
+          <p
+            className={`text-[10px] font-normal text-zinc-600 dark:text-zinc-400 sm:text-sm ${pressStart.className}`}
+          >
+            Design engineer (tech.)
+          </p>
+        </div>
         <IstClock
           className={`text-[10px] font-normal text-zinc-600 dark:text-zinc-400 sm:text-sm ${pressStart.className}`}
         />
@@ -42,6 +50,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <ScrollToTopButton />
     </div>
   );
 }
