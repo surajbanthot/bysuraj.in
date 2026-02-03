@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import IstClock from "@/components/IstClock";
 import NavBar from "@/components/NavBar";
 
@@ -10,8 +11,15 @@ type NavBarShellProps = {
 
 export default function NavBarShell({ fontClassName }: NavBarShellProps) {
   const [showClock, setShowClock] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
+    if (!isHome) {
+      setShowClock(false);
+      return;
+    }
+
     const heroClock = document.getElementById("hero-clock");
     const navShell = document.querySelector(
       "[data-nav-shell]",
@@ -48,15 +56,20 @@ export default function NavBarShell({ fontClassName }: NavBarShellProps) {
         window.cancelAnimationFrame(rafId);
       }
     };
-  }, []);
+  }, [isHome]);
 
   useEffect(() => {
+    if (!isHome) {
+      document.body.classList.remove("nav-clock-visible");
+      return;
+    }
+
     document.body.classList.toggle("nav-clock-visible", showClock);
 
     return () => {
       document.body.classList.remove("nav-clock-visible");
     };
-  }, [showClock]);
+  }, [showClock, isHome]);
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 sm:px-8">
@@ -68,13 +81,17 @@ export default function NavBarShell({ fontClassName }: NavBarShellProps) {
         >
           <NavBar fontClassName={fontClassName} />
         </div>
-        <div
-          className={`pointer-events-none flex items-center justify-end justify-self-end whitespace-nowrap text-[9px] leading-none text-zinc-500 transition duration-200 dark:text-zinc-400 sm:text-[10px] ${
-            showClock ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <IstClock className={`${fontClassName ?? ""} whitespace-nowrap`} />
-        </div>
+        {isHome ? (
+          <div
+            className={`pointer-events-none flex items-center justify-end justify-self-end whitespace-nowrap text-[9px] leading-none text-zinc-500 transition duration-200 dark:text-zinc-400 sm:text-[10px] ${
+              showClock ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <IstClock className={`${fontClassName ?? ""} whitespace-nowrap`} />
+          </div>
+        ) : (
+          <div aria-hidden="true" />
+        )}
       </div>
     </div>
   );

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Press_Start_2P } from "next/font/google";
 import NavBarShell from "@/components/NavBarShell";
+import LayoutChromeSizer from "@/components/LayoutChromeSizer";
+import FooterBar from "@/components/FooterBar";
+import ResumeButton from "@/components/ResumeButton";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -42,10 +45,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased font-light ${pressStart.className}`}
       >
-        <header className="sticky top-0 z-30 bg-white/80 pt-3 backdrop-blur dark:bg-black/70 relative after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-5 after:h-5 after:bg-gradient-to-b after:from-black/20 after:to-transparent dark:after:from-black/60">
+        <LayoutChromeSizer />
+        <header
+          data-site-header
+          className="sticky top-0 z-30 bg-white/80 pt-3 backdrop-blur dark:bg-black/70 relative after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-5 after:h-5 after:bg-gradient-to-b after:from-black/20 after:to-transparent dark:after:from-black/60"
+        >
           <NavBarShell fontClassName={pressStart.className} />
         </header>
         {children}
+        <ResumeButton />
+        <FooterBar />
       </body>
     </html>
   );
