@@ -8,6 +8,7 @@ export default function HireMePage() {
       return "freelance";
     }
     const stored = window.sessionStorage.getItem("hireMeTab");
+    // Return stored value if valid, otherwise default to 'freelance' for first-time users
     return stored === "fulltime" || stored === "freelance"
       ? stored
       : "freelance";
@@ -26,36 +27,34 @@ export default function HireMePage() {
           aria-label="Hire type"
         >
           <div className="inline-flex w-fit rounded-full border border-zinc-200/70 bg-zinc-50/60 p-1 dark:border-zinc-800 dark:bg-black/40">
-          <button
-            type="button"
-            role="tab"
-            aria-selected={activeTab === "fulltime"}
-            onClick={() => setActiveTab("fulltime")}
-            className={`rounded-full px-4 py-2 text-xs transition sm:text-sm ${
-              activeTab === "fulltime"
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === "fulltime"}
+              onClick={() => setActiveTab("fulltime")}
+              className={`rounded-full px-4 py-2 text-lg transition sm:text-xl ${activeTab === "fulltime"
                 ? "bg-orange-500/80 text-white shadow-[0_0_12px_rgba(251,146,60,0.45)]"
                 : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50"
-            }`}
-          >
-            Full time hire
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={activeTab === "freelance"}
-            onClick={() => setActiveTab("freelance")}
-            className={`rounded-full px-4 py-2 text-xs transition sm:text-sm ${
-              activeTab === "freelance"
+                }`}
+            >
+              Full time hire
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === "freelance"}
+              onClick={() => setActiveTab("freelance")}
+              className={`rounded-full px-4 py-2 text-lg transition sm:text-xl ${activeTab === "freelance"
                 ? "bg-orange-500/80 text-white shadow-[0_0_12px_rgba(251,146,60,0.45)]"
                 : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50"
-            }`}
-          >
-            Freelance
-          </button>
+                }`}
+            >
+              Freelance
+            </button>
           </div>
         </div>
 
-        <div className="text-sm text-zinc-600 dark:text-zinc-300 sm:text-base">
+        <div className="text-lg text-zinc-600 dark:text-zinc-300 sm:text-xl">
           {activeTab === "fulltime" ? (
             <div className="mx-auto w-full max-w-md">
               <div className="relative">
@@ -79,19 +78,16 @@ export default function HireMePage() {
                     return (
                       <div
                         key={year}
-                        className={`relative flex items-center ${
-                          isLeft ? "justify-start pr-2" : "justify-end pl-2"
-                        }`}
+                        className={`relative flex items-center ${isLeft ? "justify-start pr-2" : "justify-end pl-2"
+                          }`}
                       >
                         <span
-                          className={`absolute left-1/2 top-1/2 h-1 w-8 -translate-y-1/2 rounded-full bg-green-500/70 ${
-                            isLeft ? "-translate-x-full" : "translate-x-0"
-                          }`}
+                          className={`absolute left-1/2 top-1/2 h-1 w-8 -translate-y-1/2 rounded-full bg-green-500/70 ${isLeft ? "-translate-x-full" : "translate-x-0"
+                            }`}
                         />
                         <span
-                          className={`text-zinc-700 dark:text-zinc-200 ${
-                            isLeft ? "text-left" : "text-right"
-                          }`}
+                          className={`text-xl text-zinc-700 dark:text-zinc-200 sm:text-2xl ${isLeft ? "text-left" : "text-right"
+                            }`}
                         >
                           {year}
                         </span>
@@ -100,9 +96,20 @@ export default function HireMePage() {
                   })}
                 </div>
               </div>
+              <div className="mt-8 space-y-4 text-center">
+                <p className="text-xl text-zinc-700 dark:text-zinc-200 sm:text-2xl">
+                  Over a decade of experience in design engineering and creative technology.
+                </p>
+                <p className="text-lg text-zinc-600 dark:text-zinc-400 sm:text-xl">
+                  I bring a unique blend of design thinking, technical expertise, and creative problem-solving to every project. From startups to enterprise companies, I&apos;ve helped teams build beautiful, functional, and scalable products.
+                </p>
+                <p className="text-lg text-zinc-600 dark:text-zinc-400 sm:text-xl">
+                  Looking for a full-time opportunity where I can make a meaningful impact. Let&apos;s talk!
+                </p>
+              </div>
             </div>
           ) : (
-            <p>Freelance details will go here.</p>
+            <p className="text-xl sm:text-2xl">Freelance details will go here.</p>
           )}
         </div>
       </div>

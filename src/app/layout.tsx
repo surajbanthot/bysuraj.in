@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Press_Start_2P } from "next/font/google";
+import { Geist, Geist_Mono, VT323 } from "next/font/google";
 import NavBarShell from "@/components/NavBarShell";
 import LayoutChromeSizer from "@/components/LayoutChromeSizer";
 import FooterBar from "@/components/FooterBar";
@@ -16,9 +16,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-  const pressStart = Press_Start_2P({
+const vt323 = VT323({
   weight: "400",
   subsets: ["latin"],
+  variable: "--font-retro",
   display: "swap",
 });
 
@@ -43,14 +44,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased font-light ${pressStart.className}`}
+        className={`${geistSans.variable} ${geistMono.variable} ${vt323.variable} ${vt323.className} antialiased text-xl`}
       >
         <LayoutChromeSizer />
         <header
           data-site-header
           className="sticky top-0 z-30 bg-white/80 pt-3 backdrop-blur dark:bg-black/70 relative after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-5 after:h-5 after:bg-gradient-to-b after:from-black/20 after:to-transparent dark:after:from-black/60"
         >
-          <NavBarShell fontClassName={pressStart.className} />
+          <NavBarShell fontClassName={vt323.className} />
         </header>
         {children}
         <ResumeButton />

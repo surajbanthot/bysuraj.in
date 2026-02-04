@@ -83,9 +83,8 @@ export default function NavBarShell({ fontClassName }: NavBarShellProps) {
         </div>
         {isHome ? (
           <div
-            className={`pointer-events-none flex items-center justify-end justify-self-end whitespace-nowrap text-[9px] leading-none text-zinc-500 transition duration-200 dark:text-zinc-400 sm:text-[10px] ${
-              showClock ? "opacity-100" : "opacity-0"
-            }`}
+            className={`pointer-events-none flex items-center justify-end justify-self-end whitespace-nowrap text-lg leading-none text-zinc-500 transition duration-200 dark:text-zinc-400 sm:text-xl ${showClock ? "opacity-100" : "opacity-0"
+              }`}
           >
             <IstClock className={`${fontClassName ?? ""} whitespace-nowrap`} />
           </div>

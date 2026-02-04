@@ -1,39 +1,26 @@
 import IstClock from "@/components/IstClock";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
-import { Press_Start_2P } from "next/font/google";
-
-const pressStart = Press_Start_2P({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export default function Home() {
   return (
-    <div className="flex min-h-[calc(100svh-var(--app-chrome,0px))] flex-col overflow-hidden bg-zinc-50 font-sans dark:bg-black">
+    <div className="flex min-h-[calc(100svh-var(--app-chrome,0px))] flex-col overflow-hidden bg-zinc-50 dark:bg-black">
       <header className="flex w-full items-start justify-between px-4 pt-2 sm:px-8 sm:pt-3">
         <div className="flex flex-col gap-1">
-          <h1
-            className={`text-[clamp(20px,2.4vw,34px)] font-light leading-tight tracking-tight text-black dark:text-zinc-50 ${pressStart.className}`}
-          >
+          <h1 className="text-4xl font-normal leading-none tracking-tight text-black dark:text-zinc-50 sm:text-5xl">
             Suraj here
           </h1>
-          <p
-            className={`text-[clamp(9px,1vw,12px)] font-light text-zinc-600 dark:text-zinc-400 ${pressStart.className}`}
-          >
+          <p className="text-xl text-zinc-600 dark:text-zinc-400 sm:text-2xl">
             Design engineer (tech.)
           </p>
         </div>
         <IstClock
           id="hero-clock"
-          className={`text-[clamp(9px,1vw,12px)] font-light text-zinc-600 transition-opacity duration-200 dark:text-zinc-400 ${pressStart.className}`}
+          className="text-lg text-zinc-600 transition-opacity duration-200 dark:text-zinc-400 sm:text-xl"
         />
       </header>
       <main className="flex w-full flex-1 items-center justify-center bg-white px-4 pb-4 dark:bg-black sm:px-8">
-        <div className="flex w-full max-w-3xl flex-col items-center gap-3">
-          <p
-            className={`text-center text-[clamp(11px,1.1vw,16px)] leading-relaxed text-zinc-900 dark:text-zinc-50 ${pressStart.className}`}
-          >
+        <div className="flex w-full max-w-3xl flex-col items-center gap-4">
+          <p className="text-center text-2xl leading-relaxed text-zinc-900 dark:text-zinc-50 sm:text-3xl">
             Portfolio will be back{" "}
             <span className="text-red-600">before</span> Avengers DOOMSDAY
           </p>

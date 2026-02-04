@@ -20,11 +20,12 @@ export default function NavBar({ fontClassName }: NavBarProps) {
 
   return (
     <nav
-      className={`flex items-center justify-center px-4 py-3 text-[10px] font-light text-zinc-700 dark:text-zinc-200 sm:text-sm ${fontClassName ?? ""}`}
+      className={`flex items-center justify-center px-4 py-3 text-lg font-normal text-zinc-700 dark:text-zinc-200 sm:text-xl ${fontClassName ?? ""}`}
     >
       <div className="flex flex-nowrap items-center justify-center gap-3 whitespace-nowrap sm:gap-6">
         {links.map((link) => {
           const isActive = pathname === link.href;
+          const isHireMe = link.href === "/hireme";
           const baseClasses =
             "inline-flex items-center gap-2 border border-zinc-300/70 px-3 py-1.5 text-zinc-800 transition duration-200 leading-none dark:border-zinc-500/70 dark:text-zinc-100";
           const hoverClasses =
@@ -36,12 +37,11 @@ export default function NavBar({ fontClassName }: NavBarProps) {
             <Link
               key={link.href}
               href={link.href}
-              className={`${baseClasses} ${hoverClasses} ${
-                isActive ? activeClasses : ""
-              } ${fontClassName ?? ""}`}
+              className={`${baseClasses} ${hoverClasses} ${isActive ? activeClasses : ""
+                } ${isHireMe ? "hire-me-btn" : ""} ${fontClassName ?? ""}`}
               aria-current={isActive ? "page" : undefined}
             >
-              <span className="relative -top-[2px] flex h-4 w-4 items-center justify-center">
+              <span className="relative -top-[2px] flex h-5 w-5 items-center justify-center text-lg sm:text-xl">
                 {link.emoji}
               </span>
               <span>{link.label}</span>
