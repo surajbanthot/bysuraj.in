@@ -19,7 +19,7 @@ export default function HireMePage() {
   }, [activeTab]);
 
   return (
-    <main className="min-h-[calc(100vh-56px)] bg-white px-6 py-10 text-zinc-900 dark:bg-black dark:text-zinc-50 sm:px-8">
+    <main className="min-h-[calc(100vh-56px)] bg-white px-4 py-8 text-zinc-900 dark:bg-black dark:text-zinc-50 sm:px-8 sm:py-10">
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-8">
         <div
           className="flex justify-center"
@@ -32,19 +32,19 @@ export default function HireMePage() {
               role="tab"
               aria-selected={activeTab === "fulltime"}
               onClick={() => setActiveTab("fulltime")}
-              className={`rounded-full px-4 py-2 text-lg transition sm:text-xl ${activeTab === "fulltime"
+              className={`rounded-full px-3 py-1.5 text-base transition sm:px-4 sm:py-2 sm:text-xl ${activeTab === "fulltime"
                 ? "bg-orange-500/80 text-white shadow-[0_0_12px_rgba(251,146,60,0.45)]"
                 : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50"
                 }`}
             >
-              Full time hire
+              Full time
             </button>
             <button
               type="button"
               role="tab"
               aria-selected={activeTab === "freelance"}
               onClick={() => setActiveTab("freelance")}
-              className={`rounded-full px-4 py-2 text-lg transition sm:text-xl ${activeTab === "freelance"
+              className={`rounded-full px-3 py-1.5 text-base transition sm:px-4 sm:py-2 sm:text-xl ${activeTab === "freelance"
                 ? "bg-orange-500/80 text-white shadow-[0_0_12px_rgba(251,146,60,0.45)]"
                 : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50"
                 }`}
