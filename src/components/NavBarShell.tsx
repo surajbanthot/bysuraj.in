@@ -74,11 +74,11 @@ export default function NavBarShell({ fontClassName }: NavBarShellProps) {
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 sm:px-8">
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-x-4 sm:gap-x-6">
-        <div aria-hidden="true" />
+      <div className="grid grid-cols-[1fr_auto] items-center gap-x-4 sm:grid-cols-[1fr_auto_1fr] sm:gap-x-6">
+        <div aria-hidden="true" className="hidden sm:block" />
         <div
           data-nav-shell
-          className="relative inline-flex justify-self-center rounded-md"
+          className="relative inline-flex justify-self-end rounded-md sm:justify-self-center"
         >
           <NavBar fontClassName={fontClassName} />
         </div>

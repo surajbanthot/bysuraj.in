@@ -57,7 +57,7 @@ export default function NavBar({ fontClassName }: NavBarProps) {
       </nav>
 
       {/* Mobile Navigation */}
-      <nav className={`flex items-center justify-center px-2 py-2 sm:hidden ${fontClassName ?? ""}`}>
+      <nav className={`flex items-center justify-end px-4 py-2 sm:hidden ${fontClassName ?? ""}`}>
         <button
           type="button"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -73,21 +73,21 @@ export default function NavBar({ fontClassName }: NavBarProps) {
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm sm:hidden"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md sm:hidden"
           onClick={() => setIsMenuOpen(false)}
         >
           <div
-            className="absolute right-0 top-0 h-full w-64 bg-white/95 p-4 shadow-2xl dark:bg-zinc-900/95"
+            className="absolute right-0 top-0 h-full w-64 bg-zinc-950 p-4 shadow-2xl border-l border-zinc-800"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-6">
-              <span className={`text-xl font-normal text-zinc-800 dark:text-zinc-100 ${fontClassName ?? ""}`}>
+              <span className={`text-xl font-normal text-zinc-100 ${fontClassName ?? ""}`}>
                 Navigate
               </span>
               <button
                 type="button"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-2xl text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+                className="text-2xl text-zinc-400 hover:text-zinc-100"
                 aria-label="Close menu"
               >
                 ✕

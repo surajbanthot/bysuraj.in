@@ -67,7 +67,7 @@ export default function FooterBar() {
               </svg>
             </a>
             <a
-              href="https://www.youtube.com/@bysuraj"
+              href="https://youtu.be/dQw4w9WgXcQ?si=4A4RhDKBcZA7ePvC"
               target="_blank"
               rel="noreferrer"
               className="text-zinc-900 transition hover:text-orange-500 dark:text-zinc-100"
