@@ -10,10 +10,11 @@ type NavBarProps = {
 
 const links = [
   { href: "/", label: "Home", emoji: "🏠" },
-  { href: "/work", label: "Work", emoji: "💼" },
+  { href: "/code", label: "Code", emoji: "💻" },
   { href: "/motiongraphics", label: "Motion", emoji: "🎬" },
   { href: "/film", label: "Film", emoji: "📷" },
   { href: "/hireme", label: "Hire me!!", emoji: "🤝" },
+  { href: "/social", label: "Socials ✨", emoji: "✨" },
 ];
 
 export default function NavBar({ fontClassName }: NavBarProps) {
@@ -103,8 +104,8 @@ export default function NavBar({ fontClassName }: NavBarProps) {
                     href={link.href}
                     onClick={() => setIsMenuOpen(false)}
                     className={`flex items-center gap-3 rounded-lg px-4 py-3 text-lg transition ${isActive
-                        ? "bg-orange-500/20 text-orange-600 dark:text-orange-400"
-                        : "text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800"
+                      ? "bg-orange-500/20 text-orange-600 dark:text-orange-400"
+                      : "text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800"
                       } ${isHireMe ? "hire-me-btn" : ""} ${fontClassName ?? ""}`}
                     aria-current={isActive ? "page" : undefined}
                   >

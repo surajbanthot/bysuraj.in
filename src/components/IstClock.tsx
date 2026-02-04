@@ -30,6 +30,21 @@ export default function IstClock({ className, id }: IstClockProps) {
 
   const timeString = formatter.format(now);
 
+  const istHour = parseInt(
+    new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Asia/Kolkata",
+      hour: "numeric",
+      hour12: false,
+    }).format(now)
+  );
+
+  let emoji = "";
+  if (istHour >= 9 && istHour < 17) {
+    emoji = "👨‍💻";
+  } else if (istHour >= 23 || istHour < 6) {
+    emoji = "😴";
+  }
+
   return (
     <time
       id={id}
@@ -37,7 +52,7 @@ export default function IstClock({ className, id }: IstClockProps) {
       dateTime={now.toISOString()}
       suppressHydrationWarning
     >
-      {timeString} IST
+      {timeString} IST {emoji}
     </time>
   );
 }

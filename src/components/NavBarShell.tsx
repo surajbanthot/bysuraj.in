@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import IstClock from "@/components/IstClock";
 import NavBar from "@/components/NavBar";
@@ -81,16 +82,16 @@ export default function NavBarShell({ fontClassName }: NavBarShellProps) {
         >
           <NavBar fontClassName={fontClassName} />
         </div>
-        {isHome ? (
+        <div className="flex items-center justify-end justify-self-end gap-3 sm:gap-4">
+
+
           <div
-            className={`pointer-events-none flex items-center justify-end justify-self-end whitespace-nowrap text-lg leading-none text-zinc-500 transition duration-200 dark:text-zinc-400 sm:text-xl ${showClock ? "opacity-100" : "opacity-0"
+            className={`pointer-events-none flex items-center justify-end whitespace-nowrap text-lg leading-none text-zinc-500 transition duration-200 dark:text-zinc-400 sm:text-xl ${showClock && isHome ? "opacity-100" : "opacity-0"
               }`}
           >
             <IstClock className={`${fontClassName ?? ""} whitespace-nowrap`} />
           </div>
-        ) : (
-          <div aria-hidden="true" />
-        )}
+        </div>
       </div>
     </div>
   );

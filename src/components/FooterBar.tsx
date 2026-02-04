@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function FooterBar() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -42,32 +44,35 @@ export default function FooterBar() {
           >
             Phone
           </button>
-          <a
-            href="https://www.instagram.com/bysuraj.in/"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 text-zinc-900 transition hover:text-orange-500 dark:text-zinc-100"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
+          {pathname !== "/code" && (
+            <a
+              href="https://www.instagram.com/bysuraj.in/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-zinc-900 transition hover:text-orange-500 dark:text-zinc-100"
             >
-              <rect x="3" y="3" width="18" height="18" rx="5" />
-              <circle cx="12" cy="12" r="4" />
-              <circle cx="17.5" cy="6.5" r="1" />
-            </svg>
-            <span className="no-underline">:</span>
-            <span className="underline decoration-orange-400/70 underline-offset-4">
-              @bysuraj.in
-            </span>
-          </a>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="1" />
+              </svg>
+              <span className="no-underline">:</span>
+              <span className="underline decoration-orange-400/70 underline-offset-4">
+                @bysuraj.in
+              </span>
+            </a>
+          )}
+
         </div>
       </footer>
 
@@ -78,7 +83,7 @@ export default function FooterBar() {
               <div>
                 <h2 className="text-2xl font-normal sm:text-3xl">Phone Enquiry</h2>
                 <p className="mt-1 text-lg text-zinc-600 dark:text-zinc-400 sm:text-xl">
-                  Leave your number and a short note. This is the <span className="text-orange-500 font-bold">fastest</span> way to reach me!
+                  Leave your number and a short note. This is the <span className="text-orange-500 font-bold">fastest</span> way to reach me! Thank you. :)
                 </p>
               </div>
               <button
