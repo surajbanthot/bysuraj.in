@@ -12,9 +12,9 @@ const links = [
   { href: "/", label: "Home", emoji: "🏠" },
   { href: "/code", label: "Code", emoji: "💻" },
   { href: "/motiongraphics", label: "Motion", emoji: "🎬" },
-  { href: "/film", label: "Film", emoji: "📷" },
+
+  { href: "/social", label: "Socials", emoji: "✨" },
   { href: "/hireme", label: "Hire me!!", emoji: "🤝" },
-  { href: "/social", label: "Socials ✨", emoji: "✨" },
 ];
 
 export default function NavBar({ fontClassName }: NavBarProps) {
@@ -46,7 +46,7 @@ export default function NavBar({ fontClassName }: NavBarProps) {
                 className={`${baseClasses} ${hoverClasses} ${isActive ? activeClasses : ""} ${isHireMe ? "hire-me-btn" : ""} ${fontClassName ?? ""}`}
                 aria-current={isActive ? "page" : undefined}
               >
-                <span className="relative -top-[2px] flex h-5 w-5 items-center justify-center text-lg sm:text-xl">
+                <span className="flex h-5 w-5 items-center justify-center text-lg sm:text-xl">
                   {link.emoji}
                 </span>
                 <span>{link.label}</span>

@@ -13,42 +13,11 @@ export default function FooterBar() {
         data-site-footer
         className="border-t border-zinc-200/70 bg-white/80 px-6 py-6 text-lg text-zinc-600 backdrop-blur dark:border-zinc-800 dark:bg-black/70 dark:text-zinc-400 sm:px-8 sm:text-xl"
       >
-        <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-3 sm:flex-row">
-          <a
-            href="mailto:surajcommercial@gmail.com"
-            className="inline-flex items-center gap-2 text-zinc-900 transition hover:text-orange-500 dark:text-zinc-100"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <rect x="3" y="5" width="18" height="14" rx="2" />
-              <path d="M3 7l9 6 9-6" />
-            </svg>
-            <span className="no-underline">:</span>
-            <span className="underline decoration-orange-400/70 underline-offset-4">
-              surajcommercial@gmail.com
-            </span>
-          </a>
-          <button
-            type="button"
-            className="rounded-full border border-zinc-300/70 px-4 py-2 text-lg text-zinc-700 transition hover:border-orange-300 hover:text-orange-500 dark:border-zinc-700 dark:text-zinc-300 dark:hover:text-orange-400 sm:text-xl"
-            onClick={() => setIsOpen(true)}
-          >
-            Phone
-          </button>
-          {pathname !== "/code" && (
+        <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row">
+          {/* Email - Left */}
+          <div className="flex flex-1 items-center justify-center sm:justify-start">
             <a
-              href="https://www.instagram.com/bysuraj.in/"
-              target="_blank"
-              rel="noreferrer"
+              href="mailto:surajcommercial@gmail.com"
               className="inline-flex items-center gap-2 text-zinc-900 transition hover:text-orange-500 dark:text-zinc-100"
             >
               <svg
@@ -62,17 +31,64 @@ export default function FooterBar() {
                 strokeLinejoin="round"
                 aria-hidden="true"
               >
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <path d="M3 7l9 6 9-6" />
+              </svg>
+              <span className="no-underline">:</span>
+              <span className="underline decoration-orange-400/70 underline-offset-4">
+                surajcommercial@gmail.com
+              </span>
+            </a>
+          </div>
+
+          {/* Socials - Center */}
+          <div className="flex items-center justify-center gap-6">
+            <a
+              href="https://www.instagram.com/bysuraj.in/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-zinc-900 transition hover:text-orange-500 dark:text-zinc-100"
+              aria-label="Instagram"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
                 <rect x="3" y="3" width="18" height="18" rx="5" />
                 <circle cx="12" cy="12" r="4" />
                 <circle cx="17.5" cy="6.5" r="1" />
               </svg>
-              <span className="no-underline">:</span>
-              <span className="underline decoration-orange-400/70 underline-offset-4">
-                @bysuraj.in
-              </span>
             </a>
-          )}
+            <a
+              href="https://www.youtube.com/@bysuraj"
+              target="_blank"
+              rel="noreferrer"
+              className="text-zinc-900 transition hover:text-orange-500 dark:text-zinc-100"
+              aria-label="YouTube"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+              </svg>
+            </a>
+          </div>
 
+          {/* Phone - Right */}
+          <div className="flex flex-1 items-center justify-center sm:justify-end">
+            <button
+              type="button"
+              className="rounded-full border border-zinc-300/70 px-4 py-2 text-lg text-zinc-700 transition hover:border-orange-300 hover:text-orange-500 dark:border-zinc-700 dark:text-zinc-300 dark:hover:text-orange-400 sm:text-xl"
+              onClick={() => setIsOpen(true)}
+            >
+              Phone
+            </button>
+          </div>
         </div>
       </footer>
 
