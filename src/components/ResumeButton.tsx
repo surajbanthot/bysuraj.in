@@ -42,7 +42,7 @@ export default function ResumeButton() {
 
   return (
     <div
-      className="fixed right-10 z-40 flex flex-col items-end gap-3 transition-all duration-300 ease-out"
+      className="fixed right-10 z-40 flex flex-col items-end gap-6 transition-all duration-300 ease-out"
       style={{ bottom: `${bottomOffset}px` }}
     >
       {/* Top button - appears above Resume when visible */}
