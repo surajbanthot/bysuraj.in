@@ -256,7 +256,7 @@ export default function SocialPage() {
                             <div className="relative aspect-video w-full">
                                 <iframe
                                     className="absolute inset-0 h-full w-full"
-                                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=3QZppcO1boBM0kWo&autoplay=1&mute=0"
+                                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=3QZppcO1boBM0kWo&autoplay=1&mute=1"
                                     title="YouTube video player"
                                     frameBorder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
