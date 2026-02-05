@@ -87,13 +87,13 @@ export default function WIPSidebar() {
 
             {/* Sidebar */}
             <div
-                className={`fixed inset-y-0 left-0 z-50 w-80 transform border-r border-white/10 bg-zinc-950/95 p-6 shadow-2xl backdrop-blur-xl transition-transform duration-300 ease-spring ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
+                className={`fixed inset-y-0 left-0 z-50 w-96 transform border-r border-white/10 bg-zinc-950/95 p-6 shadow-2xl backdrop-blur-xl transition-transform duration-300 ease-spring ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
             >
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8">
                     <div className="flex flex-col">
-                        <h2 className="text-xl font-bold text-zinc-100">Current Focus</h2>
-                        <p className="text-xs text-zinc-500 uppercase tracking-wider">What I'm building</p>
+                        <h2 className="text-2xl font-bold text-zinc-100">Current Focus</h2>
+                        <p className="text-sm text-zinc-500 uppercase tracking-wider">What I'm building</p>
                     </div>
                     <button
                         onClick={() => setIsOpen(false)}
@@ -106,43 +106,47 @@ export default function WIPSidebar() {
                     </button>
                 </div>
 
-                {/* Tiles Grid (Scrollable) */}
-                <div className="space-y-4 overflow-y-auto max-h-[40vh] pr-2 scrollbar-none pb-4">
-                    {items.map((item, i) => (
-                        <div key={i} className="group relative rounded-xl border border-white/5 bg-white/5 p-4 transition-all hover:bg-white/10 hover:border-orange-500/30 hover:shadow-lg hover:shadow-orange-500/5">
+                {/* Tiles Grid (Scrollable) with gradient fade */}
+                <div className="relative">
+                    <div className="space-y-4 overflow-y-auto max-h-[60vh] pr-2 scrollbar-none pb-8">
+                        {items.map((item, i) => (
+                            <div key={i} className="group relative rounded-xl border border-white/5 bg-white/5 p-5 transition-all hover:bg-white/10 hover:border-orange-500/30 hover:shadow-lg hover:shadow-orange-500/5">
 
-                            {/* Status Badge */}
-                            <div className="absolute top-3 right-3 rounded-full bg-black/40 px-2 py-0.5 text-[10px] uppercase font-bold text-zinc-400 border border-white/5 z-10">
-                                {item.status}
-                            </div>
+                                {/* Status Badge */}
+                                <div className="absolute top-3 right-3 rounded-full bg-black/40 px-3 py-1 text-xs uppercase font-bold text-zinc-400 border border-white/5 z-10">
+                                    {item.status}
+                                </div>
 
-                            {/* Delete Button (dev mode, on hover) */}
-                            {isDev && (
-                                <button
-                                    type="button"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        setItems(items.filter((_, idx) => idx !== i));
-                                    }}
-                                    className="absolute bottom-3 right-3 z-20 opacity-0 group-hover:opacity-100 rounded-full p-1.5 bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white transition-all border border-red-500/30 cursor-pointer"
-                                    aria-label="Delete item"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                    </svg>
-                                </button>
-                            )}
+                                {/* Delete Button (dev mode, on hover) */}
+                                {isDev && (
+                                    <button
+                                        type="button"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setItems(items.filter((_, idx) => idx !== i));
+                                        }}
+                                        className="absolute bottom-3 right-3 z-20 opacity-0 group-hover:opacity-100 rounded-full p-1.5 bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white transition-all border border-red-500/30 cursor-pointer"
+                                        aria-label="Delete item"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                                        </svg>
+                                    </button>
+                                )}
 
-                            <div className="relative flex gap-4 pr-14">
-                                <div className="text-2xl pt-1 grayscale group-hover:grayscale-0 transition-all">{item.icon}</div>
-                                <div>
-                                    <h3 className="text-sm font-bold text-zinc-200 group-hover:text-orange-400 transition-colors">{item.title}</h3>
-                                    {item.desc && <p className="text-xs text-zinc-400 mt-1 leading-relaxed">{item.desc}</p>}
+                                <div className="relative flex gap-4 pr-16">
+                                    <div className="text-3xl pt-1 grayscale group-hover:grayscale-0 transition-all">{item.icon}</div>
+                                    <div>
+                                        <h3 className="text-lg font-bold text-zinc-200 group-hover:text-orange-400 transition-colors">{item.title}</h3>
+                                        {item.desc && <p className="text-base text-zinc-400 mt-1 leading-relaxed">{item.desc}</p>}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
+                    {/* Bottom gradient fade overlay */}
+                    <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-zinc-950 to-transparent"></div>
                 </div>
 
                 {/* Bottom Section: Input + Footer */}
@@ -171,7 +175,7 @@ export default function WIPSidebar() {
 
                     {/* Footer Quote */}
                     <div className="rounded-lg bg-orange-500/10 p-4 border border-orange-500/20">
-                        <p className="text-xs text-orange-200/80 text-center leading-relaxed">
+                        <p className="text-sm text-orange-200/80 text-center leading-relaxed">
                             "I build things for the web, constantly shipping."
                         </p>
                     </div>
