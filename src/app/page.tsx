@@ -5,7 +5,13 @@ import ScrollToTopButton from "@/components/ScrollToTopButton";
 export default function Home() {
   return (
     <div className="relative flex min-h-[calc(100svh-var(--app-chrome,0px))] flex-col overflow-hidden">
-      {/* Video Background Removed */}
+      {/* Background Image - Fixed to cover entire viewport including navbar/footer */}
+      <div
+        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/bg.png')" }}
+      />
+      {/* Dark Overlay for Readability */}
+      <div className="fixed inset-0 z-0 bg-black/70" />
 
       {/* Content Layer */}
       <div className="relative z-10 flex flex-1 flex-col">

@@ -10,12 +10,6 @@ const initialItems = [
         status: "Active"
     },
     {
-        title: "F1 Experience",
-        desc: "Optimizing the physics & interactivity of the race car.",
-        icon: "🏎️",
-        status: "Ship It"
-    },
-    {
         title: "Agentic Workflows",
         desc: "Exploring autonomous coding agents deeply.",
         icon: "🤖",
