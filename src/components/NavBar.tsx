@@ -6,6 +6,7 @@ import { useState } from "react";
 
 type NavBarProps = {
   fontClassName?: string;
+  bungeeClassName?: string;
 };
 
 const links = [
@@ -17,7 +18,7 @@ const links = [
   { href: "/hireme", label: "Hire me!!", emoji: "🤝" },
 ];
 
-export default function NavBar({ fontClassName }: NavBarProps) {
+export default function NavBar({ fontClassName, bungeeClassName }: NavBarProps) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -49,7 +50,7 @@ export default function NavBar({ fontClassName }: NavBarProps) {
                 <span className="flex h-5 w-5 items-center justify-center text-lg sm:text-xl">
                   {link.emoji}
                 </span>
-                <span>{link.label}</span>
+                <span className={bungeeClassName ?? ""}>{link.label}</span>
               </Link>
             );
           })}
@@ -110,7 +111,7 @@ export default function NavBar({ fontClassName }: NavBarProps) {
                     aria-current={isActive ? "page" : undefined}
                   >
                     <span className="text-xl">{link.emoji}</span>
-                    <span>{link.label}</span>
+                    <span className={bungeeClassName ?? ""}>{link.label}</span>
                   </Link>
                 );
               })}

@@ -12,8 +12,8 @@ export default function FooterBar() {
       <footer
         data-site-footer
         className={`relative z-10 px-6 py-6 text-lg sm:px-8 sm:text-xl ${pathname === "/"
-            ? "text-zinc-200 drop-shadow-md"
-            : "text-zinc-600 dark:text-zinc-400"
+          ? "text-zinc-200 drop-shadow-md"
+          : "text-zinc-600 dark:text-zinc-400"
           }`}
       >
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row">
@@ -109,7 +109,7 @@ export default function FooterBar() {
           <div className="flex flex-1 items-center justify-center sm:justify-end">
             <button
               type="button"
-              className="rounded-full border border-zinc-300/70 px-4 py-2 text-lg text-zinc-700 transition hover:border-orange-300 hover:text-orange-500 dark:border-zinc-700 dark:text-zinc-300 dark:hover:text-orange-400 sm:text-xl"
+              className="rounded-full border border-zinc-300/70 px-4 py-2 text-lg text-zinc-700 transition hover:border-orange-300 hover:text-orange-500 dark:border-zinc-700 dark:text-zinc-300 dark:hover:text-orange-400 sm:text-xl font-[family-name:var(--font-bungee)]"
               onClick={() => setIsOpen(true)}
             >
               Phone

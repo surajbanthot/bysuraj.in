@@ -8,9 +8,10 @@ import NavBar from "@/components/NavBar";
 
 type NavBarShellProps = {
   fontClassName?: string;
+  bungeeClassName?: string;
 };
 
-export default function NavBarShell({ fontClassName }: NavBarShellProps) {
+export default function NavBarShell({ fontClassName, bungeeClassName }: NavBarShellProps) {
   const [showClock, setShowClock] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -80,7 +81,7 @@ export default function NavBarShell({ fontClassName }: NavBarShellProps) {
           data-nav-shell
           className="relative inline-flex justify-self-end rounded-md sm:justify-self-center"
         >
-          <NavBar fontClassName={fontClassName} />
+          <NavBar fontClassName={fontClassName} bungeeClassName={bungeeClassName} />
         </div>
         <div className="flex items-center justify-end justify-self-end gap-3 sm:gap-4">
 

@@ -16,9 +16,8 @@ export default function F1Car() {
     const msgEndRef = useRef<NodeJS.Timeout>(null);
 
     useEffect(() => {
-        // Initial start
-        const startDelay = Math.random() * 5000 + 1000;
-        timerRef.current = setTimeout(startSequence, startDelay);
+        // Start immediately on page load
+        startSequence();
 
         return () => {
             clearAllTimers();
