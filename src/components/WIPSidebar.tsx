@@ -4,12 +4,6 @@ import { usePathname } from "next/navigation";
 
 const initialItems = [
     {
-        title: "demo tile",
-        desc: "",
-        icon: "🚧",
-        status: "Active"
-    },
-    {
         title: "Portfolio Refinement",
         desc: "Polishing animations & adding pixel-perfect details.",
         icon: "✨",
