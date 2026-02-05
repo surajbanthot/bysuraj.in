@@ -402,7 +402,7 @@ export default function HireMePage() {
                     </p>
                   </div>
                   <div className="mt-auto flex flex-wrap gap-2 pt-2">
-                    {["BaaS", "Plus One", "Listener", "Platonic"].map(tag => (
+                    {["6ft", "Average looking", "Well behaved", "Aries & Leo", "90's", "Honda Dio (I'm broke 💸)"].map(tag => (
                       <span key={tag} className="rounded-lg bg-zinc-100 px-3 py-1 text-sm font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
                         {tag}
                       </span>
