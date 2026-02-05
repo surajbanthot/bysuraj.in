@@ -117,20 +117,7 @@ export default function CodePage() {
                     </div>
                 </header>
 
-                <div className="flex items-center gap-3 text-lg font-medium text-orange-800 dark:text-orange-300 sm:text-xl">
-                    <svg
-                        width="36"
-                        height="36"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="fill-current rotate-[-15deg]"
-                    >
-                        <path d="M5.5 10.5H6.5V3.5H9.5V10.5H10.5V6.5H13.5V11.5H14.5V8.5H17.5V17.5H16.5C16.5 17.5 16.5 20.5 13.5 20.5H8.5V17.5H5.5V10.5Z" fill="currentColor" />
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8 9H7V16H10V18H12V19H14.5C15.2285 19 16.2081 18.7846 16.8284 18.1642L16.835 18.1578C17.4357 17.5684 18 16.8924 18 16V8H16V10H15V6H12V9H11V5H8V9ZM7 5H9V2H12V5H15V7H16V9H18V16C18 17.6569 16.6569 19 15 19H15.0001C14.7777 19.3406 14.2882 19.8242 13.5858 20.5266L13.5355 20.5768C12.8718 21.2186 11.9688 21.5791 11.0402 21.58C11.0268 21.58 11.0134 21.58 11 21.58H9.5C9.22386 21.58 9 21.3562 9 21.08V19H6V9H8V5Z" fill="currentColor" fill-opacity="0.2" />
-                    </svg>
-                    <span>click to explore my work</span>
-                </div>
+
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {skills.map((skillGroup) => (

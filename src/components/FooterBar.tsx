@@ -11,7 +11,10 @@ export default function FooterBar() {
     <>
       <footer
         data-site-footer
-        className="border-t border-zinc-200/70 bg-white/80 px-6 py-6 text-lg text-zinc-600 backdrop-blur dark:border-zinc-800 dark:bg-black/70 dark:text-zinc-400 sm:px-8 sm:text-xl"
+        className={`relative z-10 px-6 py-6 text-lg sm:px-8 sm:text-xl ${pathname === "/"
+            ? "text-zinc-200 drop-shadow-md"
+            : "text-zinc-600 dark:text-zinc-400"
+          }`}
       >
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row">
           {/* Email - Left */}
