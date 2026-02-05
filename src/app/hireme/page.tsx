@@ -351,6 +351,9 @@ export default function HireMePage() {
                 {/* 5. Hiking & Gym Partner */}
                 <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4">
                   <div className="absolute top-8 right-8 flex gap-2 z-10">
+                    <span className="flex items-center rounded-full bg-zinc-100 border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-600 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-400 cursor-default">
+                      Weekends
+                    </span>
                     <a href="mailto:surajcommercial@gmail.com" className="group relative rounded-full bg-white border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-700 shadow-sm transition-colors">
                       Email
                       <span className="absolute right-0 top-full mt-2 hidden whitespace-nowrap rounded bg-zinc-800 px-2 py-1 text-xs text-white shadow-lg group-hover:block dark:bg-zinc-100 dark:text-zinc-900 z-50">
@@ -377,22 +380,38 @@ export default function HireMePage() {
                     ))}
                   </div>
                 </div>
+
+                {/* 6. BaaS */}
+                <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4">
+                  <div className="absolute top-8 right-8 flex gap-2 z-10">
+                    <a href="mailto:surajcommercial@gmail.com" className="group relative rounded-full bg-white border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-700 shadow-sm transition-colors">
+                      Email
+                      <span className="absolute right-0 top-full mt-2 hidden whitespace-nowrap rounded bg-zinc-800 px-2 py-1 text-xs text-white shadow-lg group-hover:block dark:bg-zinc-100 dark:text-zinc-900 z-50">
+                        surajcommercial@gmail.com
+                      </span>
+                    </a>
+                    <a href="https://www.instagram.com/bysuraj.in/" target="_blank" rel="noreferrer" className="rounded-full bg-pink-100 border border-pink-200 px-3 py-1.5 text-xs font-bold text-pink-700 hover:bg-pink-200 dark:bg-pink-900/30 dark:border-pink-800 dark:text-pink-300 dark:hover:bg-pink-900/50 shadow-sm transition-colors">Instagram</a>
+                  </div>
+                  <div className="h-12 w-12 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center text-2xl dark:bg-pink-900/30 dark:text-pink-400">
+                    🌹
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 pr-16">Boyfriend as a Service (BaaS)</h3>
+                    <p className="mt-2 text-lg text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed">
+                      Professional plus-one for weddings, family dinners, and awkward social events.
+                    </p>
+                  </div>
+                  <div className="mt-auto flex flex-wrap gap-2 pt-2">
+                    {["BaaS", "Plus One", "Listener", "Platonic"].map(tag => (
+                      <span key={tag} className="rounded-lg bg-zinc-100 px-3 py-1 text-sm font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              {/* CTA */}
-              <div className="flex flex-col items-center gap-4 text-center">
-                <p className="text-xl text-zinc-600 dark:text-zinc-300 font-medium">
-                  Ready to start? I use <strong className="text-zinc-900 dark:text-zinc-100">Contra</strong> for commission-free hiring.
-                </p>
-                <a
-                  href="https://contra.com/suraj_kumar_b_c_0uicot57?referralExperimentNid=DEFAULT_REFERRAL_PROGRAM&referrerUsername=suraj_kumar_b_c_0uicot57"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-zinc-900 px-10 py-4 text-xl font-semibold text-white transition-transform hover:scale-105 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-black dark:hover:bg-zinc-200"
-                >
-                  <span className="relative z-10">Hire me on Contra ⚡️</span>
-                </a>
-              </div>
+
             </div>
           )}
         </div>
