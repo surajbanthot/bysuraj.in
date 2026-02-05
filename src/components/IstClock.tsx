@@ -41,6 +41,10 @@ export default function IstClock({ className, id }: IstClockProps) {
   let emoji = "";
   if (istHour >= 9 && istHour < 17) {
     emoji = "👨‍💻";
+  } else if (istHour >= 7 && istHour < 9) {
+    emoji = "🏋️";
+  } else if (istHour >= 6 && istHour < 7) {
+    emoji = "🌅";
   } else if (istHour >= 23 || istHour < 6) {
     emoji = "😴";
   }
