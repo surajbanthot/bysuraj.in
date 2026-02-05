@@ -4,6 +4,12 @@ import { usePathname } from "next/navigation";
 
 const initialItems = [
     {
+        title: "demo tile",
+        desc: "",
+        icon: "🚧",
+        status: "Active"
+    },
+    {
         title: "Portfolio Refinement",
         desc: "Polishing animations & adding pixel-perfect details.",
         icon: "✨",
@@ -44,7 +50,7 @@ export default function WIPSidebar() {
         return () => window.removeEventListener("keydown", handleEsc);
     }, []);
 
-    const handleAddItem = (e: React.FormEvent) => {
+    const handleAddItem = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!newTask.trim()) return;
 
@@ -55,8 +61,36 @@ export default function WIPSidebar() {
             status: "Active"
         };
 
-        setItems([newItem, ...items]);
+        const updatedItems = [newItem, ...items];
+        setItems(updatedItems);
         setNewTask("");
+
+        // Save to source file in dev mode
+        if (isDev) {
+            await saveToSource(updatedItems);
+        }
+    };
+
+    const handleDeleteItem = async (index: number) => {
+        const updatedItems = items.filter((_, idx) => idx !== index);
+        setItems(updatedItems);
+
+        // Save to source file in dev mode
+        if (isDev) {
+            await saveToSource(updatedItems);
+        }
+    };
+
+    const saveToSource = async (itemsToSave: typeof items) => {
+        try {
+            await fetch("/api/wip", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ items: itemsToSave }),
+            });
+        } catch (error) {
+            console.error("Failed to save to source:", error);
+        }
     };
 
     // Don't render on non-home pages
@@ -123,7 +157,7 @@ export default function WIPSidebar() {
                                         type="button"
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            setItems(items.filter((_, idx) => idx !== i));
+                                            handleDeleteItem(i);
                                         }}
                                         className="absolute bottom-3 right-3 z-20 opacity-0 group-hover:opacity-100 rounded-full p-1.5 bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white transition-all border border-red-500/30 cursor-pointer"
                                         aria-label="Delete item"
