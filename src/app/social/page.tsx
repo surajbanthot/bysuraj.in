@@ -1,11 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 export default function SocialPage() {
-    const [activeTab, setActiveTab] = useState<"instagram" | "film" | "youtube">("film");
+    const [activeTab, setActiveTab] = useState<"instagram" | "film" | "youtube">(() => {
+        if (typeof window === "undefined") {
+            return "instagram";
+        }
+        const stored = window.sessionStorage.getItem("socialTab");
+        return stored === "instagram" || stored === "film" || stored === "youtube"
+            ? stored
+            : "instagram";
+    });
+
+    useEffect(() => {
+        window.sessionStorage.setItem("socialTab", activeTab);
+    }, [activeTab]);
 
     return (
         <main className="flex min-h-[calc(100vh-56px)] flex-col items-center bg-zinc-50 px-4 py-12 text-center dark:bg-black text-zinc-900 dark:text-zinc-50">
