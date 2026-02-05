@@ -106,14 +106,7 @@ export default function F1Car() {
             {/* Massive Hitbox (Even bigger) */}
             <div className="absolute -top-64 -bottom-64 -left-64 -right-64 z-50 cursor-pointer" />
 
-            {/* Speed Message (Before takeoff) */}
-            {showFastMsg && !isCrashed && (
-                <div className="absolute -top-16 left-1/2 z-50 -translate-x-1/2 whitespace-nowrap border-2 border-black bg-gray-200 px-2 py-1 text-xs font-bold text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] font-mono sm:text-sm animate-bounce">
-                    I'm fast AF boy!!
-                    {/* Arrow */}
-                    <div className="absolute -bottom-2 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 border-b-2 border-r-2 border-black bg-gray-200"></div>
-                </div>
-            )}
+
 
             {/* Tombstone Scene - Persists LONGER (Outside fade container) */}
             {isCrashed && (
@@ -305,7 +298,7 @@ export default function F1Car() {
                 {/* Speech Bubble on Crash */}
                 {isCrashed && (
                     <div className="absolute -top-16 left-1/2 z-50 -translate-x-1/2 whitespace-nowrap border-2 border-black bg-white px-2 py-1 text-xs font-bold text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] animate-bounce font-mono sm:text-sm">
-                        Fuck you human!!!!
+                        Damn you, human!!!
                         {/* Arrow */}
                         <div className="absolute -bottom-2 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 border-b-2 border-r-2 border-black bg-white"></div>
                     </div>

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, VT323 } from "next/font/google";
+import { Geist, Geist_Mono, VT323, Bungee_Spice } from "next/font/google";
 import NavBarShell from "@/components/NavBarShell";
 import LayoutChromeSizer from "@/components/LayoutChromeSizer";
 import FooterBar from "@/components/FooterBar";
 import ResumeButton from "@/components/ResumeButton";
 import F1Car from "@/components/F1Car";
 import JohnnyBravo from "@/components/JohnnyBravo";
+import WIPSidebar from "@/components/WIPSidebar";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -22,6 +23,13 @@ const vt323 = VT323({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-retro",
+  display: "swap",
+});
+
+const bungeeSpice = Bungee_Spice({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-bungee-spice",
   display: "swap",
 });
 
@@ -46,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${vt323.variable} ${vt323.className} antialiased text-xl`}
+        className={`${geistSans.variable} ${geistMono.variable} ${vt323.variable} ${bungeeSpice.variable} ${vt323.className} antialiased text-xl`}
       >
         <LayoutChromeSizer />
         <header
@@ -58,6 +66,7 @@ export default function RootLayout({
         {children}
         <ResumeButton />
         <F1Car />
+        <WIPSidebar />
         <FooterBar />
       </body>
     </html>

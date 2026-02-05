@@ -25,6 +25,13 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Bungee Spice for main headings only - reduced contrast */
+h1.bungee-heading {
+  font-family: var(--font-bungee-spice), cursive;
+  opacity: 0.85;
+  filter: saturate(0.7);
+}
+
 body.nav-clock-visible #hero-clock {
   opacity: 0;
   pointer-events: none;
@@ -448,9 +455,9 @@ button {
     opacity: 1;
   }
 
-  /* Sink Phase (40-100%) */
+  /* Fade Phase (40-100%) - Disappear in place */
   100% {
-    transform: translate(0, 150%);
+    transform: translate(0, 0);
     opacity: 0;
   }
 }
@@ -483,4 +490,18 @@ button {
 
 .animate-ghost {
   animation: ghost-rise 2s ease-out forwards;
+}
+
+@keyframes subtle-ping {
+
+  75%,
+  100% {
+    transform: scale(1.05);
+    /* Very subtle scale */
+    opacity: 0;
+  }
+}
+
+.animate-subtle-ping {
+  animation: subtle-ping 3s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
