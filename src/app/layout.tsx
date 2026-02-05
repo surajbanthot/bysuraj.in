@@ -4,6 +4,8 @@ import NavBarShell from "@/components/NavBarShell";
 import LayoutChromeSizer from "@/components/LayoutChromeSizer";
 import FooterBar from "@/components/FooterBar";
 import ResumeButton from "@/components/ResumeButton";
+import F1Car from "@/components/F1Car";
+import JohnnyBravo from "@/components/JohnnyBravo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -55,6 +57,7 @@ export default function RootLayout({
         </header>
         {children}
         <ResumeButton />
+        <F1Car />
         <FooterBar />
       </body>
     </html>
