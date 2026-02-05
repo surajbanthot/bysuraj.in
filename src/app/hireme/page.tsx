@@ -16,6 +16,10 @@ export default function HireMePage() {
 
   useEffect(() => {
     window.sessionStorage.setItem("hireMeTab", activeTab);
+    const btn = document.getElementById("resume-button-container");
+    if (btn) {
+      btn.style.display = activeTab === "freelance" ? "none" : "flex";
+    }
   }, [activeTab]);
 
   return (
@@ -221,22 +225,165 @@ export default function HireMePage() {
               </div>
             </div>
           ) : (
-            <div className="flex flex-col items-center gap-10 animate-in fade-in slide-in-from-bottom-4 duration-500 text-center">
-              <div className="space-y-6 max-w-2xl">
+            <div className="flex flex-col gap-16 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              {/* Header */}
+              <div className="text-center space-y-6 max-w-3xl mx-auto">
                 <h2 className="text-4xl font-bold sm:text-5xl text-zinc-900 dark:text-zinc-100">
-                  Freelance & Commission Work
+                  Freelance Services
                 </h2>
                 <p className="text-xl sm:text-2xl text-zinc-700 dark:text-zinc-200 font-medium leading-relaxed">
-                  I am available for select freelance projects tailored to your needs.
-                  My preferred platform for managing contracts, payments, and project scope is
-                  <strong className="text-zinc-900 dark:text-white mx-1">Contra</strong>.
-                </p>
-                <p className="text-xl sm:text-2xl text-zinc-700 dark:text-zinc-200 font-medium leading-relaxed">
-                  It ensures a smooth, commission-free hiring process for both of us.
+                  Help me make black money 💰🕶️ <br className="hidden sm:block" />
+                  Here is how I can help you.
                 </p>
               </div>
 
-              <div className="flex flex-col items-center gap-4">
+              {/* Services Grid */}
+              <div className="grid gap-6 md:grid-cols-2">
+                {/* 1. Motion Graphics */}
+                <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4">
+                  <div className="absolute top-8 right-8 flex gap-2 z-10">
+                    <a href="https://contra.com/suraj_kumar_b_c_0uicot57" target="_blank" rel="noreferrer" className="rounded-full bg-zinc-900 px-3 py-1.5 text-xs font-bold text-white hover:bg-zinc-700 dark:bg-zinc-100 dark:text-black dark:hover:bg-zinc-300 shadow-sm transition-colors">Contra</a>
+                    <a href="mailto:surajcommercial@gmail.com" className="group relative rounded-full bg-white border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-700 shadow-sm transition-colors">
+                      Email
+                      <span className="absolute right-0 top-full mt-2 hidden whitespace-nowrap rounded bg-zinc-800 px-2 py-1 text-xs text-white shadow-lg group-hover:block dark:bg-zinc-100 dark:text-zinc-900 z-50">
+                        surajcommercial@gmail.com
+                      </span>
+                    </a>
+                  </div>
+                  <div className="h-12 w-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl dark:bg-purple-900/30 dark:text-purple-400">
+                    🎬
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 pr-24">Motion Graphics Artist</h3>
+                    <p className="mt-2 text-lg text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed">
+                      Compelling storytelling through motion and visual effects.
+                    </p>
+                  </div>
+                  <div className="mt-auto flex flex-wrap gap-2 pt-2">
+                    {["Premiere Pro", "After Effects", "Illustrator", "Blender 3D"].map(tag => (
+                      <span key={tag} className="rounded-lg bg-zinc-100 px-3 py-1 text-sm font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 2. Rive Expert */}
+                <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4">
+                  <div className="absolute top-8 right-8 flex gap-2 z-10">
+                    <a href="https://contra.com/suraj_kumar_b_c_0uicot57" target="_blank" rel="noreferrer" className="rounded-full bg-zinc-900 px-3 py-1.5 text-xs font-bold text-white hover:bg-zinc-700 dark:bg-zinc-100 dark:text-black dark:hover:bg-zinc-300 shadow-sm transition-colors">Contra</a>
+                  </div>
+                  <div className="h-12 w-12 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center text-2xl dark:bg-orange-900/30 dark:text-orange-400">
+                    ⚡️
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 pr-20">Rive Expert</h3>
+                    <p className="mt-2 text-lg text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed">
+                      High-performance interactive UI animations for the web.
+                    </p>
+                  </div>
+                  <div className="mt-auto flex flex-wrap gap-2 pt-2">
+                    {["Rive", "State Machines", "Interactive UI", "Web Runtime"].map(tag => (
+                      <span key={tag} className="rounded-lg bg-zinc-100 px-3 py-1 text-sm font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 3. Frontend Dev */}
+                <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4">
+                  <div className="absolute top-8 right-8 flex gap-2 z-10">
+                    <a href="mailto:surajcommercial@gmail.com" className="group relative rounded-full bg-white border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-700 shadow-sm transition-colors">
+                      Email
+                      <span className="absolute right-0 top-full mt-2 hidden whitespace-nowrap rounded bg-zinc-800 px-2 py-1 text-xs text-white shadow-lg group-hover:block dark:bg-zinc-100 dark:text-zinc-900 z-50">
+                        surajcommercial@gmail.com
+                      </span>
+                    </a>
+                  </div>
+                  <div className="h-12 w-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl dark:bg-blue-900/30 dark:text-blue-400">
+                    💻
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 pr-16">Frontend Developer</h3>
+                    <p className="mt-2 text-lg text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed">
+                      Scalable, accessible, and pixel-perfect web applications.
+                    </p>
+                  </div>
+                  <div className="mt-auto flex flex-wrap gap-2 pt-2">
+                    {["React", "Next.js", "TypeScript", "Tailwind CSS"].map(tag => (
+                      <span key={tag} className="rounded-lg bg-zinc-100 px-3 py-1 text-sm font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 4. Analogue Photography */}
+                <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4">
+                  <div className="absolute top-8 right-8 flex gap-2 z-10">
+                    <a href="mailto:surajcommercial@gmail.com" className="group relative rounded-full bg-white border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-700 shadow-sm transition-colors">
+                      Email
+                      <span className="absolute right-0 top-full mt-2 hidden whitespace-nowrap rounded bg-zinc-800 px-2 py-1 text-xs text-white shadow-lg group-hover:block dark:bg-zinc-100 dark:text-zinc-900 z-50">
+                        surajcommercial@gmail.com
+                      </span>
+                    </a>
+                    <a href="https://www.instagram.com/bysuraj.in/" target="_blank" rel="noreferrer" className="rounded-full bg-pink-100 border border-pink-200 px-3 py-1.5 text-xs font-bold text-pink-700 hover:bg-pink-200 dark:bg-pink-900/30 dark:border-pink-800 dark:text-pink-300 dark:hover:bg-pink-900/50 shadow-sm transition-colors">Instagram</a>
+                  </div>
+                  <div className="h-12 w-12 rounded-2xl bg-zinc-100 text-zinc-600 flex items-center justify-center text-2xl dark:bg-zinc-800 dark:text-zinc-400">
+                    📷
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 pr-24">Analogue Photographer</h3>
+                    <p className="mt-2 text-lg text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed">
+                      Portrait and editorial photography on medium format film.
+                    </p>
+                  </div>
+                  <div className="mt-auto flex flex-wrap gap-2 pt-2">
+                    {["Pentax 67II", "Medium Format", "Portrait", "Editorial"].map(tag => (
+                      <span key={tag} className="rounded-lg bg-zinc-100 px-3 py-1 text-sm font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 5. Hiking & Gym Partner */}
+                <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4">
+                  <div className="absolute top-8 right-8 flex gap-2 z-10">
+                    <a href="mailto:surajcommercial@gmail.com" className="group relative rounded-full bg-white border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-700 shadow-sm transition-colors">
+                      Email
+                      <span className="absolute right-0 top-full mt-2 hidden whitespace-nowrap rounded bg-zinc-800 px-2 py-1 text-xs text-white shadow-lg group-hover:block dark:bg-zinc-100 dark:text-zinc-900 z-50">
+                        surajcommercial@gmail.com
+                      </span>
+                    </a>
+                  </div>
+                  <div className="h-12 w-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl dark:bg-emerald-900/30 dark:text-emerald-400">
+                    🏔️
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 pr-16">Hiking & Gym Partner</h3>
+                    <p className="mt-2 text-lg text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed">
+                      Explorations in Bangalore & Coorg or spotting each other at the gym. <br />
+                      I'm fat as fuck, help me!! <br />
+                      <span className="text-base italic opacity-80">(This service is free of charge)</span>
+                    </p>
+                  </div>
+                  <div className="mt-auto flex flex-wrap gap-2 pt-2">
+                    {["Bangalore", "Kodagu (Coorg)", "Hiking", "Gym Partner"].map(tag => (
+                      <span key={tag} className="rounded-lg bg-zinc-100 px-3 py-1 text-sm font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA */}
+              <div className="flex flex-col items-center gap-4 text-center">
+                <p className="text-xl text-zinc-600 dark:text-zinc-300 font-medium">
+                  Ready to start? I use <strong className="text-zinc-900 dark:text-zinc-100">Contra</strong> for commission-free hiring.
+                </p>
                 <a
                   href="https://contra.com/suraj_kumar_b_c_0uicot57?referralExperimentNid=DEFAULT_REFERRAL_PROGRAM&referrerUsername=suraj_kumar_b_c_0uicot57"
                   target="_blank"
@@ -245,9 +392,6 @@ export default function HireMePage() {
                 >
                   <span className="relative z-10">Hire me on Contra ⚡️</span>
                 </a>
-                <p className="text-base text-zinc-500 dark:text-zinc-400">
-                  Secure payments • Clear deliverables • No platform fees
-                </p>
               </div>
             </div>
           )}

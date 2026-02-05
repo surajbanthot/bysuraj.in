@@ -42,6 +42,7 @@ export default function ResumeButton() {
 
   return (
     <div
+      id="resume-button-container"
       className="fixed right-4 z-40 flex flex-col items-end gap-4 transition-all duration-300 ease-out sm:right-10 sm:gap-6"
       style={{ bottom: `${bottomOffset}px` }}
     >
