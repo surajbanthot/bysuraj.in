@@ -86,10 +86,10 @@ export default function WIPSidebar() {
 
     return (
         <>
-            {/* Trigger Button - Top Left (Fixed) */}
+            {/* Trigger Button - Top Left (Fixed, same level as menu on mobile) */}
             <button
                 onClick={() => setIsOpen(true)}
-                className="fixed top-[5.5rem] left-4 z-40 flex items-center gap-3 rounded-md border border-zinc-500/20 bg-black/60 px-5 py-2.5 text-sm font-bold text-zinc-100 backdrop-blur-md transition-all hover:border-orange-500/50 hover:bg-black/80 hover:text-orange-500 sm:left-8 shadow-lg font-[family-name:var(--font-bungee)]"
+                className="wip-button fixed top-4 left-4 z-40 flex items-center gap-3 rounded-md border border-zinc-500/20 bg-black/60 px-5 py-2.5 text-sm font-bold text-zinc-100 backdrop-blur-md transition-all hover:border-orange-500/50 hover:bg-black/80 hover:text-orange-500 sm:top-[5.5rem] sm:left-8 shadow-lg font-[family-name:var(--font-bungee)]"
             >
                 <span className="absolute inset-0 rounded-md bg-zinc-500/20 animate-subtle-ping pointer-events-none"></span>
                 <span className="relative flex h-2.5 w-2.5">

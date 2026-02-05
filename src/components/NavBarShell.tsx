@@ -83,7 +83,7 @@ export default function NavBarShell({ fontClassName, bungeeClassName }: NavBarSh
         >
           <NavBar fontClassName={fontClassName} bungeeClassName={bungeeClassName} />
         </div>
-        <div className="flex items-center justify-end justify-self-end gap-3 sm:gap-4">
+        <div className="hidden sm:flex items-center justify-end justify-self-end gap-3 sm:gap-4">
 
 
           <div

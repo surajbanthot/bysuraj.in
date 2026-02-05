@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 type NavBarProps = {
   fontClassName?: string;
@@ -21,6 +22,23 @@ const links = [
 export default function NavBar({ fontClassName, bungeeClassName }: NavBarProps) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Add class to body when menu is open to hide other fixed elements
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add("mobile-menu-open");
+    } else {
+      document.body.classList.remove("mobile-menu-open");
+    }
+    return () => {
+      document.body.classList.remove("mobile-menu-open");
+    };
+  }, [isMenuOpen]);
+
+  // Close menu when route changes to avoid "flash" of old page
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
 
   const baseClasses =
     "inline-flex items-center gap-2 border border-zinc-300/70 px-3 py-1.5 text-zinc-800 transition duration-200 leading-none dark:border-zinc-500/70 dark:text-zinc-100";
@@ -57,12 +75,12 @@ export default function NavBar({ fontClassName, bungeeClassName }: NavBarProps) 
         </div>
       </nav>
 
-      {/* Mobile Navigation */}
-      <nav className={`flex items-center justify-end px-4 py-2 sm:hidden ${fontClassName ?? ""}`}>
+      {/* Mobile Navigation - Fixed to top right */}
+      <nav className={`fixed top-4 right-4 z-40 sm:hidden ${fontClassName ?? ""}`}>
         <button
           type="button"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="flex items-center gap-2 rounded border border-zinc-300/70 px-3 py-2 text-lg text-zinc-800 transition hover:border-orange-300 dark:border-zinc-600 dark:text-zinc-100"
+          className="flex items-center gap-2 rounded-md border border-zinc-500/20 bg-black/60 px-3 py-2 text-lg text-zinc-100 backdrop-blur-md transition hover:border-orange-300 font-[family-name:var(--font-bungee)]"
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
         >
@@ -71,30 +89,23 @@ export default function NavBar({ fontClassName, bungeeClassName }: NavBarProps) 
         </button>
       </nav>
 
-      {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <div
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md sm:hidden"
-          onClick={() => setIsMenuOpen(false)}
-        >
-          <div
-            className="absolute right-0 top-0 h-full w-64 bg-zinc-950 p-4 shadow-2xl border-l border-zinc-800"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between mb-6">
-              <span className={`text-xl font-normal text-zinc-100 ${fontClassName ?? ""}`}>
-                Navigate
-              </span>
-              <button
-                type="button"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-2xl text-zinc-400 hover:text-zinc-100"
-                aria-label="Close menu"
-              >
-                ✕
-              </button>
-            </div>
-            <div className="flex flex-col gap-2">
+      {/* Mobile Menu - Full Screen Centered Overlay via Portal */}
+      {isMenuOpen &&
+        createPortal(
+          <div className="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center overflow-y-auto py-16 sm:hidden">
+            {/* Close button - Top Right */}
+            <button
+              onClick={() => setIsMenuOpen(false)}
+              className="absolute top-4 right-4 rounded-full p-3 text-zinc-400 hover:bg-white/10 hover:text-white transition-colors z-10"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+
+            {/* Menu Items - Centered */}
+            <div className="flex flex-col items-center gap-3 w-full max-w-[280px] px-4">
               {links.map((link) => {
                 const isActive = pathname === link.href;
                 const isHireMe = link.href === "/hireme";
@@ -103,22 +114,20 @@ export default function NavBar({ fontClassName, bungeeClassName }: NavBarProps) 
                   <Link
                     key={link.href}
                     href={link.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`flex items-center gap-3 rounded-lg px-4 py-3 text-lg transition ${isActive
-                      ? "bg-orange-500/20 text-orange-600 dark:text-orange-400"
-                      : "text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800"
-                      } ${isHireMe ? "hire-me-btn" : ""} ${fontClassName ?? ""}`}
-                    aria-current={isActive ? "page" : undefined}
+                    className={`group flex items-center justify-center gap-3 w-full rounded-xl border px-4 py-3 transition-all duration-200 ${isActive
+                      ? "border-orange-300 bg-orange-500 text-white shadow-[0_0_18px_rgba(251,146,60,0.75),0_8px_18px_rgba(0,0,0,0.35)]"
+                      : "border-white/10 bg-white/5 hover:border-orange-300 hover:bg-orange-500 hover:text-white hover:shadow-[0_0_18px_rgba(251,146,60,0.75),0_8px_18px_rgba(0,0,0,0.35)]"
+                      } ${isHireMe ? "hire-me-btn" : ""}`}
                   >
-                    <span className="text-xl">{link.emoji}</span>
-                    <span className={bungeeClassName ?? ""}>{link.label}</span>
+                    <span className={`text-xl transition-all ${isActive ? "grayscale-0 text-white" : "grayscale group-hover:grayscale-0 group-hover:text-white"}`}>{link.emoji}</span>
+                    <span className={`text-lg font-bold transition-colors ${isActive ? "text-white" : "text-zinc-200 group-hover:text-white"} ${bungeeClassName ?? ""}`}>{link.label}</span>
                   </Link>
                 );
               })}
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </>
   );
 }

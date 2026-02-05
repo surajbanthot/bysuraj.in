@@ -15,7 +15,7 @@ export default function Home() {
 
       {/* Content Layer */}
       <div className="relative z-10 flex flex-1 flex-col">
-        <header className="flex w-full flex-col gap-2 px-4 pt-2 sm:flex-row sm:items-start sm:justify-end sm:px-8 sm:pt-3">
+        <header className="hidden sm:flex w-full flex-col gap-2 px-4 pt-2 sm:flex-row sm:items-start sm:justify-end sm:px-8 sm:pt-3">
           <IstClock
             id="hero-clock"
             className="text-base text-zinc-200 drop-shadow-md transition-opacity duration-200 sm:text-xl"

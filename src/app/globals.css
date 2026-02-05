@@ -38,6 +38,11 @@ body.nav-clock-visible #hero-clock {
   pointer-events: none;
 }
 
+/* Hide WIP button when mobile menu is open */
+body.mobile-menu-open .wip-button {
+  display: none !important;
+}
+
 button {
   cursor: url("/cursor-robot-hand.svg") 16 2, pointer;
 }

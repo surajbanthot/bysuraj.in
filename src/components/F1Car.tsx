@@ -94,7 +94,7 @@ export default function F1Car() {
 
     return (
         <div
-            className={`fixed bottom-24 left-0 z-20 w-20 sm:w-28 origin-bottom animate-f1-sequence ${isCrashed ? "cursor-default" : "cursor-pointer pointer-events-auto"}`}
+            className={`hidden sm:block fixed bottom-24 left-0 z-20 w-20 sm:w-28 origin-bottom animate-f1-sequence ${isCrashed ? "cursor-default" : "cursor-pointer pointer-events-auto"}`}
             style={{
                 imageRendering: "pixelated",
                 animationPlayState: isCrashed ? "paused" : "running"
@@ -349,7 +349,7 @@ export default function F1Car() {
                     {/* Fast AF Message - Appears during burnout */}
                     {showFastMsg && !isCrashed && (
                         <div className="absolute -top-10 -left-16 z-50 whitespace-nowrap border-2 border-black bg-white px-2 py-1 text-xs font-bold text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] animate-bounce font-mono sm:text-sm">
-                            i'm fast af boy!!!
+                            naah!!, you can't catch me.
                             {/* Arrow pointing down */}
                             <div className="absolute -bottom-2 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 border-b-2 border-r-2 border-black bg-white"></div>
                         </div>

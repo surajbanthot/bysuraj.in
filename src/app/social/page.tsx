@@ -20,7 +20,7 @@ export default function SocialPage() {
     }, [activeTab]);
 
     return (
-        <main className="flex min-h-[calc(100vh-56px)] flex-col items-center bg-zinc-50 px-4 py-12 text-center dark:bg-black text-zinc-900 dark:text-zinc-50">
+        <main className="flex min-h-[calc(100vh-56px)] flex-col items-center bg-zinc-50 px-4 pt-24 pb-12 text-center dark:bg-black text-zinc-900 dark:text-zinc-50">
             <div className="flex w-full max-w-5xl flex-col items-center animate-in fade-in zoom-in duration-500">
                 {/* Switcher */}
                 <div className="mb-12 flex w-full max-w-sm rounded-full bg-zinc-200/50 p-1.5 dark:bg-zinc-900/50 backdrop-blur-sm border border-zinc-200 dark:border-zinc-800">
