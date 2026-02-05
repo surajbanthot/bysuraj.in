@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 export default function F1Car() {
+    const pathname = usePathname();
     const [isDriving, setIsDriving] = useState(false);
     const [isBurning, setIsBurning] = useState(false);
     const [isCrashed, setIsCrashed] = useState(false);
@@ -90,7 +92,7 @@ export default function F1Car() {
         setTimeout(() => resetAndSchedule(500), 2500);
     };
 
-    if (!isDriving) return null;
+    if (pathname === "/hireme" || !isDriving) return null;
 
     return (
         <div

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, VT323, Bungee_Spice, Bungee } from "next/font/google";
+import { Geist, Geist_Mono, VT323, Bungee_Spice, Bungee, Quantico } from "next/font/google";
 import NavBarShell from "@/components/NavBarShell";
 import LayoutChromeSizer from "@/components/LayoutChromeSizer";
 import FooterBar from "@/components/FooterBar";
@@ -40,6 +40,13 @@ const bungee = Bungee({
   display: "swap",
 });
 
+const quantico = Quantico({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-quantico",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Suraj's Web",
   description: "My Digital Playground & Portfolio :)",
@@ -61,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${vt323.variable} ${bungeeSpice.variable} ${bungee.variable} ${vt323.className} antialiased text-xl`}
+        className={`${geistSans.variable} ${geistMono.variable} ${vt323.variable} ${bungeeSpice.variable} ${bungee.variable} ${quantico.variable} ${vt323.className} antialiased text-xl`}
       >
         <LayoutChromeSizer />
         <header

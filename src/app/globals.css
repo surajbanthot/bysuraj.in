@@ -272,6 +272,80 @@ button {
   animation: vibrate 0.3s ease-in-out infinite;
 }
 
+/* Ax & Gear Animations */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes chop {
+  0% {
+    transform: scaleX(-1) rotate(-45deg);
+  }
+
+  50% {
+    transform: scaleX(-1) rotate(0deg);
+  }
+
+  100% {
+    transform: scaleX(-1) rotate(-45deg);
+  }
+}
+
+/* WIP Button Animations */
+.wip-button {
+  overflow: visible !important;
+}
+
+.wip-button::before,
+.wip-button::after {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  font-size: 24px;
+}
+
+/* Axe left (Top Left) */
+.wip-button::before {
+  content: "🪓";
+  top: -28px;
+  left: -36px;
+  transform: scaleX(-1) rotate(-45deg);
+  transform-origin: bottom right;
+  /* Pivot from handle (mirrored) */
+}
+
+/* Machinery (Gear) right (Bottom Right) */
+.wip-button::after {
+  content: "⚙️";
+  bottom: -12px;
+  /* Changed from top to bottom */
+  right: -12px;
+  z-index: 50;
+}
+
+/* On hover, show and animate */
+.wip-button:hover::before {
+  opacity: 1;
+  animation: chop 0.5s ease-in-out infinite;
+}
+
+.wip-button:hover::after {
+  opacity: 1;
+  animation: spin 2s linear infinite;
+}
+
+/* Removed vibrate on main button */
+.wip-button:hover {
+  animation: none;
+}
+
 @keyframes fade-out-crash {
   0% {
     opacity: 1;

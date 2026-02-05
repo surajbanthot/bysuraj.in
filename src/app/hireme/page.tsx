@@ -20,21 +20,21 @@ export default function HireMePage() {
 
   return (
     <main className="min-h-[calc(100vh-56px)] bg-white px-4 pb-28 pt-8 text-zinc-900 dark:bg-black dark:text-zinc-50 sm:px-8 sm:pb-12 sm:pt-10">
-      <div className="mx-auto flex w-full max-w-3xl flex-col gap-8">
+      <div className="mx-auto flex w-full max-w-4xl flex-col gap-10">
         <div
           className="flex justify-center"
           role="tablist"
           aria-label="Hire type"
         >
-          <div className="inline-flex w-fit rounded-full border border-zinc-200/70 bg-zinc-50/60 p-1 dark:border-zinc-800 dark:bg-black/40">
+          <div className="inline-flex w-fit rounded-full border border-zinc-200/70 bg-zinc-50/60 p-1.5 dark:border-zinc-800 dark:bg-black/40">
             <button
               type="button"
               role="tab"
               aria-selected={activeTab === "fulltime"}
               onClick={() => setActiveTab("fulltime")}
-              className={`rounded-full px-3 py-1.5 text-base transition sm:px-4 sm:py-2 sm:text-xl ${activeTab === "fulltime"
-                ? "bg-orange-500/80 text-white shadow-[0_0_12px_rgba(251,146,60,0.45)]"
-                : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50"
+              className={`rounded-full px-5 py-2.5 text-lg font-medium transition sm:px-6 sm:py-3 sm:text-xl ${activeTab === "fulltime"
+                ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30"
+                : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
                 }`}
             >
               Full time
@@ -44,9 +44,9 @@ export default function HireMePage() {
               role="tab"
               aria-selected={activeTab === "freelance"}
               onClick={() => setActiveTab("freelance")}
-              className={`rounded-full px-3 py-1.5 text-base transition sm:px-4 sm:py-2 sm:text-xl ${activeTab === "freelance"
-                ? "bg-orange-500/80 text-white shadow-[0_0_12px_rgba(251,146,60,0.45)]"
-                : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50"
+              className={`rounded-full px-5 py-2.5 text-lg font-medium transition sm:px-6 sm:py-3 sm:text-xl ${activeTab === "freelance"
+                ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30"
+                : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
                 }`}
             >
               Freelance
@@ -54,62 +54,202 @@ export default function HireMePage() {
           </div>
         </div>
 
-        <div className="text-lg text-zinc-600 dark:text-zinc-300 sm:text-xl">
+        <div className="text-lg text-zinc-600 dark:text-zinc-300 sm:text-xl font-[family-name:var(--font-quantico)]">
           {activeTab === "fulltime" ? (
-            <div className="mx-auto w-full max-w-md">
-              <div className="relative">
-                <div className="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 rounded-full bg-green-600/70 dark:bg-green-500/60" />
-                <div className="flex flex-col gap-5">
-                  {[
-                    "2026 (present)",
-                    "2025",
-                    "2024",
-                    "2023",
-                    "2022",
-                    "2021",
-                    "2020",
-                    "2019",
-                    "2018",
-                    "2017",
-                    "2016",
-                    "2015",
-                  ].map((year, index) => {
-                    const isLeft = index % 2 === 0;
-                    return (
-                      <div
-                        key={year}
-                        className={`relative flex items-center ${isLeft ? "justify-start pr-2" : "justify-end pl-2"
-                          }`}
-                      >
-                        <span
-                          className={`absolute left-1/2 top-1/2 h-1 w-8 -translate-y-1/2 rounded-full bg-green-500/70 ${isLeft ? "-translate-x-full" : "translate-x-0"
-                            }`}
-                        />
-                        <span
-                          className={`text-xl text-zinc-700 dark:text-zinc-200 sm:text-2xl ${isLeft ? "text-left" : "text-right"
-                            }`}
-                        >
-                          {year}
+            <div className="mx-auto w-full max-w-6xl space-y-20 animate-in fade-in slide-in-from-bottom-4 duration-500">
+
+              {/* 1. Header Section - Expanded & Larger */}
+              <div className="flex flex-col gap-10 rounded-3xl border border-zinc-200 bg-zinc-50/80 p-8 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900/50 sm:p-12 shadow-sm">
+
+                <div className="flex flex-wrap items-center justify-between gap-6">
+                  <div className="flex flex-wrap items-center gap-4">
+                    <span className="inline-flex items-center rounded-full bg-green-100 px-5 py-2 text-base font-bold text-green-800 dark:bg-green-900/40 dark:text-green-300 ring-1 ring-inset ring-green-600/20">
+                      <span className="mr-2.5 h-3 w-3 rounded-full bg-green-600 animate-pulse"></span>
+                      Open to full-time
+                    </span>
+                    <span className="text-base font-medium text-zinc-600 dark:text-zinc-300 flex items-center gap-2">
+                      <svg className="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                      Bengaluru (Remote/Hybrid)
+                    </span>
+                  </div>
+                </div>
+
+                <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+                  <div className="space-y-3">
+                    <h3 className="text-sm font-bold text-zinc-500 uppercase tracking-widest dark:text-zinc-400">
+                      Preferred Roles
+                    </h3>
+                    <p className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 leading-tight">
+                      Senior Frontend Engineer <br /> React / Next.js
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <h3 className="text-sm font-bold text-zinc-500 uppercase tracking-widest dark:text-zinc-400">
+                      Notice Period
+                    </h3>
+                    <p className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">
+                      Immediate
+                    </p>
+                  </div>
+
+                  <div className="space-y-3 md:col-span-2 lg:col-span-3">
+                    <h3 className="text-sm font-bold text-zinc-500 uppercase tracking-widest dark:text-zinc-400">
+                      Tech Stack
+                    </h3>
+                    <div className="flex flex-wrap gap-3">
+                      {["React", "Next.js", "Node.js", "TypeScript", "Python", "Testing", "Figma", "Framer", "Rive", "After Effects", "Premiere Pro", "Illustrator", "Blender3D"].map(tag => (
+                        <span key={tag} className="rounded-xl border border-zinc-200 bg-white px-4 py-2 text-base font-semibold text-zinc-800 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-200">
+                          {tag}
                         </span>
-                      </div>
-                    );
-                  })}
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="mt-8 space-y-4 text-center">
-                <p className="text-xl text-zinc-700 dark:text-zinc-200 sm:text-2xl">
-                  Over a decade of experience in design engineering and creative technology.
-                </p>
-                <p className="text-lg text-zinc-600 dark:text-zinc-400 sm:text-xl">
-                  I bring a unique blend of design thinking, technical expertise, and creative problem-solving to every project. From startups to enterprise companies, I&apos;ve helped teams build beautiful, functional, and scalable products.
-                </p>
-                <p className="text-lg text-zinc-600 dark:text-zinc-400 sm:text-xl">
-                  Looking for a full-time opportunity where I can make a meaningful impact. Let&apos;s talk!
-                </p>
+
+              {/* 2. Timeline Tree - Large Text Variant */}
+              <div className="relative py-8">
+                {/* Central Line */}
+                <div className="absolute left-6 md:left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-zinc-200 dark:bg-zinc-800"></div>
+
+                <div className="space-y-16">
+                  {/* Tech Mahindra - Right */}
+                  <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
+                    <div className="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 hidden md:block"></div>
+                    {/* Dot */}
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-10 w-10 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-orange-500 shadow-lg dark:border-zinc-950 z-10 box-content">
+                      {/* box-content to keep size consistent with border */}
+                      <div className="h-3 w-3 rounded-full bg-white"></div>
+                    </div>
+                    <div className="md:w-1/2 md:pl-16 pl-16 order-1 md:order-2">
+                      <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left">
+                        <span className="mb-3 block font-mono text-base font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Feb 2024 – Sep 2025</span>
+                        <h3 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">Tech Mahindra</h3>
+                        <div className="mb-6 text-xl font-bold text-orange-600 dark:text-orange-400">
+                          Senior Software Engineer (React.js)
+                        </div>
+                        <ul className="list-disc list-outside ml-5 space-y-3 text-lg text-zinc-800 dark:text-zinc-200 leading-relaxed font-medium">
+                          <li>Developed scalable front-end components for <strong className="font-extrabold text-black dark:text-white">Microsoft Teams</strong> using <strong className="font-extrabold text-black dark:text-white">React.js</strong>.</li>
+                          <li>Optimized performance and ensured accessibility/<strong className="font-extrabold text-black dark:text-white">WCAG</strong> compliance across the application.</li>
+                          <li>Collaborated with cross-functional teams to ship feature-rich updates in an <strong className="font-extrabold text-black dark:text-white">agile</strong> environment.</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Mirafra - Left */}
+                  <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
+                    <div className="md:w-1/2 md:pr-16 pl-16 md:pl-0 order-1">
+                      <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left">
+                        <span className="mb-3 block font-mono text-base font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Sep 2022 – Nov 2023</span>
+                        <h3 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">Mirafra Technologies</h3>
+                        <div className="mb-6 text-xl font-bold text-zinc-700 dark:text-zinc-300">
+                          Senior Software Engineer (React.js)
+                        </div>
+                        <ul className="list-disc list-outside ml-5 space-y-3 text-lg text-zinc-800 dark:text-zinc-200 leading-relaxed font-medium">
+                          <li>Built interactive features for the digital storytelling platform <strong className="font-extrabold text-black dark:text-white">PrathamBooks.org</strong>.</li>
+                          <li>Collaborated closely with designers to implement <strong className="font-extrabold text-black dark:text-white">pixel-perfect UI</strong> and smooth interactions.</li>
+                          <li>Enhanced user engagement metrics through <strong className="font-extrabold text-black dark:text-white">responsive design</strong> implementation.</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
+                    </div>
+                    <div className="md:w-1/2 md:pl-16 order-2 hidden md:block"></div>
+                  </div>
+
+                  {/* Liftoff - Right */}
+                  <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
+                    <div className="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 hidden md:block"></div>
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
+                    </div>
+                    <div className="md:w-1/2 md:pl-16 pl-16 order-1 md:order-2">
+                      <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40">
+                        <span className="mb-3 block font-mono text-base font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Nov 2021 – Feb 2022</span>
+                        <h3 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">Liftoff LLC</h3>
+                        <div className="mb-6 text-xl font-bold text-zinc-700 dark:text-zinc-300">
+                          Front-end Developer (React.js)
+                        </div>
+                        <ul className="list-disc list-outside ml-5 space-y-3 text-lg text-zinc-800 dark:text-zinc-200 leading-relaxed font-medium">
+                          <li>Developed core features for the Sphere Web platform using <strong className="font-extrabold text-black dark:text-white">React</strong> and <strong className="font-extrabold text-black dark:text-white">Redux</strong>.</li>
+                          <li>Integrated complex <strong className="font-extrabold text-black dark:text-white">RESTful APIs</strong> and managed application state efficiently.</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Broadridge - Left */}
+                  <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
+                    <div className="md:w-1/2 md:pr-16 pl-16 md:pl-0 order-1">
+                      <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left">
+                        <span className="mb-3 block font-mono text-base font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Jun 2018 – Oct 2020</span>
+                        <h3 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">Broadridge Financial Solutions</h3>
+                        <div className="mb-6 text-xl font-bold text-zinc-700 dark:text-zinc-300">
+                          Front-end Developer (React.js)
+                        </div>
+                        <ul className="list-disc list-outside ml-5 space-y-3 text-lg text-zinc-800 dark:text-zinc-200 leading-relaxed font-medium">
+                          <li>Worked on the Global Post Trade Management system for enterprise clients.</li>
+                          <li>Migrated legacy UI views to modern, component-based <strong className="font-extrabold text-black dark:text-white">React</strong> architecture.</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
+                    </div>
+                    <div className="md:w-1/2 md:pl-16 order-2 hidden md:block"></div>
+                  </div>
+
+                  {/* Education - Right */}
+                  <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
+                    <div className="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 hidden md:block"></div>
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
+                    </div>
+                    <div className="md:w-1/2 md:pl-16 pl-16 order-1 md:order-2">
+                      <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40">
+                        <span className="mb-3 block font-mono text-base font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Jun 2015 – May 2018</span>
+                        <h3 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">Ramaiah Institute of Technology</h3>
+                        <div className="mb-6 text-xl font-bold text-zinc-700 dark:text-zinc-300">
+                          B.E. Information Science & Engineering
+                        </div>
+                        <ul className="list-disc list-outside ml-5 space-y-3 text-lg text-zinc-800 dark:text-zinc-200 leading-relaxed font-medium">
+                          <li>Specialized in Information Science fundamentals and software engineering. <strong className="font-extrabold text-black dark:text-white">7.92 CGPA</strong></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           ) : (
-            <p className="text-xl sm:text-2xl">Freelance details will go here.</p>
+            <div className="flex flex-col items-center gap-10 animate-in fade-in slide-in-from-bottom-4 duration-500 text-center">
+              <div className="space-y-6 max-w-2xl">
+                <h2 className="text-4xl font-bold sm:text-5xl text-zinc-900 dark:text-zinc-100">
+                  Freelance & Commission Work
+                </h2>
+                <p className="text-xl sm:text-2xl text-zinc-700 dark:text-zinc-200 font-medium leading-relaxed">
+                  I am available for select freelance projects tailored to your needs.
+                  My preferred platform for managing contracts, payments, and project scope is
+                  <strong className="text-zinc-900 dark:text-white mx-1">Contra</strong>.
+                </p>
+                <p className="text-xl sm:text-2xl text-zinc-700 dark:text-zinc-200 font-medium leading-relaxed">
+                  It ensures a smooth, commission-free hiring process for both of us.
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center gap-4">
+                <a
+                  href="https://contra.com/suraj_kumar_b_c_0uicot57?referralExperimentNid=DEFAULT_REFERRAL_PROGRAM&referrerUsername=suraj_kumar_b_c_0uicot57"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-zinc-900 px-10 py-4 text-xl font-semibold text-white transition-transform hover:scale-105 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-black dark:hover:bg-zinc-200"
+                >
+                  <span className="relative z-10">Hire me on Contra ⚡️</span>
+                </a>
+                <p className="text-base text-zinc-500 dark:text-zinc-400">
+                  Secure payments • Clear deliverables • No platform fees
+                </p>
+              </div>
+            </div>
           )}
         </div>
       </div>
