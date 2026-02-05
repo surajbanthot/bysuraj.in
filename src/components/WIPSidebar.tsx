@@ -50,7 +50,7 @@ export default function WIPSidebar() {
 
         const newItem = {
             title: newTask,
-            desc: "Added from localhost 🚀",
+            desc: "",
             icon: "🚧",
             status: "Active"
         };
@@ -134,11 +134,11 @@ export default function WIPSidebar() {
                                 </button>
                             )}
 
-                            <div className="relative flex gap-4">
+                            <div className="relative flex gap-4 pr-14">
                                 <div className="text-2xl pt-1 grayscale group-hover:grayscale-0 transition-all">{item.icon}</div>
                                 <div>
                                     <h3 className="text-sm font-bold text-zinc-200 group-hover:text-orange-400 transition-colors">{item.title}</h3>
-                                    <p className="text-xs text-zinc-400 mt-1 leading-relaxed">{item.desc}</p>
+                                    {item.desc && <p className="text-xs text-zinc-400 mt-1 leading-relaxed">{item.desc}</p>}
                                 </div>
                             </div>
                         </div>
