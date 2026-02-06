@@ -8,6 +8,7 @@ import ResumeButton from "@/components/ResumeButton";
 import F1Car from "@/components/F1Car";
 import JohnnyBravo from "@/components/JohnnyBravo";
 import WIPSidebar from "@/components/WIPSidebar";
+import DynamicBackground from "@/components/DynamicBackground";
 import "./globals.css";
 
 const geistSans = Geist({

@@ -16,7 +16,7 @@ export default function PixelatedVideoBackground({
     useEffect(() => {
         // Ensure video plays on mount
         if (videoRef.current) {
-            videoRef.current.playbackRate = 0.0075;
+            videoRef.current.playbackRate = 0.16;
             videoRef.current.play().catch(() => {
                 // Autoplay may be blocked, that's okay
             });
@@ -50,11 +50,14 @@ export default function PixelatedVideoBackground({
                     loop
                     muted
                     playsInline
+                    onLoadedData={(e) => {
+                        e.currentTarget.playbackRate = 0.16;
+                    }}
                 />
             </div>
 
             {/* Dark gradient overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/80 to-black/90" />
 
             {/* Scanline effect for retro CRT feel */}
             <div
