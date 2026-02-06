@@ -48,7 +48,7 @@ export default function HireMePage() {
     window.sessionStorage.setItem("hireMeTab", activeTab);
     const btn = document.getElementById("resume-button-container");
     if (btn) {
-      btn.style.display = activeTab === "freelance" ? "none" : "flex";
+      btn.style.display = "flex";
     }
   }, [activeTab]);
 
@@ -635,7 +635,6 @@ export default function HireMePage() {
                   </div>
                 </div>
               </div>
-
 
             </div>
           )}
