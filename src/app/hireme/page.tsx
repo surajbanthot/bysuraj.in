@@ -148,19 +148,39 @@ export default function HireMePage() {
                 <div className="absolute left-6 md:left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-zinc-200 dark:bg-zinc-800"></div>
 
                 <div className="space-y-16">
-                  {/* Tech Mahindra - Right */}
+                  {/* 100xEngineers - Right (Current) */}
                   <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
                     <div className="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 hidden md:block"></div>
-                    {/* Dot */}
+                    {/* Dot - Active */}
                     <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-10 w-10 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-orange-500 shadow-lg dark:border-zinc-950 z-10 box-content">
-                      {/* box-content to keep size consistent with border */}
-                      <div className="h-3 w-3 rounded-full bg-white"></div>
+                      <div className="h-3 w-3 rounded-full bg-white animate-pulse"></div>
                     </div>
                     <div className="md:w-1/2 md:pl-16 pl-16 order-1 md:order-2">
                       <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left">
+                        <span className="mb-3 block font-mono text-base font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Nov 2025 – Present</span>
+                        <h3 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">
+                          <a href="https://www.100xengineers.com" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 dark:hover:text-orange-400 transition-colors">
+                            100xEngineers Cohort 11
+                          </a>
+                        </h3>
+                        <div className="mb-6 text-xl font-bold text-orange-600 dark:text-orange-400">
+                          Cohort Member
+                        </div>
+                        <ul className="list-disc list-outside ml-5 space-y-3 text-lg text-zinc-800 dark:text-zinc-200 leading-relaxed font-medium">
+                          <li>Currently mastering <strong className="font-extrabold text-black dark:text-white">Applied Generative AI</strong> through hands-on projects and expert-led training.</li>
+                          <li>Building real AI products with focus on <strong className="font-extrabold text-black dark:text-white">LLMs</strong>, <strong className="font-extrabold text-black dark:text-white">RAG systems</strong>, and <strong className="font-extrabold text-black dark:text-white">AI agents</strong>.</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Tech Mahindra - Left */}
+                  <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
+                    <div className="md:w-1/2 md:pr-16 pl-16 md:pl-0 order-1">
+                      <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left">
                         <span className="mb-3 block font-mono text-base font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Feb 2024 – Sep 2025</span>
                         <h3 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">Tech Mahindra</h3>
-                        <div className="mb-6 text-xl font-bold text-orange-600 dark:text-orange-400">
+                        <div className="mb-6 text-xl font-bold text-zinc-700 dark:text-zinc-300">
                           Senior Software Engineer
                         </div>
                         <ul className="list-disc list-outside ml-5 space-y-3 text-lg text-zinc-800 dark:text-zinc-200 leading-relaxed font-medium">
@@ -170,11 +190,17 @@ export default function HireMePage() {
                         </ul>
                       </div>
                     </div>
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
+                    </div>
+                    <div className="md:w-1/2 md:pl-16 order-2 hidden md:block"></div>
                   </div>
 
-                  {/* AevyTV - Left */}
+                  {/* AevyTV - Right */}
                   <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
-                    <div className="md:w-1/2 md:pr-16 pl-16 md:pl-0 order-1">
+                    <div className="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 hidden md:block"></div>
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
+                    </div>
+                    <div className="md:w-1/2 md:pl-16 pl-16 order-1 md:order-2">
                       <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left">
                         <span className="mb-3 block font-mono text-base font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Nov 2023 – Feb 2024</span>
                         <h3 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">
@@ -190,17 +216,11 @@ export default function HireMePage() {
                         </ul>
                       </div>
                     </div>
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
-                    </div>
-                    <div className="md:w-1/2 md:pl-16 order-2 hidden md:block"></div>
                   </div>
 
-                  {/* 10k Designers - Right */}
+                  {/* 10k Designers - Left */}
                   <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
-                    <div className="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 hidden md:block"></div>
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
-                    </div>
-                    <div className="md:w-1/2 md:pl-16 pl-16 order-1 md:order-2">
+                    <div className="md:w-1/2 md:pr-16 pl-16 md:pl-0 order-1">
                       <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left">
                         <span className="mb-3 block font-mono text-base font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Aug 2023 – Jan 2024</span>
                         <h3 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">
@@ -216,11 +236,17 @@ export default function HireMePage() {
                         </ul>
                       </div>
                     </div>
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
+                    </div>
+                    <div className="md:w-1/2 md:pl-16 order-2 hidden md:block"></div>
                   </div>
 
-                  {/* Mirafra - Left */}
+                  {/* Mirafra - Right */}
                   <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
-                    <div className="md:w-1/2 md:pr-16 pl-16 md:pl-0 order-1">
+                    <div className="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 hidden md:block"></div>
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
+                    </div>
+                    <div className="md:w-1/2 md:pl-16 pl-16 order-1 md:order-2">
                       <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left">
                         <span className="mb-3 block font-mono text-base font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Sep 2022 – Nov 2023</span>
                         <h3 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">Mirafra Technologies</h3>
@@ -234,17 +260,11 @@ export default function HireMePage() {
                         </ul>
                       </div>
                     </div>
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
-                    </div>
-                    <div className="md:w-1/2 md:pl-16 order-2 hidden md:block"></div>
                   </div>
 
-                  {/* Liftoff - Right */}
+                  {/* Liftoff - Left */}
                   <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
-                    <div className="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 hidden md:block"></div>
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
-                    </div>
-                    <div className="md:w-1/2 md:pl-16 pl-16 order-1 md:order-2">
+                    <div className="md:w-1/2 md:pr-16 pl-16 md:pl-0 order-1">
                       <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left">
                         <span className="mb-3 block font-mono text-base font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Nov 2021 – Feb 2022</span>
                         <h3 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">Liftoff LLC</h3>
@@ -257,11 +277,17 @@ export default function HireMePage() {
                         </ul>
                       </div>
                     </div>
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
+                    </div>
+                    <div className="md:w-1/2 md:pl-16 order-2 hidden md:block"></div>
                   </div>
 
-                  {/* Broadridge - Left */}
+                  {/* Broadridge - Right */}
                   <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
-                    <div className="md:w-1/2 md:pr-16 pl-16 md:pl-0 order-1">
+                    <div className="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 hidden md:block"></div>
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
+                    </div>
+                    <div className="md:w-1/2 md:pl-16 pl-16 order-1 md:order-2">
                       <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left">
                         <span className="mb-3 block font-mono text-base font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Jun 2018 – Oct 2020</span>
                         <h3 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">Broadridge Financial Solutions</h3>
@@ -274,17 +300,11 @@ export default function HireMePage() {
                         </ul>
                       </div>
                     </div>
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
-                    </div>
-                    <div className="md:w-1/2 md:pl-16 order-2 hidden md:block"></div>
                   </div>
 
-                  {/* Education - Right */}
+                  {/* Education - Left */}
                   <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
-                    <div className="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 hidden md:block"></div>
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
-                    </div>
-                    <div className="md:w-1/2 md:pl-16 pl-16 order-1 md:order-2">
+                    <div className="md:w-1/2 md:pr-16 pl-16 md:pl-0 order-1">
                       <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left">
                         <span className="mb-3 block font-mono text-base font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Jun 2015 – May 2018</span>
                         <h3 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">Ramaiah Institute of Technology</h3>
@@ -296,6 +316,9 @@ export default function HireMePage() {
                         </ul>
                       </div>
                     </div>
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-zinc-50 bg-zinc-300 dark:bg-zinc-700 dark:border-zinc-950 z-10 box-content">
+                    </div>
+                    <div className="md:w-1/2 md:pl-16 order-2 hidden md:block"></div>
                   </div>
                 </div>
               </div>
