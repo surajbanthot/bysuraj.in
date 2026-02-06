@@ -13,7 +13,7 @@ type NavBarProps = {
 const links = [
   { href: "/", label: "Home", emoji: "🏠" },
   { href: "/code", label: "Code", emoji: "💻" },
-  { href: "/motiongraphics", label: "Motion", emoji: "🎬" },
+  // { href: "/motiongraphics", label: "Motion", emoji: "🎬" },
 
   { href: "/social", label: "Socials", emoji: "✨" },
   { href: "/hireme", label: "Hire me!!", emoji: "🤝" },
