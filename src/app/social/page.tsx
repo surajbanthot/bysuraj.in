@@ -19,6 +19,42 @@ export default function SocialPage() {
         window.sessionStorage.setItem("socialTab", activeTab);
     }, [activeTab]);
 
+    // Film Form State
+    const [filmForm, setFilmForm] = useState({
+        name: "",
+        email: "",
+        project: "",
+        location: "",
+        date: "",
+        budget: "",
+        message: ""
+    });
+    const [filmStatus, setFilmStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+    const handleFilmSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setFilmStatus("loading");
+
+        try {
+            const res = await fetch("/api/send", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(filmForm),
+            });
+
+            if (res.ok) {
+                setFilmStatus("success");
+                setFilmForm({ name: "", email: "", project: "", location: "", date: "", budget: "", message: "" });
+                setTimeout(() => setFilmStatus("idle"), 5000);
+            } else {
+                setFilmStatus("error");
+            }
+        } catch (error) {
+            console.error(error);
+            setFilmStatus("error");
+        }
+    };
+
     return (
         <main className="flex min-h-[calc(100vh-56px)] flex-col items-center bg-zinc-50 px-4 pt-24 pb-12 text-center dark:bg-black text-zinc-900 dark:text-zinc-50">
             <div className="flex w-full max-w-5xl flex-col items-center animate-in fade-in zoom-in duration-500">
@@ -149,100 +185,137 @@ export default function SocialPage() {
                                             a few details below and I will get back to you.
                                         </p>
                                     </div>
-                                    <form className="grid gap-4 rounded-md border border-zinc-200/70 bg-zinc-50/60 p-5 text-lg text-zinc-700 dark:border-zinc-800 dark:bg-black/40 dark:text-zinc-200 sm:grid-cols-2 sm:text-xl">
-                                        <div className="flex flex-col gap-2">
-                                            <label htmlFor="name" className="text-base text-zinc-500 sm:text-lg">
-                                                Name
-                                            </label>
-                                            <input
-                                                id="name"
-                                                name="name"
-                                                type="text"
-                                                placeholder="Your name"
-                                                className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
-                                            />
-                                        </div>
-                                        <div className="flex flex-col gap-2">
-                                            <label htmlFor="email" className="text-base text-zinc-500 sm:text-lg">
-                                                Email
-                                            </label>
-                                            <input
-                                                id="email"
-                                                name="email"
-                                                type="email"
-                                                placeholder="you@example.com"
-                                                className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
-                                            />
-                                        </div>
-                                        <div className="flex flex-col gap-2">
-                                            <label htmlFor="project" className="text-base text-zinc-500 sm:text-lg">
-                                                Project Type
-                                            </label>
-                                            <input
-                                                id="project"
-                                                name="project"
-                                                type="text"
-                                                placeholder="Portraits, editorial, product, etc."
-                                                className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
-                                            />
-                                        </div>
-                                        <div className="flex flex-col gap-2">
-                                            <label htmlFor="location" className="text-base text-zinc-500 sm:text-lg">
-                                                Location
-                                            </label>
-                                            <input
-                                                id="location"
-                                                name="location"
-                                                type="text"
-                                                placeholder="City / Venue"
-                                                className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
-                                            />
-                                        </div>
-                                        <div className="flex flex-col gap-2">
-                                            <label htmlFor="date" className="text-base text-zinc-500 sm:text-lg">
-                                                Shoot Date
-                                            </label>
-                                            <input
-                                                id="date"
-                                                name="date"
-                                                type="text"
-                                                placeholder="Preferred date"
-                                                className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
-                                            />
-                                        </div>
-                                        <div className="flex flex-col gap-2">
-                                            <label htmlFor="budget" className="text-base text-zinc-500 sm:text-lg">
-                                                Budget Range (Optional)
-                                            </label>
-                                            <input
-                                                id="budget"
-                                                name="budget"
-                                                type="text"
-                                                placeholder="Your budget range"
-                                                className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
-                                            />
-                                        </div>
-                                        <div className="flex flex-col gap-2 sm:col-span-2">
-                                            <label htmlFor="message" className="text-base text-zinc-500 sm:text-lg">
-                                                Project Notes
-                                            </label>
-                                            <textarea
-                                                id="message"
-                                                name="message"
-                                                rows={4}
-                                                placeholder="Tell me about the concept, scope, and deliverables."
-                                                className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
-                                            />
-                                        </div>
-                                        <div className="sm:col-span-2">
+                                    {filmStatus === "success" ? (
+                                        <div className="flex flex-col items-center justify-center space-y-4 rounded-md border border-green-200/70 bg-green-50/60 p-12 text-center text-green-700 dark:border-green-900/50 dark:bg-green-900/20 dark:text-green-400 animate-in fade-in zoom-in duration-300">
+                                            <svg className="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                            </svg>
+                                            <p className="text-2xl font-bold">Enquiry Sent!</p>
+                                            <p className="text-lg">Thanks for reaching out about medium format film. I'll review your details and get back to you soon.</p>
                                             <button
-                                                type="button"
-                                                className="w-full rounded border border-orange-300/70 bg-orange-500/80 px-4 py-2 text-lg text-white shadow-[0_0_14px_rgba(251,146,60,0.5)] transition hover:bg-orange-500 dark:bg-orange-500/70 sm:text-xl"
+                                                onClick={() => setFilmStatus("idle")}
+                                                className="mt-4 rounded-full border border-green-600/30 bg-green-100/50 px-6 py-2 text-green-800 transition hover:bg-green-200/50 dark:border-green-500/30 dark:bg-green-900/30 dark:text-green-300 dark:hover:bg-green-800/30"
                                             >
-                                                Send Enquiry
+                                                Send Another
                                             </button>
                                         </div>
-                                    </form>
+                                    ) : (
+                                        <form onSubmit={handleFilmSubmit} className="grid gap-4 rounded-md border border-zinc-200/70 bg-zinc-50/60 p-5 text-lg text-zinc-700 dark:border-zinc-800 dark:bg-black/40 dark:text-zinc-200 sm:grid-cols-2 sm:text-xl">
+                                            <div className="flex flex-col gap-2">
+                                                <label htmlFor="name" className="text-base text-zinc-500 sm:text-lg">
+                                                    👤 Name
+                                                </label>
+                                                <input
+                                                    id="name"
+                                                    name="name"
+                                                    type="text"
+                                                    required
+                                                    value={filmForm.name}
+                                                    onChange={(e) => setFilmForm({ ...filmForm, name: e.target.value })}
+                                                    placeholder="Your name"
+                                                    className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
+                                                />
+                                            </div>
+                                            <div className="flex flex-col gap-2">
+                                                <label htmlFor="email" className="text-base text-zinc-500 sm:text-lg">
+                                                    ✉️ Email
+                                                </label>
+                                                <input
+                                                    id="email"
+                                                    name="email"
+                                                    type="email"
+                                                    required
+                                                    value={filmForm.email}
+                                                    onChange={(e) => setFilmForm({ ...filmForm, email: e.target.value })}
+                                                    placeholder="you@example.com"
+                                                    className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
+                                                />
+                                            </div>
+                                            <div className="flex flex-col gap-2">
+                                                <label htmlFor="project" className="text-base text-zinc-500 sm:text-lg">
+                                                    📸 Project Type
+                                                </label>
+                                                <input
+                                                    id="project"
+                                                    name="project"
+                                                    type="text"
+                                                    value={filmForm.project}
+                                                    onChange={(e) => setFilmForm({ ...filmForm, project: e.target.value })}
+                                                    placeholder="Portraits, editorial, product, etc."
+                                                    className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
+                                                />
+                                            </div>
+                                            <div className="flex flex-col gap-2">
+                                                <label htmlFor="location" className="text-base text-zinc-500 sm:text-lg">
+                                                    📍 Location
+                                                </label>
+                                                <input
+                                                    id="location"
+                                                    name="location"
+                                                    type="text"
+                                                    value={filmForm.location}
+                                                    onChange={(e) => setFilmForm({ ...filmForm, location: e.target.value })}
+                                                    placeholder="City / Venue"
+                                                    className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
+                                                />
+                                            </div>
+                                            <div className="flex flex-col gap-2">
+                                                <label htmlFor="date" className="text-base text-zinc-500 sm:text-lg">
+                                                    🗓️ Shoot Date
+                                                </label>
+                                                <input
+                                                    id="date"
+                                                    name="date"
+                                                    type="date"
+                                                    value={filmForm.date}
+                                                    onChange={(e) => setFilmForm({ ...filmForm, date: e.target.value })}
+                                                    className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
+                                                />
+                                            </div>
+                                            <div className="flex flex-col gap-2">
+                                                <label htmlFor="budget" className="text-base text-zinc-500 sm:text-lg">
+                                                    💰 Budget Range (Optional)
+                                                </label>
+                                                <input
+                                                    id="budget"
+                                                    name="budget"
+                                                    type="text"
+                                                    value={filmForm.budget}
+                                                    onChange={(e) => setFilmForm({ ...filmForm, budget: e.target.value })}
+                                                    placeholder="Your budget range in ₹"
+                                                    className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
+                                                />
+                                            </div>
+                                            <div className="flex flex-col gap-2 sm:col-span-2">
+                                                <label htmlFor="message" className="text-base text-zinc-500 sm:text-lg">
+                                                    📝 Project Notes
+                                                </label>
+                                                <textarea
+                                                    id="message"
+                                                    name="message"
+                                                    rows={4}
+                                                    value={filmForm.message}
+                                                    onChange={(e) => setFilmForm({ ...filmForm, message: e.target.value })}
+                                                    placeholder="Tell me about the concept, scope, and deliverables."
+                                                    className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
+                                                />
+                                            </div>
+                                            <div className="sm:col-span-2">
+                                                <button
+                                                    type="submit"
+                                                    disabled={filmStatus === "loading"}
+                                                    className="w-full rounded border border-orange-300/70 bg-orange-500/80 px-4 py-2 text-lg text-white shadow-[0_0_14px_rgba(251,146,60,0.5)] transition hover:bg-orange-500 dark:bg-orange-500/70 sm:text-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                                                >
+                                                    {filmStatus === "loading" ? "Sending..." : "Send Enquiry"}
+                                                </button>
+                                                {filmStatus === "error" && (
+                                                    <p className="mt-2 text-center text-sm text-red-500">
+                                                        Something went wrong. Please try again.
+                                                    </p>
+                                                )}
+                                            </div>
+                                        </form>
+                                    )}
                                 </section>
                                 <div className="flex justify-center">
                                     <ScrollToTopButton />
