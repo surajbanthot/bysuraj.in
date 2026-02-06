@@ -1,3 +1,4 @@
+
 import PixelatedVideoBackground from "@/components/PixelatedVideoBackground";
 import IstClock from "@/components/IstClock";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
@@ -6,9 +7,7 @@ import ScrollToTopButton from "@/components/ScrollToTopButton";
 export default function Home() {
   return (
     <div className="relative flex min-h-[calc(100svh-var(--app-chrome,0px))] flex-col overflow-hidden">
-      {/* Dynamic Video Background */}
       <PixelatedVideoBackground src="/Pixel_Art_City_and_Mountain_Video.mp4" />
-
       {/* Content Layer */}
       <div className="relative z-10 flex flex-1 flex-col">
         <header className="hidden sm:flex w-full flex-col gap-2 px-4 pt-2 sm:flex-row sm:items-start sm:justify-end sm:px-8 sm:pt-3">

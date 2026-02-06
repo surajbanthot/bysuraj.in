@@ -8,7 +8,7 @@ import ResumeButton from "@/components/ResumeButton";
 import F1Car from "@/components/F1Car";
 import JohnnyBravo from "@/components/JohnnyBravo";
 import WIPSidebar from "@/components/WIPSidebar";
-import DynamicBackground from "@/components/DynamicBackground";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -72,6 +72,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${vt323.variable} ${bungeeSpice.variable} ${bungee.variable} ${quantico.variable} ${vt323.className} antialiased text-xl`}
       >
+
         <LayoutChromeSizer />
         <header
           data-site-header

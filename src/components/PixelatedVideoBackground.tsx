@@ -14,17 +14,32 @@ export default function PixelatedVideoBackground({
     const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
-        // Ensure video plays on mount
-        if (videoRef.current) {
-            videoRef.current.playbackRate = 0.16;
-            videoRef.current.play().catch(() => {
-                // Autoplay may be blocked, that's okay
-            });
-        }
+        const video = videoRef.current;
+        if (!video) return;
+
+        // Ensure speed is set (match onLoadedData)
+        video.playbackRate = 0.16;
+
+        let timeoutId: NodeJS.Timeout;
+
+        const runCycle = () => {
+            // Play for 2 seconds
+            video.play().catch(() => { });
+            timeoutId = setTimeout(() => {
+                video.pause();
+                // Pause for 3 seconds
+                timeoutId = setTimeout(runCycle, 3000);
+            }, 2000);
+        };
+
+        // Start the cycle
+        runCycle();
+
+        return () => clearTimeout(timeoutId);
     }, []);
 
     return (
-        <div className={`fixed inset-0 z-0 overflow-hidden ${className}`}>
+        <div className={`fixed inset-0 z-[-1] overflow-hidden ${className}`}>
             {/* Pixelation container - scales down then up for chunky pixels */}
             <div
                 className="absolute inset-0"
