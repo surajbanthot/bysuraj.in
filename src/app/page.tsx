@@ -1,3 +1,4 @@
+import PixelatedVideoBackground from "@/components/PixelatedVideoBackground";
 import IstClock from "@/components/IstClock";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 
@@ -5,13 +6,8 @@ import ScrollToTopButton from "@/components/ScrollToTopButton";
 export default function Home() {
   return (
     <div className="relative flex min-h-[calc(100svh-var(--app-chrome,0px))] flex-col overflow-hidden">
-      {/* Background Image - Fixed to cover entire viewport including navbar/footer */}
-      <div
-        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/bg.png')" }}
-      />
-      {/* Dark Overlay for Readability */}
-      <div className="fixed inset-0 z-0 bg-black/70" />
+      {/* Dynamic Video Background */}
+      <PixelatedVideoBackground src="/Pixel_Art_City_and_Mountain_Video.mp4" />
 
       {/* Content Layer */}
       <div className="relative z-10 flex flex-1 flex-col">
