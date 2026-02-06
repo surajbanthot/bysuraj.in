@@ -89,6 +89,9 @@ export default function RootLayout({
         <WIPSidebar />
         <FooterBar />
         <Analytics />
+        {/* Hidden Totems */}
+        <div className="fixed bottom-1 left-1 z-50 text-[10px] opacity-20 pointer-events-none select-none" aria-hidden="true">🧿</div>
+        <div className="fixed bottom-1 right-1 z-50 text-[10px] opacity-20 pointer-events-none select-none" aria-hidden="true">👹</div>
       </body>
     </html>
   );
