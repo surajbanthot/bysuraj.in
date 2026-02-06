@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function HireMePage() {
   const [activeTab, setActiveTab] = useState<"fulltime" | "freelance">(() => {
@@ -13,6 +13,36 @@ export default function HireMePage() {
       ? stored
       : "freelance";
   });
+
+  // Custom Cursor Logic
+  const [activeCard, setActiveCard] = useState<string | null>(null);
+  const [cursorPhase, setCursorPhase] = useState<'idle' | 'active' | 'faded'>('idle');
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const cursorTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const seenCardsRef = useRef<Set<string>>(new Set());
+
+  const handleCardMouseEnter = (cardId: string) => {
+    if (seenCardsRef.current.has(cardId)) return;
+    seenCardsRef.current.add(cardId);
+
+    setActiveCard(cardId);
+    setCursorPhase('active');
+
+    if (cursorTimeoutRef.current) clearTimeout(cursorTimeoutRef.current);
+    cursorTimeoutRef.current = setTimeout(() => {
+      setCursorPhase('faded');
+    }, 1000);
+  };
+
+  const handleCardMouseLeave = () => {
+    setCursorPhase('idle');
+    setActiveCard(null);
+    if (cursorTimeoutRef.current) clearTimeout(cursorTimeoutRef.current);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setCursorPos({ x: e.clientX, y: e.clientY });
+  };
 
   useEffect(() => {
     window.sessionStorage.setItem("hireMeTab", activeTab);
@@ -240,7 +270,28 @@ export default function HireMePage() {
               {/* Services Grid */}
               <div className="grid gap-6 md:grid-cols-2">
                 {/* 1. Motion Graphics */}
-                <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4">
+                <div
+                  onMouseEnter={() => handleCardMouseEnter('motion')}
+                  onMouseLeave={handleCardMouseLeave}
+                  onMouseMove={handleMouseMove}
+                  className={`relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4 ${activeCard === "motion" && cursorPhase === "active" ? "cursor-none" : ""}`}
+                >
+                  {activeCard === "motion" && cursorPhase !== "idle" && (
+                    <div
+                      className={`pointer-events-none fixed z-50 h-32 w-auto transition-opacity duration-500 ease-in-out ${cursorPhase === "active" ? "opacity-100" : "opacity-0"}`}
+                      style={{
+                        left: cursorPos.x,
+                        top: cursorPos.y,
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    >
+                      <img
+                        src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NDkyaDdpZmxpeG83NjhlNWhqajhhaXlscjQwbjh0cHlncG52cjJjeCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/KY4iqSrW5QFYCIaHYg/giphy.gif"
+                        alt="cursor"
+                        className="rounded-xl shadow-2xl border-2 border-white/20"
+                      />
+                    </div>
+                  )}
                   <div className="absolute top-8 right-8 flex gap-2 z-10">
                     <a href="https://contra.com/suraj_kumar_b_c_0uicot57" target="_blank" rel="noreferrer" className="rounded-full bg-zinc-900 px-3 py-1.5 text-xs font-bold text-white hover:bg-zinc-700 dark:bg-zinc-100 dark:text-black dark:hover:bg-zinc-300 shadow-sm transition-colors">Contra</a>
                     <a href="mailto:surajcommercial@gmail.com" className="group relative rounded-full bg-white border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-700 shadow-sm transition-colors">
@@ -269,7 +320,28 @@ export default function HireMePage() {
                 </div>
 
                 {/* 2. Rive Expert */}
-                <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4">
+                <div
+                  onMouseEnter={() => handleCardMouseEnter('rive')}
+                  onMouseLeave={handleCardMouseLeave}
+                  onMouseMove={handleMouseMove}
+                  className={`relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4 ${activeCard === "rive" && cursorPhase === "active" ? "cursor-none" : ""}`}
+                >
+                  {activeCard === "rive" && cursorPhase !== "idle" && (
+                    <div
+                      className={`pointer-events-none fixed z-50 h-32 w-auto transition-opacity duration-500 ease-in-out ${cursorPhase === "active" ? "opacity-100" : "opacity-0"}`}
+                      style={{
+                        left: cursorPos.x,
+                        top: cursorPos.y,
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    >
+                      <img
+                        src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZGJ2eHVxMWhmZnBxNmt1NmdyZWptaDhkOWxsM3d4ajhlY3dwcDRxNiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/VI2UC13hwWin1MIfmi/giphy.gif"
+                        alt="cursor"
+                        className="rounded-xl shadow-2xl border-2 border-white/20"
+                      />
+                    </div>
+                  )}
                   <div className="absolute top-8 right-8 flex gap-2 z-10">
                     <a href="https://contra.com/suraj_kumar_b_c_0uicot57" target="_blank" rel="noreferrer" className="rounded-full bg-zinc-900 px-3 py-1.5 text-xs font-bold text-white hover:bg-zinc-700 dark:bg-zinc-100 dark:text-black dark:hover:bg-zinc-300 shadow-sm transition-colors">Contra</a>
                   </div>
@@ -292,7 +364,28 @@ export default function HireMePage() {
                 </div>
 
                 {/* 3. Frontend Dev */}
-                <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4">
+                <div
+                  onMouseEnter={() => handleCardMouseEnter('frontend')}
+                  onMouseLeave={handleCardMouseLeave}
+                  onMouseMove={handleMouseMove}
+                  className={`relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4 ${activeCard === "frontend" && cursorPhase === "active" ? "cursor-none" : ""}`}
+                >
+                  {activeCard === "frontend" && cursorPhase !== "idle" && (
+                    <div
+                      className={`pointer-events-none fixed z-50 h-32 w-auto transition-opacity duration-500 ease-in-out ${cursorPhase === "active" ? "opacity-100" : "opacity-0"}`}
+                      style={{
+                        left: cursorPos.x,
+                        top: cursorPos.y,
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    >
+                      <img
+                        src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dDNjYTYyNDhwczJjbnV4NHo3bDNyN2psNmY0d2hyOGZ6MnI2bnZkNSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/kvl2YhR110qsBrHid2/giphy.gif"
+                        alt="cursor"
+                        className="rounded-xl shadow-2xl border-2 border-white/20"
+                      />
+                    </div>
+                  )}
                   <div className="absolute top-8 right-8 flex gap-2 z-10">
                     <a href="mailto:surajcommercial@gmail.com" className="group relative rounded-full bg-white border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-700 shadow-sm transition-colors">
                       Email
@@ -320,7 +413,28 @@ export default function HireMePage() {
                 </div>
 
                 {/* 4. Analogue Photography */}
-                <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4">
+                <div
+                  onMouseEnter={() => handleCardMouseEnter('analogue')}
+                  onMouseLeave={handleCardMouseLeave}
+                  onMouseMove={handleMouseMove}
+                  className={`relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4 ${activeCard === "analogue" && cursorPhase === "active" ? "cursor-none" : ""}`}
+                >
+                  {activeCard === "analogue" && cursorPhase !== "idle" && (
+                    <div
+                      className={`pointer-events-none fixed z-50 h-32 w-auto transition-opacity duration-500 ease-in-out ${cursorPhase === "active" ? "opacity-100" : "opacity-0"}`}
+                      style={{
+                        left: cursorPos.x,
+                        top: cursorPos.y,
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    >
+                      <img
+                        src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXdod3JkdTk2YWNraWt0YnR4cTA1YjJrNDJpbjFvYzl0dmxhbXMzbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vKippYIHKNHdS/giphy.gif"
+                        alt="cursor"
+                        className="rounded-xl shadow-2xl border-2 border-white/20"
+                      />
+                    </div>
+                  )}
                   <div className="absolute top-8 right-8 flex gap-2 z-10">
                     <a href="mailto:surajcommercial@gmail.com" className="group relative rounded-full bg-white border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-700 shadow-sm transition-colors">
                       Email
@@ -349,7 +463,28 @@ export default function HireMePage() {
                 </div>
 
                 {/* 5. Hiking & Gym Partner */}
-                <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4">
+                <div
+                  onMouseEnter={() => handleCardMouseEnter('hiking')}
+                  onMouseLeave={handleCardMouseLeave}
+                  onMouseMove={handleMouseMove}
+                  className={`relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4 ${activeCard === "hiking" && cursorPhase === "active" ? "cursor-none" : ""}`}
+                >
+                  {activeCard === "hiking" && cursorPhase !== "idle" && (
+                    <div
+                      className={`pointer-events-none fixed z-50 h-32 w-auto transition-opacity duration-500 ease-in-out ${cursorPhase === "active" ? "opacity-100" : "opacity-0"}`}
+                      style={{
+                        left: cursorPos.x,
+                        top: cursorPos.y,
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    >
+                      <img
+                        src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3c2FsNHoyODllY2Y3aHRldTYwMm9udWMycmZsaTNoYnBieTNhbWk1NiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/aSIhCYzfUGkHS/giphy.gif"
+                        alt="cursor"
+                        className="rounded-xl shadow-2xl border-2 border-white/20"
+                      />
+                    </div>
+                  )}
                   <div className="absolute top-8 right-8 flex gap-2 z-10">
                     <span className="flex items-center rounded-full bg-zinc-100 border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-600 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-400 cursor-default">
                       Weekends
@@ -382,7 +517,28 @@ export default function HireMePage() {
                 </div>
 
                 {/* 6. BaaS */}
-                <div className="relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4">
+                <div
+                  onMouseEnter={() => handleCardMouseEnter('baas')}
+                  onMouseLeave={handleCardMouseLeave}
+                  onMouseMove={handleMouseMove}
+                  className={`relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4 ${activeCard === "baas" && cursorPhase === "active" ? "cursor-none" : ""}`}
+                >
+                  {activeCard === "baas" && cursorPhase !== "idle" && (
+                    <div
+                      className={`pointer-events-none fixed z-50 h-32 w-auto transition-opacity duration-500 ease-in-out ${cursorPhase === "active" ? "opacity-100" : "opacity-0"}`}
+                      style={{
+                        left: cursorPos.x,
+                        top: cursorPos.y,
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    >
+                      <img
+                        src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3RpODQzZ2U4MGRxa29oN2U4aGtxNDh3NTVxNXl2eXk4MWpvbmplciZlcD12MV9naWZzX3NlYXJjaCZjdD1n/u8ontzUmtHnmuBt5IQ/giphy.gif"
+                        alt="cursor"
+                        className="rounded-xl shadow-2xl border-2 border-white/20"
+                      />
+                    </div>
+                  )}
                   <div className="absolute top-8 right-8 flex gap-2 z-10">
                     <a href="mailto:surajcommercial@gmail.com" className="group relative rounded-full bg-white border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-700 shadow-sm transition-colors">
                       Email

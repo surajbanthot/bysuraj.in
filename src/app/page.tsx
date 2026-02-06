@@ -20,12 +20,12 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center p-4">
             <div className="flex flex-col items-start gap-2 rounded-[3rem] bg-black/5 px-8 py-6 backdrop-blur-[2px] sm:px-12 sm:py-8">
               <h1 className="font-normal leading-none tracking-tight text-orange-500 drop-shadow-xl">
-                <span className="block text-3xl sm:text-5xl mb-1">hi</span>
+                <span className="block text-3xl sm:text-5xl -mb-2">hi</span>
                 <span className="text-6xl sm:text-8xl">Suraj</span>
                 <span className="text-3xl sm:text-5xl ml-2">here</span>
                 <span className="text-3xl sm:text-5xl ml-1 inline-block">:)</span>
               </h1>
-              <p className="-mt-1 text-2xl text-orange-200 drop-shadow-lg sm:text-4xl">
+              <p className="-mt-2 text-2xl text-orange-200 drop-shadow-lg sm:text-4xl">
                 Design engineer (tech.)
               </p>
             </div>

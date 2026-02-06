@@ -17,25 +17,8 @@ export default function PixelatedVideoBackground({
         const video = videoRef.current;
         if (!video) return;
 
-        // Ensure speed is set (match onLoadedData)
-        video.playbackRate = 0.16;
-
-        let timeoutId: NodeJS.Timeout;
-
-        const runCycle = () => {
-            // Play for 2 seconds
-            video.play().catch(() => { });
-            timeoutId = setTimeout(() => {
-                video.pause();
-                // Pause for 3 seconds
-                timeoutId = setTimeout(runCycle, 3000);
-            }, 2000);
-        };
-
-        // Start the cycle
-        runCycle();
-
-        return () => clearTimeout(timeoutId);
+        // Continuous play at higher speed (0.16 * 1.5 = 0.24)
+        video.playbackRate = 0.24;
     }, []);
 
     return (
@@ -66,7 +49,7 @@ export default function PixelatedVideoBackground({
                     muted
                     playsInline
                     onLoadedData={(e) => {
-                        e.currentTarget.playbackRate = 0.16;
+                        e.currentTarget.playbackRate = 0.24;
                     }}
                 />
             </div>
