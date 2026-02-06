@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
+import { track } from "@vercel/analytics";
 
 export default function F1Car() {
     const pathname = usePathname();
@@ -79,6 +80,7 @@ export default function F1Car() {
 
         setTombstonePos({ x: frontX, y: groundY });
         setIsCrashed(true);
+        track("f1_car_crashed", { page: pathname });
         setIsSinking(false);
         setIsBurning(false); // Stop normal burnout
         setShowFastMsg(false); // Hide fast message if active
