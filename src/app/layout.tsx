@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono, VT323, Bungee_Spice, Bungee, Quantico } from "next/font/google";
+
 import NavBarShell from "@/components/NavBarShell";
 import LayoutChromeSizer from "@/components/LayoutChromeSizer";
 import FooterBar from "@/components/FooterBar";
@@ -48,6 +49,8 @@ const quantico = Quantico({
   variable: "--font-quantico",
   display: "swap",
 });
+
+
 
 export const metadata: Metadata = {
   title: "Suraj's Web",

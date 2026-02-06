@@ -110,7 +110,7 @@ export default function CodePage() {
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
                 <header className="flex flex-col items-start gap-2">
                     <div>
-                        <h1 className="text-4xl font-normal tracking-tight sm:text-6xl">Code</h1>
+                        <h1 className="font-[family-name:var(--font-bungee)] text-4xl font-normal tracking-tight sm:text-6xl">Code</h1>
                         <p className="mt-2 text-lg text-zinc-500 dark:text-zinc-400 sm:text-xl">
                             My tech stack & tools
                         </p>

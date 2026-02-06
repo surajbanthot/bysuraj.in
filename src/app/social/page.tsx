@@ -62,7 +62,7 @@ export default function SocialPage() {
                 <div className="mb-12 flex w-full max-w-sm rounded-full bg-zinc-200/50 p-1.5 dark:bg-zinc-900/50 backdrop-blur-sm border border-zinc-200 dark:border-zinc-800">
                     <button
                         onClick={() => setActiveTab("instagram")}
-                        className={`flex-1 rounded-full py-2 text-sm font-medium transition-all duration-200 sm:text-base ${activeTab === "instagram"
+                        className={`flex-1 rounded-full py-2 text-sm font-medium transition-all duration-200 sm:text-base font-[family-name:var(--font-bungee)] ${activeTab === "instagram"
                             ? "bg-white text-zinc-900 shadow-sm dark:bg-zinc-800 dark:text-zinc-100"
                             : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
                             }`}
@@ -71,7 +71,7 @@ export default function SocialPage() {
                     </button>
                     <button
                         onClick={() => setActiveTab("film")}
-                        className={`flex-1 rounded-full py-2 text-sm font-medium transition-all duration-200 sm:text-base ${activeTab === "film"
+                        className={`flex-1 rounded-full py-2 text-sm font-medium transition-all duration-200 sm:text-base font-[family-name:var(--font-bungee)] ${activeTab === "film"
                             ? "bg-white text-zinc-900 shadow-sm dark:bg-zinc-800 dark:text-zinc-100"
                             : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
                             }`}
@@ -80,7 +80,7 @@ export default function SocialPage() {
                     </button>
                     <button
                         onClick={() => setActiveTab("youtube")}
-                        className={`flex-1 rounded-full py-2 text-sm font-medium transition-all duration-200 sm:text-base ${activeTab === "youtube"
+                        className={`flex-1 rounded-full py-2 text-sm font-medium transition-all duration-200 sm:text-base font-[family-name:var(--font-bungee)] ${activeTab === "youtube"
                             ? "bg-white text-zinc-900 shadow-sm dark:bg-zinc-800 dark:text-zinc-100"
                             : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
                             }`}

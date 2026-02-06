@@ -19,7 +19,7 @@ export default function Home() {
         <main className="flex w-full flex-1 items-center justify-center px-4 pb-4 sm:px-8">
           <div className="flex flex-col items-center justify-center p-4">
             <div className="flex flex-col items-start gap-2 rounded-[3rem] bg-black/5 px-8 py-6 backdrop-blur-[2px] sm:px-12 sm:py-8">
-              <h1 className="bungee-heading font-normal leading-none tracking-tight text-orange-500 drop-shadow-xl">
+              <h1 className="font-normal leading-none tracking-tight text-orange-500 drop-shadow-xl">
                 <span className="block text-3xl sm:text-5xl mb-1">hi</span>
                 <span className="text-6xl sm:text-8xl">Suraj</span>
                 <span className="text-3xl sm:text-5xl ml-2">here</span>

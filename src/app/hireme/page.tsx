@@ -36,7 +36,7 @@ export default function HireMePage() {
               role="tab"
               aria-selected={activeTab === "fulltime"}
               onClick={() => setActiveTab("fulltime")}
-              className={`rounded-full px-5 py-2.5 text-lg font-medium transition sm:px-6 sm:py-3 sm:text-xl ${activeTab === "fulltime"
+              className={`rounded-full px-5 py-2.5 text-lg font-medium transition sm:px-6 sm:py-3 sm:text-xl font-[family-name:var(--font-bungee)] ${activeTab === "fulltime"
                 ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30"
                 : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
                 }`}
@@ -48,7 +48,7 @@ export default function HireMePage() {
               role="tab"
               aria-selected={activeTab === "freelance"}
               onClick={() => setActiveTab("freelance")}
-              className={`rounded-full px-5 py-2.5 text-lg font-medium transition sm:px-6 sm:py-3 sm:text-xl ${activeTab === "freelance"
+              className={`rounded-full px-5 py-2.5 text-lg font-medium transition sm:px-6 sm:py-3 sm:text-xl font-[family-name:var(--font-bungee)] ${activeTab === "freelance"
                 ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30"
                 : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
                 }`}
