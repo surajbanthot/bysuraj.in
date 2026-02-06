@@ -7,6 +7,7 @@ export default function ResumeButton() {
   const pathname = usePathname();
   const [showTopButton, setShowTopButton] = useState(false);
   const [bottomOffset, setBottomOffset] = useState(24);
+  const [activeTab, setActiveTab] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +33,20 @@ export default function ResumeButton() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Listen for tab changes via sessionStorage
+  useEffect(() => {
+    const checkTab = () => {
+      const tab = window.sessionStorage.getItem("hireMeTab");
+      setActiveTab(tab);
+    };
+
+    checkTab();
+
+    // Poll for changes since storage event doesn't fire in same tab
+    const interval = setInterval(checkTab, 100);
+    return () => clearInterval(interval);
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -39,6 +54,8 @@ export default function ResumeButton() {
   if (pathname !== "/hireme") {
     return null;
   }
+
+  const showResumeButton = activeTab !== "freelance";
 
   return (
     <div
@@ -58,14 +75,16 @@ export default function ResumeButton() {
       >
         Top
       </button>
-      {/* Resume button - always at bottom */}
-      <button
-        type="button"
-        className="rounded-full border border-orange-300/70 bg-orange-500/80 px-4 py-2 text-lg text-white shadow-[0_0_14px_rgba(251,146,60,0.5)] transition hover:bg-orange-500 dark:bg-orange-500/70 sm:px-6 sm:py-3 sm:text-2xl"
-        aria-label="Resume"
-      >
-        Resume
-      </button>
+      {/* Resume button - only on Full time tab */}
+      {showResumeButton && (
+        <button
+          type="button"
+          className="rounded-full border border-orange-300/70 bg-orange-500/80 px-4 py-2 text-lg text-white shadow-[0_0_14px_rgba(251,146,60,0.5)] transition hover:bg-orange-500 dark:bg-orange-500/70 sm:px-6 sm:py-3 sm:text-2xl"
+          aria-label="Resume"
+        >
+          Resume
+        </button>
+      )}
     </div>
   );
 }
