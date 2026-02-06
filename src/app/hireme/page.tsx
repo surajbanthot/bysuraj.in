@@ -463,17 +463,17 @@ export default function HireMePage() {
                       </span>
                     </a>
                   </div>
-                  <div className="h-12 w-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl dark:bg-blue-900/30 dark:text-blue-400">
-                    💻
+                  <div className="h-12 w-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl dark:bg-purple-900/30 dark:text-purple-400">
+                    🤖
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 pr-16">Frontend Developer</h3>
+                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 pr-16">AI Engineer</h3>
                     <p className="mt-2 text-lg text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed">
-                      Scalable, accessible, and pixel-perfect web applications.
+                      Building intelligent applications with LLMs, RAG, and AI agents.
                     </p>
                   </div>
                   <div className="mt-auto flex flex-wrap gap-2 pt-2">
-                    {["React", "Next.js", "TypeScript", "Tailwind CSS"].map(tag => (
+                    {["Python", "JavaScript", "Next.js", "Tailwind CSS", "LangChain", "RAG", "LLMs", "AI Agents", "FastAPI", "PostgreSQL", "Vercel", "ComfyUI", "Diffusion"].map(tag => (
                       <span key={tag} className="rounded-lg bg-zinc-100 px-3 py-1 text-sm font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
                         {tag}
                       </span>
