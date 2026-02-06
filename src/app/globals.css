@@ -585,3 +585,7 @@ button {
 .animate-subtle-ping {
   animation: subtle-ping 3s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
+
+.cursor-bomb {
+  cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48dGV4dCB4PSIxNiIgeT0iMjIiIGZvbnQtc2l6ZT0iMjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfkqM8L3RleHQ+PC9zdmc+") 16 16, pointer;
+}

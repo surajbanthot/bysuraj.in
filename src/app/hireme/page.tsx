@@ -84,7 +84,7 @@ export default function HireMePage() {
                       Preferred Roles
                     </h3>
                     <p className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 leading-tight">
-                      Senior Frontend Engineer <br /> React / Next.js
+                      Senior Software Engineer <br /> React / Next.js
                     </p>
                   </div>
 
@@ -131,7 +131,7 @@ export default function HireMePage() {
                         <span className="mb-3 block font-mono text-base font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Feb 2024 – Sep 2025</span>
                         <h3 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">Tech Mahindra</h3>
                         <div className="mb-6 text-xl font-bold text-orange-600 dark:text-orange-400">
-                          Senior Software Engineer (React.js)
+                          Senior Software Engineer
                         </div>
                         <ul className="list-disc list-outside ml-5 space-y-3 text-lg text-zinc-800 dark:text-zinc-200 leading-relaxed font-medium">
                           <li>Developed scalable front-end components for <strong className="font-extrabold text-black dark:text-white">Microsoft Teams</strong> using <strong className="font-extrabold text-black dark:text-white">React.js</strong>.</li>
@@ -149,7 +149,7 @@ export default function HireMePage() {
                         <span className="mb-3 block font-mono text-base font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Sep 2022 – Nov 2023</span>
                         <h3 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">Mirafra Technologies</h3>
                         <div className="mb-6 text-xl font-bold text-zinc-700 dark:text-zinc-300">
-                          Senior Software Engineer (React.js)
+                          Senior Software Engineer
                         </div>
                         <ul className="list-disc list-outside ml-5 space-y-3 text-lg text-zinc-800 dark:text-zinc-200 leading-relaxed font-medium">
                           <li>Built interactive features for the digital storytelling platform <strong className="font-extrabold text-black dark:text-white">PrathamBooks.org</strong>.</li>

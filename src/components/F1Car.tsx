@@ -92,11 +92,11 @@ export default function F1Car() {
         setTimeout(() => resetAndSchedule(500), 2500);
     };
 
-    if (pathname === "/hireme" || !isDriving) return null;
+    if (pathname === "/hireme" || pathname === "/code" || !isDriving) return null;
 
     return (
         <div
-            className={`hidden sm:block fixed bottom-24 left-0 z-20 w-20 sm:w-28 origin-bottom animate-f1-sequence ${isCrashed ? "cursor-default" : "cursor-pointer pointer-events-auto"}`}
+            className={`hidden sm:block fixed bottom-24 left-0 z-20 w-20 sm:w-28 origin-bottom animate-f1-sequence ${isCrashed ? "cursor-default" : "cursor-bomb pointer-events-auto"}`}
             style={{
                 imageRendering: "pixelated",
                 animationPlayState: isCrashed ? "paused" : "running"
@@ -105,7 +105,7 @@ export default function F1Car() {
             onClick={handleCrash}
         >
             {/* Massive Hitbox (Even bigger) */}
-            <div className="absolute -top-64 -bottom-64 -left-64 -right-64 z-50 cursor-pointer" />
+            <div className="absolute -top-64 -bottom-64 -left-64 -right-64 z-50 cursor-bomb" />
 
 
 
