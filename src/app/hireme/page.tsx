@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import { track } from "@vercel/analytics";
 
 export default function HireMePage() {
   const [activeTab, setActiveTab] = useState<"fulltime" | "freelance">(() => {
@@ -65,7 +66,10 @@ export default function HireMePage() {
               type="button"
               role="tab"
               aria-selected={activeTab === "fulltime"}
-              onClick={() => setActiveTab("fulltime")}
+              onClick={() => {
+                setActiveTab("fulltime");
+                track("hireme_tab_switch", { tab: "fulltime" });
+              }}
               className={`rounded-full px-5 py-2.5 text-lg font-medium transition sm:px-6 sm:py-3 sm:text-xl font-[family-name:var(--font-bungee)] ${activeTab === "fulltime"
                 ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30"
                 : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
@@ -77,7 +81,10 @@ export default function HireMePage() {
               type="button"
               role="tab"
               aria-selected={activeTab === "freelance"}
-              onClick={() => setActiveTab("freelance")}
+              onClick={() => {
+                setActiveTab("freelance");
+                track("hireme_tab_switch", { tab: "freelance" });
+              }}
               className={`rounded-full px-5 py-2.5 text-lg font-medium transition sm:px-6 sm:py-3 sm:text-xl font-[family-name:var(--font-bungee)] ${activeTab === "freelance"
                 ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30"
                 : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
