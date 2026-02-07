@@ -253,7 +253,7 @@ button {
   }
 
   50% {
-    transform: translate3d(0, -8px, 0);
+    transform: translate3d(0, -14px, 0);
   }
 }
 
@@ -281,7 +281,7 @@ button {
   }
 
   50% {
-    transform: scaleY(1.1) skewX(-5deg);
+    transform: scaleY(1.2) skewX(-7deg);
   }
 }
 
@@ -292,13 +292,13 @@ button {
   }
 
   20% {
-    opacity: 0.35;
+    opacity: 0.5;
     transform: scaleX(1);
   }
 
   100% {
     opacity: 0;
-    transform: scaleX(1.5);
+    transform: scaleX(1.9);
   }
 }
 

@@ -98,7 +98,7 @@ export default function F1Car() {
 
     return (
         <div
-            className={`hidden sm:block fixed bottom-24 left-0 z-20 w-20 sm:w-28 origin-bottom animate-f1-sequence ${isCrashed ? "cursor-default" : "cursor-bomb pointer-events-auto"}`}
+            className={`hidden sm:block fixed bottom-24 left-0 z-20 w-20 sm:w-28 origin-bottom animate-f1-sequence opacity-30 ${isCrashed ? "cursor-default" : "cursor-bomb pointer-events-auto"}`}
             style={{
                 imageRendering: "pixelated",
                 animationPlayState: isCrashed ? "paused" : "running"
