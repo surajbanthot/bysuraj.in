@@ -8,6 +8,7 @@ import FooterBar from "@/components/FooterBar";
 import ResumeButton from "@/components/ResumeButton";
 import F1Car from "@/components/F1Car";
 import Superman from "@/components/Superman";
+import SpiderMan from "@/components/SpiderMan";
 import JohnnyBravo from "@/components/JohnnyBravo";
 import WIPSidebar from "@/components/WIPSidebar";
 
@@ -88,6 +89,7 @@ export default function RootLayout({
         <ResumeButton />
         <F1Car />
         <Superman />
+        <SpiderMan />
         <WIPSidebar />
         <FooterBar />
         <Analytics />
