@@ -687,7 +687,7 @@ button {
 /* Spider character (drop in -> pose -> climb out) */
 @keyframes spider-descend {
   0% {
-    transform: translate3d(0, calc(var(--spider-descend-y, 50px) * -1), 0);
+    transform: translate3d(0, calc(var(--spider-descend-y, 22px) * -1), 0);
     opacity: 0;
   }
 
@@ -696,7 +696,7 @@ button {
   }
 
   100% {
-    transform: translate3d(0, var(--spider-descend-y, 50px), 0);
+    transform: translate3d(0, var(--spider-descend-y, 22px), 0);
     opacity: 0.75;
   }
 }
@@ -715,12 +715,12 @@ button {
 
 @keyframes spider-ascend {
   0% {
-    transform: translate3d(0, var(--spider-descend-y, 50px), 0);
+    transform: translate3d(0, var(--spider-descend-y, 22px), 0);
     opacity: 0.75;
   }
 
   100% {
-    transform: translate3d(0, var(--spider-ascend-y, -120px), 0);
+    transform: translate3d(0, var(--spider-ascend-y, -90px), 0);
     opacity: 0;
   }
 }
@@ -755,6 +755,26 @@ button {
   }
 }
 
+@keyframes spider-scratch {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate3d(-1px, -2px, 0) rotate(-6deg);
+  }
+
+  50% {
+    transform: translate3d(0, -3px, 0) rotate(4deg);
+  }
+
+  75% {
+    transform: translate3d(1px, -2px, 0) rotate(-5deg);
+  }
+}
+
 .animate-spider-descend {
   animation: spider-descend var(--spider-descend-duration, 1100ms) cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
   will-change: transform, opacity;
@@ -775,6 +795,12 @@ button {
 
 .animate-spider-finger {
   animation: spider-finger 0.45s steps(2, end) infinite;
+}
+
+.animate-spider-scratch {
+  animation: spider-scratch 0.7s steps(2, end) infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .cursor-bomb {

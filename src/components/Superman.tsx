@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef, useCallback, type CSSProperties } from "react";
 import { usePathname } from "next/navigation";
 import { track } from "@vercel/analytics";
+import { acquireEasterEggSlot, releaseEasterEggSlot } from "@/lib/easterEggCoordinator";
 
 type SupermanPhase = "hidden" | "entering" | "floating" | "flying";
 
@@ -28,6 +29,7 @@ type EntryConfig = {
 type HorizontalDirection = -1 | 1;
 
 const HIDDEN_PATHS = new Set(["/hireme", "/code"]);
+const EASTER_EGG_ID = "superman";
 
 export default function Superman() {
     const pathname = usePathname();
@@ -108,11 +110,15 @@ export default function Superman() {
         };
         const scheduleNextCycle = (isInitialRun: boolean) => {
             const delay = isInitialRun
-                ? randomBetween(5000, 12000)
-                : randomBetween(16000, 32000);
+                ? randomBetween(12000, 24000)
+                : randomBetween(35000, 70000);
 
             queueTimer(() => {
                 if (HIDDEN_PATHS.has(pathname)) return;
+                if (!acquireEasterEggSlot(EASTER_EGG_ID)) {
+                    scheduleNextCycle(false);
+                    return;
+                }
 
                 const direction = getRandomDirection();
                 const spawn = getRandomSpawnPosition(direction);
@@ -140,6 +146,7 @@ export default function Superman() {
                             setPhase("hidden");
                             setCyclePath(null);
                             setShowWoosh(false);
+                            releaseEasterEggSlot(EASTER_EGG_ID);
                             scheduleNextCycle(false);
                         }, nextFlightConfig.duration);
                     }, floatDuration);
@@ -148,6 +155,7 @@ export default function Superman() {
         };
 
         clearTimers();
+        releaseEasterEggSlot(EASTER_EGG_ID);
 
         if (HIDDEN_PATHS.has(pathname)) {
             return;
@@ -157,6 +165,7 @@ export default function Superman() {
 
         return () => {
             clearTimers();
+            releaseEasterEggSlot(EASTER_EGG_ID);
         };
     }, [clearTimers, pathname]);
 

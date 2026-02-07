@@ -3,6 +3,9 @@
 import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { track } from "@vercel/analytics";
+import { acquireEasterEggSlot, releaseEasterEggSlot } from "@/lib/easterEggCoordinator";
+
+const EASTER_EGG_ID = "f1car";
 
 export default function F1Car() {
     const pathname = usePathname();
@@ -19,11 +22,13 @@ export default function F1Car() {
     const msgEndRef = useRef<NodeJS.Timeout>(null);
 
     useEffect(() => {
-        // Start immediately on page load
-        startSequence();
+        // Start after a random delay to reduce frequency and overlap
+        const initialDelay = Math.random() * 20000 + 15000; // 15-35s
+        timerRef.current = setTimeout(startSequence, initialDelay);
 
         return () => {
             clearAllTimers();
+            releaseEasterEggSlot(EASTER_EGG_ID);
         };
     }, []);
 
@@ -36,6 +41,12 @@ export default function F1Car() {
     };
 
     const startSequence = () => {
+        if (!acquireEasterEggSlot(EASTER_EGG_ID)) {
+            // Retry later if another easter egg is active
+            timerRef.current = setTimeout(startSequence, Math.random() * 15000 + 8000); // 8-23s
+            return;
+        }
+
         setIsDriving(true);
         setIsCrashed(false); // Reset crash state
 
@@ -53,6 +64,7 @@ export default function F1Car() {
     };
 
     const resetAndSchedule = (delay: number) => {
+        releaseEasterEggSlot(EASTER_EGG_ID);
         setIsDriving(false);
         setIsBurning(false);
         setIsCrashed(false);
@@ -64,8 +76,8 @@ export default function F1Car() {
     };
 
     const handleAnimationEnd = () => {
-        // Normal end (drove off screen) - Random delay 10-30s
-        const nextDelay = Math.random() * 20000 + 10000;
+        // Normal end (drove off screen) - Random delay 40-80s
+        const nextDelay = Math.random() * 40000 + 40000;
         resetAndSchedule(nextDelay);
     };
 

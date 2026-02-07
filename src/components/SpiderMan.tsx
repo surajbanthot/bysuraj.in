@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef, useCallback, type CSSProperties } from "react";
 import { usePathname } from "next/navigation";
 import { track } from "@vercel/analytics";
+import { acquireEasterEggSlot, releaseEasterEggSlot } from "@/lib/easterEggCoordinator";
 
 type SpiderPhase = "hidden" | "descending" | "posing" | "ascending";
 
@@ -14,6 +15,7 @@ type SpiderMotion = {
 };
 
 const HIDDEN_PATHS = new Set(["/hireme", "/code"]);
+const EASTER_EGG_ID = "spiderman";
 
 export default function SpiderMan() {
     const pathname = usePathname();
@@ -21,9 +23,9 @@ export default function SpiderMan() {
     const [cyclePath, setCyclePath] = useState<string | null>(null);
     const [left, setLeft] = useState(0);
     const [motion, setMotion] = useState<SpiderMotion>({
-        descendY: 50,
+        descendY: 22,
         descendDuration: 850,
-        ascendY: -120,
+        ascendY: -90,
         ascendDuration: 850,
     });
     const timersRef = useRef<Array<ReturnType<typeof setTimeout>>>([]);
@@ -43,17 +45,21 @@ export default function SpiderMan() {
 
         const scheduleNextCycle = (isInitialRun: boolean) => {
             const delay = isInitialRun
-                ? randomBetween(7000, 15000)
-                : randomBetween(20000, 42000);
+                ? randomBetween(14000, 28000)
+                : randomBetween(45000, 90000);
 
             queueTimer(() => {
                 if (HIDDEN_PATHS.has(pathname)) return;
+                if (!acquireEasterEggSlot(EASTER_EGG_ID)) {
+                    scheduleNextCycle(false);
+                    return;
+                }
 
                 const width = window.innerWidth;
                 const nextLeft = randomBetween(Math.floor(width * 0.18), Math.floor(width * 0.82));
-                const descendY = randomBetween(35, 60);
+                const descendY = randomBetween(14, 26);
                 const descendDuration = randomBetween(650, 950);
-                const ascendY = -(descendY + randomBetween(70, 120));
+                const ascendY = -(descendY + randomBetween(60, 95));
                 const ascendDuration = randomBetween(650, 950);
                 const poseDuration = randomBetween(800, 1400);
 
@@ -76,6 +82,7 @@ export default function SpiderMan() {
                         queueTimer(() => {
                             setPhase("hidden");
                             setCyclePath(null);
+                            releaseEasterEggSlot(EASTER_EGG_ID);
                             scheduleNextCycle(false);
                         }, ascendDuration);
                     }, poseDuration);
@@ -84,10 +91,14 @@ export default function SpiderMan() {
         };
 
         clearTimers();
+        releaseEasterEggSlot(EASTER_EGG_ID);
         if (HIDDEN_PATHS.has(pathname)) return;
 
         scheduleNextCycle(true);
-        return () => clearTimers();
+        return () => {
+            clearTimers();
+            releaseEasterEggSlot(EASTER_EGG_ID);
+        };
     }, [clearTimers, pathname]);
 
     const handleClick = () => {
@@ -114,7 +125,7 @@ export default function SpiderMan() {
                 style={styleVars}
             >
                 {/* web line from top */}
-                <div className="absolute left-1/2 -top-40 h-40 w-[2px] -translate-x-1/2 bg-gradient-to-b from-blue-200/90 via-blue-300/70 to-blue-100/20" />
+                <div className="absolute left-1/2 -top-28 h-28 w-[2px] -translate-x-1/2 bg-gradient-to-b from-blue-200/90 via-blue-300/70 to-blue-100/20" />
 
                 <div className="relative opacity-40">
                     {phase === "posing" && (
@@ -159,10 +170,14 @@ export default function SpiderMan() {
                             <rect x="28" y="56" width="16" height="14" fill="#DC2626" />
                             <rect x="84" y="56" width="16" height="14" fill="#DC2626" />
                             <rect x="18" y="62" width="16" height="12" fill="#1D4ED8" />
-                            <rect x="94" y="62" width="16" height="12" fill="#1D4ED8" />
+                            <rect x="94" y="62" width="8" height="12" fill="#1D4ED8" />
+                            <g className={phase === "posing" ? "animate-spider-scratch" : ""}>
+                                <rect x="102" y="58" width="8" height="12" fill="#1D4ED8" />
+                                <rect x="104" y="54" width="10" height="8" fill="#DC2626" />
+                            </g>
                             <rect x="10" y="70" width="14" height="10" fill="#DC2626" />
-                            <rect x="104" y="68" width="14" height="10" fill="#DC2626" />
-                            <rect x="110" y="62" width="6" height="6" fill="#DC2626" className={phase === "posing" ? "animate-spider-finger" : ""} />
+                            <rect x="104" y="68" width="8" height="10" fill="#DC2626" />
+                            <rect x="110" y="62" width="6" height="6" fill="#DC2626" />
 
                             {/* neck */}
                             <rect x="56" y="46" width="16" height="10" fill="#DC2626" />
