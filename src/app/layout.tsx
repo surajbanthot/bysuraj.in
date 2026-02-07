@@ -7,6 +7,7 @@ import LayoutChromeSizer from "@/components/LayoutChromeSizer";
 import FooterBar from "@/components/FooterBar";
 import ResumeButton from "@/components/ResumeButton";
 import F1Car from "@/components/F1Car";
+import Superman from "@/components/Superman";
 import JohnnyBravo from "@/components/JohnnyBravo";
 import WIPSidebar from "@/components/WIPSidebar";
 
@@ -86,6 +87,7 @@ export default function RootLayout({
         {children}
         <ResumeButton />
         <F1Car />
+        <Superman />
         <WIPSidebar />
         <FooterBar />
         <Analytics />

@@ -228,6 +228,104 @@ button {
   animation: smoke-rise 0.8s ease-out 0.4s infinite;
 }
 
+/* Superman Floating + Fly Off */
+@keyframes superman-enter {
+  0% {
+    transform: translate3d(var(--superman-enter-x, -280px), var(--superman-enter-y, 0px), 0) rotate(var(--superman-enter-rot, -12deg));
+    opacity: 0;
+  }
+
+  18% {
+    opacity: 0.75;
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0.75;
+  }
+}
+
+@keyframes superman-float {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+@keyframes superman-flyout {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0.75;
+  }
+
+  85% {
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translate3d(var(--superman-fly-x, 140vw), var(--superman-fly-y, -50vh), 0) rotate(var(--superman-fly-rot, -12deg));
+    opacity: 0;
+  }
+}
+
+@keyframes superman-cape {
+
+  0%,
+  100% {
+    transform: scaleY(1) skewX(0deg);
+  }
+
+  50% {
+    transform: scaleY(1.1) skewX(-5deg);
+  }
+}
+
+@keyframes superman-woosh {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  20% {
+    opacity: 0.35;
+    transform: scaleX(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleX(1.5);
+  }
+}
+
+.animate-superman-cape {
+  animation: superman-cape 0.3s ease-in-out infinite;
+}
+
+.animate-superman-woosh {
+  animation: superman-woosh 0.5s ease-out forwards;
+}
+
+.animate-superman-enter {
+  animation: superman-enter var(--superman-enter-duration, 900ms) cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.animate-superman-float {
+  animation: superman-float 1.8s ease-in-out infinite;
+}
+
+.animate-superman-flyout {
+  animation: superman-flyout var(--superman-fly-duration, 2000ms) cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
 
 .hire-me-btn::before,
 .hire-me-btn::after {
