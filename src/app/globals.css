@@ -687,7 +687,7 @@ button {
 /* Spider character (drop in -> pose -> climb out) */
 @keyframes spider-descend {
   0% {
-    transform: translate3d(0, calc(var(--spider-descend-y, 70px) * -1), 0);
+    transform: translate3d(0, calc(var(--spider-descend-y, 50px) * -1), 0);
     opacity: 0;
   }
 
@@ -696,7 +696,7 @@ button {
   }
 
   100% {
-    transform: translate3d(0, var(--spider-descend-y, 70px), 0);
+    transform: translate3d(0, var(--spider-descend-y, 50px), 0);
     opacity: 0.75;
   }
 }
@@ -715,12 +715,12 @@ button {
 
 @keyframes spider-ascend {
   0% {
-    transform: translate3d(0, var(--spider-descend-y, 70px), 0);
+    transform: translate3d(0, var(--spider-descend-y, 50px), 0);
     opacity: 0.75;
   }
 
   100% {
-    transform: translate3d(0, var(--spider-ascend-y, -150px), 0);
+    transform: translate3d(0, var(--spider-ascend-y, -120px), 0);
     opacity: 0;
   }
 }
