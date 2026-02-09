@@ -131,9 +131,13 @@ export default function SocialPage() {
                                             href="https://www.instagram.com/explore/tags/pentax67/"
                                             target="_blank"
                                             rel="noreferrer"
-                                            className="text-zinc-900 underline decoration-orange-400/70 underline-offset-4 transition hover:text-orange-500 dark:text-zinc-100"
+                                            className="group relative text-zinc-900 underline decoration-orange-400/70 underline-offset-4 transition hover:text-orange-500 dark:text-zinc-100"
                                         >
                                             Pentax 67II
+                                            <span className="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 whitespace-nowrap rounded bg-zinc-900 px-2 py-1 text-xs text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100 dark:bg-zinc-100 dark:text-zinc-900">
+                                                Check me out!
+                                                <span className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-zinc-900 dark:border-t-zinc-100"></span>
+                                            </span>
                                         </a>
                                         , and I shoot medium format film to slow down, compose with intent,
                                         and embrace the physicality of the process.

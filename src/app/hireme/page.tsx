@@ -332,15 +332,7 @@ export default function HireMePage() {
             </div>
           ) : (
             <div className="flex flex-col gap-16 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              {/* Header */}
-              <div className="text-center space-y-6 max-w-3xl mx-auto">
-                <h2 className="text-4xl font-bold sm:text-5xl text-zinc-900 dark:text-zinc-100">
-                  Freelance Services
-                </h2>
-                <p className="text-xl sm:text-2xl text-zinc-700 dark:text-zinc-200 font-medium leading-relaxed">
-                  Here is how I can help you.
-                </p>
-              </div>
+
 
               {/* Services Grid */}
               <div className="grid gap-6 md:grid-cols-2">
