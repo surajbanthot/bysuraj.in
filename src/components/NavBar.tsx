@@ -22,6 +22,26 @@ const links = [
 export default function NavBar({ fontClassName, bungeeClassName }: NavBarProps) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [animateHireMe, setAnimateHireMe] = useState(false);
+  const [hasVisitedHireMe, setHasVisitedHireMe] = useState(false);
+
+  // Mark as visited when navigating to /hireme
+  useEffect(() => {
+    if (pathname === "/hireme") {
+      setHasVisitedHireMe(true);
+    }
+  }, [pathname]);
+
+  // Trigger lightning animation every 15s (unless visited)
+  useEffect(() => {
+    if (hasVisitedHireMe) return;
+
+    const interval = setInterval(() => {
+      setAnimateHireMe(true);
+      setTimeout(() => setAnimateHireMe(false), 1000);
+    }, 15000);
+    return () => clearInterval(interval);
+  }, [hasVisitedHireMe]);
 
   // Add class to body when menu is open to hide other fixed elements
   useEffect(() => {
@@ -58,13 +78,15 @@ export default function NavBar({ fontClassName, bungeeClassName }: NavBarProps) 
             const isActive = pathname === link.href;
             const isHireMe = link.href === "/hireme";
 
+
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`${baseClasses} ${hoverClasses} ${isActive ? activeClasses : ""} ${isHireMe ? "hire-me-btn" : ""} ${fontClassName ?? ""}`}
+                className={`${baseClasses} ${hoverClasses} ${isActive ? activeClasses : ""} ${isHireMe ? "hire-me-btn relative overflow-visible" : ""} ${isHireMe && animateHireMe ? "force-hover border-orange-300 bg-orange-500/80 text-white shadow-[0_0_18px_rgba(251,146,60,0.75),0_8px_18px_rgba(0,0,0,0.35)] dark:bg-orange-500/70 dark:text-white" : ""} ${fontClassName ?? ""}`}
                 aria-current={isActive ? "page" : undefined}
               >
+
                 <span className="flex h-5 w-5 items-center justify-center text-lg sm:text-xl">
                   {link.emoji}
                 </span>

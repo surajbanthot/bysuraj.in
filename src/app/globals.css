@@ -358,15 +358,19 @@ button {
 }
 
 .hire-me-btn:hover::before,
-.hire-me-btn:hover::after {
+.hire-me-btn:hover::after,
+.hire-me-btn.force-hover::before,
+.hire-me-btn.force-hover::after {
   animation: lightning 0.8s ease-in-out infinite;
 }
 
-.hire-me-btn:hover::after {
+.hire-me-btn:hover::after,
+.hire-me-btn.force-hover::after {
   animation-delay: 0.2s;
 }
 
-.hire-me-btn:hover {
+.hire-me-btn:hover,
+.hire-me-btn.force-hover {
   animation: vibrate 0.3s ease-in-out infinite;
 }
 
