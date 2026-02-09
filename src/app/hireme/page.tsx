@@ -338,7 +338,6 @@ export default function HireMePage() {
                   Freelance Services
                 </h2>
                 <p className="text-xl sm:text-2xl text-zinc-700 dark:text-zinc-200 font-medium leading-relaxed">
-                  Help me make black money 💰🕶️ <br className="hidden sm:block" />
                   Here is how I can help you.
                 </p>
               </div>
@@ -538,109 +537,7 @@ export default function HireMePage() {
                   </div>
                 </div>
 
-                {/* 5. Hiking & Gym Partner */}
-                <div
-                  onMouseEnter={() => handleCardMouseEnter('hiking')}
-                  onMouseLeave={handleCardMouseLeave}
-                  onMouseMove={handleMouseMove}
-                  className={`relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4 ${activeCard === "hiking" && cursorPhase === "active" ? "cursor-none" : ""}`}
-                >
-                  {activeCard === "hiking" && cursorPhase !== "idle" && (
-                    <div
-                      className={`pointer-events-none fixed z-50 h-32 w-auto transition-opacity duration-500 ease-in-out ${cursorPhase === "active" ? "opacity-100" : "opacity-0"}`}
-                      style={{
-                        left: cursorPos.x,
-                        top: cursorPos.y,
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    >
-                      <img
-                        src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3c2FsNHoyODllY2Y3aHRldTYwMm9udWMycmZsaTNoYnBieTNhbWk1NiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/aSIhCYzfUGkHS/giphy.gif"
-                        alt="cursor"
-                        className="rounded-xl shadow-2xl border-2 border-white/20"
-                      />
-                    </div>
-                  )}
-                  <div className="absolute top-8 right-8 flex gap-2 z-10">
-                    <span className="flex items-center rounded-full bg-zinc-100 border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-600 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-400 cursor-default">
-                      Weekends
-                    </span>
-                    <a href="mailto:surajcommercial@gmail.com" className="group relative rounded-full bg-white border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-700 shadow-sm transition-colors">
-                      Email
-                      <span className="absolute right-0 top-full mt-2 hidden whitespace-nowrap rounded bg-zinc-800 px-2 py-1 text-xs text-white shadow-lg group-hover:block dark:bg-zinc-100 dark:text-zinc-900 z-50">
-                        surajcommercial@gmail.com
-                      </span>
-                    </a>
-                  </div>
-                  <div className="h-12 w-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl dark:bg-emerald-900/30 dark:text-emerald-400">
-                    🏔️
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 pr-16">Hiking & Gym Partner</h3>
-                    <p className="mt-2 text-lg text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed">
-                      Explorations in Bangalore & Coorg or spotting each other at the gym. <br />
-                      I'm fat as fuck, help me!! <br />
-                      <span className="text-base italic opacity-80">(This service is free of charge)</span>
-                    </p>
-                  </div>
-                  <div className="mt-auto flex flex-wrap gap-2 pt-2">
-                    {["Bangalore", "Kodagu (Coorg)", "Hiking", "Gym Partner"].map(tag => (
-                      <span key={tag} className="rounded-lg bg-zinc-100 px-3 py-1 text-sm font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
 
-                {/* 6. BaaS */}
-                <div
-                  onMouseEnter={() => handleCardMouseEnter('baas')}
-                  onMouseLeave={handleCardMouseLeave}
-                  onMouseMove={handleMouseMove}
-                  className={`relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40 text-left flex flex-col gap-4 ${activeCard === "baas" && cursorPhase === "active" ? "cursor-none" : ""}`}
-                >
-                  {activeCard === "baas" && cursorPhase !== "idle" && (
-                    <div
-                      className={`pointer-events-none fixed z-50 h-32 w-auto transition-opacity duration-500 ease-in-out ${cursorPhase === "active" ? "opacity-100" : "opacity-0"}`}
-                      style={{
-                        left: cursorPos.x,
-                        top: cursorPos.y,
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    >
-                      <img
-                        src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3RpODQzZ2U4MGRxa29oN2U4aGtxNDh3NTVxNXl2eXk4MWpvbmplciZlcD12MV9naWZzX3NlYXJjaCZjdD1n/u8ontzUmtHnmuBt5IQ/giphy.gif"
-                        alt="cursor"
-                        className="rounded-xl shadow-2xl border-2 border-white/20"
-                      />
-                    </div>
-                  )}
-                  <div className="absolute top-8 right-8 flex gap-2 z-10">
-                    <a href="mailto:surajcommercial@gmail.com" className="group relative rounded-full bg-white border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-700 hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-700 shadow-sm transition-colors">
-                      Email
-                      <span className="absolute right-0 top-full mt-2 hidden whitespace-nowrap rounded bg-zinc-800 px-2 py-1 text-xs text-white shadow-lg group-hover:block dark:bg-zinc-100 dark:text-zinc-900 z-50">
-                        surajcommercial@gmail.com
-                      </span>
-                    </a>
-                    <a href="https://www.instagram.com/bysuraj.in/" target="_blank" rel="noreferrer" className="rounded-full bg-pink-100 border border-pink-200 px-3 py-1.5 text-xs font-bold text-pink-700 hover:bg-pink-200 dark:bg-pink-900/30 dark:border-pink-800 dark:text-pink-300 dark:hover:bg-pink-900/50 shadow-sm transition-colors">Instagram</a>
-                  </div>
-                  <div className="h-12 w-12 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center text-2xl dark:bg-pink-900/30 dark:text-pink-400">
-                    🌹
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 pr-16">Boyfriend as a Service (BaaS)</h3>
-                    <p className="mt-2 text-lg text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed">
-                      Professional plus-one for weddings, family dinners, and awkward social events.
-                    </p>
-                  </div>
-                  <div className="mt-auto flex flex-wrap gap-2 pt-2">
-                    {["6ft", "Average looking", "Well behaved", "Aries & Leo", "90's", "Honda Dio (I'm broke 💸)"].map(tag => (
-                      <span key={tag} className="rounded-lg bg-zinc-100 px-3 py-1 text-sm font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
               </div>
 
             </div>

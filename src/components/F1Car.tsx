@@ -60,7 +60,7 @@ export default function F1Car() {
 
         // Message "I'm fast AF boy!!" just before takeoff
         msgStartRef.current = setTimeout(() => setShowFastMsg(true), 2200);
-        msgEndRef.current = setTimeout(() => setShowFastMsg(false), 3500);
+        msgEndRef.current = setTimeout(() => setShowFastMsg(false), 5000);
     };
 
     const resetAndSchedule = (delay: number) => {
@@ -364,8 +364,8 @@ export default function F1Car() {
 
                     {/* Fast AF Message - Appears during burnout */}
                     {showFastMsg && !isCrashed && (
-                        <div className="absolute -top-10 -left-16 z-50 whitespace-nowrap border-2 border-black bg-white px-2 py-1 text-xs font-bold text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] animate-bounce font-mono sm:text-sm">
-                            naah!!, you can't catch me.
+                        <div className="absolute -top-24 -left-18 z-50 w-64 border-2 border-black bg-white px-3 py-2 text-[10px] font-bold text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] animate-bounce font-mono sm:text-xs text-center leading-tight">
+                            Speed. I am Speed. 1 winner, 42 losers. I eat losers for breakfast.
                             {/* Arrow pointing down */}
                             <div className="absolute -bottom-2 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 border-b-2 border-r-2 border-black bg-white"></div>
                         </div>
