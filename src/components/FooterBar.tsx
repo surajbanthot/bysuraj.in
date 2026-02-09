@@ -50,7 +50,7 @@ export default function FooterBar() {
           <div className="flex flex-1 items-center justify-center sm:justify-start">
             <a
               href="mailto:surajcommercial@gmail.com"
-              className="inline-flex items-center gap-2 text-zinc-900 transition hover:text-orange-500 dark:text-zinc-100"
+              className="inline-flex items-center gap-2 text-zinc-500 transition hover:text-orange-500 dark:text-zinc-400 dark:hover:text-orange-400"
             >
               <svg
                 width="20"
@@ -73,75 +73,77 @@ export default function FooterBar() {
             </a>
           </div>
 
-          {/* Socials - Center */}
-          <div className="flex items-center justify-center gap-6">
-            <a
-              href="https://www.instagram.com/bysuraj.in/"
-              target="_blank"
-              rel="noreferrer"
-              className="text-zinc-900 transition hover:text-orange-500 dark:text-zinc-100"
-              aria-label="Instagram"
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
+          {/* Socials & Phone - Right */}
+          <div className="flex flex-1 items-center justify-center gap-6 sm:justify-end">
+            <div className="flex items-center gap-6">
+              <a
+                href="https://www.instagram.com/bysuraj.in/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-zinc-500 transition hover:text-orange-500 dark:text-zinc-400 dark:hover:text-orange-400"
+                aria-label="Instagram"
               >
-                <rect x="3" y="3" width="18" height="18" rx="5" />
-                <circle cx="12" cy="12" r="4" />
-                <circle cx="17.5" cy="6.5" r="1" />
-              </svg>
-            </a>
-            <a
-              href="https://x.com/SurajBanthot"
-              target="_blank"
-              rel="noreferrer"
-              className="text-zinc-900 transition hover:text-orange-500 dark:text-zinc-100"
-              aria-label="X"
-            >
-              <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
-              </svg>
-            </a>
-            <a
-              href="https://www.threads.com/@bysuraj.in"
-              target="_blank"
-              rel="noreferrer"
-              className="text-zinc-900 transition hover:text-orange-500 dark:text-zinc-100"
-              aria-label="Threads"
-            >
-              <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M6.81 9.204c0-.41.197-1.062 1.727-1.062.469 0 .758.034 1.146.121-.124 1.606-.91 1.818-1.674 1.818-.418 0-1.2-.218-1.2-.877Z" />
-                <path d="M2.59 16h10.82A2.59 2.59 0 0 0 16 13.41V2.59A2.59 2.59 0 0 0 13.41 0H2.59A2.59 2.59 0 0 0 0 2.59v10.82A2.59 2.59 0 0 0 2.59 16M5.866 5.91c.567-.81 1.315-1.126 2.35-1.126.73 0 1.351.246 1.795.711.443.466.696 1.132.754 1.983q.368.154.678.363c.832.559 1.29 1.395 1.29 2.353 0 2.037-1.67 3.806-4.692 3.806-2.595 0-5.291-1.51-5.291-6.004C2.75 3.526 5.361 2 8.033 2c1.234 0 4.129.182 5.217 3.777l-1.02.264c-.842-2.56-2.607-2.968-4.224-2.968-2.675 0-4.187 1.628-4.187 5.093 0 3.107 1.69 4.757 4.222 4.757 2.083 0 3.636-1.082 3.636-2.667 0-1.079-.906-1.595-.953-1.595-.177.925-.651 2.482-2.733 2.482-1.213 0-2.26-.838-2.26-1.936 0-1.568 1.488-2.136 2.663-2.136.44 0 .97.03 1.247.086 0-.478-.404-1.296-1.426-1.296-.911 0-1.16.288-1.45.624l-.024.027c-.202-.135-.875-.601-.875-.601Z" />
-              </svg>
-            </a>
-            <a
-              href="https://youtu.be/dQw4w9WgXcQ?si=4A4RhDKBcZA7ePvC"
-              target="_blank"
-              rel="noreferrer"
-              className="text-zinc-900 transition hover:text-orange-500 dark:text-zinc-100"
-              aria-label="YouTube"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
-              </svg>
-            </a>
-          </div>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="1" />
+                </svg>
+              </a>
+              <a
+                href="https://x.com/SurajBanthot"
+                target="_blank"
+                rel="noreferrer"
+                className="text-zinc-500 transition hover:text-orange-500 dark:text-zinc-400 dark:hover:text-orange-400"
+                aria-label="X"
+              >
+                <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                  <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+                </svg>
+              </a>
+              <a
+                href="https://www.threads.com/@bysuraj.in"
+                target="_blank"
+                rel="noreferrer"
+                className="text-zinc-500 transition hover:text-orange-500 dark:text-zinc-400 dark:hover:text-orange-400"
+                aria-label="Threads"
+              >
+                <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                  <path d="M6.81 9.204c0-.41.197-1.062 1.727-1.062.469 0 .758.034 1.146.121-.124 1.606-.91 1.818-1.674 1.818-.418 0-1.2-.218-1.2-.877Z" />
+                  <path d="M2.59 16h10.82A2.59 2.59 0 0 0 16 13.41V2.59A2.59 2.59 0 0 0 13.41 0H2.59A2.59 2.59 0 0 0 0 2.59v10.82A2.59 2.59 0 0 0 2.59 16M5.866 5.91c.567-.81 1.315-1.126 2.35-1.126.73 0 1.351.246 1.795.711.443.466.696 1.132.754 1.983q.368.154.678.363c.832.559 1.29 1.395 1.29 2.353 0 2.037-1.67 3.806-4.692 3.806-2.595 0-5.291-1.51-5.291-6.004C2.75 3.526 5.361 2 8.033 2c1.234 0 4.129.182 5.217 3.777l-1.02.264c-.842-2.56-2.607-2.968-4.224-2.968-2.675 0-4.187 1.628-4.187 5.093 0 3.107 1.69 4.757 4.222 4.757 2.083 0 3.636-1.082 3.636-2.667 0-1.079-.906-1.595-.953-1.595-.177.925-.651 2.482-2.733 2.482-1.213 0-2.26-.838-2.26-1.936 0-1.568 1.488-2.136 2.663-2.136.44 0 .97.03 1.247.086 0-.478-.404-1.296-1.426-1.296-.911 0-1.16.288-1.45.624l-.024.027c-.202-.135-.875-.601-.875-.601Z" />
+                </svg>
+              </a>
+              <a
+                href="https://youtu.be/dQw4w9WgXcQ?si=4A4RhDKBcZA7ePvC"
+                target="_blank"
+                rel="noreferrer"
+                className="text-zinc-500 transition hover:text-orange-500 dark:text-zinc-400 dark:hover:text-orange-400"
+                aria-label="YouTube"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                </svg>
+              </a>
+            </div>
 
-          {/* Phone - Right */}
-          <div className="flex flex-1 items-center justify-center sm:justify-end">
             <button
               type="button"
-              className="rounded-full border border-zinc-300/70 px-4 py-2 text-lg text-zinc-700 transition hover:border-orange-300 hover:text-orange-500 dark:border-zinc-700 dark:text-zinc-300 dark:hover:text-orange-400 sm:text-xl font-[family-name:var(--font-bungee)]"
+              className="text-zinc-500 transition hover:text-orange-500 dark:text-zinc-400 dark:hover:text-orange-400"
               onClick={() => setIsOpen(true)}
+              aria-label="Phone Enquiry"
             >
-              Phone
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
             </button>
           </div>
         </div>
