@@ -133,8 +133,8 @@ export default function SocialPage() {
                                             rel="noreferrer"
                                             className="group relative text-zinc-900 underline decoration-orange-400/70 underline-offset-4 transition hover:text-orange-500 dark:text-zinc-100"
                                         >
-                                            Pentax 67II
-                                            <span className="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 whitespace-nowrap rounded bg-zinc-900 px-2 py-1 text-xs text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100 dark:bg-zinc-100 dark:text-zinc-900">
+                                            Pentax 67ii
+                                            <span className="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 whitespace-nowrap rounded bg-zinc-900 px-2 py-1 text-xs text-white opacity-0 shadow-lg transition-opacity duration-300 group-hover:delay-[2000ms] group-hover:opacity-100 dark:bg-zinc-100 dark:text-zinc-900">
                                                 Check me out!
                                                 <span className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-zinc-900 dark:border-t-zinc-100"></span>
                                             </span>
