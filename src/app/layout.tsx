@@ -80,7 +80,7 @@ export default function RootLayout({
         <LayoutChromeSizer />
         <header
           data-site-header
-          className="sticky top-0 z-30 bg-white/80 pt-3 backdrop-blur dark:bg-black/70 after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-5 after:h-5 after:bg-gradient-to-b after:from-black/20 after:to-transparent dark:after:from-black/60"
+          className="sticky top-0 z-30 bg-white/80 pt-3 backdrop-blur dark:bg-black/70 after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-5 after:h-5 after:bg-linear-to-b after:from-black/20 after:to-transparent dark:after:from-black/60"
         >
           <NavBarShell fontClassName={vt323.className} bungeeClassName={bungee.className} />
         </header>
