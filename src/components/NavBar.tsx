@@ -13,8 +13,6 @@ type NavBarProps = {
 const links = [
   { href: "/", label: "Home", emoji: "🏠" },
   { href: "/code", label: "Code", emoji: "💻" },
-  // { href: "/motiongraphics", label: "Motion", emoji: "🎬" },
-
   { href: "/social", label: "Socials", emoji: "✨" },
   { href: "/hireme", label: "Hire me!!", emoji: "🤝" },
 ];
@@ -77,7 +75,6 @@ export default function NavBar({ fontClassName, bungeeClassName }: NavBarProps) 
           {links.map((link) => {
             const isActive = pathname === link.href;
             const isHireMe = link.href === "/hireme";
-
 
             return (
               <Link

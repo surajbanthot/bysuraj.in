@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type PixelatedVideoBackgroundProps = {
     src: string;
@@ -12,6 +12,11 @@ export default function PixelatedVideoBackground({
     className = "",
 }: PixelatedVideoBackgroundProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     useEffect(() => {
         const video = videoRef.current;
@@ -19,7 +24,11 @@ export default function PixelatedVideoBackground({
 
         // Continuous play at higher speed (0.16 * 1.5 = 0.24)
         video.playbackRate = 0.24;
-    }, []);
+    }, [mounted]);
+
+    if (!mounted) {
+        return <div className={`fixed inset-0 z-[-1] overflow-hidden bg-black ${className}`} />;
+    }
 
     return (
         <div className={`fixed inset-0 z-[-1] overflow-hidden ${className}`}>

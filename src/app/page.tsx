@@ -1,8 +1,8 @@
+"use client";
 
 import PixelatedVideoBackground from "@/components/PixelatedVideoBackground";
 import IstClock from "@/components/IstClock";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
-
 
 export default function Home() {
   return (
@@ -16,8 +16,9 @@ export default function Home() {
             className="text-base text-zinc-200 drop-shadow-md transition-opacity duration-200 sm:text-xl"
           />
         </header>
-        <main className="flex w-full flex-1 items-center justify-center px-4 pb-4 sm:px-8">
-          <div className="flex flex-col items-center justify-center p-4">
+
+        <main className="flex w-full flex-1 flex-col items-center justify-center px-4 pb-4">
+          <div className="flex flex-col items-center justify-center p-4 z-10">
             <div className="flex flex-col items-start gap-2 rounded-[3rem] bg-black/5 px-8 py-6 backdrop-blur-[2px] sm:px-12 sm:py-8">
               <h1 className="font-normal leading-none tracking-tight text-orange-500 drop-shadow-xl">
                 <span className="block text-3xl sm:text-5xl -mb-2">hi</span>
