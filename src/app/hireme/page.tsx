@@ -155,39 +155,13 @@ export default function HireMePage() {
                 <div className="absolute left-6 md:left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-sky-200 dark:bg-sky-800"></div>
 
                 <div className="space-y-16">
-                  {/* 100xEngineers - Right (Current) */}
-                  <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
-                    <div className="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 hidden md:block"></div>
-                    {/* Dot - Active */}
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-10 w-10 items-center justify-center rounded-full border-[6px] border-sky-50 bg-sky-600 shadow-lg dark:border-sky-950 z-10 box-content">
-                      <div className="h-3 w-3 rounded-full bg-white animate-pulse"></div>
-                    </div>
-                    <div className="md:w-1/2 md:pl-16 pl-16 order-1 md:order-2">
-                      <div className="relative rounded-3xl border border-sky-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-sky-800 dark:bg-sky-900/40 text-left">
-                        <span className="mb-3 block font-mono text-base font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Nov 2025 – Present</span>
-                        <h3 className="text-3xl font-bold text-sky-900 dark:text-sky-50 mb-1">
-                          <a href="https://www.100xengineers.com" target="_blank" rel="noopener noreferrer" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
-                            100xEngineers Cohort 11
-                          </a>
-                        </h3>
-                        <div className="mb-6 text-xl font-bold text-sky-600 dark:text-sky-400">
-                          Cohort Member
-                        </div>
-                        <ul className="list-disc list-outside ml-5 space-y-3 text-lg text-sky-800 dark:text-sky-200 leading-relaxed font-medium">
-                          <li>Currently mastering <strong className="font-extrabold text-black dark:text-white">Applied Generative AI</strong> through hands-on projects and expert-led training.</li>
-                          <li>Building real AI products with focus on <strong className="font-extrabold text-black dark:text-white">LLMs</strong>, <strong className="font-extrabold text-black dark:text-white">RAG systems</strong>, and <strong className="font-extrabold text-black dark:text-white">AI agents</strong>.</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Tech Mahindra - Left */}
+                  {/* Tech Mahindra - Left (Current) */}
                   <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
                     <div className="md:w-1/2 md:pr-16 pl-16 md:pl-0 order-1">
                       <div className="relative rounded-3xl border border-sky-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-sky-800 dark:bg-sky-900/40 text-left">
                         <span className="mb-3 block font-mono text-base font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Feb 2024 – Sep 2025</span>
                         <h3 className="text-3xl font-bold text-sky-900 dark:text-sky-50 mb-1">Tech Mahindra</h3>
-                        <div className="mb-6 text-xl font-bold text-sky-700 dark:text-sky-300">
+                        <div className="mb-6 text-xl font-bold text-sky-600 dark:text-sky-400">
                           Senior Software Engineer
                         </div>
                         <ul className="list-disc list-outside ml-5 space-y-3 text-lg text-sky-800 dark:text-sky-200 leading-relaxed font-medium">
@@ -197,53 +171,9 @@ export default function HireMePage() {
                         </ul>
                       </div>
                     </div>
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-sky-50 bg-sky-300 dark:bg-sky-700 dark:border-sky-950 z-10 box-content">
-                    </div>
-                    <div className="md:w-1/2 md:pl-16 order-2 hidden md:block"></div>
-                  </div>
-
-                  {/* AevyTV - Right */}
-                  <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
-                    <div className="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 hidden md:block"></div>
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-sky-50 bg-sky-300 dark:bg-sky-700 dark:border-sky-950 z-10 box-content">
-                    </div>
-                    <div className="md:w-1/2 md:pl-16 pl-16 order-1 md:order-2">
-                      <div className="relative rounded-3xl border border-sky-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-sky-800 dark:bg-sky-900/40 text-left">
-                        <span className="mb-3 block font-mono text-base font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Nov 2023 – Feb 2024</span>
-                        <h3 className="text-3xl font-bold text-sky-900 dark:text-sky-50 mb-1">
-                          <a href="https://aevytv.com" target="_blank" rel="noopener noreferrer" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
-                            AevyTV Cohort 9
-                          </a>
-                        </h3>
-                        <div className="mb-6 text-xl font-bold text-sky-700 dark:text-sky-300">
-                          Cohort Member
-                        </div>
-                        <ul className="list-disc list-outside ml-5 space-y-3 text-lg text-sky-800 dark:text-sky-200 leading-relaxed font-medium">
-                          <li>Sharpened <strong className="font-extrabold text-black dark:text-white">storytelling</strong>, <strong className="font-extrabold text-black dark:text-white">visual design</strong>, and creative thinking through intensive training in <strong className="font-extrabold text-black dark:text-white">Adobe Premiere Pro</strong>, <strong className="font-extrabold text-black dark:text-white">After Effects</strong>, and <strong className="font-extrabold text-black dark:text-white">Illustrator</strong>.</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* 10k Designers - Left */}
-                  <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
-                    <div className="md:w-1/2 md:pr-16 pl-16 md:pl-0 order-1">
-                      <div className="relative rounded-3xl border border-sky-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-sky-800 dark:bg-sky-900/40 text-left">
-                        <span className="mb-3 block font-mono text-base font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Aug 2023 – Jan 2024</span>
-                        <h3 className="text-3xl font-bold text-sky-900 dark:text-sky-50 mb-1">
-                          <a href="https://10kdesigners.com" target="_blank" rel="noopener noreferrer" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">
-                            10k Designers
-                          </a>
-                        </h3>
-                        <div className="mb-6 text-xl font-bold text-sky-700 dark:text-sky-300">
-                          Cohort Member
-                        </div>
-                        <ul className="list-disc list-outside ml-5 space-y-3 text-lg text-sky-800 dark:text-sky-200 leading-relaxed font-medium">
-                          <li>Deep-dived into <strong className="font-extrabold text-black dark:text-white">UI/UX design</strong> principles, <strong className="font-extrabold text-black dark:text-white">user research</strong>, and <strong className="font-extrabold text-black dark:text-white">design systems</strong> through mentorship and hands-on projects.</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-sky-50 bg-sky-300 dark:bg-sky-700 dark:border-sky-950 z-10 box-content">
+                    {/* Dot - Active */}
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-10 w-10 items-center justify-center rounded-full border-[6px] border-sky-50 bg-sky-600 shadow-lg dark:border-sky-950 z-10 box-content">
+                      <div className="h-3 w-3 rounded-full bg-white animate-pulse"></div>
                     </div>
                     <div className="md:w-1/2 md:pl-16 order-2 hidden md:block"></div>
                   </div>
