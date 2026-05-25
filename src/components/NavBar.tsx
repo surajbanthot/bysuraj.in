@@ -59,11 +59,11 @@ export default function NavBar({ fontClassName, bungeeClassName }: NavBarProps) 
   }, [pathname]);
 
   const baseClasses =
-    "inline-flex items-center gap-2 border border-zinc-300/70 px-3 py-1.5 text-zinc-800 transition duration-200 leading-none dark:border-zinc-500/70 dark:text-zinc-100";
+    "inline-flex items-center gap-2 border border-sky-200/70 px-3 py-1.5 text-sky-900 transition duration-200 leading-none dark:border-sky-700/70 dark:text-sky-100";
   const hoverClasses =
-    "hover:border-orange-300 hover:bg-orange-500/80 hover:text-white hover:shadow-[0_0_18px_rgba(251,146,60,0.75),0_8px_18px_rgba(0,0,0,0.35)] dark:hover:bg-orange-500/70 dark:hover:text-white";
+    "hover:border-sky-400 hover:bg-sky-600/80 hover:text-white hover:shadow-[0_0_18px_rgba(2,132,199,0.75),0_8px_18px_rgba(0,0,0,0.35)] dark:hover:bg-sky-500/70 dark:hover:text-white";
   const activeClasses =
-    "border-orange-300/70 bg-orange-400/30 text-zinc-900 shadow-[0_0_12px_rgba(251,146,60,0.45),0_6px_12px_rgba(0,0,0,0.2)] dark:bg-orange-500/25 dark:text-zinc-50";
+    "border-sky-400/70 bg-sky-500/20 text-sky-900 shadow-[0_0_12px_rgba(2,132,199,0.45),0_6px_12px_rgba(0,0,0,0.2)] dark:bg-sky-500/25 dark:text-sky-50";
 
   return (
     <>
@@ -80,7 +80,7 @@ export default function NavBar({ fontClassName, bungeeClassName }: NavBarProps) 
               <Link
                 key={link.href}
                 href={link.href}
-                className={`${baseClasses} ${hoverClasses} ${isActive ? activeClasses : ""} ${isHireMe ? "hire-me-btn relative overflow-visible" : ""} ${isHireMe && animateHireMe ? "force-hover border-orange-300 bg-orange-500/80 text-white shadow-[0_0_18px_rgba(251,146,60,0.75),0_8px_18px_rgba(0,0,0,0.35)] dark:bg-orange-500/70 dark:text-white" : ""} ${fontClassName ?? ""}`}
+                className={`${baseClasses} ${hoverClasses} ${isActive ? activeClasses : ""} ${isHireMe ? "hire-me-btn relative overflow-visible" : ""} ${isHireMe && animateHireMe ? "force-hover border-sky-400 bg-sky-600/80 text-white shadow-[0_0_18px_rgba(2,132,199,0.75),0_8px_18px_rgba(0,0,0,0.35)] dark:bg-sky-500/70 dark:text-white" : ""} ${fontClassName ?? ""}`}
                 aria-current={isActive ? "page" : undefined}
               >
 
@@ -99,7 +99,7 @@ export default function NavBar({ fontClassName, bungeeClassName }: NavBarProps) 
         <button
           type="button"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="flex items-center gap-2 rounded-md border border-zinc-500/20 bg-black/60 px-3 py-2 text-lg text-zinc-100 backdrop-blur-md transition hover:border-orange-300 font-[family-name:var(--font-bungee)]"
+          className="flex items-center gap-2 rounded-md border border-sky-700/30 bg-sky-950/70 px-3 py-2 text-lg text-sky-100 backdrop-blur-md transition hover:border-sky-400 font-[family-name:var(--font-bungee)]"
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
         >
@@ -111,7 +111,7 @@ export default function NavBar({ fontClassName, bungeeClassName }: NavBarProps) 
       {/* Mobile Menu - Full Screen Centered Overlay via Portal */}
       {isMenuOpen &&
         createPortal(
-          <div className="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center overflow-y-auto py-16 sm:hidden">
+          <div className="fixed inset-0 z-[9999] bg-sky-950 flex flex-col items-center justify-center overflow-y-auto py-16 sm:hidden">
             {/* Close button - Top Right */}
             <button
               onClick={() => setIsMenuOpen(false)}
@@ -134,8 +134,8 @@ export default function NavBar({ fontClassName, bungeeClassName }: NavBarProps) 
                     key={link.href}
                     href={link.href}
                     className={`group flex items-center justify-center gap-3 w-full rounded-xl border px-4 py-3 transition-all duration-200 ${isActive
-                      ? "border-orange-300 bg-orange-500 text-white shadow-[0_0_18px_rgba(251,146,60,0.75),0_8px_18px_rgba(0,0,0,0.35)]"
-                      : "border-white/10 bg-white/5 hover:border-orange-300 hover:bg-orange-500 hover:text-white hover:shadow-[0_0_18px_rgba(251,146,60,0.75),0_8px_18px_rgba(0,0,0,0.35)]"
+                      ? "border-sky-400 bg-sky-600 text-white shadow-[0_0_18px_rgba(2,132,199,0.75),0_8px_18px_rgba(0,0,0,0.35)]"
+                      : "border-sky-800/30 bg-sky-900/20 hover:border-sky-400 hover:bg-sky-600 hover:text-white hover:shadow-[0_0_18px_rgba(2,132,199,0.75),0_8px_18px_rgba(0,0,0,0.35)]"
                       } ${isHireMe ? "hire-me-btn" : ""}`}
                   >
                     <span className={`text-xl transition-all ${isActive ? "grayscale-0 text-white" : "grayscale group-hover:grayscale-0 group-hover:text-white"}`}>{link.emoji}</span>

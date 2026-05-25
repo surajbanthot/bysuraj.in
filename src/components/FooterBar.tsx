@@ -41,8 +41,8 @@ export default function FooterBar() {
       <footer
         data-site-footer
         className={`relative z-10 px-6 py-6 text-lg sm:px-8 sm:text-xl ${pathname === "/"
-          ? "text-zinc-200 drop-shadow-md"
-          : "text-zinc-600 dark:text-zinc-400"
+          ? "text-sky-200 drop-shadow-md"
+          : "text-slate-600 dark:text-slate-400"
           }`}
       >
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row">
@@ -50,7 +50,7 @@ export default function FooterBar() {
           <div className="flex flex-1 items-center justify-center sm:justify-start">
             <a
               href="mailto:surajcommercial@gmail.com"
-              className="inline-flex items-center gap-2 text-zinc-500 transition hover:text-orange-500 dark:text-zinc-400 dark:hover:text-orange-400"
+              className="inline-flex items-center gap-2 text-slate-500 transition hover:text-sky-600 dark:text-slate-400 dark:hover:text-sky-500"
             >
               <svg
                 width="20"
@@ -67,7 +67,7 @@ export default function FooterBar() {
                 <path d="M3 7l9 6 9-6" />
               </svg>
               <span className="no-underline">:</span>
-              <span className="underline decoration-orange-400/70 underline-offset-4">
+              <span className="underline decoration-sky-500/70 underline-offset-4">
                 surajcommercial@gmail.com
               </span>
             </a>
@@ -80,7 +80,7 @@ export default function FooterBar() {
                 href="https://www.instagram.com/bysuraj.in/"
                 target="_blank"
                 rel="noreferrer"
-                className="text-zinc-500 transition hover:text-orange-500 dark:text-zinc-400 dark:hover:text-orange-400"
+                className="text-slate-500 transition hover:text-sky-600 dark:text-slate-400 dark:hover:text-sky-500"
                 aria-label="Instagram"
               >
                 <svg
@@ -103,7 +103,7 @@ export default function FooterBar() {
                 href="https://x.com/SurajBanthot"
                 target="_blank"
                 rel="noreferrer"
-                className="text-zinc-500 transition hover:text-orange-500 dark:text-zinc-400 dark:hover:text-orange-400"
+                className="text-slate-500 transition hover:text-sky-600 dark:text-slate-400 dark:hover:text-sky-500"
                 aria-label="X"
               >
                 <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -114,7 +114,7 @@ export default function FooterBar() {
                 href="https://www.threads.com/@bysuraj.in"
                 target="_blank"
                 rel="noreferrer"
-                className="text-zinc-500 transition hover:text-orange-500 dark:text-zinc-400 dark:hover:text-orange-400"
+                className="text-slate-500 transition hover:text-sky-600 dark:text-slate-400 dark:hover:text-sky-500"
                 aria-label="Threads"
               >
                 <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
@@ -126,7 +126,7 @@ export default function FooterBar() {
                 href="https://youtu.be/dQw4w9WgXcQ?si=4A4RhDKBcZA7ePvC"
                 target="_blank"
                 rel="noreferrer"
-                className="text-zinc-500 transition hover:text-orange-500 dark:text-zinc-400 dark:hover:text-orange-400"
+                className="text-slate-500 transition hover:text-sky-600 dark:text-slate-400 dark:hover:text-sky-500"
                 aria-label="YouTube"
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -137,7 +137,7 @@ export default function FooterBar() {
 
             <button
               type="button"
-              className="text-zinc-500 transition hover:text-orange-500 dark:text-zinc-400 dark:hover:text-orange-400"
+              className="text-slate-500 transition hover:text-sky-600 dark:text-slate-400 dark:hover:text-sky-500"
               onClick={() => setIsOpen(true)}
               aria-label="Phone Enquiry"
             >
@@ -150,18 +150,18 @@ export default function FooterBar() {
       </footer>
 
       {isOpen ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="w-full max-w-md rounded-md border border-zinc-200/70 bg-white p-5 text-zinc-900 shadow-xl dark:border-zinc-800 dark:bg-black dark:text-zinc-100 animate-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-sky-950/70 px-4 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="w-full max-w-md rounded-md border border-sky-200/70 bg-white p-5 text-sky-900 shadow-xl dark:border-sky-800 dark:bg-sky-950 dark:text-sky-100 animate-in zoom-in-95 duration-200">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h2 className="text-2xl font-normal sm:text-3xl">Phone Enquiry</h2>
-                <p className="mt-1 text-lg text-zinc-600 dark:text-zinc-400 sm:text-xl">
-                  Leave your number and a short note. This is the <span className="text-orange-500 font-bold">fastest</span> way to reach me! Thank you. :)
+                <p className="mt-1 text-lg text-slate-600 dark:text-slate-400 sm:text-xl">
+                  Leave your number and a short note. This is the <span className="text-sky-600 font-bold">fastest</span> way to reach me! Thank you. :)
                 </p>
               </div>
               <button
                 type="button"
-                className="text-lg text-zinc-500 transition hover:text-zinc-900 dark:hover:text-zinc-200 sm:text-xl"
+                className="text-lg text-slate-500 transition hover:text-sky-900 dark:hover:text-sky-200 sm:text-xl"
                 onClick={() => setIsOpen(false)}
                 aria-label="Close"
               >
@@ -175,12 +175,12 @@ export default function FooterBar() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 <p className="text-xl font-bold">Message sent!</p>
-                <p className="text-lg text-zinc-600 dark:text-zinc-300">I'll get back to you shortly.</p>
+                <p className="text-lg text-slate-600 dark:text-sky-300">I'll get back to you shortly.</p>
               </div>
             ) : (
               <form className="mt-4 space-y-3 text-lg sm:text-xl" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="phone" className="text-base text-zinc-500 sm:text-lg">
+                  <label htmlFor="phone" className="text-base text-slate-500 sm:text-lg">
                     Phone number
                   </label>
                   <input
@@ -191,11 +191,11 @@ export default function FooterBar() {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+1 555 000 0000"
-                    className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
+                    className="rounded border border-sky-300/70 bg-white/70 px-3 py-2 text-sky-900 placeholder:text-slate-500 focus:border-sky-500/70 focus:outline-none dark:border-sky-700 dark:bg-sky-950/60 dark:text-sky-50"
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="note" className="text-base text-zinc-500 sm:text-lg">
+                  <label htmlFor="note" className="text-base text-slate-500 sm:text-lg">
                     Message
                   </label>
                   <textarea
@@ -205,7 +205,7 @@ export default function FooterBar() {
                     value={formData.note}
                     onChange={(e) => setFormData({ ...formData, note: e.target.value })}
                     placeholder="Please share the project details or how I can help 🙂"
-                    className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
+                    className="rounded border border-sky-300/70 bg-white/70 px-3 py-2 text-sky-900 placeholder:text-slate-500 focus:border-sky-500/70 focus:outline-none dark:border-sky-700 dark:bg-sky-950/60 dark:text-sky-50"
                   />
                 </div>
                 {status === "error" && (
@@ -214,7 +214,7 @@ export default function FooterBar() {
                 <div className="flex items-center justify-end gap-2">
                   <button
                     type="button"
-                    className="rounded border border-zinc-200/70 px-4 py-2 text-lg text-zinc-600 transition hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:text-zinc-100 sm:text-xl"
+                    className="rounded border border-sky-200/70 px-4 py-2 text-lg text-slate-600 transition hover:text-sky-900 dark:border-sky-700 dark:text-sky-300 dark:hover:text-sky-100 sm:text-xl"
                     onClick={() => setIsOpen(false)}
                     disabled={status === "loading"}
                   >
@@ -222,7 +222,7 @@ export default function FooterBar() {
                   </button>
                   <button
                     type="submit"
-                    className="rounded border border-orange-300/70 bg-orange-500/80 px-4 py-2 text-lg text-white transition hover:bg-orange-500 sm:text-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="rounded border border-sky-400/70 bg-sky-600/80 px-4 py-2 text-lg text-white transition hover:bg-sky-600 sm:text-xl disabled:opacity-50 disabled:cursor-not-allowed"
                     disabled={status === "loading" || !formData.phone}
                   >
                     {status === "loading" ? "Sending..." : "Submit"}

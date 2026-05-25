@@ -66,18 +66,18 @@ export default function SocialPage() {
     };
 
     return (
-        <main className="flex min-h-[calc(100vh-56px)] flex-col items-center bg-zinc-50 px-4 pt-24 pb-12 text-center dark:bg-black text-zinc-900 dark:text-zinc-50">
+        <main className="flex min-h-[calc(100vh-56px)] flex-col items-center bg-sky-50 px-4 pt-24 pb-12 text-center dark:bg-sky-950 text-sky-900 dark:text-sky-50">
             <div className="flex w-full max-w-5xl flex-col items-center animate-in fade-in zoom-in duration-500">
                 {/* Switcher */}
-                <div className="mb-12 flex w-full max-w-sm rounded-full bg-zinc-200/50 p-1.5 dark:bg-zinc-900/50 backdrop-blur-sm border border-zinc-200 dark:border-zinc-800">
+                <div className="mb-12 flex w-full max-w-sm rounded-full bg-sky-200/50 p-1.5 dark:bg-sky-900/50 backdrop-blur-sm border border-sky-200 dark:border-sky-800">
                     <button
                         onClick={() => {
                             setActiveTab("instagram");
                             track("social_tab_switch", { tab: "instagram" });
                         }}
                         className={`flex-1 rounded-full py-2 text-sm font-medium transition-all duration-200 sm:text-base font-[family-name:var(--font-bungee)] ${activeTab === "instagram"
-                            ? "bg-white text-zinc-900 shadow-sm dark:bg-zinc-800 dark:text-zinc-100"
-                            : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
+                            ? "bg-white text-sky-900 shadow-sm dark:bg-sky-800 dark:text-sky-100"
+                            : "text-slate-500 hover:text-sky-900 dark:text-slate-400 dark:hover:text-sky-200"
                             }`}
                     >
                         Instagram
@@ -88,8 +88,8 @@ export default function SocialPage() {
                             track("social_tab_switch", { tab: "film" });
                         }}
                         className={`flex-1 rounded-full py-2 text-sm font-medium transition-all duration-200 sm:text-base font-[family-name:var(--font-bungee)] ${activeTab === "film"
-                            ? "bg-white text-zinc-900 shadow-sm dark:bg-zinc-800 dark:text-zinc-100"
-                            : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
+                            ? "bg-white text-sky-900 shadow-sm dark:bg-sky-800 dark:text-sky-100"
+                            : "text-slate-500 hover:text-sky-900 dark:text-slate-400 dark:hover:text-sky-200"
                             }`}
                     >
                         Film
@@ -100,8 +100,8 @@ export default function SocialPage() {
                             track("social_tab_switch", { tab: "youtube" });
                         }}
                         className={`flex-1 rounded-full py-2 text-sm font-medium transition-all duration-200 sm:text-base font-[family-name:var(--font-bungee)] ${activeTab === "youtube"
-                            ? "bg-white text-zinc-900 shadow-sm dark:bg-zinc-800 dark:text-zinc-100"
-                            : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
+                            ? "bg-white text-sky-900 shadow-sm dark:bg-sky-800 dark:text-sky-100"
+                            : "text-slate-500 hover:text-sky-900 dark:text-slate-400 dark:hover:text-sky-200"
                             }`}
                     >
                         YouTube
@@ -116,14 +116,14 @@ export default function SocialPage() {
                                 href="https://www.instagram.com/bysuraj.in/"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="group flex flex-col items-center gap-6 rounded-3xl bg-white p-8 shadow-sm transition-all hover:shadow-md hover:scale-[1.02] border border-zinc-200 dark:bg-zinc-900 dark:border-zinc-800"
+                                className="group flex flex-col items-center gap-6 rounded-3xl bg-white p-8 shadow-sm transition-all hover:shadow-md hover:scale-[1.02] border border-sky-200 dark:bg-sky-900 dark:border-sky-800"
                             >
                                 <div className="flex h-20 w-20 items-center justify-center rounded-full bg-pink-100 text-pink-600 dark:bg-pink-900/30 dark:text-pink-500 transition group-hover:bg-gradient-to-tr group-hover:from-yellow-400 group-hover:via-red-500 group-hover:to-purple-500 group-hover:text-white">
                                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
                                 </div>
                                 <div>
                                     <h2 className="text-2xl font-bold">@bysuraj.in</h2>
-                                    <p className="mt-2 text-zinc-500 dark:text-zinc-400">Follow for daily updates</p>
+                                    <p className="mt-2 text-slate-500 dark:text-slate-400">Follow for daily updates</p>
                                 </div>
                             </a>
                         </div>
@@ -134,18 +134,18 @@ export default function SocialPage() {
                             <div className="flex flex-col gap-8 sm:gap-10">
                                 <header className="space-y-3 sm:space-y-4">
                                     <h2 className="text-3xl font-normal tracking-tight sm:text-5xl">Film(Analogue)</h2>
-                                    <p className="text-lg text-zinc-600 dark:text-zinc-300 sm:text-xl">
+                                    <p className="text-lg text-slate-600 dark:text-sky-300 sm:text-xl">
                                         I am an analogue camera person. My main tool is the{" "}
                                         <a
                                             href="https://www.instagram.com/explore/tags/pentax67/"
                                             target="_blank"
                                             rel="noreferrer"
-                                            className="group relative text-zinc-900 underline decoration-orange-400/70 underline-offset-4 transition hover:text-orange-500 dark:text-zinc-100"
+                                            className="group relative text-sky-900 underline decoration-sky-400/70 underline-offset-4 transition hover:text-sky-600 dark:text-sky-100"
                                         >
                                             Pentax 67ii
-                                            <span className={`pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 whitespace-nowrap rounded bg-zinc-900 px-2 py-1 text-xs text-white shadow-lg transition-opacity duration-300 ${showHint ? "opacity-100" : "opacity-0 group-hover:opacity-100"} dark:bg-zinc-100 dark:text-zinc-900`}>
+                                            <span className={`pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 whitespace-nowrap rounded bg-sky-900 px-2 py-1 text-xs text-white shadow-lg transition-opacity duration-300 ${showHint ? "opacity-100" : "opacity-0 group-hover:opacity-100"} dark:bg-sky-100 dark:text-sky-900`}>
                                                 Check me out!
-                                                <span className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-zinc-900 dark:border-t-zinc-100"></span>
+                                                <span className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-sky-900 dark:border-t-sky-100"></span>
                                             </span>
                                         </a>
                                         , and I shoot medium format film to slow down, compose with intent,
@@ -157,7 +157,7 @@ export default function SocialPage() {
                                     <h3 className="text-2xl font-normal tracking-tight sm:text-3xl">
                                         Why Medium Format
                                     </h3>
-                                    <p className="text-lg text-zinc-600 dark:text-zinc-300 sm:text-xl">
+                                    <p className="text-lg text-slate-600 dark:text-sky-300 sm:text-xl">
                                         Medium format film uses a larger negative than 35mm, which gives you
                                         richer tonal transitions, cleaner detail, and a distinctive sense of
                                         depth. It is also a more deliberate workflow: fewer frames per roll,
@@ -167,20 +167,20 @@ export default function SocialPage() {
                                 </section>
 
                                 <section className="grid gap-6 sm:grid-cols-2">
-                                    <div className="space-y-3 rounded-md border border-zinc-200/70 bg-zinc-50/60 p-4 dark:border-zinc-800 dark:bg-black/40">
+                                    <div className="space-y-3 rounded-md border border-sky-200/70 bg-sky-50/60 p-4 dark:border-sky-800 dark:bg-sky-950/40">
                                         <h3 className="text-xl font-normal tracking-tight sm:text-2xl">
                                             Camera: Pentax 67II
                                         </h3>
-                                        <p className="text-lg text-zinc-600 dark:text-zinc-300 sm:text-xl">
+                                        <p className="text-lg text-slate-600 dark:text-sky-300 sm:text-xl">
                                             A classic 6x7 system known for its balance of portability and
                                             image quality. It feels like a tank, but shoots like a large SLR.
                                         </p>
                                     </div>
-                                    <div className="space-y-3 rounded-md border border-zinc-200/70 bg-zinc-50/60 p-4 dark:border-zinc-800 dark:bg-black/40">
+                                    <div className="space-y-3 rounded-md border border-sky-200/70 bg-sky-50/60 p-4 dark:border-sky-800 dark:bg-sky-950/40">
                                         <h3 className="text-xl font-normal tracking-tight sm:text-2xl">
                                             Process & Practice
                                         </h3>
-                                        <p className="text-lg text-zinc-600 dark:text-zinc-300 sm:text-xl">
+                                        <p className="text-lg text-slate-600 dark:text-sky-300 sm:text-xl">
                                             I meter carefully, compose patiently, and keep notes for each
                                             roll. The goal is consistency and character, not speed.
                                         </p>
@@ -191,7 +191,7 @@ export default function SocialPage() {
                                     <h3 className="text-2xl font-normal tracking-tight sm:text-3xl">
                                         What I Look For
                                     </h3>
-                                    <p className="text-lg text-zinc-600 dark:text-zinc-300 sm:text-xl">
+                                    <p className="text-lg text-slate-600 dark:text-sky-300 sm:text-xl">
                                         Quiet light, strong geometry, and subjects that benefit from
                                         texture. Film rewards subtlety, so I chase moments that feel honest
                                         and tactile.
@@ -203,7 +203,7 @@ export default function SocialPage() {
                                         <h3 className="text-2xl font-normal tracking-tight sm:text-3xl">
                                             Medium Format Film Enquiry
                                         </h3>
-                                        <p className="text-lg text-zinc-600 dark:text-zinc-300 sm:text-xl">
+                                        <p className="text-lg text-slate-600 dark:text-sky-300 sm:text-xl">
                                             If you would like to hire me for medium format film photos, share
                                             a few details below and I will get back to you.
                                         </p>
@@ -223,9 +223,9 @@ export default function SocialPage() {
                                             </button>
                                         </div>
                                     ) : (
-                                        <form onSubmit={handleFilmSubmit} className="grid gap-4 rounded-md border border-zinc-200/70 bg-zinc-50/60 p-5 text-lg text-zinc-700 dark:border-zinc-800 dark:bg-black/40 dark:text-zinc-200 sm:grid-cols-2 sm:text-xl">
+                                        <form onSubmit={handleFilmSubmit} className="grid gap-4 rounded-md border border-sky-200/70 bg-sky-50/60 p-5 text-lg text-sky-700 dark:border-sky-800 dark:bg-sky-950/40 dark:text-sky-200 sm:grid-cols-2 sm:text-xl">
                                             <div className="flex flex-col gap-2">
-                                                <label htmlFor="name" className="text-base text-zinc-500 sm:text-lg">
+                                                <label htmlFor="name" className="text-base text-slate-500 sm:text-lg">
                                                     👤 Name
                                                 </label>
                                                 <input
@@ -236,11 +236,11 @@ export default function SocialPage() {
                                                     value={filmForm.name}
                                                     onChange={(e) => setFilmForm({ ...filmForm, name: e.target.value })}
                                                     placeholder="Your name"
-                                                    className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
+                                                    className="rounded border border-sky-300/70 bg-white/70 px-3 py-2 text-sky-900 placeholder:text-slate-500 focus:border-sky-500/70 focus:outline-none dark:border-sky-700 dark:bg-sky-950/60 dark:text-sky-50"
                                                 />
                                             </div>
                                             <div className="flex flex-col gap-2">
-                                                <label htmlFor="email" className="text-base text-zinc-500 sm:text-lg">
+                                                <label htmlFor="email" className="text-base text-slate-500 sm:text-lg">
                                                     ✉️ Email
                                                 </label>
                                                 <input
@@ -251,11 +251,11 @@ export default function SocialPage() {
                                                     value={filmForm.email}
                                                     onChange={(e) => setFilmForm({ ...filmForm, email: e.target.value })}
                                                     placeholder="you@example.com"
-                                                    className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
+                                                    className="rounded border border-sky-300/70 bg-white/70 px-3 py-2 text-sky-900 placeholder:text-slate-500 focus:border-sky-500/70 focus:outline-none dark:border-sky-700 dark:bg-sky-950/60 dark:text-sky-50"
                                                 />
                                             </div>
                                             <div className="flex flex-col gap-2">
-                                                <label htmlFor="project" className="text-base text-zinc-500 sm:text-lg">
+                                                <label htmlFor="project" className="text-base text-slate-500 sm:text-lg">
                                                     📸 Project Type
                                                 </label>
                                                 <input
@@ -265,11 +265,11 @@ export default function SocialPage() {
                                                     value={filmForm.project}
                                                     onChange={(e) => setFilmForm({ ...filmForm, project: e.target.value })}
                                                     placeholder="Portraits, editorial, product, etc."
-                                                    className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
+                                                    className="rounded border border-sky-300/70 bg-white/70 px-3 py-2 text-sky-900 placeholder:text-slate-500 focus:border-sky-500/70 focus:outline-none dark:border-sky-700 dark:bg-sky-950/60 dark:text-sky-50"
                                                 />
                                             </div>
                                             <div className="flex flex-col gap-2">
-                                                <label htmlFor="location" className="text-base text-zinc-500 sm:text-lg">
+                                                <label htmlFor="location" className="text-base text-slate-500 sm:text-lg">
                                                     📍 Location
                                                 </label>
                                                 <input
@@ -279,11 +279,11 @@ export default function SocialPage() {
                                                     value={filmForm.location}
                                                     onChange={(e) => setFilmForm({ ...filmForm, location: e.target.value })}
                                                     placeholder="City / Venue"
-                                                    className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
+                                                    className="rounded border border-sky-300/70 bg-white/70 px-3 py-2 text-sky-900 placeholder:text-slate-500 focus:border-sky-500/70 focus:outline-none dark:border-sky-700 dark:bg-sky-950/60 dark:text-sky-50"
                                                 />
                                             </div>
                                             <div className="flex flex-col gap-2">
-                                                <label htmlFor="date" className="text-base text-zinc-500 sm:text-lg">
+                                                <label htmlFor="date" className="text-base text-slate-500 sm:text-lg">
                                                     🗓️ Shoot Date
                                                 </label>
                                                 <input
@@ -292,11 +292,11 @@ export default function SocialPage() {
                                                     type="date"
                                                     value={filmForm.date}
                                                     onChange={(e) => setFilmForm({ ...filmForm, date: e.target.value })}
-                                                    className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
+                                                    className="rounded border border-sky-300/70 bg-white/70 px-3 py-2 text-sky-900 placeholder:text-slate-500 focus:border-sky-500/70 focus:outline-none dark:border-sky-700 dark:bg-sky-950/60 dark:text-sky-50"
                                                 />
                                             </div>
                                             <div className="flex flex-col gap-2">
-                                                <label htmlFor="budget" className="text-base text-zinc-500 sm:text-lg">
+                                                <label htmlFor="budget" className="text-base text-slate-500 sm:text-lg">
                                                     💰 Budget Range (Optional)
                                                 </label>
                                                 <input
@@ -306,11 +306,11 @@ export default function SocialPage() {
                                                     value={filmForm.budget}
                                                     onChange={(e) => setFilmForm({ ...filmForm, budget: e.target.value })}
                                                     placeholder="Your budget range in ₹"
-                                                    className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
+                                                    className="rounded border border-sky-300/70 bg-white/70 px-3 py-2 text-sky-900 placeholder:text-slate-500 focus:border-sky-500/70 focus:outline-none dark:border-sky-700 dark:bg-sky-950/60 dark:text-sky-50"
                                                 />
                                             </div>
                                             <div className="flex flex-col gap-2 sm:col-span-2">
-                                                <label htmlFor="message" className="text-base text-zinc-500 sm:text-lg">
+                                                <label htmlFor="message" className="text-base text-slate-500 sm:text-lg">
                                                     📝 Project Notes
                                                 </label>
                                                 <textarea
@@ -320,14 +320,14 @@ export default function SocialPage() {
                                                     value={filmForm.message}
                                                     onChange={(e) => setFilmForm({ ...filmForm, message: e.target.value })}
                                                     placeholder="Tell me about the concept, scope, and deliverables."
-                                                    className="rounded border border-zinc-300/70 bg-white/70 px-3 py-2 text-zinc-900 placeholder:text-zinc-500 focus:border-orange-400/70 focus:outline-none dark:border-zinc-700 dark:bg-black/60 dark:text-zinc-50"
+                                                    className="rounded border border-sky-300/70 bg-white/70 px-3 py-2 text-sky-900 placeholder:text-slate-500 focus:border-sky-500/70 focus:outline-none dark:border-sky-700 dark:bg-sky-950/60 dark:text-sky-50"
                                                 />
                                             </div>
                                             <div className="sm:col-span-2">
                                                 <button
                                                     type="submit"
                                                     disabled={filmStatus === "loading"}
-                                                    className="w-full rounded border border-orange-300/70 bg-orange-500/80 px-4 py-2 text-lg text-white shadow-[0_0_14px_rgba(251,146,60,0.5)] transition hover:bg-orange-500 dark:bg-orange-500/70 sm:text-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                                                    className="w-full rounded border border-sky-400/70 bg-sky-600/80 px-4 py-2 text-lg text-white shadow-[0_0_14px_rgba(2,132,199,0.5)] transition hover:bg-sky-600 dark:bg-sky-600/70 sm:text-xl disabled:opacity-50 disabled:cursor-not-allowed"
                                                 >
                                                     {filmStatus === "loading" ? "Sending..." : "Send Enquiry"}
                                                 </button>
@@ -348,7 +348,7 @@ export default function SocialPage() {
                     )}
 
                     {activeTab === "youtube" && (
-                        <div className="w-full max-w-2xl overflow-hidden rounded-3xl border border-zinc-200 shadow-sm dark:border-zinc-800 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                        <div className="w-full max-w-2xl overflow-hidden rounded-3xl border border-sky-200 shadow-sm dark:border-sky-800 animate-in fade-in slide-in-from-bottom-4 duration-500">
                             <div className="relative aspect-video w-full">
                                 <iframe
                                     className="absolute inset-0 h-full w-full"

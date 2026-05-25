@@ -44,13 +44,18 @@ Build a memorable, technically impressive personal website that:
 
 ---
 
-## Design system
+## Design system — Arctic Shore
 
-**Aesthetic:** Retro-futuristic — pixelation, CRT scanlines, orange glow accents
-**Primary color:** Orange (`#ff6600` / `orange-500`)
-**Neutrals:** Zinc grays
-**Dark mode:** Full support
-**Fonts:** VT323 (retro), Bungee (display), Quantico (body), Geist (fallback)
+**Aesthetic:** Retro-futuristic — pixelation, CRT scanlines, sky-blue glow accents
+**Primary palette:** Sky (`sky-600` #0284C7 light / `sky-400` #38BDF8 dark)
+**Secondary accent:** Cyan (`cyan-400` #22D3EE) — glows, lightning bolt decorations
+**Tertiary accent:** Teal (`teal-400`/`teal-600`)
+**Neutrals:** `sky-*` for surfaces/borders, `slate-*` for muted text
+**Page bg light:** `sky-50` (#F0F9FF)
+**Page bg dark:** `sky-950` (#082F49) — deep navy, not pitch black
+**Glow shadow:** `rgba(2,132,199,…)` (sky-600)
+**Dark mode:** Full support via `dark:` Tailwind variants
+**Fonts:** VT323 (retro), Bungee (display/nav), Bungee Spice (hero), Quantico (UI labels), Geist Sans/Mono (body/code)
 **Motion:** Character animations, micro-interactions, hover effects, lightning bolts
 
 ---

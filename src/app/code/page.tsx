@@ -38,7 +38,7 @@ const skills: SkillGroup[] = [
         className: "col-span-1 md:col-span-1 lg:col-span-1",
         items: [
             { name: "React", icon: "⚛️", color: "from-cyan-400 to-blue-500", link: "https://react.dev/" },
-            { name: "Next.js", icon: "▲", color: "from-zinc-700 to-zinc-900 dark:from-zinc-200 dark:to-zinc-400", link: "https://nextjs.org/" },
+            { name: "Next.js", icon: "▲", color: "from-sky-700 to-sky-900 dark:from-sky-200 dark:to-sky-400", link: "https://nextjs.org/" },
             { name: "TypeScript", icon: "📘", color: "from-blue-500 to-blue-700", link: "https://www.typescriptlang.org/" },
             { name: "Tailwind CSS", icon: "🎨", color: "from-teal-400 to-cyan-500", link: "https://tailwindcss.com/" },
         ],
@@ -67,7 +67,7 @@ const skills: SkillGroup[] = [
         className: "col-span-1 md:col-span-1 lg:col-span-1",
         items: [
             { name: "VS Code", icon: "💻", color: "from-blue-500 to-sky-600" },
-            { name: "GitHub", icon: "🐙", color: "from-zinc-600 to-zinc-900 dark:from-zinc-400 dark:to-zinc-600" },
+            { name: "GitHub", icon: "🐙", color: "from-slate-600 to-sky-900 dark:from-slate-400 dark:to-slate-600" },
             { name: "Jira", icon: "🎫", color: "from-blue-600 to-blue-800" },
         ],
     },
@@ -86,7 +86,7 @@ const skills: SkillGroup[] = [
         ),
         items: [
             { name: "Antigravity", icon: "🚀", color: "from-blue-400 to-green-500" },
-            { name: "Claude Code", icon: "🧠", color: "from-orange-400 to-amber-500" },
+            { name: "Claude Code", icon: "🧠", color: "from-sky-500 to-amber-500" },
             { name: "OpenAI Codex", icon: "💡", color: "from-emerald-400 to-teal-600" },
             { name: "Cursor", icon: "🤖", color: "from-violet-400 to-purple-600" },
             { name: "Copilot", icon: "✨", color: "from-gray-500 to-gray-700" },
@@ -106,12 +106,12 @@ const projects = [
 
 export default function CodePage() {
     return (
-        <main className="min-h-[calc(100vh-56px)] bg-zinc-50 px-4 py-8 text-zinc-900 dark:bg-black dark:text-zinc-50 sm:px-8 sm:py-12">
+        <main className="min-h-[calc(100vh-56px)] bg-sky-50 px-4 py-8 text-sky-900 dark:bg-sky-950 dark:text-sky-50 sm:px-8 sm:py-12">
             <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
                 <header className="flex flex-col items-start gap-2">
                     <div>
                         <h1 className="font-[family-name:var(--font-bungee)] text-4xl font-normal tracking-tight sm:text-6xl">Code</h1>
-                        <p className="mt-2 text-lg text-zinc-500 dark:text-zinc-400 sm:text-xl">
+                        <p className="mt-2 text-lg text-slate-500 dark:text-slate-400 sm:text-xl">
                             My tech stack & tools
                         </p>
                     </div>
@@ -123,9 +123,9 @@ export default function CodePage() {
                     {skills.map((skillGroup) => (
                         <div
                             key={skillGroup.category}
-                            className={`group relative overflow-hidden rounded-3xl bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md dark:bg-zinc-900/50 dark:hover:bg-zinc-900/80 ${skillGroup.className} border border-zinc-200/50 dark:border-zinc-800`}
+                            className={`group relative overflow-hidden rounded-3xl bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md dark:bg-sky-900/50 dark:hover:bg-sky-900/80 ${skillGroup.className} border border-sky-200/50 dark:border-sky-800`}
                         >
-                            <h2 className="mb-6 text-xl font-medium uppercase tracking-widest text-zinc-500 dark:text-zinc-300">
+                            <h2 className="mb-6 text-xl font-medium uppercase tracking-widest text-slate-500 dark:text-sky-300">
                                 {skillGroup.category}
                             </h2>
                             <div className={skillGroup.contentClass || "flex flex-wrap gap-4"}>
@@ -143,20 +143,20 @@ export default function CodePage() {
                                         >
                                             <div className="relative">
                                                 <div
-                                                    className={`flex h-14 w-14 items-center justify-center rounded-none bg-gradient-to-br ${skill.color} text-2xl shadow-sm transition-all duration-300 group-hover:scale-105 group-hover/item:scale-110 group-hover/item:ring-2 group-hover/item:ring-orange-500 group-hover/item:ring-offset-2 dark:group-hover/item:ring-offset-zinc-900 sm:h-16 sm:w-16 sm:text-3xl`}
+                                                    className={`flex h-14 w-14 items-center justify-center rounded-none bg-gradient-to-br ${skill.color} text-2xl shadow-sm transition-all duration-300 group-hover:scale-105 group-hover/item:scale-110 group-hover/item:ring-2 group-hover/item:ring-sky-600 group-hover/item:ring-offset-2 dark:group-hover/item:ring-offset-sky-900 sm:h-16 sm:w-16 sm:text-3xl`}
                                                     title={skill.name}
                                                 >
                                                     {skill.icon}
                                                 </div>
                                             </div>
-                                            <span className="text-sm font-medium text-zinc-700 dark:text-zinc-200 sm:text-base">
+                                            <span className="text-sm font-medium text-sky-700 dark:text-sky-200 sm:text-base">
                                                 {skill.name}
                                             </span>
                                         </Tag>
                                     );
                                 })}
                                 {skillGroup.footer && (
-                                    <div className="flex flex-1 items-center justify-center rounded-none px-6 py-4 text-center font-semibold text-zinc-600 dark:text-zinc-300">
+                                    <div className="flex flex-1 items-center justify-center rounded-none px-6 py-4 text-center font-semibold text-slate-600 dark:text-sky-300">
                                         {skillGroup.footer}
                                     </div>
                                 )}
@@ -169,12 +169,12 @@ export default function CodePage() {
                     <h2 className="mb-8 text-3xl font-normal tracking-tight sm:text-4xl">Projects</h2>
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                         {projects.map((project) => (
-                            <div key={project.title} className="group relative overflow-hidden rounded-3xl border border-zinc-200/50 bg-white p-6 transition-all duration-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:bg-zinc-900/80">
-                                <h3 className="text-xl font-medium text-zinc-900 dark:text-zinc-50">{project.title}</h3>
-                                <p className="mt-2 text-zinc-500 dark:text-zinc-400">{project.description}</p>
+                            <div key={project.title} className="group relative overflow-hidden rounded-3xl border border-sky-200/50 bg-white p-6 transition-all duration-300 hover:shadow-md dark:border-sky-800 dark:bg-sky-900/50 dark:hover:bg-sky-900/80">
+                                <h3 className="text-xl font-medium text-sky-900 dark:text-sky-50">{project.title}</h3>
+                                <p className="mt-2 text-slate-500 dark:text-slate-400">{project.description}</p>
                                 <div className="mt-4 flex flex-wrap gap-2">
                                     {project.tags.map((tag) => (
-                                        <span key={tag} className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+                                        <span key={tag} className="rounded-full bg-sky-100 px-3 py-1 text-xs font-medium text-slate-600 dark:bg-sky-800 dark:text-slate-400">
                                             {tag}
                                         </span>
                                     ))}
@@ -184,9 +184,9 @@ export default function CodePage() {
                     </div>
                 </div>
 
-                <div className="mt-20 mx-auto h-px w-32 bg-gradient-to-r from-transparent via-orange-400/50 to-transparent" />
+                <div className="mt-20 mx-auto h-px w-32 bg-gradient-to-r from-transparent via-sky-500/50 to-transparent" />
 
-                <p className="text-center text-lg text-zinc-500 dark:text-zinc-400 sm:text-xl">
+                <p className="text-center text-lg text-slate-500 dark:text-slate-400 sm:text-xl">
                     Always exploring new tools ✨
                 </p>
             </div>
