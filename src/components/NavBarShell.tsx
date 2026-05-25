@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import IstClock from "@/components/IstClock";
 import NavBar from "@/components/NavBar";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 type NavBarShellProps = {
   fontClassName?: string;
@@ -85,7 +86,7 @@ export default function NavBarShell({ fontClassName, bungeeClassName }: NavBarSh
         </div>
         <div className="hidden sm:flex items-center justify-end justify-self-end gap-3 sm:gap-4">
 
-
+          <ThemeToggle />
           <div
             className={`pointer-events-none flex items-center justify-end whitespace-nowrap text-lg leading-none text-zinc-500 transition duration-200 dark:text-zinc-400 sm:text-xl ${showClock && isHome ? "opacity-100" : "opacity-0"
               }`}

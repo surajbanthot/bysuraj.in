@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { ThemeToggle } from "./ThemeToggle";
 
 type NavBarProps = {
   fontClassName?: string;
@@ -95,7 +96,8 @@ export default function NavBar({ fontClassName, bungeeClassName }: NavBarProps) 
       </nav>
 
       {/* Mobile Navigation - Fixed to top right */}
-      <nav className={`fixed top-4 right-4 z-40 sm:hidden ${fontClassName ?? ""}`}>
+      <nav className={`fixed top-4 right-4 z-40 flex items-center gap-2 sm:hidden ${fontClassName ?? ""}`}>
+        <ThemeToggle />
         <button
           type="button"
           onClick={() => setIsMenuOpen(!isMenuOpen)}

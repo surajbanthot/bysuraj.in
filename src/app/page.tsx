@@ -41,26 +41,25 @@ export default function Home() {
 
       {/* ── Hero ─────────────────────────────────────────── */}
       <section className="relative flex min-h-[calc(100svh-var(--app-chrome,0px))] flex-col overflow-hidden">
-        <PixelatedVideoBackground src="/Pixel_Art_City_and_Mountain_Video.mp4" />
 
         <div className="relative z-10 flex flex-1 flex-col">
           {/* IST clock — fades out when hero scrolls away (scroll logic in NavBarShell) */}
           <header className="hidden sm:flex w-full px-4 pt-2 sm:flex-row sm:items-start sm:justify-end sm:px-8 sm:pt-3">
             <IstClock
               id="hero-clock"
-              className="text-base text-zinc-200 drop-shadow-md transition-opacity duration-200 sm:text-xl"
+              className="text-base text-sky-900 drop-shadow-sm transition-opacity duration-200 dark:text-zinc-200 dark:drop-shadow-md sm:text-xl"
             />
           </header>
 
           <main className="flex w-full flex-1 flex-col items-center justify-center px-4 pb-4">
-            <div className="flex flex-col items-start gap-4 rounded-[3rem] bg-black/10 px-8 py-6 backdrop-blur-[2px] sm:px-12 sm:py-8">
-              <h1 className="font-normal leading-none tracking-tight text-sky-600 drop-shadow-xl">
+            <div className="flex flex-col items-start gap-4 rounded-[3rem] bg-sky-100/50 border border-sky-200/50 px-8 py-6 backdrop-blur-[2px] dark:bg-black/10 dark:border-transparent sm:px-12 sm:py-8">
+              <h1 className="font-bold leading-none tracking-tight text-sky-600 drop-shadow-sm dark:drop-shadow-xl">
                 <span className="block text-3xl sm:text-5xl -mb-2">hi</span>
                 <span className="text-6xl sm:text-8xl">Suraj</span>
                 <span className="text-3xl sm:text-5xl ml-2">here</span>
                 <span className="text-3xl sm:text-5xl ml-1 inline-block">:)</span>
               </h1>
-              <p className="-mt-2 text-2xl text-sky-200 drop-shadow-lg sm:text-4xl">
+              <p className="-mt-2 text-2xl text-sky-800 drop-shadow-sm dark:text-sky-200 dark:drop-shadow-lg sm:text-4xl">
                 Design engineer (tech.)
               </p>
               <div className="flex flex-wrap gap-3 pt-1">
@@ -72,7 +71,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/code"
-                  className="inline-flex items-center gap-2 border border-zinc-300/50 bg-white/10 px-5 py-2.5 text-base text-zinc-100 backdrop-blur-sm transition hover:border-sky-400/50 hover:bg-white/15 sm:text-lg"
+                  className="inline-flex items-center gap-2 border border-sky-300/80 bg-white/60 px-5 py-2.5 text-base text-sky-900 backdrop-blur-sm transition hover:border-sky-400 hover:bg-white/90 dark:border-zinc-300/50 dark:bg-white/10 dark:text-zinc-100 dark:hover:border-sky-400/50 dark:hover:bg-white/15 sm:text-lg"
                 >
                   See my work →
                 </Link>
@@ -82,7 +81,7 @@ export default function Home() {
 
           {/* Scroll hint */}
           <div className="relative z-10 flex justify-center pb-6">
-            <div className="flex flex-col items-center gap-1 text-zinc-300/60 text-sm select-none">
+            <div className="flex flex-col items-center gap-1 text-sky-800/60 dark:text-zinc-300/60 text-sm select-none">
               <span>scroll</span>
               <svg
                 width="16"
@@ -109,7 +108,7 @@ export default function Home() {
           <p className="mb-2 text-sm font-medium uppercase tracking-widest text-sky-600">
             What I do
           </p>
-          <h2 className="mb-12 text-3xl font-normal tracking-tight text-sky-900 dark:text-sky-50 sm:text-4xl">
+          <h2 className="mb-12 text-3xl font-bold tracking-tight text-sky-900 dark:text-sky-50 sm:text-4xl">
             Design meets engineering.
           </h2>
 
@@ -152,7 +151,7 @@ export default function Home() {
             <p className="mb-2 text-sm font-medium uppercase tracking-widest text-sky-600">
               About
             </p>
-            <h2 className="text-3xl font-normal leading-snug tracking-tight text-sky-900 dark:text-sky-50 sm:text-4xl">
+            <h2 className="text-3xl font-bold leading-snug tracking-tight text-sky-900 dark:text-sky-50 sm:text-4xl">
               The rare{" "}
               <span className="text-sky-600">design–code</span>{" "}
               overlap.
@@ -183,7 +182,7 @@ export default function Home() {
                 key={stat.label}
                 className="flex items-center gap-4 rounded-2xl border border-zinc-200/50 bg-sky-50 px-5 py-4 dark:border-sky-800 dark:bg-sky-900/50"
               >
-                <span className="min-w-[3rem] text-3xl font-normal text-sky-600 sm:text-4xl">
+                <span className="min-w-[3rem] text-3xl font-bold text-sky-600 sm:text-4xl">
                   {stat.value}
                 </span>
                 <span className="text-sm text-slate-500 dark:text-zinc-400">
@@ -201,7 +200,7 @@ export default function Home() {
           <p className="text-sm font-medium uppercase tracking-widest text-sky-500">
             Let's build something
           </p>
-          <h2 className="mt-3 text-4xl font-normal tracking-tight text-sky-50 sm:text-5xl">
+          <h2 className="mt-3 text-4xl font-bold tracking-tight text-sky-50 sm:text-5xl">
             Got a project in mind?
           </h2>
           <p className="mt-4 text-lg text-zinc-400 sm:text-xl">

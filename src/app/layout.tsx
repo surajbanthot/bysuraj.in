@@ -10,6 +10,7 @@ import F1Car from "@/components/F1Car";
 import Superman from "@/components/Superman";
 import SpiderMan from "@/components/SpiderMan";
 import WIPSidebar from "@/components/WIPSidebar";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 import "./globals.css";
 
@@ -74,9 +75,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${vt323.variable} ${bungeeSpice.variable} ${bungee.variable} ${quantico.variable} ${vt323.className} antialiased text-xl`}
+        className={`${geistSans.variable} ${geistMono.variable} ${vt323.variable} ${bungeeSpice.variable} ${bungee.variable} ${quantico.variable} antialiased text-xl`}
       >
-
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <LayoutChromeSizer />
         <header
           data-site-header
@@ -95,6 +96,7 @@ export default function RootLayout({
         {/* Hidden Totems */}
         <div className="fixed bottom-1 left-1 z-50 text-[10px] opacity-20 pointer-events-none select-none" aria-hidden="true">🧿</div>
         <div className="fixed bottom-1 right-1 z-50 text-[10px] opacity-20 pointer-events-none select-none" aria-hidden="true">👹</div>
+        </ThemeProvider>
       </body>
     </html>
   );
