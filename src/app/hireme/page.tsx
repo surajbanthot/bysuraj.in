@@ -104,10 +104,6 @@ export default function HireMePage() {
 
                 <div className="flex flex-wrap items-center justify-between gap-6">
                   <div className="flex flex-wrap items-center gap-4">
-                    <span className="inline-flex items-center rounded-full bg-green-100 px-5 py-2 text-base font-bold text-green-800 dark:bg-green-900/40 dark:text-green-300 ring-1 ring-inset ring-green-600/20">
-                      <span className="mr-2.5 h-3 w-3 rounded-full bg-green-600 animate-pulse"></span>
-                      Open to full-time
-                    </span>
                     <span className="text-base font-medium text-slate-600 dark:text-sky-300 flex items-center gap-2">
                       <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                       Bengaluru (Remote/Hybrid)
@@ -116,21 +112,12 @@ export default function HireMePage() {
                 </div>
 
                 <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-                  <div className="space-y-3">
+                  <div className="space-y-3 md:col-span-2 lg:col-span-3">
                     <h3 className="text-sm font-bold text-slate-500 uppercase tracking-widest dark:text-slate-400">
                       Preferred Roles
                     </h3>
                     <p className="text-2xl font-bold text-sky-900 dark:text-sky-50 leading-tight">
-                      Senior Software Engineer <br /> React / Next.js
-                    </p>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h3 className="text-sm font-bold text-slate-500 uppercase tracking-widest dark:text-slate-400">
-                      Notice Period
-                    </h3>
-                    <p className="text-2xl font-bold text-sky-900 dark:text-sky-50">
-                      Immediate
+                      Full Stack Developer · AI Engineer <br /> React / Next.js · LLM &amp; RAG Systems
                     </p>
                   </div>
 
@@ -139,7 +126,7 @@ export default function HireMePage() {
                       Tech Stack
                     </h3>
                     <div className="flex flex-wrap gap-3">
-                      {["React", "Next.js", "Node.js", "TypeScript", "Python", "Testing", "Figma", "Framer", "Rive", "After Effects", "Premiere Pro", "Illustrator", "Blender3D"].map(tag => (
+                      {["React", "Next.js", "Node.js", "TypeScript", "Python", "RAG", "LLMs", "Testing", "Figma", "Framer", "Rive", "After Effects", "Premiere Pro", "Illustrator", "Blender3D"].map(tag => (
                         <span key={tag} className="rounded-xl border border-sky-200 bg-white px-4 py-2 text-base font-semibold text-sky-800 shadow-sm dark:border-sky-800 dark:bg-sky-950 dark:text-sky-200">
                           {tag}
                         </span>
@@ -155,19 +142,18 @@ export default function HireMePage() {
                 <div className="absolute left-6 md:left-1/2 top-0 h-full w-0.5 -translate-x-1/2 bg-sky-200 dark:bg-sky-800"></div>
 
                 <div className="space-y-16">
-                  {/* Tech Mahindra - Left (Current) */}
+                  {/* Quantzig - Left (Current) */}
                   <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
                     <div className="md:w-1/2 md:pr-16 pl-16 md:pl-0 order-1">
                       <div className="relative rounded-3xl border border-sky-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-sky-800 dark:bg-sky-900/40 text-left">
-                        <span className="mb-3 block font-mono text-base font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Feb 2024 – Sep 2025</span>
-                        <h3 className="text-3xl font-bold text-sky-900 dark:text-sky-50 mb-1">Tech Mahindra</h3>
+                        <span className="mb-3 block font-mono text-base font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Jun 2026 – Present</span>
+                        <h3 className="text-3xl font-bold text-sky-900 dark:text-sky-50 mb-1">Quantzig</h3>
                         <div className="mb-6 text-xl font-bold text-sky-600 dark:text-sky-400">
-                          Senior Software Engineer
+                          Full Stack Developer
                         </div>
                         <ul className="list-disc list-outside ml-5 space-y-3 text-lg text-sky-800 dark:text-sky-200 leading-relaxed font-medium">
-                          <li>Developed scalable front-end components for <strong className="font-extrabold text-black dark:text-white">Microsoft Teams</strong> using <strong className="font-extrabold text-black dark:text-white">React.js</strong>.</li>
-                          <li>Optimized performance and ensured accessibility/<strong className="font-extrabold text-black dark:text-white">WCAG</strong> compliance across the application.</li>
-                          <li>Collaborated with cross-functional teams to ship feature-rich updates in an <strong className="font-extrabold text-black dark:text-white">agile</strong> environment.</li>
+                          <li>Implementing a <strong className="font-extrabold text-black dark:text-white">conversational AI</strong> that makes Shell&apos;s enterprise knowledge base instantly accessible through natural-language search.</li>
+                          <li>Building the full stack — from the <strong className="font-extrabold text-black dark:text-white">RAG/LLM</strong> retrieval pipeline to the front-end chat interface.</li>
                         </ul>
                       </div>
                     </div>
@@ -178,12 +164,30 @@ export default function HireMePage() {
                     <div className="md:w-1/2 md:pl-16 order-2 hidden md:block"></div>
                   </div>
 
-                  {/* Mirafra - Right */}
+                  {/* Tech Mahindra - Right */}
                   <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
                     <div className="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 hidden md:block"></div>
                     <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-sky-50 bg-sky-300 dark:bg-sky-700 dark:border-sky-950 z-10 box-content">
                     </div>
                     <div className="md:w-1/2 md:pl-16 pl-16 order-1 md:order-2">
+                      <div className="relative rounded-3xl border border-sky-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-sky-800 dark:bg-sky-900/40 text-left">
+                        <span className="mb-3 block font-mono text-base font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Feb 2024 – Sep 2025</span>
+                        <h3 className="text-3xl font-bold text-sky-900 dark:text-sky-50 mb-1">Tech Mahindra</h3>
+                        <div className="mb-6 text-xl font-bold text-sky-700 dark:text-sky-300">
+                          Senior Software Engineer
+                        </div>
+                        <ul className="list-disc list-outside ml-5 space-y-3 text-lg text-sky-800 dark:text-sky-200 leading-relaxed font-medium">
+                          <li>Developed scalable front-end components for <strong className="font-extrabold text-black dark:text-white">Microsoft Teams</strong> using <strong className="font-extrabold text-black dark:text-white">React.js</strong>.</li>
+                          <li>Optimized performance and ensured accessibility/<strong className="font-extrabold text-black dark:text-white">WCAG</strong> compliance across the application.</li>
+                          <li>Collaborated with cross-functional teams to ship feature-rich updates in an <strong className="font-extrabold text-black dark:text-white">agile</strong> environment.</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Mirafra - Left */}
+                  <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
+                    <div className="md:w-1/2 md:pr-16 pl-16 md:pl-0 order-1">
                       <div className="relative rounded-3xl border border-sky-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-sky-800 dark:bg-sky-900/40 text-left">
                         <span className="mb-3 block font-mono text-base font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Sep 2022 – Nov 2023</span>
                         <h3 className="text-3xl font-bold text-sky-900 dark:text-sky-50 mb-1">Mirafra Technologies</h3>
@@ -197,11 +201,17 @@ export default function HireMePage() {
                         </ul>
                       </div>
                     </div>
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-sky-50 bg-sky-300 dark:bg-sky-700 dark:border-sky-950 z-10 box-content">
+                    </div>
+                    <div className="md:w-1/2 md:pl-16 order-2 hidden md:block"></div>
                   </div>
 
-                  {/* Liftoff - Left */}
+                  {/* Liftoff - Right */}
                   <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
-                    <div className="md:w-1/2 md:pr-16 pl-16 md:pl-0 order-1">
+                    <div className="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 hidden md:block"></div>
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-sky-50 bg-sky-300 dark:bg-sky-700 dark:border-sky-950 z-10 box-content">
+                    </div>
+                    <div className="md:w-1/2 md:pl-16 pl-16 order-1 md:order-2">
                       <div className="relative rounded-3xl border border-sky-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-sky-800 dark:bg-sky-900/40 text-left">
                         <span className="mb-3 block font-mono text-base font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Nov 2021 – Feb 2022</span>
                         <h3 className="text-3xl font-bold text-sky-900 dark:text-sky-50 mb-1">Liftoff LLC</h3>
@@ -214,17 +224,11 @@ export default function HireMePage() {
                         </ul>
                       </div>
                     </div>
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-sky-50 bg-sky-300 dark:bg-sky-700 dark:border-sky-950 z-10 box-content">
-                    </div>
-                    <div className="md:w-1/2 md:pl-16 order-2 hidden md:block"></div>
                   </div>
 
-                  {/* Broadridge - Right */}
+                  {/* Broadridge - Left */}
                   <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
-                    <div className="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 hidden md:block"></div>
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-sky-50 bg-sky-300 dark:bg-sky-700 dark:border-sky-950 z-10 box-content">
-                    </div>
-                    <div className="md:w-1/2 md:pl-16 pl-16 order-1 md:order-2">
+                    <div className="md:w-1/2 md:pr-16 pl-16 md:pl-0 order-1">
                       <div className="relative rounded-3xl border border-sky-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-sky-800 dark:bg-sky-900/40 text-left">
                         <span className="mb-3 block font-mono text-base font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Jun 2018 – Oct 2020</span>
                         <h3 className="text-3xl font-bold text-sky-900 dark:text-sky-50 mb-1">Broadridge Financial Solutions</h3>
@@ -237,11 +241,17 @@ export default function HireMePage() {
                         </ul>
                       </div>
                     </div>
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-sky-50 bg-sky-300 dark:bg-sky-700 dark:border-sky-950 z-10 box-content">
+                    </div>
+                    <div className="md:w-1/2 md:pl-16 order-2 hidden md:block"></div>
                   </div>
 
-                  {/* Education - Left */}
+                  {/* Education - Right */}
                   <div className="relative flex flex-col md:flex-row md:items-center md:justify-between group">
-                    <div className="md:w-1/2 md:pr-16 pl-16 md:pl-0 order-1">
+                    <div className="md:w-1/2 md:pr-16 md:text-right order-2 md:order-1 hidden md:block"></div>
+                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-sky-50 bg-sky-300 dark:bg-sky-700 dark:border-sky-950 z-10 box-content">
+                    </div>
+                    <div className="md:w-1/2 md:pl-16 pl-16 order-1 md:order-2">
                       <div className="relative rounded-3xl border border-sky-200 bg-white p-8 shadow-sm transition-all hover:shadow-md dark:border-sky-800 dark:bg-sky-900/40 text-left">
                         <span className="mb-3 block font-mono text-base font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Jun 2015 – May 2018</span>
                         <h3 className="text-3xl font-bold text-sky-900 dark:text-sky-50 mb-1">Ramaiah Institute of Technology</h3>
@@ -253,9 +263,6 @@ export default function HireMePage() {
                         </ul>
                       </div>
                     </div>
-                    <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full border-[6px] border-sky-50 bg-sky-300 dark:bg-sky-700 dark:border-sky-950 z-10 box-content">
-                    </div>
-                    <div className="md:w-1/2 md:pl-16 order-2 hidden md:block"></div>
                   </div>
                 </div>
               </div>
