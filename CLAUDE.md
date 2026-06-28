@@ -4,15 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this project is
 
-Personal portfolio website for Suraj — a design engineer. Creative playground and hiring platform showcasing frontend, 3D, motion, and design skills. Hosted at bysuraj.in, deployed on Vercel.
+Personal portfolio website for Suraj — a design engineer who also shoots medium-format film and does cinematography/motion. A **single long-scroll editorial page** (the "Viewfinder" identity) that introduces him and serves as a hiring front door. Hosted at bysuraj.in, deployed on Vercel. Dedicated work/creative pages are planned later.
 
 ## Tech stack
 
 - **Framework:** Next.js 16 (App Router) + React 19 + TypeScript (strict)
-- **Styling:** Tailwind CSS 4 + custom animations/utilities in `src/app/globals.css`
+- **Styling:** Tailwind CSS 4 + custom tokens/utilities in `src/app/globals.css`
 - **Email:** Resend (via `/api/send` route)
 - **Analytics:** Vercel Analytics (`track()` calls placed directly in event handlers)
-- **Fonts:** VT323, Bungee, Bungee_Spice, Quantico, Geist (loaded in `layout.tsx`)
+- **Fonts:** Geist (sans/body), Geist Mono (labels/marginalia), Fraunces (`--font-display`, editorial serif headings) — loaded in `layout.tsx`
 
 ## Commands
 
@@ -32,52 +32,52 @@ Storybook and Vitest are configured for component development and testing.
 
 ## Current design language
 
-The live site uses the **Arctic Shore** palette — sky/cyan/teal on deep navy backgrounds.
+The live site uses the **Viewfinder** identity — a single fixed warm-paper editorial theme (**no light/dark toggle**). The signature accent is **Safelight Amber** (the darkroom safelight: legible on light and dark alike, which is why no toggle is needed).
 
-- **Accent (light mode):** `sky-600` (#0284C7) — buttons, links, active states
-- **Accent (dark mode):** `sky-400` (#38BDF8) — brighter for contrast
-- **Secondary accent:** `cyan-400` (#22D3EE) — lightning bolt decorations, glows
-- **Neutrals:** `sky-*` for surfaces/borders, `slate-*` for muted text
-- **Page bg light:** `sky-50` (#F0F9FF)
-- **Page bg dark:** `sky-950` (#082F49) — deep navy, not pitch black
-- **Glow shadow color:** `rgba(2,132,199,…)` (sky-600)
-- Dark mode supported throughout via `dark:` variants
+Tokens (defined once in `src/app/globals.css` `:root` + `@theme inline` — the **source of truth**):
 
-The color definitions in `src/app/globals.css` (`:root` and `@theme inline`) are the **source of truth** for this palette.
+- `--paper` `#F4EFE6` — page canvas · `--paper-raised` `#E6DECF` — cards/wells
+- `--border` `#E0D8C9` — hairline dividers
+- `--ink` `#1A1714` — headings/primary · `--muted` `#5C564C` — body · `--faint` `#8A8276` — labels/marginalia
+- `--accent` `#FF7A29` (safelight amber) · `--accent-press` `#E0651A`
+
+Use them as Tailwind utilities (`bg-paper`, `text-ink`, `text-muted`, `text-accent`, `border-border`, …). Helper classes: `.display` (Fraunces headings), `.label` (mono uppercase marginalia), `.reveal`/`.is-visible` (scroll reveal), `.link-underline` (amber underline-on-hover). There are **no** `dark:` variants — the theme is fixed.
 
 ## Architecture & layout system
 
-The root layout (`layout.tsx`) mounts persistent shell components on every page:
-- **`NavBarShell`** — wraps `NavBar` and the scroll-aware IST clock. On the homepage, the clock in the nav fades in only when the hero clock scrolls out of view (tracked via `getBoundingClientRect` + rAF). Uses `data-nav-shell` attribute for self-measurement.
-- **`FooterBar`** — always visible; contains social links and a phone enquiry modal that POSTs to `/api/send`. Uses `data-site-footer` attribute.
-- **`WIPSidebar`** — only renders on `/`. In dev mode, items can be added/deleted and are written back to the component's source via `/api/wip`. Items are hardcoded in the component itself.
-- **`LayoutChromeSizer`** — headless component that measures `[data-site-header]` + `[data-site-footer]` heights and writes the sum to `--app-chrome` CSS variable. Pages use `min-h-[calc(100svh-var(--app-chrome,0px))]` for true full-viewport height.
-- **`ResumeButton`**, **`F1Car`**, **`Superman`**, **`SpiderMan`** — global floating/easter-egg components rendered at the body level.
+The root layout (`layout.tsx`) is intentionally thin: `<EditorialNav />`, `{children}`, `<FooterBar />`, `<Analytics />`. No theme provider, no easter eggs, no chrome-sizer.
+
+- **`EditorialNav`** — sticky top bar with the wordmark, in-page anchor links, IST clock, and a mobile "Index" menu. Highlights the active section via `IntersectionObserver`. Section ids come from `navSections` in `src/lib/portfolioData.ts`.
+- **`FooterBar`** — slim colophon: email, social icons, back-to-top. Uses `data-site-footer`.
+- **Sticky-header offset** is handled in CSS via `scroll-padding-top` on `html` (no JS measurement).
+
+The homepage (`src/app/page.tsx`) composes flat section components — `HeroSection`, `AboutSection`, `ExperienceSection`, `StackSection`, `ServicesSection`, `FilmSection`, `ContactSection` — each a `<section id>` matching `navSections`. All page content/data lives in **`src/lib/portfolioData.ts`** (experience, skillGroups, services, socials, SITE constants).
+
+### Scroll reveals
+
+`useInView` (IntersectionObserver hook) + `Reveal` wrapper apply the `.reveal` fade/rise. Reduced-motion users are handled purely in CSS (`.reveal` is forced visible under `prefers-reduced-motion`) — never call `setState` in the hook for that.
 
 ### API routes
 
-- `/api/send` — email sending via Resend (used by FooterBar's enquiry modal)
-- `/api/wip` — dev-only route to persist WIP sidebar items back to component source
+- `/api/send` — email sending via Resend (used by the Contact section form; the route still supports the legacy film/phone field shapes)
 
 ## Key conventions
 
-- All interactive components use `"use client"` directive
-- `suppressHydrationWarning` on `<html>` and any time-dependent elements
-- Session storage key `"hireMeTab"` tracks active tab on `/hireme`
-- `mobile-menu-open` body class is added when the mobile nav overlay is open (hides other fixed elements)
-- NavBar mobile menu is rendered via `createPortal` into `document.body`
-- "Hire me!!" nav button triggers a lightning animation every 15s until the user visits `/hireme`
-- Easter egg components (Superman, SpiderMan, F1Car) use `easterEggCoordinator` — a module-level singleton mutex — so only one can animate at a time. Call `acquireEasterEggSlot(id)` before animating, `releaseEasterEggSlot(id)` when done.
+- Interactive components (forms, nav, reveals) use the `"use client"` directive; sections without interactivity stay server components
+- `suppressHydrationWarning` on `<html>`; `IstClock` carries its own
+- Never hardcode hex — use the `--*` tokens / Tailwind token utilities (`text-accent`, `bg-paper`, …)
+- Drop a PDF at `public/Suraj-Banthot-Resume.pdf` to wire up the `SITE.resume` link
 
 ## Pages & nav
 
-| Route | Status | Nav label |
-|-------|--------|-----------|
-| `/` | Live | Home |
-| `/code` | Live | Code |
-| `/social` | Live | Socials |
-| `/hireme` | Live | Hire me!! |
-| `/motiongraphics` | WIP | Not in nav |
+Single-page app. Nav links are in-page anchors (`#about`, `#experience`, `#stack`, `#services`, `#film`, `#contact`).
+
+| Route | Status | Notes |
+|-------|--------|-------|
+| `/` | Live | The whole site — single long-scroll editorial page |
+| `/api/send` | Live | Resend email endpoint (Contact form) |
+
+Dedicated work/photography pages are planned but not built yet.
 
 
 ---
@@ -106,18 +106,15 @@ These rules define how to translate Figma inputs into code for this project. Fol
 
 - Use **Tailwind CSS v4** utility classes — there is no `tailwind.config.js`; all customization is CSS-based
 - Design tokens (colors, fonts) are defined in `src/app/globals.css` via `:root {}` and `@theme inline {}`
-- IMPORTANT: Never hardcode hex colors — use Tailwind color utilities or `var(--*)` tokens
-- Current palette: `sky-600` / `dark:sky-400` for accent/interactive; `sky-*` for surfaces/borders; `slate-*` for muted text
-- Dark mode is supported via `dark:` Tailwind variants throughout; always include dark mode classes
-- Glow shadows use `rgba(2,132,199,…)` (sky-600). Never use orange rgba values.
+- IMPORTANT: Never hardcode hex colors — use the Viewfinder token utilities (`text-ink`, `text-muted`, `text-faint`, `text-accent`, `bg-paper`, `bg-paper-raised`, `border-border`) or `var(--*)`
+- Single fixed theme — do **not** add `dark:` variants
+- Accent is `--accent` (#FF7A29). Flat aesthetic: avoid gradients/glows beyond a faint amber
 - Source of truth for all colour values: `:root` and `@theme inline` blocks in `globals.css`
-- Custom animations are defined as `@keyframes` in `globals.css` and exposed as `.animate-*` utility classes — add new animations there, not inline
 
 ### Typography
 
-- Available font CSS variables (loaded in `layout.tsx`): `--font-geist-sans`, `--font-geist-mono`, `--font-bungee`, `--font-bungee-spice`, `--font-retro` (VT323), `--font-quantico`
-- Apply fonts using Tailwind's arbitrary property syntax: `font-[family-name:var(--font-bungee)]`, `font-[family-name:var(--font-retro)]`, etc.
-- `Bungee Spice` is for main headings only (use `.bungee-heading` class or `--font-bungee-spice`)
+- Font CSS variables (loaded in `layout.tsx`): `--font-geist-sans` (body), `--font-geist-mono` (labels/marginalia), `--font-fraunces` exposed as `--font-display` (editorial serif headings)
+- Headings: use the `.display` helper class (Fraunces). Marginalia/labels: use the `.label` helper (mono, uppercase, tracked)
 
 ### Client Components
 
@@ -138,23 +135,18 @@ These rules define how to translate Figma inputs into code for this project. Fol
 
 ### Layout & Viewport
 
-- Pages use `min-h-[calc(100svh-var(--app-chrome,0px))]` for true full-viewport height (accounts for NavBar + FooterBar chrome measured by `LayoutChromeSizer`)
-- The `--app-chrome` CSS variable is set at runtime; always reference it for full-height layouts
-
-### Easter Egg Components
-
-- Components that animate on a trigger (Superman, SpiderMan, F1Car) must use the `easterEggCoordinator` singleton from `src/lib/easterEggCoordinator.ts`
-- Call `acquireEasterEggSlot(id)` before animating; call `releaseEasterEggSlot(id)` when the animation ends
-- Only one easter egg component may animate at a time
+- Single long-scroll page composed of `<section id>` blocks; each section sets its own vertical rhythm (`py-20 sm:py-28`) inside `max-w-6xl` containers
+- The hero uses `min-h-[calc(100svh-3.5rem)]` (nav height); sticky-nav anchor offset is handled by `scroll-padding-top` on `html`
+- Wrap entering content in `<Reveal>` for the scroll-in animation
 
 ### Implementation Checklist
 
 When implementing a Figma design:
 - [ ] Fetched `get_design_context` for the node
 - [ ] Fetched `get_screenshot` for visual reference
-- [ ] Replaced any hardcoded hex values with `sky-*` / `slate-*` Tailwind tokens
-- [ ] Added `dark:` variants for all color classes
+- [ ] Replaced any hardcoded hex values with Viewfinder token utilities (`text-ink`, `bg-paper`, `text-accent`, …)
+- [ ] Did NOT add `dark:` variants (single fixed theme)
 - [ ] Used `@/` imports
-- [ ] Added `"use client"` if the component uses hooks or browser APIs
+- [ ] Added `"use client"` only if the component uses hooks or browser APIs
 - [ ] Checked `src/components/` for reusable existing components
 - [ ] Validated final output against the Figma screenshot

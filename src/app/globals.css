@@ -1,781 +1,117 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+/* ===========================================================================
+   VIEWFINDER — single fixed editorial theme (warm paper + ink + safelight amber)
+   The amber accent (#FF7A29) is the darkroom safelight: legible on light and
+   dark alike, which is why this site needs no light/dark toggle.
+   =========================================================================== */
 
 :root {
-  --background: #F0F9FF;
-  --foreground: #0C4A6E;
+  --paper: #f4efe6;
+  --paper-raised: #e6decf;
+  --border: #e0d8c9;
+  --ink: #1a1714;
+  --muted: #5c564c;
+  --faint: #8a8276;
+  --accent: #ff7a29;
+  --accent-press: #e0651a;
+  color-scheme: light;
 }
 
-/* stylelint-disable-next-line at-rule-no-unknown */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-border: var(--border);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-press: var(--accent-press);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces);
 }
 
-.dark {
-  --background: #082F49;
-  --foreground: #F0F9FF;
+html {
+  scroll-behavior: smooth;
+  /* offset anchor jumps so the sticky nav doesn't cover section headers */
+  scroll-padding-top: 5.5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-quantico), sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* Bungee Spice for main headings only - reduced contrast */
-h1.bungee-heading {
-  font-family: var(--font-bungee-spice), cursive;
-  opacity: 0.85;
-  filter: saturate(0.7);
+::selection {
+  background: var(--accent);
+  color: var(--paper);
 }
 
-body.nav-clock-visible #hero-clock {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Hide WIP button when mobile menu is open */
-body.mobile-menu-open .wip-button {
-  display: none !important;
-}
-
-button {
-  cursor: url("/cursor-robot-hand.svg") 16 2, pointer;
-}
-
-/* Lightning strikes animation */
-@keyframes lightning {
-
-  0%,
-  100% {
-    opacity: 0;
-  }
-
-  5% {
-    opacity: 1;
-  }
-
-  10% {
-    opacity: 0;
-  }
-
-  15% {
-    opacity: 0.8;
-  }
-
-  20% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 0;
-  }
-
-  55% {
-    opacity: 1;
-  }
-
-  60% {
-    opacity: 0;
-  }
-}
-
-/* Vibration/shake animation */
-@keyframes vibrate {
-
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-
-  10% {
-    transform: translateX(-2px) rotate(-1deg);
-  }
-
-  20% {
-    transform: translateX(2px) rotate(1deg);
-  }
-
-  30% {
-    transform: translateX(-2px) rotate(-1deg);
-  }
-
-  40% {
-    transform: translateX(2px) rotate(1deg);
-  }
-
-  50% {
-    transform: translateX(-1px);
-  }
-
-  60% {
-    transform: translateX(1px);
-  }
-
-  70% {
-    transform: translateX(-1px);
-  }
-
-  80% {
-    transform: translateX(1px);
-  }
-
-  90% {
-    transform: translateX(0);
-  }
-}
-
-/* F1 Car Animation */
-@keyframes drive-across {
-  0% {
-    transform: translateX(-200px);
-  }
-
-  100% {
-    transform: translateX(120vw);
-  }
-}
-
-.animate-drive {
-  animation: drive-across 3s linear forwards;
-}
-
-/* F1 Car Complex Animation Sequence */
-@keyframes f1-sequence {
-  0% {
-    transform: translateX(-300px);
-    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
-  }
-
-  30% {
-    transform: translateX(10vw);
-  }
-
-  /* Arrive */
-  70% {
-    transform: translateX(10vw);
-    animation-timing-function: cubic-bezier(0.5, 0, 1, 1);
-  }
-
-  /* Wait & Burn */
-  100% {
-    transform: translateX(120vw);
-  }
-
-  /* Zoom */
-}
-
-@keyframes f1-vibrate {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  25% {
-    transform: translate(-1px, 1px);
-  }
-
-  50% {
-    transform: translate(1px, -1px);
-  }
-
-  75% {
-    transform: translate(-1px, -1px);
-  }
-
-  100% {
-    transform: translate(1px, 1px);
-  }
-}
-
-@keyframes smoke-rise {
-  0% {
-    opacity: 0;
-    transform: scale(0.5) translate(0, 0);
-  }
-
-  20% {
-    opacity: 0.8;
-    transform: scale(1.2);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(2.5) translate(-20px, -30px);
-  }
-}
-
-.animate-f1-sequence {
-  animation: f1-sequence 6s linear forwards;
-}
-
-.animate-f1-burnout {
-  animation: f1-vibrate 0.1s linear infinite;
-}
-
-.animate-smoke-1 {
-  animation: smoke-rise 0.8s ease-out infinite;
-}
-
-.animate-smoke-2 {
-  animation: smoke-rise 0.8s ease-out 0.2s infinite;
-}
-
-.animate-smoke-3 {
-  animation: smoke-rise 0.8s ease-out 0.4s infinite;
-}
-
-/* Superman Floating + Fly Off */
-@keyframes superman-enter {
-  0% {
-    transform: translate3d(var(--superman-enter-x, -280px), var(--superman-enter-y, 0px), 0) rotate(var(--superman-enter-rot, -12deg));
-    opacity: 0;
-  }
-
-  18% {
-    opacity: 0.75;
-  }
-
-  100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-    opacity: 0.75;
-  }
-}
-
-@keyframes superman-float {
-
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(0, -14px, 0);
-  }
-}
-
-@keyframes superman-flyout {
-  0% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-    opacity: 0.75;
-  }
-
-  85% {
-    opacity: 0.7;
-  }
-
-  100% {
-    transform: translate3d(var(--superman-fly-x, 140vw), var(--superman-fly-y, -50vh), 0) rotate(var(--superman-fly-rot, -12deg));
-    opacity: 0;
-  }
-}
-
-@keyframes superman-cape {
-
-  0%,
-  100% {
-    transform: scaleY(1) skewX(0deg);
-  }
-
-  50% {
-    transform: scaleY(1.2) skewX(-7deg);
-  }
-}
-
-@keyframes superman-woosh {
-  0% {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-
-  20% {
-    opacity: 0.5;
-    transform: scaleX(1);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scaleX(1.9);
-  }
-}
-
-.animate-superman-cape {
-  animation: superman-cape 0.3s ease-in-out infinite;
-}
-
-.animate-superman-woosh {
-  animation: superman-woosh 0.5s ease-out forwards;
-}
-
-.animate-superman-enter {
-  animation: superman-enter var(--superman-enter-duration, 900ms) cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
-  transform-origin: center;
-  will-change: transform, opacity;
-}
-
-.animate-superman-float {
-  animation: superman-float 1.8s ease-in-out infinite;
-}
-
-.animate-superman-flyout {
-  animation: superman-flyout var(--superman-fly-duration, 2000ms) cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
-  transform-origin: center;
-  will-change: transform, opacity;
-}
-
-
-.hire-me-btn::before,
-.hire-me-btn::after {
+/* Faint film-grain wash over the whole page — keeps the paper feeling analogue */
+body::before {
   content: "";
-  position: absolute;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
   pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- Display heading helper ---- */
+.display {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+/* ---- Mono label / marginalia helper ---- */
+.label {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+  color: var(--faint);
+}
+
+/* ---- Scroll-reveal primitive (paired with useInView/Reveal) ---- */
+.reveal {
   opacity: 0;
-  transition: opacity 0.2s;
+  transform: translateY(18px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
-
-/* Lightning bolt left */
-.hire-me-btn::before {
-  top: -8px;
-  left: -12px;
-  width: 20px;
-  height: 30px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2322d3ee'%3E%3Cpath d='M13 2L3 14h9l-1 8 10-12h-9l1-8z'/%3E%3C/svg%3E") no-repeat center/contain;
-  filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.9));
-}
-
-/* Lightning bolt right */
-.hire-me-btn::after {
-  top: -8px;
-  right: -12px;
-  width: 20px;
-  height: 30px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2322d3ee'%3E%3Cpath d='M13 2L3 14h9l-1 8 10-12h-9l1-8z'/%3E%3C/svg%3E") no-repeat center/contain;
-  filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.9));
-  transform: scaleX(-1);
-}
-
-.hire-me-btn:hover::before,
-.hire-me-btn:hover::after,
-.hire-me-btn.force-hover::before,
-.hire-me-btn.force-hover::after {
-  animation: lightning 0.8s ease-in-out infinite;
-}
-
-.hire-me-btn:hover::after,
-.hire-me-btn.force-hover::after {
-  animation-delay: 0.2s;
-}
-
-.hire-me-btn:hover,
-.hire-me-btn.force-hover {
-  animation: vibrate 0.3s ease-in-out infinite;
-}
-
-/* Ax & Gear Animations */
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes chop {
-  0% {
-    transform: scaleX(-1) rotate(-45deg);
-  }
-
-  50% {
-    transform: scaleX(-1) rotate(0deg);
-  }
-
-  100% {
-    transform: scaleX(-1) rotate(-45deg);
-  }
-}
-
-/* WIP Button Animations */
-.wip-button {
-  overflow: visible !important;
-}
-
-.wip-button::before,
-.wip-button::after {
-  position: absolute;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s;
-  font-size: 24px;
-}
-
-/* Axe left (Top Left) */
-.wip-button::before {
-  content: "🪓";
-  top: -28px;
-  left: -36px;
-  transform: scaleX(-1) rotate(-45deg);
-  transform-origin: bottom right;
-  /* Pivot from handle (mirrored) */
-}
-
-/* Machinery (Gear) right (Bottom Right) */
-.wip-button::after {
-  content: "⚙️";
-  bottom: -12px;
-  /* Changed from top to bottom */
-  right: -12px;
-  z-index: 50;
-}
-
-/* On hover, show and animate */
-.wip-button:hover::before {
+.reveal.is-visible {
   opacity: 1;
-  animation: chop 0.5s ease-in-out infinite;
+  transform: none;
 }
 
-.wip-button:hover::after {
-  opacity: 1;
-  animation: spin 2s linear infinite;
+/* ---- Amber underline that draws in on hover ---- */
+.link-underline {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0% 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-underline:hover {
+  background-size: 100% 1.5px;
 }
 
-/* Removed vibrate on main button */
-.wip-button:hover {
-  animation: none;
-}
-
-@keyframes fade-out-crash {
-  0% {
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
     opacity: 1;
-    filter: grayscale(0) brightness(1);
+    transform: none;
+    transition: none;
   }
-
-  50% {
-    opacity: 1;
-    filter: grayscale(1) brightness(2);
-  }
-
-  /* Flash */
-  100% {
-    opacity: 0;
-    filter: grayscale(1);
-  }
-}
-
-@keyframes fire-flicker {
-  0% {
-    transform: scale(1) rotate(0deg);
-    opacity: 0.8;
-  }
-
-  25% {
-    transform: scale(1.1) rotate(-5deg);
-    opacity: 1;
-  }
-
-  50% {
-    transform: scale(1.0) rotate(5deg);
-    opacity: 0.8;
-  }
-
-  75% {
-    transform: scale(1.2) rotate(-5deg);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 0.8;
-  }
-}
-
-.animate-crash-sequence {
-  animation: fade-out-crash 1.5s ease-out forwards;
-}
-
-.animate-fire {
-  animation: fire-flicker 0.15s ease-in-out infinite;
-}
-
-/* Hire me button base style (restored) */
-.hire-me-btn {
-  position: relative;
-  overflow: visible;
-}
-
-@keyframes shake-and-sink {
-
-  /* Cycle 1 (0-20% = 0.3s) */
-  0% {
-    transform: translate(0, 0);
-    opacity: 1;
-  }
-
-  2% {
-    transform: translate(-2px, 0) rotate(-1deg);
-    opacity: 1;
-  }
-
-  4% {
-    transform: translate(2px, 0) rotate(1deg);
-    opacity: 1;
-  }
-
-  6% {
-    transform: translate(-2px, 0) rotate(-1deg);
-    opacity: 1;
-  }
-
-  8% {
-    transform: translate(2px, 0) rotate(1deg);
-    opacity: 1;
-  }
-
-  10% {
-    transform: translate(-1px, 0);
-    opacity: 1;
-  }
-
-  12% {
-    transform: translate(1px, 0);
-    opacity: 1;
-  }
-
-  14% {
-    transform: translate(-1px, 0);
-    opacity: 1;
-  }
-
-  16% {
-    transform: translate(1px, 0);
-    opacity: 1;
-  }
-
-  /* Cycle 2 (20-40% = 0.3s) */
-  22% {
-    transform: translate(-2px, 0) rotate(-1deg);
-    opacity: 1;
-  }
-
-  24% {
-    transform: translate(2px, 0) rotate(1deg);
-    opacity: 1;
-  }
-
-  26% {
-    transform: translate(-2px, 0) rotate(-1deg);
-    opacity: 1;
-  }
-
-  28% {
-    transform: translate(2px, 0) rotate(1deg);
-    opacity: 1;
-  }
-
-  30% {
-    transform: translate(-1px, 0);
-    opacity: 1;
-  }
-
-  32% {
-    transform: translate(1px, 0);
-    opacity: 1;
-  }
-
-  34% {
-    transform: translate(-1px, 0);
-    opacity: 1;
-  }
-
-  36% {
-    transform: translate(1px, 0);
-    opacity: 1;
-  }
-
-  38% {
-    transform: translate(0, 0);
-    opacity: 1;
-  }
-
-  40% {
-    transform: translate(0, 0);
-    opacity: 1;
-  }
-
-  /* Fade Phase (40-100%) - Disappear in place */
-  100% {
-    transform: translate(0, 0);
-    opacity: 0;
-  }
-}
-
-.animate-sink {
-  animation: shake-and-sink 0.8s ease-in forwards;
-}
-
-@keyframes ghost-rise {
-  0% {
-    transform: translate(-50%, -100%) scale(0.5);
-    opacity: 0;
-  }
-
-  10% {
-    opacity: 1;
-    transform: translate(-50%, -140%) scale(1);
-  }
-
-  50% {
-    transform: translate(-50%, -250%) scale(1.1);
-    opacity: 0.8;
-  }
-
-  100% {
-    transform: translate(-50%, -450%) scale(1.2);
-    opacity: 0;
-  }
-}
-
-.animate-ghost {
-  animation: ghost-rise 2s ease-out forwards;
-}
-
-@keyframes subtle-ping {
-
-  75%,
-  100% {
-    transform: scale(1.05);
-    /* Very subtle scale */
-    opacity: 0;
-  }
-}
-
-.animate-subtle-ping {
-  animation: subtle-ping 3s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-/* Spider character (drop in -> pose -> climb out) */
-@keyframes spider-descend {
-  0% {
-    transform: translate3d(0, calc(var(--spider-descend-y, 22px) * -1), 0);
-    opacity: 0;
-  }
-
-  18% {
-    opacity: 0.75;
-  }
-
-  100% {
-    transform: translate3d(0, var(--spider-descend-y, 22px), 0);
-    opacity: 0.75;
-  }
-}
-
-@keyframes spider-hang {
-
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(0, 3px, 0);
-  }
-}
-
-@keyframes spider-ascend {
-  0% {
-    transform: translate3d(0, var(--spider-descend-y, 22px), 0);
-    opacity: 0.75;
-  }
-
-  100% {
-    transform: translate3d(0, var(--spider-ascend-y, -90px), 0);
-    opacity: 0;
-  }
-}
-
-@keyframes spider-web-shoot {
-  0% {
-    opacity: 0;
-    transform: scaleX(0.2);
-    transform-origin: left;
-  }
-
-  30% {
-    opacity: 0.95;
-    transform: scaleX(1);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scaleX(1.3);
-  }
-}
-
-@keyframes spider-finger {
-
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(1px, -1px, 0);
-  }
-}
-
-@keyframes spider-scratch {
-
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
-
-  25% {
-    transform: translate3d(-1px, -2px, 0) rotate(-6deg);
-  }
-
-  50% {
-    transform: translate3d(0, -3px, 0) rotate(4deg);
-  }
-
-  75% {
-    transform: translate3d(1px, -2px, 0) rotate(-5deg);
-  }
-}
-
-.animate-spider-descend {
-  animation: spider-descend var(--spider-descend-duration, 1100ms) cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
-  will-change: transform, opacity;
-}
-
-.animate-spider-hang {
-  animation: spider-hang 1.6s ease-in-out infinite;
-}
-
-.animate-spider-ascend {
-  animation: spider-ascend var(--spider-ascend-duration, 900ms) cubic-bezier(0.5, 0, 0.9, 0.1) forwards;
-  will-change: transform, opacity;
-}
-
-.animate-spider-web-shoot {
-  animation: spider-web-shoot 0.9s ease-out infinite;
-}
-
-.animate-spider-finger {
-  animation: spider-finger 0.45s steps(2, end) infinite;
-}
-
-.animate-spider-scratch {
-  animation: spider-scratch 0.7s steps(2, end) infinite;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-.cursor-bomb {
-  cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48dGV4dCB4PSIxNiIgeT0iMjIiIGZvbnQtc2l6ZT0iMjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfkqM8L3RleHQ+PC9zdmc+") 16 16, pointer;
 }

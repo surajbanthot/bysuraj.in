@@ -13,9 +13,11 @@ const formatter = new Intl.DateTimeFormat("en-GB", {
 type IstClockProps = {
   className?: string;
   id?: string;
+  /** Show the time-of-day emoji. Off by default for the editorial look. */
+  showEmoji?: boolean;
 };
 
-export default function IstClock({ className, id }: IstClockProps) {
+export default function IstClock({ className, id, showEmoji = false }: IstClockProps) {
   const [now, setNow] = useState(() => new Date());
 
   useEffect(() => {
@@ -56,7 +58,7 @@ export default function IstClock({ className, id }: IstClockProps) {
       dateTime={now.toISOString()}
       suppressHydrationWarning
     >
-      {timeString} IST {emoji}
+      {timeString} IST{showEmoji && emoji ? ` ${emoji}` : ""}
     </time>
   );
 }
