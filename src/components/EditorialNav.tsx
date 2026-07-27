@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import IstClock from "@/components/IstClock";
+import { ThemeSwitcher } from "@/components/PortfolioInteractions";
 import { SITE, navSections } from "@/lib/portfolioData";
 
 export default function EditorialNav() {
@@ -44,8 +45,8 @@ export default function EditorialNav() {
         </a>
 
         {/* Desktop links */}
-        <div className="hidden items-center gap-7 md:flex">
-          <ul className="flex items-center gap-6">
+        <div className="hidden items-center gap-5 lg:flex">
+          <ul className="flex items-center gap-4 xl:gap-6">
             {navSections.map((s) => (
               <li key={s.id}>
                 <a
@@ -59,13 +60,14 @@ export default function EditorialNav() {
               </li>
             ))}
           </ul>
+          <ThemeSwitcher />
           <IstClock className="label !lowercase tracking-normal text-faint" />
         </div>
 
         {/* Mobile toggle */}
         <button
           type="button"
-          className="label text-ink md:hidden"
+          className="label text-ink lg:hidden"
           onClick={() => setMenuOpen((v) => !v)}
           aria-expanded={menuOpen}
           aria-label="Toggle navigation"
@@ -76,7 +78,7 @@ export default function EditorialNav() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="border-t border-border bg-paper px-5 pb-6 pt-2 md:hidden">
+        <div className="border-t border-border bg-paper px-5 pb-6 pt-2 lg:hidden">
           <ul className="flex flex-col">
             {navSections.map((s, i) => (
               <li key={s.id} className="border-b border-border/60 last:border-0">
@@ -93,7 +95,10 @@ export default function EditorialNav() {
               </li>
             ))}
           </ul>
-          <IstClock className="label mt-4 block text-faint" />
+          <div className="mt-5 flex items-center justify-between gap-4">
+            <ThemeSwitcher />
+            <IstClock className="label block text-faint" />
+          </div>
         </div>
       )}
     </header>

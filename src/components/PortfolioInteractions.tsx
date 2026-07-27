@@ -4,17 +4,105 @@ import { useEffect, useRef, useState } from "react";
 import { track } from "@vercel/analytics";
 
 const DARKROOM_CODE = "suraj";
+const THEME_STORAGE_KEY = "suraj-portfolio-theme";
+const THEME_EVENT = "suraj:theme-change";
+const themes = ["paper", "cobalt", "darkroom"] as const;
+
+type PortfolioTheme = (typeof themes)[number];
+type ThemeSource = "switcher" | "easter-egg";
+type ThemeEventDetail = { theme: PortfolioTheme; source: ThemeSource };
+
+const themeNames: Record<PortfolioTheme, string> = {
+  paper: "Paper",
+  cobalt: "Cobalt",
+  darkroom: "Darkroom",
+};
+
+const isPortfolioTheme = (value: string | undefined): value is PortfolioTheme =>
+  themes.includes(value as PortfolioTheme);
+
+const getCurrentTheme = (): PortfolioTheme => {
+  const current = document.documentElement.dataset.theme;
+  return isPortfolioTheme(current) ? current : "paper";
+};
+
+const setPortfolioTheme = (theme: PortfolioTheme, source: ThemeSource) => {
+  document.documentElement.dataset.theme = theme;
+  try {
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+  } catch {
+    // The theme still works for this visit when storage is unavailable.
+  }
+  window.dispatchEvent(
+    new CustomEvent<ThemeEventDetail>(THEME_EVENT, {
+      detail: { theme, source },
+    }),
+  );
+};
+
+export function ThemeSwitcher() {
+  const [theme, setTheme] = useState<PortfolioTheme>("paper");
+
+  useEffect(() => {
+    setTheme(getCurrentTheme());
+
+    const handleThemeChange = (event: Event) => {
+      setTheme((event as CustomEvent<ThemeEventDetail>).detail.theme);
+    };
+
+    window.addEventListener(THEME_EVENT, handleThemeChange);
+    return () => window.removeEventListener(THEME_EVENT, handleThemeChange);
+  }, []);
+
+  const cycleTheme = () => {
+    const currentIndex = themes.indexOf(theme);
+    const nextTheme = themes[(currentIndex + 1) % themes.length];
+    setPortfolioTheme(nextTheme, "switcher");
+    track("theme_change", { theme: nextTheme });
+  };
+
+  const nextTheme = themes[(themes.indexOf(theme) + 1) % themes.length];
+
+  return (
+    <button
+      type="button"
+      className="theme-switcher"
+      onClick={cycleTheme}
+      aria-label={`Current theme: ${themeNames[theme]}. Switch to ${themeNames[nextTheme]}.`}
+      title={`Theme: ${themeNames[theme]}`}
+    >
+      <span className="theme-switcher-dots" aria-hidden="true">
+        {themes.map((option) => (
+          <span
+            key={option}
+            className={`theme-dot theme-dot-${option} ${
+              option === theme ? "is-active" : ""
+            }`}
+          />
+        ))}
+      </span>
+      <span className="theme-switcher-label">
+        Theme · {themeNames[theme]}
+      </span>
+    </button>
+  );
+}
 
 export function DarkroomEasterEgg() {
   const bufferRef = useRef("");
+  const previousThemeRef = useRef<PortfolioTheme>("paper");
   const [active, setActive] = useState(false);
 
   useEffect(() => {
-    document.body.classList.toggle("darkroom-mode", active);
-
     const setDarkroom = (next: boolean) => {
+      if (next) {
+        const currentTheme = getCurrentTheme();
+        if (currentTheme !== "darkroom") previousThemeRef.current = currentTheme;
+        setPortfolioTheme("darkroom", "easter-egg");
+      } else {
+        setPortfolioTheme(previousThemeRef.current, "easter-egg");
+      }
       setActive(next);
-      document.body.classList.toggle("darkroom-mode", next);
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -46,10 +134,18 @@ export function DarkroomEasterEgg() {
       }
     };
 
+    const handleThemeChange = (event: Event) => {
+      const detail = (event as CustomEvent<ThemeEventDetail>).detail;
+      if (detail.source === "switcher" && detail.theme !== "darkroom") {
+        setActive(false);
+      }
+    };
+
     window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener(THEME_EVENT, handleThemeChange);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      document.body.classList.remove("darkroom-mode");
+      window.removeEventListener(THEME_EVENT, handleThemeChange);
     };
   }, [active]);
 

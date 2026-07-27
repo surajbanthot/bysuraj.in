@@ -7,6 +7,15 @@ import FooterBar from "@/components/FooterBar";
 
 import "./globals.css";
 
+const themeInitializer = `
+  try {
+    const saved = localStorage.getItem("suraj-portfolio-theme");
+    if (saved === "paper" || saved === "cobalt" || saved === "darkroom") {
+      document.documentElement.dataset.theme = saved;
+    }
+  } catch {}
+`;
+
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
   const host = requestHeaders.get("host") ?? "bysuraj.in";
@@ -51,7 +60,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-theme="paper" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitializer }} />
+      </head>
       <body className="antialiased">
         <EditorialNav />
         {children}
