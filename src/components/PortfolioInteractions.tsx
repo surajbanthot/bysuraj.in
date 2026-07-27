@@ -6,16 +6,15 @@ import { track } from "@vercel/analytics";
 const DARKROOM_CODE = "suraj";
 const THEME_STORAGE_KEY = "suraj-portfolio-theme";
 const THEME_EVENT = "suraj:theme-change";
-const themes = ["paper", "cobalt", "darkroom"] as const;
+const themes = ["darkroom", "paper"] as const;
 
 type PortfolioTheme = (typeof themes)[number];
 type ThemeSource = "switcher" | "easter-egg";
 type ThemeEventDetail = { theme: PortfolioTheme; source: ThemeSource };
 
 const themeNames: Record<PortfolioTheme, string> = {
-  paper: "Paper",
-  cobalt: "Cobalt",
   darkroom: "Darkroom",
+  paper: "Paper",
 };
 
 const isPortfolioTheme = (value: string | undefined): value is PortfolioTheme =>
@@ -23,7 +22,7 @@ const isPortfolioTheme = (value: string | undefined): value is PortfolioTheme =>
 
 const getCurrentTheme = (): PortfolioTheme => {
   const current = document.documentElement.dataset.theme;
-  return isPortfolioTheme(current) ? current : "paper";
+  return isPortfolioTheme(current) ? current : "darkroom";
 };
 
 const setPortfolioTheme = (theme: PortfolioTheme, source: ThemeSource) => {
@@ -41,7 +40,7 @@ const setPortfolioTheme = (theme: PortfolioTheme, source: ThemeSource) => {
 };
 
 export function ThemeSwitcher() {
-  const [theme, setTheme] = useState<PortfolioTheme>("paper");
+  const [theme, setTheme] = useState<PortfolioTheme>("darkroom");
 
   useEffect(() => {
     setTheme(getCurrentTheme());
@@ -127,7 +126,7 @@ export function DarkroomEasterEgg() {
       );
 
       if (bufferRef.current === DARKROOM_CODE) {
-        const next = !active;
+        const next = getCurrentTheme() !== "darkroom";
         setDarkroom(next);
         bufferRef.current = "";
         track("darkroom_easter_egg", { enabled: next });

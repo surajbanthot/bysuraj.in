@@ -18,18 +18,6 @@
   color-scheme: light;
 }
 
-html[data-theme="cobalt"] {
-  --paper: #2036b6;
-  --paper-raised: #2c48d1;
-  --border: #6678df;
-  --ink: #fff8e8;
-  --muted: #dae1ff;
-  --faint: #b5c1f7;
-  --accent: #ffd166;
-  --accent-press: #ffe29a;
-  color-scheme: dark;
-}
-
 html[data-theme="darkroom"] {
   --paper: #171310;
   --paper-raised: #28211c;
@@ -182,10 +170,6 @@ body::before {
 
 .theme-dot-paper {
   background: #f4efe6;
-}
-
-.theme-dot-cobalt {
-  background: #2036b6;
 }
 
 .theme-dot-darkroom {

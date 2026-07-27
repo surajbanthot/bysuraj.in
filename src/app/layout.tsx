@@ -10,7 +10,7 @@ import "./globals.css";
 const themeInitializer = `
   try {
     const saved = localStorage.getItem("suraj-portfolio-theme");
-    if (saved === "paper" || saved === "cobalt" || saved === "darkroom") {
+    if (saved === "paper" || saved === "darkroom") {
       document.documentElement.dataset.theme = saved;
     }
   } catch {}
@@ -60,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="paper" suppressHydrationWarning>
+    <html lang="en" data-theme="darkroom" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitializer }} />
       </head>
