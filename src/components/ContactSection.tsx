@@ -47,7 +47,7 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-      <SectionHeading no="06" title="Contact" kicker="Let's make something" />
+      <SectionHeading no="07" title="Contact" kicker="Let's make something" />
 
       <div className="mt-12 grid gap-12 md:grid-cols-12">
         {/* Left: pitch + socials */}
@@ -80,6 +80,7 @@ export default function ContactSection() {
 
         {/* Right: form */}
         <Reveal className="md:col-span-7" delay={120}>
+          <div aria-live="polite">
           {status === "success" ? (
             <div className="flex h-full flex-col items-start justify-center gap-3 border border-border bg-paper-raised p-10">
               <span className="label text-accent">Sent</span>
@@ -93,6 +94,7 @@ export default function ContactSection() {
                 <input
                   id="name"
                   required
+                  maxLength={100}
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   placeholder="Your name"
@@ -105,6 +107,7 @@ export default function ContactSection() {
                   id="email"
                   type="email"
                   required
+                  maxLength={160}
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder="you@example.com"
@@ -116,6 +119,7 @@ export default function ContactSection() {
                 <input
                   id="project"
                   value={form.project}
+                  maxLength={100}
                   onChange={(e) => setForm({ ...form, project: e.target.value })}
                   placeholder="Web · Motion · Film · AI"
                   className={field}
@@ -126,6 +130,7 @@ export default function ContactSection() {
                 <input
                   id="budget"
                   value={form.budget}
+                  maxLength={100}
                   onChange={(e) => setForm({ ...form, budget: e.target.value })}
                   placeholder="₹ —"
                   className={field}
@@ -136,6 +141,7 @@ export default function ContactSection() {
                 <textarea
                   id="message"
                   rows={4}
+                  maxLength={2000}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   placeholder="Tell me about it…"
@@ -159,6 +165,7 @@ export default function ContactSection() {
               </div>
             </form>
           )}
+          </div>
         </Reveal>
       </div>
     </section>

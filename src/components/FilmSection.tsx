@@ -4,7 +4,7 @@ import SectionHeading from "@/components/SectionHeading";
 export default function FilmSection() {
   return (
     <section id="film" className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-      <SectionHeading no="05" title="Film" kicker="Analogue · Medium format" />
+      <SectionHeading no="06" title="Film" kicker="Analogue · Medium format" />
 
       <div className="mt-12 grid gap-10 md:grid-cols-12">
         <Reveal className="md:col-span-7">
@@ -54,21 +54,19 @@ export default function FilmSection() {
         </Reveal>
       </div>
 
-      {/* Contact-sheet teaser — placeholder frames for the future photo page */}
       <Reveal className="mt-14" delay={80}>
         <div className="flex items-center justify-between border-b border-border pb-3">
           <span className="label">Contact sheet</span>
-          <span className="label">Selected frames — coming soon</span>
+          <span className="label">Notes from the darkroom</span>
         </div>
         <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-6">
-          {Array.from({ length: 6 }).map((_, i) => (
+          {["6×7", "105mm", "ISO 400", "10 frames", "Manual", "Bengaluru"].map((note, i) => (
             <div
-              key={i}
-              className="relative aspect-[4/5] border border-border bg-paper-raised"
+              key={note}
+              className="relative flex aspect-[4/5] items-center justify-center border border-border bg-paper-raised p-3 text-center transition-colors hover:bg-ink hover:text-paper"
             >
-              <span className="label absolute bottom-1 left-1.5">
-                {String(i + 1).padStart(2, "0")}
-              </span>
+              <span className="label !text-current">{note}</span>
+              <span className="label absolute bottom-1 left-1.5 !text-current/50">0{i + 1}</span>
             </div>
           ))}
         </div>

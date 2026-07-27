@@ -5,7 +5,7 @@ import { experience } from "@/lib/portfolioData";
 export default function ExperienceSection() {
   return (
     <section id="experience" className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-      <SectionHeading no="02" title="Experience" kicker="A working ledger" />
+      <SectionHeading no="03" title="Experience" kicker="A working ledger" />
 
       <ol className="mt-8">
         {experience.map((entry, i) => (

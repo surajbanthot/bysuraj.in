@@ -3,13 +3,13 @@
 
 export const SITE = {
   name: "Suraj",
-  role: "Design Engineer",
-  tagline: "A design engineer who shoots medium-format film.",
+  fullName: "Suraj Banthot",
+  role: "Design Engineer & Frontend Developer",
+  tagline:
+    "I design and build digital products — from precise interfaces to conversational AI — and shoot medium-format film to keep my eye honest.",
   location: "Bengaluru, India",
   email: "surajcommercial@gmail.com",
   contra: "https://contra.com/suraj_kumar_b_c_0uicot57",
-  // Drop a PDF named this into /public to wire up the résumé link.
-  resume: "/Suraj-Banthot-Resume.pdf",
   estYear: "2018",
 } as const;
 
@@ -24,6 +24,52 @@ export const socials: Social[] = [
   { label: "X", handle: "@SurajBanthot", href: "https://x.com/SurajBanthot" },
   { label: "Threads", handle: "@bysuraj.in", href: "https://www.threads.com/@bysuraj.in" },
   { label: "Contra", handle: "for freelance", href: SITE.contra },
+];
+
+export type Project = {
+  no: string;
+  title: string;
+  context: string;
+  period: string;
+  summary: string;
+  contribution: string;
+  tags: string[];
+};
+
+export const projects: Project[] = [
+  {
+    no: "01",
+    title: "Enterprise Knowledge Copilot",
+    context: "Quantzig × Shell",
+    period: "2026",
+    summary:
+      "A conversational interface that turns a sprawling enterprise knowledge base into an answerable, traceable system.",
+    contribution:
+      "Building the full experience across the RAG retrieval pipeline, LLM orchestration, API layer, and front-end chat interface.",
+    tags: ["Conversational AI", "RAG", "Next.js", "Python"],
+  },
+  {
+    no: "02",
+    title: "Teams at enterprise scale",
+    context: "Tech Mahindra × Microsoft",
+    period: "2024—25",
+    summary:
+      "Feature-rich React interfaces designed to feel fast, dependable, and inclusive inside Microsoft Teams.",
+    contribution:
+      "Shipped reusable components, improved performance, and strengthened WCAG compliance with distributed product teams.",
+    tags: ["React", "Accessibility", "Design Systems", "Performance"],
+  },
+  {
+    no: "03",
+    title: "Stories built for every screen",
+    context: "Mirafra × Pratham Books",
+    period: "2022—23",
+    summary:
+      "A responsive digital storytelling experience that makes illustrated stories inviting across devices and reading contexts.",
+    contribution:
+      "Translated visual direction into pixel-precise interactions, responsive layouts, and engagement-focused product improvements.",
+    tags: ["Frontend", "Interaction", "Responsive UI", "Storytelling"],
+  },
 ];
 
 export type ExperienceEntry = {
@@ -161,6 +207,7 @@ export const services: Service[] = [
 
 // Anchor sections for the editorial nav (ids match each <section id>).
 export const navSections = [
+  { id: "work", label: "Work" },
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
   { id: "stack", label: "Stack" },

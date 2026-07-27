@@ -4,7 +4,7 @@ import SectionHeading from "@/components/SectionHeading";
 export default function AboutSection() {
   return (
     <section id="about" className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-      <SectionHeading no="01" title="About" kicker="The design–code overlap" />
+      <SectionHeading no="02" title="About" kicker="The design–code overlap" />
 
       <div className="mt-12 grid gap-10 md:grid-cols-12">
         <Reveal className="md:col-span-8">

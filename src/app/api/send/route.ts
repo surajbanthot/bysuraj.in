@@ -1,44 +1,42 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
+const escapeHtml = (value: unknown) =>
+    String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
 export async function POST(request: Request) {
-    const resend = new Resend(process.env.RESEND_API_KEY);
     try {
         const payload = await request.json();
+        const { name, email, project, budget, message } = payload;
 
-        // Check if it's a Film Enquiry (has 'email' or 'project' field)
-        if ('email' in payload || 'project' in payload) {
-            const { name, email, project, location, date, budget, message } = payload;
-            const data = await resend.emails.send({
-                from: 'Portfolio Enquiry <onboarding@resend.dev>',
-                to: ['surajcommercial@gmail.com'],
-                subject: 'New Medium Format Film Enquiry',
-                html: `
-          <h2>New Film Enquiry Received</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Project Type:</strong> ${project}</p>
-          <p><strong>Location:</strong> ${location}</p>
-          <p><strong>Date:</strong> ${date}</p>
-          <p><strong>Budget:</strong> ${budget}</p>
-          <p><strong>Project Notes:</strong></p>
-          <p>${message}</p>
-        `,
-            });
-            return NextResponse.json(data);
+        if (!name || !email || typeof name !== "string" || typeof email !== "string") {
+            return NextResponse.json({ error: "Name and email are required." }, { status: 400 });
         }
 
-        // Default to Phone Enquiry
-        const { phone, note } = payload;
+        const apiKey = process.env.RESEND_API_KEY;
+        if (!apiKey) {
+            return NextResponse.json({ error: "Email service is not configured." }, { status: 503 });
+        }
+
+        const resend = new Resend(apiKey);
         const data = await resend.emails.send({
             from: 'Portfolio Enquiry <onboarding@resend.dev>',
             to: ['surajcommercial@gmail.com'],
-            subject: 'New Phone Enquiry from Portfolio',
+            replyTo: email,
+            subject: `Portfolio enquiry from ${name.slice(0, 100)}`,
             html: `
-        <h2>New Phone Enquiry Received</h2>
-        <p><strong>Phone Number:</strong> ${phone}</p>
+        <h2>New portfolio enquiry</h2>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Project type:</strong> ${escapeHtml(project)}</p>
+        <p><strong>Budget:</strong> ${escapeHtml(budget)}</p>
         <p><strong>Message:</strong></p>
-        <p>${note}</p>
+        <p>${escapeHtml(message).replaceAll("\n", "<br />")}</p>
       `,
         });
 

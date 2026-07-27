@@ -1,4 +1,5 @@
 import HeroSection from "@/components/HeroSection";
+import SelectedWorkSection from "@/components/SelectedWorkSection";
 import AboutSection from "@/components/AboutSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import StackSection from "@/components/StackSection";
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <main className="relative z-[2]">
       <HeroSection />
+      <SelectedWorkSection />
       <AboutSection />
       <ExperienceSection />
       <StackSection />

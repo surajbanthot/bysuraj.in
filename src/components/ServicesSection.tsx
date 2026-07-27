@@ -5,7 +5,7 @@ import { services } from "@/lib/portfolioData";
 export default function ServicesSection() {
   return (
     <section id="services" className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-      <SectionHeading no="04" title="Services" kicker="Available for freelance" />
+      <SectionHeading no="05" title="Services" kicker="Available for freelance" />
 
       <div className="mt-12 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2">
         {services.map((service, i) => (

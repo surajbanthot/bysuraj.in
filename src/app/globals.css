@@ -13,7 +13,7 @@
   --ink: #1a1714;
   --muted: #5c564c;
   --faint: #8a8276;
-  --accent: #ff7a29;
+  --accent: #ff6b2c;
   --accent-press: #e0651a;
   color-scheme: light;
 }
@@ -28,9 +28,9 @@
   --color-accent: var(--accent);
   --color-accent-press: var(--accent-press);
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-fraunces);
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "SFMono-Regular", "Cascadia Code", "Roboto Mono", monospace;
+  --font-display: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
 }
 
 html {
@@ -42,7 +42,7 @@ html {
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -65,14 +65,14 @@ body::before {
 
 /* ---- Display heading helper ---- */
 .display {
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
   font-weight: 500;
   letter-spacing: -0.02em;
 }
 
 /* ---- Mono label / marginalia helper ---- */
 .label {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-family: "SFMono-Regular", "Cascadia Code", "Roboto Mono", monospace;
   text-transform: uppercase;
   letter-spacing: 0.18em;
   font-size: 0.7rem;
@@ -105,6 +105,83 @@ body::before {
   background-size: 100% 1.5px;
 }
 
+.case-card {
+  background: var(--paper-raised);
+  color: var(--ink);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.case-card:hover {
+  transform: translateY(-6px);
+  background: #ddd3c3;
+}
+
+.case-card-featured {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.case-card-featured:hover {
+  background: #2b2621;
+}
+
+.lens-mark {
+  border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  border-radius: 999px;
+}
+
+.lens-ring,
+.lens-cross,
+.lens-dot {
+  position: absolute;
+  display: block;
+}
+
+.lens-ring {
+  inset: 12%;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+}
+
+.lens-ring-two {
+  inset: 26%;
+  border-color: color-mix(in srgb, var(--ink) 30%, transparent);
+}
+
+.lens-ring-three {
+  inset: 39%;
+  border-color: var(--accent);
+}
+
+.lens-cross-x {
+  left: -8%;
+  right: -8%;
+  top: 50%;
+  height: 1px;
+  background: color-mix(in srgb, var(--ink) 20%, transparent);
+}
+
+.lens-cross-y {
+  bottom: -8%;
+  left: 50%;
+  top: -8%;
+  width: 1px;
+  background: color-mix(in srgb, var(--ink) 20%, transparent);
+}
+
+.lens-dot {
+  left: 50%;
+  top: 50%;
+  height: 0.75rem;
+  width: 0.75rem;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 0.65rem color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -112,6 +189,9 @@ body::before {
   .reveal {
     opacity: 1;
     transform: none;
+    transition: none;
+  }
+  .case-card {
     transition: none;
   }
 }
