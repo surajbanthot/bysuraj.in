@@ -1,5 +1,6 @@
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
+import { FilmContactSheet } from "@/components/PortfolioInteractions";
 
 export default function FilmSection() {
   return (
@@ -59,17 +60,7 @@ export default function FilmSection() {
           <span className="label">Contact sheet</span>
           <span className="label">Notes from the darkroom</span>
         </div>
-        <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-6">
-          {["6×7", "105mm", "ISO 400", "10 frames", "Manual", "Bengaluru"].map((note, i) => (
-            <div
-              key={note}
-              className="relative flex aspect-[4/5] items-center justify-center border border-border bg-paper-raised p-3 text-center transition-colors hover:bg-ink hover:text-paper"
-            >
-              <span className="label !text-current">{note}</span>
-              <span className="label absolute bottom-1 left-1.5 !text-current/50">0{i + 1}</span>
-            </div>
-          ))}
-        </div>
+        <FilmContactSheet />
       </Reveal>
     </section>
   );

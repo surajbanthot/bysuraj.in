@@ -6,6 +6,7 @@ import StackSection from "@/components/StackSection";
 import ServicesSection from "@/components/ServicesSection";
 import FilmSection from "@/components/FilmSection";
 import ContactSection from "@/components/ContactSection";
+import { DarkroomEasterEgg } from "@/components/PortfolioInteractions";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <ServicesSection />
       <FilmSection />
       <ContactSection />
+      <DarkroomEasterEgg />
     </main>
   );
 }
