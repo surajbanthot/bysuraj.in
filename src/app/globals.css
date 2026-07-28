@@ -5,12 +5,12 @@
    =========================================================================== */
 
 :root {
-  --paper: #f3ecdf;
-  --paper-raised: #e7ddcc;
-  --border: #d8cbb7;
-  --ink: #211b16;
-  --muted: #645b4e;
-  --faint: #8f8374;
+  --paper: #e2d6c4;
+  --paper-raised: #d2c3ad;
+  --border: #c1af96;
+  --ink: #241d17;
+  --muted: #594f42;
+  --faint: #756754;
   --accent: #ff6b2c;
   --accent-press: #e0651a;
   color-scheme: light;
@@ -64,17 +64,17 @@ html[data-theme="paper"] body {
   background:
     radial-gradient(
       circle at 12% 4%,
-      color-mix(in srgb, white 46%, transparent) 0,
+      color-mix(in srgb, white 30%, transparent) 0,
       transparent 30rem
     ),
     radial-gradient(
       circle at 86% 38%,
-      color-mix(in srgb, #785a38 6%, transparent) 0,
+      color-mix(in srgb, #785a38 8%, transparent) 0,
       transparent 38rem
     ),
     radial-gradient(
       circle at 28% 82%,
-      color-mix(in srgb, white 24%, transparent) 0,
+      color-mix(in srgb, white 14%, transparent) 0,
       transparent 34rem
     ),
     var(--paper);
