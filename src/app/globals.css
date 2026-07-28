@@ -1,18 +1,16 @@
 @import "tailwindcss";
 
 /* ===========================================================================
-   VIEWFINDER — single fixed editorial theme (warm paper + ink + safelight amber)
-   The amber accent (#FF7A29) is the darkroom safelight: legible on light and
-   dark alike, which is why this site needs no light/dark toggle.
+   VIEWFINDER — warm paper stock + darkroom, joined by a safelight orange.
    =========================================================================== */
 
 :root {
-  --paper: #f4efe6;
-  --paper-raised: #e6decf;
-  --border: #e0d8c9;
-  --ink: #1a1714;
-  --muted: #5c564c;
-  --faint: #8a8276;
+  --paper: #f3ecdf;
+  --paper-raised: #e7ddcc;
+  --border: #d8cbb7;
+  --ink: #211b16;
+  --muted: #645b4e;
+  --faint: #8f8374;
   --accent: #ff6b2c;
   --accent-press: #e0651a;
   color-scheme: light;
@@ -62,6 +60,27 @@ body {
     color 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+html[data-theme="paper"] body {
+  background:
+    radial-gradient(
+      circle at 12% 4%,
+      color-mix(in srgb, white 46%, transparent) 0,
+      transparent 30rem
+    ),
+    radial-gradient(
+      circle at 86% 38%,
+      color-mix(in srgb, #785a38 6%, transparent) 0,
+      transparent 38rem
+    ),
+    radial-gradient(
+      circle at 28% 82%,
+      color-mix(in srgb, white 24%, transparent) 0,
+      transparent 34rem
+    ),
+    var(--paper);
+  background-attachment: fixed;
+}
+
 ::selection {
   background: var(--accent);
   color: var(--paper);
@@ -70,12 +89,58 @@ body {
 /* Faint film-grain wash over the whole page — keeps the paper feeling analogue */
 body::before {
   content: "";
-  position: fixed;
   inset: 0;
-  z-index: 1;
-  pointer-events: none;
   opacity: 0.04;
+  pointer-events: none;
+  position: fixed;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  transition: opacity 0.7s ease;
+  z-index: 1;
+}
+
+html[data-theme="paper"] body::before {
+  mix-blend-mode: multiply;
+  opacity: 0.085;
+}
+
+/* Fine flecks and long fibres sit above the paper surfaces, like real stock. */
+body::after {
+  background-image:
+    radial-gradient(
+      circle at 18% 34%,
+      color-mix(in srgb, #6f5132 20%, transparent) 0 0.42px,
+      transparent 0.72px
+    ),
+    radial-gradient(
+      circle at 74% 61%,
+      color-mix(in srgb, white 72%, transparent) 0 0.36px,
+      transparent 0.66px
+    ),
+    repeating-linear-gradient(
+      2deg,
+      transparent 0 18px,
+      color-mix(in srgb, #80613f 4%, transparent) 18.5px,
+      transparent 19px 37px
+    ),
+    repeating-linear-gradient(
+      91deg,
+      transparent 0 46px,
+      color-mix(in srgb, #735436 3%, transparent) 46.5px,
+      transparent 47px 73px
+    );
+  background-size: 7px 9px, 11px 13px, 100% 37px, 73px 100%;
+  content: "";
+  inset: 0;
+  mix-blend-mode: multiply;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  transition: opacity 0.7s ease;
+  z-index: 30;
+}
+
+html[data-theme="paper"] body::after {
+  opacity: 0.58;
 }
 
 /* ---- Display heading helper ---- */
