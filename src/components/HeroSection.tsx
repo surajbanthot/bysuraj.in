@@ -1,5 +1,5 @@
 import IstClock from "@/components/IstClock";
-import { InteractiveLens } from "@/components/PortfolioInteractions";
+import { LensGraphic } from "@/components/PortfolioInteractions";
 import { SITE, navSections } from "@/lib/portfolioData";
 
 export default function HeroSection() {
@@ -31,7 +31,7 @@ export default function HeroSection() {
         </div>
 
         <div className="relative hidden h-full min-h-[25rem] md:col-span-4 md:block">
-          <InteractiveLens />
+          <LensGraphic />
           <span className="label absolute bottom-6 right-0 [writing-mode:vertical-rl]">
             Compose with intent
           </span>

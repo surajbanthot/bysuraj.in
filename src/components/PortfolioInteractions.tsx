@@ -162,72 +162,20 @@ export function DarkroomEasterEgg() {
   );
 }
 
-export function InteractiveLens() {
-  const lensRef = useRef<HTMLButtonElement>(null);
-  const timerRef = useRef<number | null>(null);
-  const [capturing, setCapturing] = useState(false);
-  const [frame, setFrame] = useState(0);
-
-  useEffect(
-    () => () => {
-      if (timerRef.current) window.clearTimeout(timerRef.current);
-    },
-    [],
-  );
-
-  const handlePointerMove = (event: React.PointerEvent<HTMLButtonElement>) => {
-    const bounds = event.currentTarget.getBoundingClientRect();
-    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
-    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-
-    event.currentTarget.style.setProperty("--lens-x", x.toFixed(3));
-    event.currentTarget.style.setProperty("--lens-y", y.toFixed(3));
-  };
-
-  const resetLens = () => {
-    lensRef.current?.style.setProperty("--lens-x", "0");
-    lensRef.current?.style.setProperty("--lens-y", "0");
-  };
-
-  const takeFrame = () => {
-    const nextFrame = (frame % 10) + 1;
-    setFrame(nextFrame);
-    setCapturing(false);
-    window.requestAnimationFrame(() => setCapturing(true));
-    navigator.vibrate?.(18);
-    track("virtual_shutter", { frame: nextFrame });
-
-    if (timerRef.current) window.clearTimeout(timerRef.current);
-    timerRef.current = window.setTimeout(() => setCapturing(false), 650);
-  };
-
+export function LensGraphic() {
   return (
     <div className="absolute left-1/2 top-1/2 aspect-square w-[min(33vw,26rem)] -translate-x-1/2 -translate-y-1/2">
-      <button
-        ref={lensRef}
-        type="button"
-        className={`lens-button lens-mark h-full w-full ${capturing ? "is-capturing" : ""}`}
-        onPointerMove={handlePointerMove}
-        onPointerLeave={resetLens}
-        onBlur={resetLens}
-        onClick={takeFrame}
-        aria-label="Take a virtual photograph"
+      <div
+        className="lens-graphic lens-mark h-full w-full"
+        aria-hidden="true"
       >
         <span className="lens-ring lens-ring-one" aria-hidden="true" />
         <span className="lens-ring lens-ring-two" aria-hidden="true" />
         <span className="lens-ring lens-ring-three" aria-hidden="true" />
         <span className="lens-cross lens-cross-x" aria-hidden="true" />
         <span className="lens-cross lens-cross-y" aria-hidden="true" />
-        <span className="lens-aperture" aria-hidden="true" />
         <span className="lens-dot" aria-hidden="true" />
-      </button>
-
-      <span
-        className={`lens-counter label ${frame > 0 ? "is-visible" : ""}`}
-        aria-live="polite"
-      >
-        Frame {String(frame).padStart(2, "0")} exposed
-      </span>
+      </div>
     </div>
   );
 }
