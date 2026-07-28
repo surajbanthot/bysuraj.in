@@ -37,7 +37,7 @@ export default function EditorialNav() {
         {/* Wordmark */}
         <a
           href="#top"
-          className="display text-xl text-ink sm:text-2xl"
+          className="display inline-flex h-8 items-center text-xl leading-none text-ink sm:text-2xl"
           onClick={() => setMenuOpen(false)}
         >
           {SITE.name}
@@ -45,13 +45,13 @@ export default function EditorialNav() {
         </a>
 
         {/* Desktop links */}
-        <div className="hidden items-center gap-5 lg:flex">
-          <ul className="flex items-center gap-4 xl:gap-6">
+        <div className="hidden h-8 items-center gap-5 lg:flex">
+          <ul className="flex h-full items-center gap-4 xl:gap-6">
             {navSections.map((s) => (
-              <li key={s.id}>
+              <li key={s.id} className="flex h-full items-center">
                 <a
                   href={`#${s.id}`}
-                  className={`label transition-colors hover:text-accent ${
+                  className={`label inline-flex h-full items-center leading-none transition-colors hover:text-accent ${
                     active === s.id ? "text-accent" : ""
                   }`}
                 >
@@ -61,13 +61,13 @@ export default function EditorialNav() {
             ))}
           </ul>
           <ThemeSwitcher />
-          <IstClock className="label !lowercase tracking-normal text-faint" />
+          <IstClock className="label inline-flex h-8 items-center !lowercase leading-none tracking-normal text-faint" />
         </div>
 
         {/* Mobile toggle */}
         <button
           type="button"
-          className="label text-ink lg:hidden"
+          className="label inline-flex h-8 items-center leading-none text-ink lg:hidden"
           onClick={() => setMenuOpen((v) => !v)}
           aria-expanded={menuOpen}
           aria-label="Toggle navigation"
@@ -97,7 +97,7 @@ export default function EditorialNav() {
           </ul>
           <div className="mt-5 flex items-center justify-between gap-4">
             <ThemeSwitcher />
-            <IstClock className="label block text-faint" />
+            <IstClock className="label inline-flex h-8 items-center leading-none text-faint" />
           </div>
         </div>
       )}

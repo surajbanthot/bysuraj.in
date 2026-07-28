@@ -129,21 +129,20 @@ body::before {
   cursor: pointer;
   display: inline-flex;
   font-family: "SFMono-Regular", "Cascadia Code", "Roboto Mono", monospace;
-  font-size: 0.63rem;
+  font-size: 0.7rem;
   gap: 0.55rem;
-  letter-spacing: 0.12em;
-  padding: 0.35rem 0;
+  height: 2rem;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  padding: 0;
   text-transform: uppercase;
-  transition:
-    color 0.25s ease,
-    transform 0.25s ease;
+  transition: color 0.25s ease;
 }
 
 .theme-switcher:hover,
 .theme-switcher:focus-visible {
   color: var(--accent);
   outline: none;
-  transform: translateY(-1px);
 }
 
 .theme-switcher:focus-visible {
@@ -154,6 +153,7 @@ body::before {
   align-items: center;
   display: inline-flex;
   gap: 0.22rem;
+  height: 1rem;
 }
 
 .theme-dot {
