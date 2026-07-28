@@ -37,11 +37,11 @@ export default function EditorialNav() {
         {/* Wordmark */}
         <a
           href="#top"
-          className="display inline-flex h-8 items-center text-xl leading-none text-ink sm:text-2xl"
+          className="nav-wordmark display inline-flex h-8 items-center text-xl leading-none text-ink sm:text-2xl"
           onClick={() => setMenuOpen(false)}
         >
           {SITE.name}
-          <span className="text-accent">.</span>
+          <span className="nav-wordmark-dot text-accent">.</span>
         </a>
 
         {/* Desktop links */}
@@ -51,8 +51,8 @@ export default function EditorialNav() {
               <li key={s.id} className="flex h-full items-center">
                 <a
                   href={`#${s.id}`}
-                  className={`label inline-flex h-full items-center leading-none transition-colors hover:text-accent ${
-                    active === s.id ? "text-accent" : ""
+                  className={`nav-link label inline-flex h-full items-center leading-none ${
+                    active === s.id ? "is-active text-accent" : ""
                   }`}
                 >
                   {s.label}
@@ -85,12 +85,14 @@ export default function EditorialNav() {
                 <a
                   href={`#${s.id}`}
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-baseline gap-3 py-3"
+                  className="mobile-nav-link flex items-baseline gap-3 py-3"
                 >
-                  <span className="label text-faint">
+                  <span className="mobile-nav-number label text-faint">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="display text-2xl text-ink">{s.label}</span>
+                  <span className="mobile-nav-title display text-2xl text-ink">
+                    {s.label}
+                  </span>
                 </a>
               </li>
             ))}

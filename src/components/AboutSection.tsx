@@ -36,8 +36,8 @@ export default function AboutSection() {
               ["Shoots", "Medium-format film, Pentax 67II"],
               ["Also", "Cinematography · Motion · Rive"],
             ].map(([k, v]) => (
-              <div key={k}>
-                <dt className="label">{k}</dt>
+              <div key={k} className="fact-row">
+                <dt className="fact-label label">{k}</dt>
                 <dd className="mt-1 text-lg text-ink">{v}</dd>
               </div>
             ))}

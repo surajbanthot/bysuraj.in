@@ -10,11 +10,11 @@ export default function ExperienceSection() {
       <ol className="mt-8">
         {experience.map((entry, i) => (
           <Reveal as="li" key={entry.org} delay={i * 60}>
-            <article className="group grid gap-4 border-b border-border py-8 md:grid-cols-12 md:gap-8">
+            <article className="experience-row group grid gap-4 border-b border-border py-8 md:grid-cols-12 md:gap-8">
               {/* number + period */}
-              <div className="md:col-span-3">
+              <div className="experience-meta md:col-span-3">
                 <div className="flex items-center gap-3">
-                  <span className="label">{entry.no}</span>
+                  <span className="experience-number label">{entry.no}</span>
                   {entry.current && (
                     <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-accent">
                       <span className="h-2 w-2 animate-pulse rounded-full bg-accent" />
@@ -26,15 +26,17 @@ export default function ExperienceSection() {
               </div>
 
               {/* org + role + notes */}
-              <div className="md:col-span-9">
-                <h3 className="display text-2xl text-ink sm:text-3xl">{entry.org}</h3>
+              <div className="experience-body md:col-span-9">
+                <h3 className="experience-org display text-2xl text-ink sm:text-3xl">
+                  {entry.org}
+                </h3>
                 <p className="mt-1 font-mono text-sm uppercase tracking-widest text-accent">
                   {entry.role}
                 </p>
                 <ul className="mt-4 space-y-2 text-lg leading-relaxed text-muted">
                   {entry.notes.map((note) => (
                     <li key={note} className="flex gap-3">
-                      <span className="mt-2 h-px w-4 flex-shrink-0 bg-border" />
+                      <span className="experience-bullet mt-2 h-px w-4 flex-shrink-0 bg-border" />
                       <span>{note}</span>
                     </li>
                   ))}

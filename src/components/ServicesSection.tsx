@@ -10,12 +10,14 @@ export default function ServicesSection() {
       <div className="mt-12 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2">
         {services.map((service, i) => (
           <Reveal key={service.title} delay={(i % 2) * 90}>
-            <article className="flex h-full flex-col gap-5 bg-paper p-7 transition-colors hover:bg-paper-raised sm:p-9">
+            <article className="service-card flex h-full flex-col gap-5 bg-paper p-7 sm:p-9">
               <div className="flex items-baseline justify-between">
-                <span className="label">{service.no}</span>
+                <span className="service-number label">{service.no}</span>
               </div>
               <div>
-                <h3 className="display text-2xl text-ink sm:text-3xl">{service.title}</h3>
+                <h3 className="service-title display text-2xl text-ink sm:text-3xl">
+                  {service.title}
+                </h3>
                 <p className="mt-2 text-lg leading-relaxed text-muted">{service.blurb}</p>
               </div>
 
@@ -23,7 +25,7 @@ export default function ServicesSection() {
                 {service.tags.map((tag) => (
                   <li
                     key={tag}
-                    className="border border-border px-3 py-1 font-mono text-xs uppercase tracking-wider text-faint"
+                    className="service-tag border border-border px-3 py-1 font-mono text-xs uppercase tracking-wider text-faint"
                   >
                     {tag}
                   </li>
@@ -37,9 +39,10 @@ export default function ServicesSection() {
                     href={link.href}
                     target={link.href.startsWith("http") ? "_blank" : undefined}
                     rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                    className="link-underline font-mono text-sm uppercase tracking-widest text-ink"
+                    className="micro-link link-underline font-mono text-sm uppercase tracking-widest text-ink"
                   >
-                    {link.label} ↗
+                    <span>{link.label}</span>
+                    <span className="micro-arrow" aria-hidden="true">↗</span>
                   </a>
                 ))}
               </div>

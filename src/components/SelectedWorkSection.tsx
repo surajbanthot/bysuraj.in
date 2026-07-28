@@ -23,9 +23,9 @@ export default function SelectedWorkSection() {
                 <span className="label !text-current">{project.period}</span>
               </div>
 
-              <div className="mt-16">
+              <div className="case-card-copy mt-16">
                 <p className="label !text-current">{project.context}</p>
-                <h3 className="display mt-3 text-3xl leading-[1.05] sm:text-4xl">
+                <h3 className="case-card-title display mt-3 text-3xl leading-[1.05] sm:text-4xl">
                   {project.title}
                 </h3>
                 <p className="mt-5 text-lg leading-relaxed opacity-80">
@@ -39,7 +39,10 @@ export default function SelectedWorkSection() {
                 </p>
                 <ul className="mt-5 flex flex-wrap gap-x-3 gap-y-2">
                   {project.tags.map((tag) => (
-                    <li key={tag} className="font-mono text-[0.67rem] uppercase tracking-wider">
+                    <li
+                      key={tag}
+                      className="case-tag font-mono text-[0.67rem] uppercase tracking-wider"
+                    >
                       {tag}
                     </li>
                   ))}

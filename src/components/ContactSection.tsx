@@ -57,22 +57,27 @@ export default function ContactSection() {
           </p>
           <a
             href={`mailto:${SITE.email}`}
-            className="link-underline mt-6 inline-block font-mono text-base text-ink"
+            className="micro-link link-underline mt-6 inline-flex font-mono text-base text-ink"
           >
-            {SITE.email}
+            <span>{SITE.email}</span>
+            <span className="micro-arrow" aria-hidden="true">↗</span>
           </a>
           <ul className="mt-8 space-y-3">
             {socials.map((s) => (
-              <li key={s.label} className="flex items-baseline justify-between border-b border-border py-2">
+              <li
+                key={s.label}
+                className="social-row flex items-baseline justify-between border-b border-border py-2"
+              >
                 <a
                   href={s.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="font-mono text-sm uppercase tracking-widest text-ink transition-colors hover:text-accent"
+                  className="social-link micro-link font-mono text-sm uppercase tracking-widest text-ink"
                 >
-                  {s.label} ↗
+                  <span>{s.label}</span>
+                  <span className="micro-arrow" aria-hidden="true">↗</span>
                 </a>
-                <span className="label">{s.handle}</span>
+                <span className="social-handle label">{s.handle}</span>
               </li>
             ))}
           </ul>
@@ -82,14 +87,14 @@ export default function ContactSection() {
         <Reveal className="md:col-span-7" delay={120}>
           <div aria-live="polite">
           {status === "success" ? (
-            <div className="flex h-full flex-col items-start justify-center gap-3 border border-border bg-paper-raised p-10">
+            <div className="form-success flex h-full flex-col items-start justify-center gap-3 border border-border bg-paper-raised p-10">
               <span className="label text-accent">Sent</span>
               <p className="font-display text-3xl text-ink">Message received.</p>
               <p className="text-lg text-muted">I&apos;ll get back to you shortly. Thank you.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-x-6 gap-y-6">
-              <div className="col-span-2 sm:col-span-1">
+              <div className="form-field col-span-2 sm:col-span-1">
                 <label htmlFor="name" className="label">Name *</label>
                 <input
                   id="name"
@@ -101,7 +106,7 @@ export default function ContactSection() {
                   className={field}
                 />
               </div>
-              <div className="col-span-2 sm:col-span-1">
+              <div className="form-field col-span-2 sm:col-span-1">
                 <label htmlFor="email" className="label">Email *</label>
                 <input
                   id="email"
@@ -114,7 +119,7 @@ export default function ContactSection() {
                   className={field}
                 />
               </div>
-              <div className="col-span-2 sm:col-span-1">
+              <div className="form-field col-span-2 sm:col-span-1">
                 <label htmlFor="project" className="label">Project type</label>
                 <input
                   id="project"
@@ -125,7 +130,7 @@ export default function ContactSection() {
                   className={field}
                 />
               </div>
-              <div className="col-span-2 sm:col-span-1">
+              <div className="form-field col-span-2 sm:col-span-1">
                 <label htmlFor="budget" className="label">Budget (optional)</label>
                 <input
                   id="budget"
@@ -136,7 +141,7 @@ export default function ContactSection() {
                   className={field}
                 />
               </div>
-              <div className="col-span-2">
+              <div className="form-field col-span-2">
                 <label htmlFor="message" className="label">Message</label>
                 <textarea
                   id="message"
@@ -153,9 +158,12 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={status === "loading" || !form.name || !form.email}
-                  className="bg-ink px-7 py-3 font-mono text-sm uppercase tracking-widest text-paper transition-colors hover:bg-accent disabled:cursor-not-allowed disabled:opacity-50"
+                  className="micro-button bg-ink px-7 py-3 font-mono text-sm uppercase tracking-widest text-paper disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  {status === "loading" ? "Sending…" : "Send enquiry"}
+                  <span>{status === "loading" ? "Sending…" : "Send enquiry"}</span>
+                  <span className="micro-arrow" aria-hidden="true">
+                    {status === "loading" ? "·" : "↗"}
+                  </span>
                 </button>
                 {status === "error" && (
                   <span className="font-mono text-sm text-accent">

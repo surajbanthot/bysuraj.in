@@ -29,14 +29,14 @@ export default function FilmSection() {
 
         <Reveal className="md:col-span-5" delay={120}>
           <div className="space-y-6 border-l border-border pl-6">
-            <div>
+            <div className="film-fact">
               <h3 className="label text-ink">The Camera</h3>
               <p className="mt-1 font-display text-2xl text-ink">Pentax 67II</p>
               <p className="mt-2 text-lg leading-relaxed text-muted">
                 A classic 6×7 system — feels like a tank, shoots like a large SLR.
               </p>
             </div>
-            <div>
+            <div className="film-fact">
               <h3 className="label text-ink">Process</h3>
               <p className="mt-2 text-lg leading-relaxed text-muted">
                 Meter carefully, compose patiently, keep notes per roll. The goal is
@@ -47,9 +47,10 @@ export default function FilmSection() {
               href="https://www.instagram.com/bysuraj.in/"
               target="_blank"
               rel="noreferrer"
-              className="link-underline inline-block font-mono text-sm uppercase tracking-widest text-ink"
+              className="micro-link link-underline inline-flex font-mono text-sm uppercase tracking-widest text-ink"
             >
-              See frames on Instagram ↗
+              <span>See frames on Instagram</span>
+              <span className="micro-arrow" aria-hidden="true">↗</span>
             </a>
           </div>
         </Reveal>

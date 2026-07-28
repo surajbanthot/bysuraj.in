@@ -9,15 +9,15 @@ export default function StackSection() {
 
       <div className="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
         {skillGroups.map((group, i) => (
-          <Reveal key={group.category} delay={(i % 4) * 80}>
-            <h3 className="label border-b border-border pb-2 text-ink">
+          <Reveal key={group.category} delay={(i % 4) * 80} className="stack-group">
+            <h3 className="stack-heading label border-b border-border pb-2 text-ink">
               {group.category}
             </h3>
             <ul className="mt-4 space-y-2">
               {group.items.map((item) => (
                 <li
                   key={item}
-                  className="text-lg text-muted transition-colors hover:text-accent"
+                  className="stack-item text-lg text-muted"
                 >
                   {item}
                 </li>

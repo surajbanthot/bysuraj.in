@@ -25,7 +25,7 @@ export default function FooterBar() {
         <div className="space-y-1">
           <a
             href={`mailto:${SITE.email}`}
-            className="link-underline font-mono text-sm text-ink"
+            className="footer-link link-underline font-mono text-sm text-ink"
           >
             {SITE.email}
           </a>
@@ -42,13 +42,13 @@ export default function FooterBar() {
               target="_blank"
               rel="noreferrer"
               aria-label={s.label}
-              className="label !text-muted transition-colors hover:!text-accent"
+              className="footer-link label !text-muted hover:!text-accent"
             >
               {s.label} ↗
             </a>
           ))}
-          <a href="#top" className="label transition-colors hover:text-accent">
-            ↑ Top
+          <a href="#top" className="footer-link label hover:text-accent">
+            <span className="micro-arrow micro-arrow-up" aria-hidden="true">↑</span> Top
           </a>
         </div>
       </div>
