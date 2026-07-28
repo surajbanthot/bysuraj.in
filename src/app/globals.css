@@ -257,7 +257,10 @@ body::before {
   inset: 12%;
   border: 1px solid var(--accent);
   border-radius: 999px;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    border-color 0.35s ease,
+    opacity 0.35s ease,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .lens-ring-two {
@@ -270,15 +273,18 @@ body::before {
   border-color: var(--accent);
 }
 
-.lens-button:hover .lens-ring-one {
+.lens-button:hover .lens-ring-one,
+.lens-button:focus-visible .lens-ring-one {
   transform: rotate(12deg) scale(0.98);
 }
 
-.lens-button:hover .lens-ring-two {
+.lens-button:hover .lens-ring-two,
+.lens-button:focus-visible .lens-ring-two {
   transform: rotate(-16deg) scale(1.05);
 }
 
-.lens-button:hover .lens-ring-three {
+.lens-button:hover .lens-ring-three,
+.lens-button:focus-visible .lens-ring-three {
   transform: scale(0.92);
 }
 
@@ -307,6 +313,17 @@ body::before {
   border-radius: 999px;
   background: var(--accent);
   box-shadow: 0 0 0 0.65rem color-mix(in srgb, var(--accent) 16%, transparent);
+  transition:
+    box-shadow 0.45s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lens-button:hover .lens-dot,
+.lens-button:focus-visible .lens-dot {
+  transform: translate(-50%, -50%) scale(1.18);
+  box-shadow:
+    0 0 0 0.85rem color-mix(in srgb, var(--accent) 13%, transparent),
+    0 0 2rem color-mix(in srgb, var(--accent) 32%, transparent);
 }
 
 .lens-aperture {
@@ -343,23 +360,6 @@ body::before {
 
 .lens-button.is-capturing {
   animation: camera-kick 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.lens-instruction {
-  bottom: 19%;
-  left: 50%;
-  position: absolute;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  transition:
-    color 0.25s ease,
-    transform 0.25s ease;
-}
-
-.lens-button:hover .lens-instruction,
-.lens-button:focus-visible .lens-instruction {
-  color: var(--accent);
-  transform: translateX(-50%) translateY(-0.2rem);
 }
 
 .lens-counter {

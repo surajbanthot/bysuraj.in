@@ -220,9 +220,6 @@ export function InteractiveLens() {
         <span className="lens-cross lens-cross-y" aria-hidden="true" />
         <span className="lens-aperture" aria-hidden="true" />
         <span className="lens-dot" aria-hidden="true" />
-        <span className="lens-instruction label" aria-hidden="true">
-          Click to expose
-        </span>
       </button>
 
       <span
