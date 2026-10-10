@@ -7,7 +7,7 @@ import BuildScene from "@/components/organisms/story/scenes/BuildScene";
 import DevelopScene from "@/components/organisms/story/scenes/DevelopScene";
 import FinalCutScene from "@/components/organisms/story/scenes/FinalCutScene";
 
-/** The home page's story, in order. StoryStage turns these into a scroll-driven piece. */
+/** The process reel's scenes, in order. StoryPlayer plays them as one timeline. */
 export default function StoryScenes() {
   return (
     <>

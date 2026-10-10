@@ -8,7 +8,7 @@ import { lanes } from "@/lib/portfolioData";
 export default function CapabilitiesSection() {
   return (
     <section id="services" className="mx-auto w-full max-w-7xl px-5 py-24 sm:px-8 sm:py-36">
-      <SectionHeading no="08" title={<>Two ways <em className="text-accent">in</em></>} kicker="Roles · Commissions" />
+      <SectionHeading no="03" title={<>Two ways <em className="text-accent">in</em></>} kicker="Roles · Commissions" />
 
       <div className="mt-14 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-2">
         {lanes.map((lane, i) => (

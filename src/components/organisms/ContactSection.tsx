@@ -68,7 +68,7 @@ export default function ContactSection() {
     <section id="contact" className="relative overflow-hidden border-t border-border">
       <div className="mx-auto w-full max-w-7xl px-5 py-24 sm:px-8 sm:py-36">
         <Reveal>
-          <Kicker as="span" no="10">
+          <Kicker as="span" no="05">
             Contact
           </Kicker>
           <h2 className="display mt-6 text-[15vw] leading-[0.85] text-ink lg:text-[11rem]">

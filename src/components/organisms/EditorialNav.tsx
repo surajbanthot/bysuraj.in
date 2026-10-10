@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import IstClock from "@/components/atoms/IstClock";
 import { SITE, navSections } from "@/lib/portfolioData";
-import { useStory } from "@/lib/storyStore";
 
 export default function EditorialNav() {
   const pathname = usePathname();
@@ -13,7 +12,6 @@ export default function EditorialNav() {
   const [active, setActive] = useState<string>("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const story = useStory();
 
   // Anchors work from any page: in-page on home, /#id elsewhere.
   const hrefFor = (id: string) => (onHome ? `#${id}` : `/#${id}`);
@@ -46,11 +44,7 @@ export default function EditorialNav() {
     return () => observer.disconnect();
   }, [onHome]);
 
-  // Inside the live story stage, follow the scene on screen; elsewhere, the section in view.
-  // ("top" and "work" are both inside the stage, so the observer can't tell them apart.)
-  const inStory = story.live && (story.inStage || active === "" || active === "top" || active === "work");
-  const homeCurrent = inStory ? (story.scene === "work" ? "work" : "top") : active;
-  const current = onHome ? homeCurrent : pathname.startsWith("/film") ? "film" : pathname.startsWith("/work") ? "work" : "";
+  const current = onHome ? active : pathname.startsWith("/film") ? "film" : pathname.startsWith("/work") ? "work" : "";
 
   return (
     <header

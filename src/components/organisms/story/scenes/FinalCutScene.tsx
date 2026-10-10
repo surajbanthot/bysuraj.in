@@ -5,9 +5,9 @@ import Scene from "@/components/templates/Scene";
 import { getScene, projects } from "@/lib/portfolioData";
 
 const cutPositions = [
-  { cls: "left-5 top-[10%] w-[42%] md:left-auto md:right-[40%] md:top-[11%] md:w-[19rem]", rotate: -5 },
-  { cls: "right-5 top-[13%] w-[42%] md:right-[8%] md:top-[9%] md:w-[19rem]", rotate: 4 },
-  { cls: "left-[29%] top-[41%] w-[42%] md:left-auto md:right-[22%] md:top-[50%] md:w-[19rem]", rotate: -2 },
+  { cls: "left-5 top-[10%] w-[42%] @3xl:left-auto @3xl:right-[40%] @3xl:top-[11%] @3xl:w-[19rem]", rotate: -5 },
+  { cls: "right-5 top-[13%] w-[42%] @3xl:right-[8%] @3xl:top-[9%] @3xl:w-[19rem]", rotate: 4 },
+  { cls: "left-[29%] top-[41%] w-[42%] @3xl:left-auto @3xl:right-[22%] @3xl:top-[50%] @3xl:w-[19rem]", rotate: -2 },
 ];
 
 /** 07 — the three projects taped up as prints, each opening its case study. */

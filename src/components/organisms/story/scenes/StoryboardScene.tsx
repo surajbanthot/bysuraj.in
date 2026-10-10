@@ -13,11 +13,11 @@ const boards = [
 ];
 
 const boardPositions = [
-  "left-5 top-[13%] w-[28%] md:left-[2%] md:w-[17%]",
-  "left-[36%] top-[17%] w-[28%] md:left-[21%] md:top-[15%] md:w-[17%]",
-  "right-5 top-[13%] w-[28%] md:right-auto md:left-[40%] md:top-[12%] md:w-[17%]",
-  "hidden md:block md:left-[59%] md:top-[16%] md:w-[17%]",
-  "hidden md:block md:left-[78%] md:top-[13%] md:w-[17%]",
+  "left-5 top-[13%] w-[28%] @3xl:left-[2%] @3xl:w-[17%]",
+  "left-[36%] top-[17%] w-[28%] @3xl:left-[21%] @3xl:top-[15%] @3xl:w-[17%]",
+  "right-5 top-[13%] w-[28%] @3xl:right-auto @3xl:left-[40%] @3xl:top-[12%] @3xl:w-[17%]",
+  "hidden @3xl:block @3xl:left-[59%] @3xl:top-[16%] @3xl:w-[17%]",
+  "hidden @3xl:block @3xl:left-[78%] @3xl:top-[13%] @3xl:w-[17%]",
 ];
 
 /** 02 — five sketched beats joined by a drawn line. */
@@ -38,10 +38,10 @@ export default function StoryboardScene() {
           </Scrap>
         </Layer>
       ))}
-      <Layer name="Beat line" enter="fade" depth={0.2} className="left-[3%] top-[44%] hidden w-[92%] md:block">
+      <Layer name="Beat line" enter="fade" depth={0.2} className="left-[3%] top-[44%] hidden w-[92%] @3xl:block">
         <Scribble viewBox="0 0 1000 60" className="h-12 w-full" d={["M10 30 C 120 -10, 200 70, 300 30 S 480 -10, 590 30 S 780 70, 880 30 L 985 30", "M960 14 L 988 30 L 960 46"]} />
       </Layer>
-      <Layer name="Timing note" enter="drop" depth={0.6} rotate={-4} className="right-[6%] top-[56%] hidden lg:block">
+      <Layer name="Timing note" enter="drop" depth={0.6} rotate={-4} className="right-[6%] top-[56%] hidden @5xl:block">
         <Scrap tone="accent" seed={0.77} className="px-4 py-3">
           <p className="font-mono text-sm uppercase">0:00 → 0:45 · 5 beats</p>
         </Scrap>

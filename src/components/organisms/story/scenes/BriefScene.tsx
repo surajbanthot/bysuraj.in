@@ -17,8 +17,8 @@ const brief = [
 export default function BriefScene() {
   return (
     <Scene data={getScene("brief")}>
-      <Layer name="Brief doc" enter="drop" depth={0.4} rotate={2} className="right-4 top-[12%] w-[min(26rem,calc(100vw-2.5rem))] md:right-[6%]">
-        <Scrap tone="light" seed={0.13} className="p-6 sm:p-7">
+      <Layer name="Brief doc" enter="drop" depth={0.4} rotate={2} className="right-4 top-[12%] w-[min(26rem,calc(100cqw-2.5rem))] @3xl:right-[6%]">
+        <Scrap tone="light" seed={0.13} className="p-6 @2xl:p-7">
           <p className="font-mono text-sm uppercase tracking-wider text-paper/60">Creative brief</p>
           <dl className="mt-4 space-y-3 text-paper">
             {brief.map(([k, v]) => (
@@ -40,22 +40,22 @@ export default function BriefScene() {
         <Tape className="-bottom-3 right-10" rotate={5} seed={0.9} />
       </Layer>
 
-      <Layer name="Sticky — who" enter="drop" depth={0.8} rotate={-8} drag className="right-[38%] top-[13%] hidden lg:block">
+      <Layer name="Sticky — who" enter="drop" depth={0.8} rotate={-8} drag className="right-[38%] top-[13%] hidden @5xl:block">
         <Scrap tone="accent" seed={0.33} className="w-44 p-4">
           <p className="display text-2xl leading-tight">Who is it for?</p>
         </Scrap>
       </Layer>
-      <Layer name="Sticky — change" enter="right" depth={0.6} rotate={6} drag className="right-[2%] top-[64%] hidden md:block">
+      <Layer name="Sticky — change" enter="right" depth={0.6} rotate={6} drag className="right-[2%] top-[64%] hidden @3xl:block">
         <Scrap tone="dark" seed={0.47} className="w-48 p-4">
           <p className="display text-2xl leading-tight">What has to change?</p>
         </Scrap>
       </Layer>
-      <Layer name="Sticky — proof" enter="up" depth={0.7} rotate={-3} drag className="right-[31%] top-[52%] hidden lg:block">
+      <Layer name="Sticky — proof" enter="up" depth={0.7} rotate={-3} drag className="right-[31%] top-[52%] hidden @5xl:block">
         <Scrap tone="light" seed={0.61} className="w-52 p-4">
           <p className="display text-2xl leading-tight">How will we know it worked?</p>
         </Scrap>
       </Layer>
-      <Layer name="Halftone" enter="scale" depth={0.9} className="right-[22%] top-[6%] hidden w-40 md:block">
+      <Layer name="Halftone" enter="scale" depth={0.9} className="right-[22%] top-[6%] hidden w-40 @3xl:block">
         <Halftone tone="ink" className="aspect-square w-full" />
       </Layer>
     </Scene>

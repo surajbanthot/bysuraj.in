@@ -239,15 +239,16 @@ export type StoryScene = {
   body: string;
 };
 
-// The home page is one scroll-driven motion piece: how a piece of work gets
-// made, told as a collage. Each scene's composition lives in StoryScenes.tsx.
+// The process reel: how a piece of work gets made, told as a collage and
+// played in the ReelSection player. Each scene's composition lives in
+// components/organisms/story/scenes/.
 export const storyScenes: StoryScene[] = [
   {
     id: "open",
     act: "00",
-    marker: "Open",
-    title: SITE.headline,
-    body: "Every piece starts as a pile of ideas. Scroll to watch one come together.",
+    marker: "Title",
+    title: "How a piece gets made.",
+    body: "Every piece starts as a pile of ideas. This is one coming together, from brief to final cut.",
   },
   {
     id: "brief",
@@ -306,10 +307,9 @@ export const getScene = (id: string) => {
   return scene;
 };
 
-// Home anchors. "top" and "work" live inside the story stage; the rest are
-// regular sections after it.
+// Home page sections, in order (ids match each <section id>).
 export const navSections = [
-  { id: "top", label: "Story" },
+  { id: "reel", label: "Process" },
   { id: "work", label: "Work" },
   { id: "services", label: "Services" },
   { id: "experience", label: "Credits" },

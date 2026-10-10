@@ -9,7 +9,7 @@ import { getScene } from "@/lib/portfolioData";
 export default function AnimateScene() {
   return (
     <Scene data={getScene("animate")}>
-      <Layer name="Graph editor" enter="up" depth={0.35} rotate={1.5} className="right-4 top-[11%] w-[min(24rem,calc(100vw-2.5rem))] md:right-[6%]">
+      <Layer name="Graph editor" enter="up" depth={0.35} rotate={1.5} className="right-4 top-[11%] w-[min(24rem,calc(100cqw-2.5rem))] @3xl:right-[6%]">
         <Scrap tone="dark" seed={0.18} className="p-5">
           <p className="font-mono text-sm uppercase text-faint">Graph editor · power3.inOut</p>
           <svg viewBox="0 0 200 150" aria-hidden="true" fill="none" className="mt-3 w-full overflow-visible">
@@ -22,7 +22,7 @@ export default function AnimateScene() {
         </Scrap>
       </Layer>
 
-      <Layer name="Keyframe track" enter="right" depth={0.5} className="right-4 top-[52%] w-[min(30rem,calc(100vw-2.5rem))] md:right-[5%] md:top-[60%]">
+      <Layer name="Keyframe track" enter="right" depth={0.5} className="right-4 top-[52%] w-[min(30rem,calc(100cqw-2.5rem))] @3xl:right-[5%] @3xl:top-[60%]">
         <Scrap tone="light" seed={0.44} className="p-5">
           <div className="relative h-10">
             {[0.18, 0.36, 0.54, 0.72].map((x) => (
@@ -39,7 +39,7 @@ export default function AnimateScene() {
         </Scrap>
       </Layer>
 
-      <Layer name="State machine" enter="left" depth={0.7} rotate={-3} drag className="right-[40%] top-[17%] hidden lg:block">
+      <Layer name="State machine" enter="left" depth={0.7} rotate={-3} drag className="right-[40%] top-[17%] hidden @5xl:block">
         <Scrap tone="accent" seed={0.83} className="p-4">
           <p className="font-mono text-sm uppercase">Rive state machine</p>
           <p className="mt-2 flex items-center gap-2 font-mono text-sm">
@@ -50,7 +50,7 @@ export default function AnimateScene() {
         </Scrap>
       </Layer>
 
-      <Layer name="Motion path" enter="fade" depth={0.2} className="right-[30%] top-[40%] hidden w-64 lg:block">
+      <Layer name="Motion path" enter="fade" depth={0.2} className="right-[30%] top-[40%] hidden w-64 @5xl:block">
         <Scribble viewBox="0 0 260 120" className="h-28 w-full" strokeWidth={2} d={["M10 100 C 60 10, 160 10, 250 70", "M236 56 L 252 72 L 230 76"]} />
       </Layer>
     </Scene>

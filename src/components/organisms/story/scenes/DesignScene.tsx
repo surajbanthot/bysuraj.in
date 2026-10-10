@@ -9,7 +9,7 @@ import { getScene } from "@/lib/portfolioData";
 export default function DesignScene() {
   return (
     <Scene data={getScene("design")}>
-      <Layer name="UI window" enter="up" depth={0.35} rotate={-2} className="right-4 top-[12%] w-[min(30rem,calc(100vw-2.5rem))] md:right-[5%]">
+      <Layer name="UI window" enter="up" depth={0.35} rotate={-2} className="right-4 top-[12%] w-[min(30rem,calc(100cqw-2.5rem))] @3xl:right-[5%]">
         <Scrap tone="dark" seed={0.29} className="p-4">
           <div className="flex gap-1.5">
             {[0, 1, 2].map((i) => (
@@ -32,14 +32,14 @@ export default function DesignScene() {
         <Tape className="-top-3 right-12" rotate={6} />
       </Layer>
 
-      <Layer name="Type specimen" enter="left" depth={0.6} rotate={5} drag className="right-[36%] top-[50%] hidden lg:block">
+      <Layer name="Type specimen" enter="left" depth={0.6} rotate={5} drag className="right-[36%] top-[50%] hidden @5xl:block">
         <Scrap tone="light" seed={0.52} className="px-6 py-4">
           <p className="display text-7xl leading-none">Aa</p>
           <p className="mt-1 font-mono text-sm uppercase text-paper/60">Fraunces · Geist</p>
         </Scrap>
       </Layer>
 
-      <Layer name="Swatches" enter="right" depth={0.7} rotate={-4} drag className="right-[4%] top-[60%] hidden md:block">
+      <Layer name="Swatches" enter="right" depth={0.7} rotate={-4} drag className="right-[4%] top-[60%] hidden @3xl:block">
         <Scrap tone="light" seed={0.66} className="p-4">
           <div className="flex gap-2">
             {["bg-paper", "bg-paper-raised", "bg-muted", "bg-accent"].map((c) => (
@@ -50,13 +50,13 @@ export default function DesignScene() {
         </Scrap>
       </Layer>
 
-      <Layer name="Toggle" enter="drop" depth={0.9} drag className="right-[46%] top-[26%] hidden lg:block">
+      <Layer name="Toggle" enter="drop" depth={0.9} drag className="right-[46%] top-[26%] hidden @5xl:block">
         <span className="flex h-9 w-16 items-center justify-end rounded-full bg-accent p-1">
           <span className="h-7 w-7 rounded-full bg-ink" />
         </span>
       </Layer>
 
-      <Layer name="Grid" enter="fade" depth={0.1} className="inset-y-[8%] right-[3%] hidden w-[46%] md:block">
+      <Layer name="Grid" enter="fade" depth={0.1} className="inset-y-[8%] right-[3%] hidden w-[46%] @3xl:block">
         <div className="grid h-full grid-cols-12 gap-3 opacity-30">
           {Array.from({ length: 12 }, (_, i) => (
             <span key={i} className="border-x border-accent/40" />

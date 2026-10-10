@@ -23,7 +23,7 @@ export default function DevelopScene() {
         </>
       }
     >
-      <Layer name="Film strip" enter="left" depth={0.4} rotate={-4} className="right-4 top-[13%] w-[min(40rem,calc(100vw-2.5rem))] md:right-[3%]">
+      <Layer name="Film strip" enter="left" depth={0.4} rotate={-4} className="right-4 top-[13%] w-[min(40rem,calc(100cqw-2.5rem))] @3xl:right-[3%]">
         <FilmStrip>
           {filmFrames.slice(0, 3).map((f, i) => (
             <figure key={f.title} className="relative flex-1">
@@ -36,10 +36,10 @@ export default function DevelopScene() {
           ))}
         </FilmStrip>
       </Layer>
-      <Layer name="Keeper note" enter="drop" depth={0.8} rotate={-6} className="right-[24%] top-[50%] hidden md:block">
+      <Layer name="Keeper note" enter="drop" depth={0.8} rotate={-6} className="right-[24%] top-[50%] hidden @3xl:block">
         <p className="display text-4xl italic text-accent">keeper!</p>
       </Layer>
-      <Layer name="Camera tag" enter="right" depth={0.6} rotate={3} drag className="right-[4%] top-[58%] hidden md:block">
+      <Layer name="Camera tag" enter="right" depth={0.6} rotate={3} drag className="right-[4%] top-[58%] hidden @3xl:block">
         <Scrap tone="light" seed={0.71} className="px-4 py-3 font-mono text-sm uppercase">
           {camera.name} · 6×7 · Portra 400
         </Scrap>

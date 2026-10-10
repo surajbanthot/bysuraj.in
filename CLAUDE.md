@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this project is
 
-Personal portfolio website for Suraj — a design engineer who also shoots medium-format film and does cinematography/motion. The home page is **one scroll-driven motion piece**: a collage that tells how a piece of work gets made (brief → storyboard → design → animate → build → develop → final cut), with After Effects-style editor chrome. It pitches him equally for **full-time roles** and **freelance commissions**. Hosted at bysuraj.in, deployed on Vercel.
+Personal portfolio website for Suraj — a design engineer who also shoots medium-format film and does cinematography/motion. The home page opens on a conventional hero (name, headline, CTAs); right below it sits a **process reel** — a framed, autoplaying collage piece that tells how a piece of work gets made (brief → storyboard → design → animate → build → develop → final cut), with After Effects-style editor controls. The reel is an attention-grabber that never takes over the page scroll. It pitches him equally for **full-time roles** and **freelance commissions**. Hosted at bysuraj.in, deployed on Vercel.
 
 ## Tech stack
 
@@ -73,41 +73,41 @@ Rules:
 - A component may import only from its own level or below (atoms never import molecules, etc.). `motion/` and `templates/` can be used by any level that needs them.
 - Import by full path (`@/components/atoms/Button`) — no barrel `index.ts` files.
 - Every atom and molecule gets a colocated `*.stories.tsx`.
-- Hooks and helpers live in `src/lib/` (`useInView`, `tornEdge`, `fonts`, `motion`, `storyStore`).
+- Hooks and helpers live in `src/lib/` (`useInView`, `tornEdge`, `fonts`, `motion`).
 
 ## Architecture
 
 Root layout: `<SmoothScroll />`, `<Cursor />`, `<EditorialNav />`, `{children}`, `<FooterBar />`, `<Analytics />`.
 
-- **`EditorialNav`** — fixed top bar (transparent until scrolled), anchor links (`/#id` on subpages via `usePathname`) plus a Film page link, IST clock, full-screen mobile menu. Inside the story it highlights from `useStory()`.
+- **`EditorialNav`** — fixed top bar (transparent until scrolled), anchor links (`/#id` on subpages via `usePathname`) plus a Film page link, IST clock, full-screen mobile menu. Highlights the section in view.
 - **`SmoothScroll`** — Lenis driven by the GSAP ticker, synced to ScrollTrigger.
 - **`Cursor`** — lens ring for fine pointers; elements opt into a label with `data-cursor="View"`.
 - **`src/lib/motion.ts`** — registers GSAP plugins once; always import `gsap`/`ScrollTrigger`/`useGSAP` from here.
 
-Home (`src/app/page.tsx`): `<StoryStage>` wrapping `<StoryScenes />`, then `CapabilitiesSection` (#services, "Two ways in"), `ExperienceSection` (#experience, styled as end credits), `ContactSection`. Acts are numbered continuously: 00–07 in the story, 08–10 after it.
+Home (`src/app/page.tsx`): `HeroSection` (#top) → `ReelSection` (#reel, 01 Process) → `WorkSection` (#work, 02) → `CapabilitiesSection` (#services, 03 "Two ways in") → `ExperienceSection` (#experience, 04, styled as end credits) → `ContactSection` (05). The hero is deliberately shorter than the screen on desktop so the top of the reel peeks into the first view. Projects always appear in `WorkSection` — never only inside the reel.
 
 All content lives in **`src/lib/portfolioData.ts`** (SITE, `storyScenes` copy, projects, experience, lanes, filmFrames, camera, socials, navSections).
 
-### The story stage
+### The process reel
 
 - **`organisms/story/scenes/*Scene.tsx`** — one file per scene, each a `Scene` template (`data-scene`, `id`) filled with collage `Layer`s plus a Copy layer. Scene copy comes from `storyScenes` (via `getScene(id)`); compositions (positions, rotations) live in the scene file. `StoryScenes.tsx` renders them in order.
 - **Collage kit** — atoms `Tape`, `Halftone`, `Stamp`, `Scribble` (paths with `data-draw` are drawn on), `Keyframe`; molecules `Scrap` (torn paper, `light`/`dark`/`accent`), `FilmStrip`, `CaseCard`; `tornEdge()` in `src/lib/tornEdge.ts` (seeded clip-path, deterministic for SSR).
-- **`motion/Layer`** props drive everything: `enter` (how it arrives), `depth` (scroll drift + pointer parallax), `rotate`, `drag` (Draggable, fine pointers), `intro` (first-scene load animation), `name` (shown in keyframe view). It nests three boxes so the timeline (outer), Draggable/intro (middle) and parallax/rotation (inner) never share a transform — keep that structure.
-- **`organisms/story/StoryStage.tsx`** — builds one GSAP timeline scrubbed by ScrollTrigger over a tall section with a sticky stage (`.story-live` in globals.css). Per scene: dissolve (outgoing layers drift up and fade, incoming layers settle in with short, soft moves — no full-screen wipes or flashes) → label (`tl.addLabel(sceneId)`) → hold with depth drift; stamps (`data-spin`) turn with scroll. Also: pointer parallax via `--mx/--my`, scene-anchor clicks (`#work` etc.) redirected to `labelToScroll`, Play (Lenis `scrollTo` at a 60s runtime; any manual input stops it), keyframe view (`data-craft="on"`).
+- **`motion/Layer`** props drive everything: `enter` (how it arrives), `depth` (scroll drift + pointer parallax), `rotate`, `drag` (Draggable, fine pointers), `name` (shown in keyframe view). It nests three boxes so the timeline (outer), Draggable (middle) and parallax/rotation (inner) never share a transform — keep that structure.
+- **`organisms/story/StoryPlayer.tsx`** — plays the scenes as one time-based GSAP timeline (~50s, loops) inside a framed canvas. Scenes are composed on a fixed canvas (1440×900 when the frame is ≥640px wide, 390×760 below) and CSS-scaled to fit, like a video; fullscreen fits it to the screen. Per scene: dissolve (outgoing layers drift up and fade, incoming settle in with short, soft moves — no full-screen wipes or flashes) → label (`addLabel(sceneId)`) → ~4.5s hold with depth drift; stamps (`data-spin`) turn. Autoplays when ≥40% on screen, pauses when scrolled away or when the visitor pauses. Also: chapter jumps (`seek(label, false)` so the UI updates while paused), click-to-seek, pointer parallax via `--mx/--my`, draggable scraps, keyframe view (`data-craft="on"`).
+- **Scenes lay out against the canvas, not the window**: use container variants (`@2xl:` ≈ sm, `@3xl:` ≈ md, `@5xl:` ≈ lg) and `cqw` units — never `md:`/`lg:`/`vw`/`svh` inside a scene.
 - **`organisms/story/StoryTimeline.tsx`** — editor bar: play/pause, timecode, clickable scene markers, playhead, layer keyframe ticks, Keyframes toggle.
-- **`src/lib/storyStore.ts`** — `useStory()` lets the nav follow the active scene.
 - To add a scene: add copy to `storyScenes`, create `organisms/story/scenes/<Name>Scene.tsx`, and render it in order in `StoryScenes.tsx`. Markers/timecode update automatically.
 
 ### WebGL & placeholders
 
-- `HeroBackdrop` (behind the stage) always paints a CSS poster, then lazy-loads `HeroCanvas` (a plain WebGL2 fluid shader on a full-screen triangle) via `next/dynamic` only when WebGL2 is available, `hardwareConcurrency >= 4` and motion is allowed. The canvas stops rendering offscreen. Don't add three.js/R3F for this — one quad doesn't need ~900 KB.
+- `HeroBackdrop` (behind the hero) always paints a CSS poster, then lazy-loads `HeroCanvas` (a plain WebGL2 fluid shader on a full-screen triangle) via `next/dynamic` only when WebGL2 is available, `hardwareConcurrency >= 4` and motion is allowed. The canvas stops rendering offscreen. Don't add three.js/R3F for this — one quad doesn't need ~900 KB. Keep it the only WebGL context: the reel uses a static CSS backdrop.
 - `ShaderFrame` renders a seeded, token-coloured CSS placeholder — or `next/image` once a `cover`/`src` exists. **To add real images:** drop files in `public/` and set `cover` on a project or `src` on a film frame.
 
 ### Motion rules
 
-- Reduced motion (or no JS): no `.story-live`, so scenes stack one per screen, fully composed, with no timeline, wipes, Lenis, cursor, dragging or WebGL. `.reveal`/`.develop`/`.hero-letter`/`.collage-in`/marquee are neutralised in CSS. Gate GSAP work with `gsap.matchMedia` or `prefersReducedMotion()`.
+- Reduced motion: the reel doesn't autoplay — it shows the title card composed and waits for Play (chapter jumps are instant); no Lenis, cursor, dragging, parallax or WebGL. Without JS only the first scene renders. `.reveal`/`.develop`/`.hero-letter` are neutralised in CSS. Gate GSAP work with `gsap.matchMedia` or `prefersReducedMotion()`.
 - Lenis is exposed via `getLenis()` in `src/lib/motion.ts` for programmatic scrolls; import gsap/ScrollTrigger/Draggable/useGSAP from there.
-- The first scene's name is server-rendered and animated with CSS (not GSAP) so it never flashes and stays the LCP element.
+- The hero name is server-rendered and animated with CSS (not GSAP) so it never flashes and stays the LCP element.
 - Don't `setState` synchronously in effects for environment checks — use `useSyncExternalStore` (see `Cursor`, `HeroBackdrop`).
 
 ## Key conventions
@@ -121,7 +121,7 @@ All content lives in **`src/lib/portfolioData.ts`** (SITE, `storyScenes` copy, p
 
 | Route | Notes |
 |-------|-------|
-| `/` | Home — the scroll-driven story (00–07), then services, credits, contact |
+| `/` | Home — hero, process reel, work, services, credits, contact |
 | `/work/[slug]` | Case study, statically generated from `projects` |
 | `/film` | Film contact sheet |
 | `/api/send` | Resend email endpoint (Contact form) |
@@ -182,7 +182,7 @@ These rules define how to translate Figma inputs into code for this project. Fol
 ### Layout & Viewport
 
 - Home is composed of `<section id>` blocks; sections use `py-24 sm:py-36` inside `max-w-7xl px-5 sm:px-8` containers
-- The hero is `min-h-svh` under a fixed nav; anchor offset is handled by `scroll-padding-top` on `html` and Lenis `anchors.offset`
+- The hero sits under a fixed nav (shorter than the screen on desktop so the reel peeks in); anchor offset is handled by `scroll-padding-top` on `html` and Lenis `anchors.offset`
 - Wrap entering content in `<Reveal>` for the scroll-in animation
 
 ### Implementation Checklist

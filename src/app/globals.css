@@ -156,25 +156,15 @@ body::after {
 }
 
 /* ===========================================================================
-   STORY STAGE — the home page as a scroll-driven motion piece.
-   Without .story-live (reduced motion / no JS) scenes simply stack.
+   PROCESS REEL — scenes stack inside the player's canvas; the timeline shows
+   one at a time. Before JS (or without it) only the first scene is visible.
    =========================================================================== */
 
-.story-live {
-  height: calc(var(--scenes) * 130svh);
-}
-.story-live .story-stage {
-  position: sticky;
-  top: 0;
-  height: 100svh;
-  overflow: hidden;
-}
-.story-live .story-scene {
-  position: absolute;
-  inset: 0;
+.story-scene:not(:first-child) {
+  visibility: hidden;
 }
 
-/* Layers lean toward the pointer by depth (--mx/--my set by StoryStage). */
+/* Layers lean toward the pointer by depth (--mx/--my set by StoryPlayer). */
 .layer-inner {
   translate: calc(var(--mx, 0) * var(--d, 0) * 28px) calc(var(--my, 0) * var(--d, 0) * 20px);
 }
@@ -201,17 +191,6 @@ body::after {
     color-mix(in srgb, var(--ink) 55%, transparent) 0 10px,
     transparent 10px 22px
   );
-}
-
-/* First scene: supporting pieces fade in quietly after the name. */
-.collage-in {
-  animation: collage-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-@keyframes collage-in {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
 }
 
 /* Keyframe view: show the layers behind the piece, After Effects style. */
@@ -274,8 +253,7 @@ html.lenis body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-letter,
-  .collage-in {
+  .hero-letter {
     animation: none;
   }
   .reveal,
