@@ -3,7 +3,7 @@
 
 export const SITE = {
   name: "Suraj",
-  fullName: "Suraj Banthot",
+  fullName: "Suraj",
   role: "Design Engineer",
   headline: "I build interfaces, AI products and moving images.",
   intro:

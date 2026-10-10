@@ -4,7 +4,7 @@ import SplitText from "@/components/atoms/SplitText";
 const meta = {
   title: "Atoms/SplitText",
   component: SplitText,
-  args: { text: "Suraj Banthot", letterClassName: "hero-letter", stagger: 28 },
+  args: { text: "Suraj", letterClassName: "hero-letter", stagger: 28 },
   render: (args) => (
     <h1 className="display text-8xl text-ink">
       <SplitText {...args} />
