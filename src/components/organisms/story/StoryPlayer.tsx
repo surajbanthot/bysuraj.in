@@ -19,11 +19,11 @@ const enterFrom: Record<string, gsap.TweenVars> = {
 };
 
 // Timing, in seconds of playback.
-const EXIT = 0.6; // outgoing shot drifts up and fades
-const OVERLAP = 0.45; // incoming shot starts before the old one has gone
-const ENTER = 0.9; // each layer settling in
-const STAGGER = 0.08;
-const HOLD = 4.5; // time to read a composed shot
+const EXIT = 0.4; // outgoing shot drifts up and fades
+const OVERLAP = 0.3; // incoming shot starts before the old one has gone
+const ENTER = 0.6; // each layer settling in
+const STAGGER = 0.05;
+const HOLD = 2.6; // time to read a composed shot
 
 // Scenes are composed on a fixed canvas, then scaled to fit the frame — like
 // a video. Wide frames get the desktop composition, narrow ones the portrait.
@@ -59,6 +59,9 @@ export default function StoryPlayer({ scenes, children }: { scenes: StoryScene[]
   const [markers, setMarkers] = useState<Record<string, number>>({});
   const [keyframes, setKeyframes] = useState<number[]>([]);
   const [active, setActive] = useState(scenes[0].id);
+  const activeRef = useRef(scenes[0].id);
+  // Screen-reader announcement for keyboard actions ("Paused — 03 Design").
+  const [announce, setAnnounce] = useState("");
   const [craft, setCraft] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
@@ -132,13 +135,14 @@ export default function StoryPlayer({ scenes, children }: { scenes: StoryScene[]
           if (scene !== current) {
             current = scene;
             setActive(scene);
+            activeRef.current = scene;
           }
         },
       });
 
       sceneEls.forEach((scene, i) => {
         const layers = scene.querySelectorAll<HTMLElement>("[data-enter]");
-        let start = 0.15;
+        let start = 0.1;
         if (i > 0) {
           // Dissolve: the last shot drifts up and fades while this one settles in.
           const prev = sceneEls[i - 1];
@@ -153,7 +157,7 @@ export default function StoryPlayer({ scenes, children }: { scenes: StoryScene[]
           keys.push(start + j * STAGGER);
           tl.from(layer, { ...enterFrom[layer.dataset.enter ?? "up"], duration: ENTER, ease: "power2.out" }, start + j * STAGGER);
         });
-        tl.to(scene.querySelectorAll("[data-draw]"), { strokeDashoffset: 0, duration: 0.9, ease: "power1.inOut" }, start + 0.35);
+        tl.to(scene.querySelectorAll("[data-draw]"), { strokeDashoffset: 0, duration: 0.6, ease: "power1.inOut" }, start + 0.2);
         if (i > 0) tl.set(sceneEls[i - 1], { autoAlpha: 0 }, start + ENTER);
 
         // Composed: hold the shot while layers drift by depth.
@@ -162,7 +166,7 @@ export default function StoryPlayer({ scenes, children }: { scenes: StoryScene[]
         tl.to(scene.querySelectorAll<HTMLElement>("[data-depth]"), { y: (_: number, el: HTMLElement) => `-=${30 * Number(el.dataset.depth)}`, duration: HOLD, ease: "none" }, composed);
         tl.to(scene.querySelectorAll("[data-spin]"), { rotate: "+=60", duration: HOLD, ease: "none" }, composed);
         scene.querySelectorAll<HTMLElement>("[data-move]").forEach((el) =>
-          tl.to(el, { left: el.dataset.move, duration: 1.6, ease: "power3.inOut" }, composed + 0.3),
+          tl.to(el, { left: el.dataset.move, duration: 1.1, ease: "power3.inOut" }, composed + 0.15),
         );
       });
       // Fade the final shot out so the loop restarts cleanly.
@@ -263,14 +267,99 @@ export default function StoryPlayer({ scenes, children }: { scenes: StoryScene[]
     }
   };
 
+  const chapterName = (id: string) => {
+    const s = scenes.find((scene) => scene.id === id);
+    return s ? `${s.act} ${s.marker}` : "";
+  };
+
+  /** Jump to a chapter by index; seek(label, false) keeps the UI in sync while paused. */
+  const goToChapter = (index: number) => {
+    const tl = timeline.current;
+    const target = scenes[Math.min(scenes.length - 1, Math.max(0, index))];
+    if (!tl || !target) return;
+    tl.seek(target.id, false);
+    setAnnounce(`${chapterName(target.id)}${playing ? "" : " — paused"}`);
+  };
+
+  /** Next/previous chapter. "Previous" first restarts the current chapter, like a media player. */
+  const stepChapter = (dir: 1 | -1) => {
+    const tl = timeline.current;
+    if (!tl) return;
+    const i = scenes.findIndex((scene) => scene.id === activeRef.current);
+    const intoChapter = tl.time() - tl.labels[activeRef.current];
+    goToChapter(dir < 0 && intoChapter > 1 ? i : i + dir);
+  };
+
+  // Keyboard controls, like a video player. Full set while the player has
+  // focus (tab to it, or click the frame); Space/K also work when the reel is
+  // on screen and nothing else is focused. Arrows never hijack page scrolling
+  // unless the player is focused.
+  const keys = useRef<(e: KeyboardEvent) => void>(() => {});
+  useEffect(() => {
+    keys.current = (e: KeyboardEvent) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const el = root.current;
+      const focused = document.activeElement;
+      if (!el) return;
+      const inside = el.contains(focused);
+      const idle = !focused || focused === document.body;
+      if (!inside && !(idle && inView.current)) return;
+      // Let Space/Enter press a focused control natively.
+      const onControl = inside && focused !== el && !!(focused as HTMLElement).closest("button, a");
+      const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+
+      if (key === " " || key === "k") {
+        if (key === " " && onControl) return;
+        e.preventDefault();
+        togglePlay();
+        setAnnounce(`${playing ? "Paused" : "Playing"} — ${chapterName(activeRef.current)}`);
+        return;
+      }
+      if (!inside) return;
+      if (key === "ArrowRight" || key === "l") {
+        e.preventDefault();
+        stepChapter(1);
+      } else if (key === "ArrowLeft" || key === "j") {
+        e.preventDefault();
+        stepChapter(-1);
+      } else if (key === "Home") {
+        e.preventDefault();
+        goToChapter(0);
+      } else if (key === "End") {
+        e.preventDefault();
+        goToChapter(scenes.length - 1);
+      } else if (/^[0-9]$/.test(key) && Number(key) < scenes.length) {
+        e.preventDefault();
+        goToChapter(Number(key));
+      } else if (key === "f") {
+        e.preventDefault();
+        toggleFullscreen();
+      }
+    };
+  });
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => keys.current(e);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
     <div
       ref={root}
       data-craft={craft ? "on" : "off"}
+      tabIndex={0}
+      role="region"
+      aria-roledescription="video"
+      aria-label="Process reel. Space or K to play and pause, left and right arrows to change chapter, F for fullscreen."
       className={`overflow-hidden border border-border bg-paper ${fullscreen ? "flex h-screen flex-col" : "rounded-sm"}`}
     >
+      <p aria-live="polite" className="sr-only">
+        {announce}
+      </p>
       <div
         ref={viewport}
+        // Clicking the frame focuses the player so the keyboard controls work.
+        onPointerDown={() => root.current?.focus({ preventScroll: true })}
         className={`reel-viewport relative isolate overflow-hidden ${fullscreen ? "flex-1" : ""}`}
         style={fit && !fullscreen ? { height: fit.h * fit.scale } : fullscreen ? undefined : { aspectRatio: "16 / 10" }}
       >
@@ -298,7 +387,7 @@ export default function StoryPlayer({ scenes, children }: { scenes: StoryScene[]
         playing={playing}
         fullscreen={fullscreen}
         // suppressEvents=false so the playhead, timecode and chapter update while paused
-        onJump={(id) => timeline.current?.seek(id, false)}
+        onJump={(id) => goToChapter(scenes.findIndex((scene) => scene.id === id))}
         onSeek={(ratio) => timeline.current?.progress(ratio, false)}
         onToggleCraft={() => {
           setCraft((c) => !c);

@@ -17,7 +17,7 @@ export default function ReelSection() {
             </h2>
           </div>
           <p className="max-w-md leading-relaxed text-muted">
-            A one-minute reel of how a piece gets made, cut like a motion piece. Pause it, jump
+            A half-minute reel of how a piece gets made, cut like a motion piece. Pause it, jump
             to a chapter, drag the scraps around, or switch on keyframes to see how it&apos;s built.
           </p>
         </div>
@@ -27,6 +27,9 @@ export default function ReelSection() {
         <StoryPlayer scenes={storyScenes}>
           <StoryScenes />
         </StoryPlayer>
+        <p className="label mt-4 hidden [@media(pointer:fine)]:block">
+          Keyboard: Space pause · ← → chapters · 0–7 jump · F fullscreen
+        </p>
       </div>
     </section>
   );
