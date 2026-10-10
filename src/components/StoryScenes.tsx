@@ -40,7 +40,7 @@ function OpenScene() {
     <Scene
       data={data}
       copy={
-        <div className="collage-in" style={{ animationDelay: "700ms" }}>
+        <div className="collage-in" style={{ animationDelay: "650ms" }}>
           <p className="label flex flex-wrap items-center gap-x-4 gap-y-1">
             <span className="flex items-center gap-2 !text-ink">
               <span className="h-2 w-2 rounded-full bg-accent" /> Open to roles & commissions
@@ -56,7 +56,7 @@ function OpenScene() {
       }
     >
       <Layer name="Halftone sun" enter="scale" depth={0.8} intro={0} className="-right-[12%] top-[6%] w-[70vw] max-w-[34rem] md:right-[2%]">
-        <Halftone className="aspect-square w-full" />
+        <Halftone className="aspect-square w-full opacity-60" />
       </Layer>
 
       <Layer name="Title" enter="fade" depth={0.3} className="left-5 right-5 top-[15%] sm:left-8 md:top-[16%]">
@@ -64,9 +64,9 @@ function OpenScene() {
           <SplitText
             text={SITE.fullName}
             letterClassName="hero-letter"
-            stagger={45}
+            stagger={28}
             trailing={
-              <span className="hero-letter inline-block text-accent" style={{ animationDelay: "650ms" }}>
+              <span className="hero-letter inline-block text-accent" style={{ animationDelay: "420ms" }}>
                 .
               </span>
             }
@@ -74,18 +74,11 @@ function OpenScene() {
         </h1>
       </Layer>
 
-      <Layer name="Role tag" enter="drop" depth={0.6} rotate={-6} drag intro={1} className="left-[46%] top-[11%] hidden md:block">
-        <Scrap tone="accent" seed={0.21} className="px-4 py-2 font-mono text-sm uppercase tracking-wider">
-          Design Engineer
-        </Scrap>
-        <Tape className="-top-3 left-1/3" rotate={4} />
-      </Layer>
-
-      <Layer name="Stamp" enter="spin" depth={0.9} intro={2} className="right-[6%] top-[52%] hidden w-36 md:block">
+      <Layer name="Stamp" enter="spin" depth={0.9} intro={1} className="right-[6%] top-[52%] hidden w-36 md:block">
         <Stamp text="EST · 2018 · BENGALURU · INDIA · " />
       </Layer>
 
-      <Layer name="Contact sheet" enter="right" depth={0.7} rotate={7} drag intro={3} className="right-[20%] top-[50%] hidden w-[24rem] lg:block">
+      <Layer name="Contact sheet" enter="right" depth={0.7} rotate={7} drag intro={2} className="right-[20%] top-[50%] hidden w-[24rem] lg:block">
         <FilmStrip>
           {filmFrames.slice(0, 3).map((f) => (
             <ShaderFrame key={f.title} seed={f.seed} src={f.src} alt={f.title} sizes="8rem" className="aspect-square flex-1" />

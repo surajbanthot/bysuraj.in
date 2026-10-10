@@ -94,19 +94,15 @@ body::after {
   font-style: italic;
 }
 
-/* Hero letters develop in: from a blurred, safelit negative to sharp ink. */
+/* Hero letters develop in: a soft focus-pull up to sharp ink. */
 .hero-letter {
-  animation: develop-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: develop-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 @keyframes develop-in {
   from {
     opacity: 0;
-    color: var(--accent);
-    filter: blur(14px);
-    transform: translateY(35%) rotate(4deg);
-  }
-  60% {
-    opacity: 1;
+    filter: blur(6px);
+    transform: translateY(12%);
   }
 }
 
@@ -177,12 +173,6 @@ body::after {
   position: absolute;
   inset: 0;
 }
-.story-wipe {
-  display: none;
-}
-.story-live .story-wipe {
-  display: block;
-}
 
 /* Layers lean toward the pointer by depth (--mx/--my set by StoryStage). */
 .layer-inner {
@@ -213,14 +203,14 @@ body::after {
   );
 }
 
-/* First scene assembles on load, before any scrolling. */
+/* First scene: supporting pieces fade in quietly after the name. */
 .collage-in {
-  animation: collage-in 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: collage-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 @keyframes collage-in {
   from {
     opacity: 0;
-    transform: translateY(48px) scale(0.9) rotate(-5deg);
+    transform: translateY(16px);
   }
 }
 

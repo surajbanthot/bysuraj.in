@@ -4,20 +4,20 @@ import { useEffect, useRef, useState } from "react";
 import { track } from "@vercel/analytics";
 import HeroBackdrop from "@/components/HeroBackdrop";
 import StoryTimeline from "@/components/StoryTimeline";
-import { tornEdge } from "@/components/Collage";
 import { Draggable, gsap, getLenis, useGSAP } from "@/lib/motion";
 import { storyStore } from "@/lib/storyStore";
 import type { StoryScene } from "@/lib/portfolioData";
 
-// How each layer arrives when its scene cuts in (data-enter on the Layer).
+// How each layer settles in when its scene starts (data-enter on the Layer).
+// Short, soft moves — the piece should glide between shots, not jump.
 const enterFrom: Record<string, gsap.TweenVars> = {
-  up: { y: 140, autoAlpha: 0 },
-  down: { y: -140, autoAlpha: 0 },
-  left: { x: -260, autoAlpha: 0 },
-  right: { x: 260, autoAlpha: 0 },
-  scale: { scale: 0.3, autoAlpha: 0 },
-  spin: { rotate: -120, scale: 0.4, autoAlpha: 0 },
-  drop: { y: -320, rotate: 18, autoAlpha: 0 },
+  up: { y: 48, autoAlpha: 0 },
+  down: { y: -48, autoAlpha: 0 },
+  left: { x: -64, autoAlpha: 0 },
+  right: { x: 64, autoAlpha: 0 },
+  scale: { scale: 0.92, autoAlpha: 0 },
+  spin: { rotate: -10, scale: 0.94, autoAlpha: 0 },
+  drop: { y: -56, rotate: 3, autoAlpha: 0 },
   fade: { autoAlpha: 0 },
 };
 
@@ -32,13 +32,12 @@ const timecode = (progress: number) => {
     .join(":");
 };
 
-const wipeTones = ["bg-accent", "bg-ink", "bg-paper-raised"];
-
 /**
  * Turns the scenes into one scroll-driven motion piece. The section is tall;
  * the stage inside it is sticky, and a single GSAP timeline scrubbed by
- * ScrollTrigger plays the scenes — layers fly in, drift with parallax, and
- * torn-paper wipes cut between shots.
+ * ScrollTrigger plays the scenes — each shot dissolves into the next (the
+ * outgoing layers drift up and fade while the incoming ones settle in), and
+ * layers drift with parallax while a shot holds.
  *
  * Without motion (reduced motion or no JS) none of this runs: the scenes
  * simply stack, fully composed, one per screen.
@@ -78,12 +77,10 @@ export default function StoryStage({ scenes, children }: { scenes: StoryScene[];
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         const root = section.current!;
         const sceneEls = gsap.utils.toArray<HTMLElement>("[data-scene]", root);
-        const wipes = gsap.utils.toArray<HTMLElement>("[data-wipe]", root);
         const sceneIds = sceneEls.map((el) => el.dataset.scene!);
 
         root.classList.add("story-live");
         gsap.set(sceneEls.slice(1), { autoAlpha: 0 });
-        gsap.set(wipes, { xPercent: -110 });
 
         // Hand-drawn marks in later scenes start undrawn.
         sceneEls.slice(1).forEach((scene) =>
@@ -104,7 +101,7 @@ export default function StoryStage({ scenes, children }: { scenes: StoryScene[];
             trigger: root,
             start: "top top",
             end: "bottom bottom",
-            scrub: 0.8,
+            scrub: 1.2,
             onToggle: (self) => storyStore.set({ inStage: self.isActive }),
             onUpdate: (self) => {
               if (playhead.current) playhead.current.style.left = `${self.progress * 100}%`;
@@ -126,22 +123,28 @@ export default function StoryStage({ scenes, children }: { scenes: StoryScene[];
         sceneEls.forEach((scene, i) => {
           const id = sceneIds[i];
           if (i > 0) {
-            // Torn-paper wipe: strips sweep across, the shot changes underneath.
-            const dir = i % 2 ? 1 : -1;
-            tl.fromTo(
-              wipes,
-              { xPercent: -110 * dir },
-              { xPercent: 0, duration: 0.16, stagger: 0.035, ease: "power2.in", immediateRender: false },
-            );
-            cuts.push(tl.duration());
-            tl.set(sceneEls[i - 1], { autoAlpha: 0 }).set(scene, { autoAlpha: 1 });
-            tl.to(wipes, { xPercent: 110 * dir, duration: 0.16, stagger: { each: 0.035, from: "end" }, ease: "power2.out" });
+            // Dissolve: the last shot drifts up and fades; the new one settles
+            // in underneath before the old one has fully gone, so there is
+            // never an empty (or bright) frame.
+            const prev = sceneEls[i - 1];
+            const cut = tl.duration();
+            tl.to(prev.querySelectorAll("[data-enter]"), {
+              y: "-=40",
+              autoAlpha: 0,
+              duration: 0.32,
+              stagger: 0.015,
+              ease: "power1.in",
+            }, cut);
+            cuts.push(cut + 0.24);
+            tl.set(scene, { autoAlpha: 1 }, cut + 0.22);
 
             scene.querySelectorAll<HTMLElement>("[data-enter]").forEach((layer, j) => {
-              keys.push(tl.duration() - 0.12 + j * 0.03);
-              tl.from(layer, { ...enterFrom[layer.dataset.enter ?? "up"], duration: 0.3 }, j === 0 ? "<0.04" : "<0.03");
+              const at = cut + 0.24 + j * 0.035;
+              keys.push(at);
+              tl.from(layer, { ...enterFrom[layer.dataset.enter ?? "up"], duration: 0.45, ease: "power2.out" }, at);
             });
-            tl.to(scene.querySelectorAll("[data-draw]"), { strokeDashoffset: 0, duration: 0.3, ease: "power1.inOut" }, "<0.05");
+            tl.to(scene.querySelectorAll("[data-draw]"), { strokeDashoffset: 0, duration: 0.4, ease: "power1.inOut" }, cut + 0.38);
+            tl.set(prev, { autoAlpha: 0 }, tl.duration());
           } else {
             cuts.push(0);
           }
@@ -153,6 +156,7 @@ export default function StoryStage({ scenes, children }: { scenes: StoryScene[];
             { y: (_: number, el: HTMLElement) => `-=${70 * Number(el.dataset.depth)}`, duration: 0.55, ease: "none" },
             id,
           );
+          tl.to(scene.querySelectorAll("[data-spin]"), { rotate: "+=90", duration: 0.55, ease: "none" }, id);
           scene.querySelectorAll<HTMLElement>("[data-move]").forEach((el) =>
             tl.to(el, { left: el.dataset.move, duration: 0.45, ease: "power3.inOut" }, id),
           );
@@ -275,17 +279,6 @@ export default function StoryStage({ scenes, children }: { scenes: StoryScene[];
       <div ref={stage} className="story-stage relative isolate">
         <HeroBackdrop />
         {children}
-
-        <div aria-hidden="true" className="story-wipe pointer-events-none absolute inset-0 z-20 overflow-hidden">
-          {wipeTones.map((tone, i) => (
-            <div
-              key={tone}
-              data-wipe
-              className={`paper absolute inset-y-0 -left-[10%] w-[120%] ${tone}`}
-              style={{ clipPath: tornEdge(0.31 + i * 0.23, { sides: ["left", "right"], depth: 3, steps: 18 }) }}
-            />
-          ))}
-        </div>
 
         {live && (
           <StoryTimeline

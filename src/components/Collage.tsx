@@ -65,7 +65,7 @@ export function Layer({ name, enter = "up", depth = 0.5, rotate = 0, drag, intro
         data-drag={drag || undefined}
         data-cursor={drag ? "Drag" : undefined}
         className={`${drag ? "touch-none" : ""} ${intro !== undefined ? "collage-in" : ""}`}
-        style={intro !== undefined ? { animationDelay: `${200 + intro * 90}ms` } : undefined}
+        style={intro !== undefined ? { animationDelay: `${900 + intro * 160}ms` } : undefined}
       >
         <div className="layer-inner" style={{ "--d": depth, rotate: `${rotate}deg` } as CSSProperties}>
           {children}
@@ -116,11 +116,11 @@ export function Halftone({ className = "", tone = "accent" }: { className?: stri
   return <div aria-hidden="true" className={`halftone halftone-${tone} rounded-full ${className}`} />;
 }
 
-/** A rubber stamp with text running round the rim. */
+/** A rubber stamp with text running round the rim. Turns as you scroll (data-spin). */
 export function Stamp({ text, className = "" }: { text: string; className?: string }) {
   const id = `stamp-${text.replace(/[^a-z]/gi, "").slice(0, 12)}`;
   return (
-    <svg viewBox="0 0 160 160" aria-hidden="true" className={`text-accent motion-safe:animate-[spin_28s_linear_infinite] ${className}`}>
+    <svg data-spin viewBox="0 0 160 160" aria-hidden="true" className={`text-accent ${className}`}>
       <defs>
         <path id={id} d="M80,80 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0" />
       </defs>
