@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this project is
 
-Personal portfolio website for Suraj — a design engineer who also shoots medium-format film and does cinematography/motion. A bold, motion-heavy **"Darkroom"** site that pitches him equally for **full-time roles** and **freelance commissions**. Hosted at bysuraj.in, deployed on Vercel.
+Personal portfolio website for Suraj — a design engineer who also shoots medium-format film and does cinematography/motion. The home page is **one scroll-driven motion piece**: a collage that tells how a piece of work gets made (brief → storyboard → design → animate → build → develop → final cut), with After Effects-style editor chrome. It pitches him equally for **full-time roles** and **freelance commissions**. Hosted at bysuraj.in, deployed on Vercel.
 
 ## Tech stack
 
@@ -54,25 +54,35 @@ Helpers: `.display` (Fraunces; goes soft/wonky/italic inside a `.display-hover` 
 
 Root layout: `<SmoothScroll />`, `<Cursor />`, `<EditorialNav />`, `{children}`, `<FooterBar />`, `<Analytics />`.
 
-- **`EditorialNav`** — fixed top bar (transparent until scrolled), anchor links (`/#id` on subpages via `usePathname`), IST clock, full-screen mobile menu.
+- **`EditorialNav`** — fixed top bar (transparent until scrolled), anchor links (`/#id` on subpages via `usePathname`) plus a Film page link, IST clock, full-screen mobile menu. Inside the story it highlights from `useStory()`.
 - **`SmoothScroll`** — Lenis driven by the GSAP ticker, synced to ScrollTrigger.
 - **`Cursor`** — lens ring for fine pointers; elements opt into a label with `data-cursor="View"`.
 - **`src/lib/motion.ts`** — registers GSAP plugins once; always import `gsap`/`ScrollTrigger`/`useGSAP` from here.
 
-Home (`src/app/page.tsx`): `HeroSection` → `WorkStrip` → `CapabilitiesSection` (Hire me / Commission me lanes) → `ExperienceSection` → `FilmTeaser` → `ContactSection`. Section ids match `navSections`.
+Home (`src/app/page.tsx`): `<StoryStage>` wrapping `<StoryScenes />`, then `CapabilitiesSection` (#services, "Two ways in"), `ExperienceSection` (#experience, styled as end credits), `ContactSection`. Acts are numbered continuously: 00–07 in the story, 08–10 after it.
 
-All content lives in **`src/lib/portfolioData.ts`** (SITE, projects, experience, lanes, filmFrames, camera, socials, navSections).
+All content lives in **`src/lib/portfolioData.ts`** (SITE, `storyScenes` copy, projects, experience, lanes, filmFrames, camera, socials, navSections).
+
+### The story stage
+
+- **`StoryScenes.tsx`** — one component per scene, each a `Scene` (`data-scene`, `id`) filled with collage `Layer`s plus a Copy layer. Scene copy comes from `storyScenes`; compositions (positions, rotations) live here.
+- **`Collage.tsx`** — the kit: `Layer`, `Scrap` (torn paper, `light`/`dark`/`accent`), `Tape`, `Halftone`, `Stamp`, `Scribble` (paths with `data-draw` are drawn on), `Keyframe`, `FilmStrip`, `tornEdge()` (seeded clip-path, deterministic for SSR).
+- **`Layer`** props drive everything: `enter` (how it arrives), `depth` (scroll drift + pointer parallax), `rotate`, `drag` (Draggable, fine pointers), `intro` (first-scene load animation), `name` (shown in keyframe view). It nests three boxes so the timeline (outer), Draggable/intro (middle) and parallax/rotation (inner) never share a transform — keep that structure.
+- **`StoryStage.tsx`** — builds one GSAP timeline scrubbed by ScrollTrigger over a tall section with a sticky stage (`.story-live` in globals.css). Per scene: torn-paper wipe → layers enter → label (`tl.addLabel(sceneId)`) → hold with depth drift. Also: pointer parallax via `--mx/--my`, scene-anchor clicks (`#work` etc.) redirected to `labelToScroll`, Play (Lenis `scrollTo` at a 60s runtime; any manual input stops it), keyframe view (`data-craft="on"`).
+- **`StoryTimeline.tsx`** — editor bar: play/pause, timecode, clickable scene markers, playhead, layer keyframe ticks, Keyframes toggle.
+- **`src/lib/storyStore.ts`** — `useStory()` lets the nav follow the active scene.
+- To add a scene: add copy to `storyScenes`, a composition in `StoryScenes.tsx`, and render it in order. Markers/timecode update automatically.
 
 ### WebGL & placeholders
 
-- `HeroBackdrop` always paints a CSS poster, then lazy-loads `HeroCanvas` (R3F fluid shader) via `next/dynamic` only when WebGL2 is available, `hardwareConcurrency >= 4` and motion is allowed. The canvas stops rendering offscreen. Keep three.js out of every other component.
+- `HeroBackdrop` (behind the stage) always paints a CSS poster, then lazy-loads `HeroCanvas` (R3F fluid shader) via `next/dynamic` only when WebGL2 is available, `hardwareConcurrency >= 4` and motion is allowed. The canvas stops rendering offscreen. Keep three.js out of every other component.
 - `ShaderFrame` renders a seeded, token-coloured CSS placeholder — or `next/image` once a `cover`/`src` exists. **To add real images:** drop files in `public/` and set `cover` on a project or `src` on a film frame.
 
 ### Motion rules
 
-- Reduced motion: no Lenis, no cursor, no WebGL, no pinning; `.reveal`/`.develop`/`.hero-letter`/marquee are neutralised in CSS. Gate GSAP work with `prefersReducedMotion()` or `gsap.matchMedia`.
-- The work strip pins and scrolls sideways only at `lg` + motion allowed; otherwise it's a vertical stack.
-- Hero text is server-rendered and animated with CSS (not GSAP) so it never flashes and stays the LCP element.
+- Reduced motion (or no JS): no `.story-live`, so scenes stack one per screen, fully composed, with no timeline, wipes, Lenis, cursor, dragging or WebGL. `.reveal`/`.develop`/`.hero-letter`/`.collage-in`/marquee are neutralised in CSS. Gate GSAP work with `gsap.matchMedia` or `prefersReducedMotion()`.
+- Lenis is exposed via `getLenis()` in `src/lib/motion.ts` for programmatic scrolls; import gsap/ScrollTrigger/Draggable/useGSAP from there.
+- The first scene's name is server-rendered and animated with CSS (not GSAP) so it never flashes and stays the LCP element.
 - Don't `setState` synchronously in effects for environment checks — use `useSyncExternalStore` (see `Cursor`, `HeroBackdrop`).
 
 ## Key conventions
@@ -85,7 +95,7 @@ All content lives in **`src/lib/portfolioData.ts`** (SITE, projects, experience,
 
 | Route | Notes |
 |-------|-------|
-| `/` | Home — hero, work, two lanes, experience, film teaser, contact |
+| `/` | Home — the scroll-driven story (00–07), then services, credits, contact |
 | `/work/[slug]` | Case study, statically generated from `projects` |
 | `/film` | Film contact sheet |
 | `/api/send` | Resend email endpoint (Contact form) |

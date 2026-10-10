@@ -228,11 +228,82 @@ export const camera = {
   note: "A 6×7 system that handles like a large SLR and is built like a tank. Ten frames a roll makes every frame count.",
 };
 
-// Anchor sections on the home page (ids match each <section id>).
+export type StoryScene = {
+  id: string;
+  act: string;
+  /** Short name shown on the timeline marker. */
+  marker: string;
+  title: string;
+  body: string;
+};
+
+// The home page is one scroll-driven motion piece: how a piece of work gets
+// made, told as a collage. Each scene's composition lives in StoryScenes.tsx.
+export const storyScenes: StoryScene[] = [
+  {
+    id: "open",
+    act: "00",
+    marker: "Open",
+    title: SITE.headline,
+    body: "Every piece starts as a pile of ideas. Scroll to watch one come together.",
+  },
+  {
+    id: "brief",
+    act: "01",
+    marker: "Brief",
+    title: "It starts with a brief, not a pixel.",
+    body: "First I listen. Who is this for, what has to change, and how will we know it worked? Good motion and good interfaces both start with the story they need to tell.",
+  },
+  {
+    id: "storyboard",
+    act: "02",
+    marker: "Storyboard",
+    title: "Then I storyboard it.",
+    body: "Flows, beats and transitions are sketched before anything gets polished. For a product that's the user journey; for a film it's the shot list. It's the same discipline.",
+  },
+  {
+    id: "design",
+    act: "03",
+    marker: "Design",
+    title: "Design the system, not just the screen.",
+    body: "Type, colour, components and accessibility, so every screen and every frame comes from one kit. I've built this at Microsoft Teams scale.",
+  },
+  {
+    id: "animate",
+    act: "04",
+    marker: "Animate",
+    title: "Then it moves.",
+    body: "Easing, timing and choreography make an interface feel alive and keep a story moving. After Effects for film; Rive, GSAP and WebGL for the web.",
+  },
+  {
+    id: "build",
+    act: "05",
+    marker: "Build",
+    title: "And then I ship it.",
+    body: "Production React, Next.js and TypeScript, and now conversational AI: RAG pipelines and LLM interfaces built end to end.",
+  },
+  {
+    id: "develop",
+    act: "06",
+    marker: "Develop",
+    title: "Off screen, I shoot film.",
+    body: "A Pentax 67II and ten frames a roll. Film keeps my eye honest: every frame has to earn its place.",
+  },
+  {
+    id: "work",
+    act: "07",
+    marker: "Final cut",
+    title: "The final cut.",
+    body: "Three projects, from brief to ship. Open any one for the full story.",
+  },
+];
+
+// Home anchors. "top" and "work" live inside the story stage; the rest are
+// regular sections after it.
 export const navSections = [
+  { id: "top", label: "Story" },
   { id: "work", label: "Work" },
   { id: "services", label: "Services" },
-  { id: "experience", label: "Experience" },
-  { id: "film", label: "Film" },
+  { id: "experience", label: "Credits" },
   { id: "contact", label: "Contact" },
 ] as const;

@@ -9,7 +9,7 @@
 ## Goal
 
 1. Win **full-time design-engineer / product-engineer roles** and **freelance commissions** in equal measure.
-2. Prove design-engineering range through the site itself: motion, WebGL, typography, performance and accessibility together.
+2. Prove design-engineering and motion-graphics range through the site itself: the home page is told the way a motion piece is cut, a collage that keeps the story moving.
 3. Stay easy to update. All content lives in `src/lib/portfolioData.ts`.
 
 ## Positioning
@@ -26,7 +26,7 @@ Two lanes, equal weight:
 
 | Route | Content |
 |---|---|
-| `/` | WebGL hero, pinned horizontal work strip, two lanes, experience timeline, film teaser, contact form with Hire/Commission toggle |
+| `/` | One scroll-driven motion piece: a collage telling how work gets made (brief → storyboard → design → animate → build → develop → final cut), with an editor timeline (play, scene markers, keyframe view). Then two lanes, end-credits experience, and a contact form with a Hire/Commission toggle |
 | `/work/[slug]` | Case study: problem, approach, outcome, tags, next case |
 | `/film` | Contact-sheet gallery where frames develop from negative on scroll |
 | `/api/send` | Resend email endpoint |

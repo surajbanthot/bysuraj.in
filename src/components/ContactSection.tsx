@@ -67,7 +67,7 @@ export default function ContactSection() {
     <section id="contact" className="relative overflow-hidden border-t border-border">
       <div className="mx-auto w-full max-w-7xl px-5 py-24 sm:px-8 sm:py-36">
         <Reveal>
-          <span className="label text-accent">05 — Contact</span>
+          <span className="label text-accent">10 — Contact</span>
           <h2 className="display mt-6 text-[15vw] leading-[0.85] text-ink lg:text-[11rem]">
             Let&apos;s make <em className="text-accent">something.</em>
           </h2>

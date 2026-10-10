@@ -1,18 +1,18 @@
-import HeroSection from "@/components/HeroSection";
-import WorkStrip from "@/components/WorkStrip";
+import StoryStage from "@/components/StoryStage";
+import StoryScenes from "@/components/StoryScenes";
 import CapabilitiesSection from "@/components/CapabilitiesSection";
 import ExperienceSection from "@/components/ExperienceSection";
-import FilmTeaser from "@/components/FilmTeaser";
 import ContactSection from "@/components/ContactSection";
+import { storyScenes } from "@/lib/portfolioData";
 
 export default function Home() {
   return (
     <main>
-      <HeroSection />
-      <WorkStrip />
+      <StoryStage scenes={storyScenes}>
+        <StoryScenes />
+      </StoryStage>
       <CapabilitiesSection />
       <ExperienceSection />
-      <FilmTeaser />
       <ContactSection />
     </main>
   );

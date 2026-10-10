@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import IstClock from "@/components/IstClock";
 import { SITE, navSections } from "@/lib/portfolioData";
+import { useStory } from "@/lib/storyStore";
 
 export default function EditorialNav() {
   const pathname = usePathname();
@@ -12,6 +13,7 @@ export default function EditorialNav() {
   const [active, setActive] = useState<string>("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const story = useStory();
 
   // Anchors work from any page: in-page on home, /#id elsewhere.
   const hrefFor = (id: string) => (onHome ? `#${id}` : `/#${id}`);
@@ -44,7 +46,11 @@ export default function EditorialNav() {
     return () => observer.disconnect();
   }, [onHome]);
 
-  const current = onHome ? active : pathname.startsWith("/film") ? "film" : pathname.startsWith("/work") ? "work" : "";
+  // Inside the live story stage, follow the scene on screen; elsewhere, the section in view.
+  // ("top" and "work" are both inside the stage, so the observer can't tell them apart.)
+  const inStory = story.live && (story.inStage || active === "" || active === "top" || active === "work");
+  const homeCurrent = inStory ? (story.scene === "work" ? "work" : "top") : active;
+  const current = onHome ? homeCurrent : pathname.startsWith("/film") ? "film" : pathname.startsWith("/work") ? "work" : "";
 
   return (
     <header
@@ -75,6 +81,15 @@ export default function EditorialNav() {
                 </a>
               </li>
             ))}
+            <li>
+              <Link
+                href="/film"
+                aria-current={current === "film" ? "page" : undefined}
+                className={`label transition-colors hover:!text-ink ${current === "film" ? "!text-accent" : ""}`}
+              >
+                Film
+              </Link>
+            </li>
           </ul>
           <IstClock className="label tabular-nums" />
         </div>
@@ -105,6 +120,12 @@ export default function EditorialNav() {
                 </a>
               </li>
             ))}
+            <li className="border-b border-border">
+              <Link href="/film" onClick={() => setMenuOpen(false)} className="flex items-baseline gap-4 py-4">
+                <span className="label">{String(navSections.length + 1).padStart(2, "0")}</span>
+                <span className="display text-5xl text-ink">Film</span>
+              </Link>
+            </li>
           </ul>
           <IstClock className="label mt-6 block" />
         </div>

@@ -1,35 +1,44 @@
 import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
-import { experience } from "@/lib/portfolioData";
+import { SITE, experience } from "@/lib/portfolioData";
 
+/** Experience as the piece's end credits. */
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="mx-auto w-full max-w-7xl px-5 py-24 sm:px-8 sm:py-36">
-      <SectionHeading no="03" title="Experience" kicker={`${experience.length} roles · since 2018`} />
+    <section id="experience" className="px-5 py-24 sm:px-8 sm:py-36">
+      <div className="mx-auto max-w-3xl text-center">
+        <Reveal>
+          <p className="label text-accent">09 — Credits</p>
+          <h2 className="display mt-4 text-6xl leading-none text-ink sm:text-8xl">
+            In order of <em className="text-accent">appearance</em>
+          </h2>
+        </Reveal>
 
-      <ol className="mt-6">
-        {experience.map((job, i) => (
-          <Reveal as="li" key={job.org} delay={i * 60}>
-            <div className="display-hover group grid gap-2 border-b border-border py-7 transition-colors hover:bg-paper-raised/50 md:grid-cols-12 md:items-baseline md:gap-6 md:px-4">
-              <span className="label md:col-span-2">{job.period}</span>
-              <h3 className="display text-3xl leading-tight text-ink sm:text-4xl md:col-span-4">
-                {job.org}
-                {job.current && (
-                  <span className="label ml-3 align-middle !text-accent">Now</span>
-                )}
-              </h3>
-              <span className="font-mono text-sm uppercase tracking-wider text-muted md:col-span-2">
-                {job.role}
-              </span>
-              <p className="leading-relaxed text-muted md:col-span-4">{job.note}</p>
-            </div>
-          </Reveal>
-        ))}
-      </ol>
+        <dl className="mt-20 space-y-14">
+          {experience.map((job) => (
+            <Reveal key={job.org}>
+              <div className="display-hover group">
+                <dt className="label">
+                  {job.role} · {job.period}
+                </dt>
+                <dd className="display mt-3 text-4xl text-ink sm:text-5xl">
+                  {job.org}
+                  {job.current && <span className="label ml-3 align-middle !text-accent">Now</span>}
+                </dd>
+                <dd className="mx-auto mt-3 max-w-lg leading-relaxed text-muted">{job.note}</dd>
+              </div>
+            </Reveal>
+          ))}
+        </dl>
 
-      <Reveal className="mt-6">
-        <p className="label">B.E. Information Science — Ramaiah Institute of Technology, 2018</p>
-      </Reveal>
+        <Reveal className="mt-24 border-t border-border pt-14">
+          <p className="label">Written, designed, animated &amp; built by</p>
+          <p className="display mt-3 text-5xl text-ink sm:text-6xl">
+            {SITE.fullName}
+            <span className="text-accent">.</span>
+          </p>
+          <p className="label mt-6">B.E. Information Science — Ramaiah Institute of Technology, 2018</p>
+        </Reveal>
+      </div>
     </section>
   );
 }

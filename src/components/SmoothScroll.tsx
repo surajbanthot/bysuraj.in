@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
-import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/motion";
+import { gsap, ScrollTrigger, prefersReducedMotion, setLenis } from "@/lib/motion";
 
 /**
  * Lenis smooth scroll, driven by the GSAP ticker so ScrollTrigger pins and
@@ -14,6 +14,7 @@ export default function SmoothScroll() {
 
     const lenis = new Lenis({ lerp: 0.1, anchors: { offset: -72 } });
     lenis.on("scroll", ScrollTrigger.update);
+    setLenis(lenis);
 
     const tick = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(tick);
@@ -21,6 +22,7 @@ export default function SmoothScroll() {
 
     return () => {
       gsap.ticker.remove(tick);
+      setLenis(null);
       lenis.destroy();
     };
   }, []);
