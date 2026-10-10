@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import IstClock from "@/components/IstClock";
+import IstClock from "@/components/atoms/IstClock";
 import { SITE, navSections } from "@/lib/portfolioData";
 import { useStory } from "@/lib/storyStore";
 

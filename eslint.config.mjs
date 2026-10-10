@@ -15,6 +15,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // vinext / Cloudflare build output
+    "dist/**",
+    ".vinext/**",
+    ".wrangler/**",
+    // Static Storybook build
+    "storybook-static/**",
   ]),
   ...storybook.configs["flat/recommended"]
 ]);

@@ -4,8 +4,8 @@ import dynamic from "next/dynamic";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { prefersReducedMotion } from "@/lib/motion";
 
-// three.js only loads on capable devices, after hydration.
-const HeroCanvas = dynamic(() => import("@/components/HeroCanvas"), { ssr: false });
+// The WebGL shader only loads on capable devices, after hydration.
+const HeroCanvas = dynamic(() => import("@/components/motion/HeroCanvas"), { ssr: false });
 
 const noopSubscribe = () => () => {};
 

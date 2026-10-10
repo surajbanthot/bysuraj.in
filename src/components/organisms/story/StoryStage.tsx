@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { track } from "@vercel/analytics";
-import HeroBackdrop from "@/components/HeroBackdrop";
-import StoryTimeline from "@/components/StoryTimeline";
+import HeroBackdrop from "@/components/motion/HeroBackdrop";
+import StoryTimeline from "@/components/organisms/story/StoryTimeline";
 import { Draggable, gsap, getLenis, useGSAP } from "@/lib/motion";
 import { storyStore } from "@/lib/storyStore";
 import type { StoryScene } from "@/lib/portfolioData";

@@ -1,5 +1,7 @@
-import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
+import Button from "@/components/atoms/Button";
+import { isExternal } from "@/components/atoms/Anchor";
+import SectionHeading from "@/components/molecules/SectionHeading";
+import Reveal from "@/components/motion/Reveal";
 import { lanes } from "@/lib/portfolioData";
 
 /** Two lanes, equal weight: hire me full-time, or commission me. */
@@ -31,25 +33,16 @@ export default function CapabilitiesSection() {
               </ul>
 
               <div className="mt-auto flex flex-wrap gap-3 pt-10">
-                {lane.cta.map((cta, c) => {
-                  const external = cta.href.startsWith("http");
-                  return (
-                    <a
-                      key={cta.label}
-                      href={cta.href}
-                      target={external ? "_blank" : undefined}
-                      rel={external ? "noreferrer" : undefined}
-                      className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-mono text-sm uppercase tracking-wider transition-colors ${
-                        c === 0
-                          ? "bg-ink text-paper hover:bg-accent"
-                          : "border border-border text-ink hover:border-accent hover:text-accent"
-                      }`}
-                    >
-                      {cta.label}
-                      <span aria-hidden="true">{external ? "↗" : "→"}</span>
-                    </a>
-                  );
-                })}
+                {lane.cta.map((cta, c) => (
+                  <Button
+                    key={cta.label}
+                    href={cta.href}
+                    variant={c === 0 ? "primary" : "outline"}
+                    icon={isExternal(cta.href) ? "↗" : "→"}
+                  >
+                    {cta.label}
+                  </Button>
+                ))}
               </div>
             </article>
           </Reveal>

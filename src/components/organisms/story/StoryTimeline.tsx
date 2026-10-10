@@ -1,6 +1,7 @@
 "use client";
 
 import type { RefObject } from "react";
+import Button from "@/components/atoms/Button";
 import type { StoryScene } from "@/lib/portfolioData";
 
 type StoryTimelineProps = {
@@ -39,21 +40,20 @@ export default function StoryTimeline({
   playheadRef,
   timecodeRef,
 }: StoryTimelineProps) {
-  const button =
-    "inline-flex h-9 shrink-0 items-center gap-2 rounded-full border px-3 font-mono text-sm uppercase tracking-wider transition-colors";
-
   return (
     <div className="absolute inset-x-0 bottom-0 z-30 border-t border-border bg-paper/85 backdrop-blur-md">
       <div className="mx-auto flex w-full max-w-7xl items-center gap-3 px-5 py-3 sm:gap-5 sm:px-8">
         {canPlay && (
-          <button
-            type="button"
+          <Button
+            size="sm"
+            variant="outline"
+            iconOnly
+            pressed={playing}
             onClick={onTogglePlay}
             aria-label={playing ? "Pause the reel" : "Play the reel"}
-            className={`${button} w-9 justify-center !px-0 ${playing ? "border-accent bg-accent text-paper" : "border-border text-ink hover:border-accent"}`}
           >
             <span aria-hidden="true">{playing ? "❚❚" : "▶"}</span>
-          </button>
+          </Button>
         )}
 
         <span ref={timecodeRef} className="hidden font-mono text-sm tabular-nums text-ink sm:inline" aria-hidden="true">
@@ -110,15 +110,10 @@ export default function StoryTimeline({
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={onToggleCraft}
-          aria-pressed={craft}
-          className={`${button} ${craft ? "border-accent bg-accent text-paper" : "border-border text-ink hover:border-accent"}`}
-        >
+        <Button size="sm" variant="outline" pressed={craft} onClick={onToggleCraft}>
           <span aria-hidden="true">◇</span>
           <span className="hidden sm:inline">Keyframes</span>
-        </button>
+        </Button>
       </div>
     </div>
   );

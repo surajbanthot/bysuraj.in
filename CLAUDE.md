@@ -11,7 +11,7 @@ Personal portfolio website for Suraj — a design engineer who also shoots mediu
 - **Framework:** Next.js 16 (App Router) + React 19 + TypeScript (strict)
 - **Styling:** Tailwind CSS 4 + tokens/helpers in `src/app/globals.css`
 - **Motion:** GSAP + ScrollTrigger (`@gsap/react`), Lenis smooth scroll
-- **WebGL:** three + `@react-three/fiber` (hero shader only, lazy-loaded)
+- **WebGL:** one hand-written WebGL2 fragment shader (`HeroCanvas`), lazy-loaded — no 3D library
 - **Email:** Resend (via `/api/send` route)
 - **Analytics:** Vercel Analytics (`track()` calls placed directly in event handlers)
 - **Fonts:** Geist (body), Geist Mono (labels), Fraunces variable with `SOFT`/`WONK`/`opsz` axes (`--font-display`) — loaded via `next/font` in `layout.tsx`
@@ -26,7 +26,12 @@ npm run start        # Start production server
 npm run lint         # ESLint (flat config, eslint.config.mjs)
 ```
 
-Storybook and Vitest are configured for component development and testing.
+```bash
+npm run storybook        # Component library (localhost:6006)
+npm run build-storybook  # Static Storybook build
+```
+
+Storybook documents every atom and molecule (stories sit next to each component as `*.stories.tsx`). It uses its own `.storybook/vite.config.ts` — the root `vite.config.ts` is the vinext/Cloudflare build and must not be loaded by Storybook. Vitest runs stories as tests via `@storybook/addon-vitest` (needs Playwright's Chromium: `npx playwright install chromium`).
 
 ## Environment
 
@@ -50,6 +55,26 @@ Helpers: `.display` (Fraunces; goes soft/wonky/italic inside a `.display-hover` 
 
 **Type floor:** nothing smaller than 13px. `.label` is 13px; mono buttons/tags use `text-sm`. Don't use `text-xs` or arbitrary sub-`0.8rem` sizes.
 
+## Component architecture — atomic design
+
+`src/components/` follows atomic design. Put new components at the lowest level that fits, and build upward from existing pieces:
+
+| Folder | What lives there | Examples |
+|---|---|---|
+| `atoms/` | Smallest UI pieces; no other components except `Anchor` | `Anchor`, `Button`, `TextLink`, `Tag`, `Kicker`, `Tape`, `Halftone`, `Stamp`, `Scribble`, `Keyframe`, `IstClock`, `SplitText` |
+| `molecules/` | Small compositions of atoms | `Scrap`, `FilmStrip`, `ShaderFrame`, `SectionHeading`, `FormField`, `CaseCard`, `FilmFrameCard` |
+| `organisms/` | Page sections and site chrome | `EditorialNav`, `FooterBar`, `CapabilitiesSection`, `ExperienceSection`, `ContactSection`, `story/` (stage, timeline, `scenes/*Scene.tsx`) |
+| `templates/` | Page/frame layouts with slots | `SubpageShell` (/film, /work/[slug]), `Scene` (+ `SceneCopy`) |
+| `motion/` | Behaviour, not visuals — scroll, cursor, reveal, WebGL | `SmoothScroll`, `Cursor`, `Reveal`, `Layer`, `HeroBackdrop`, `HeroCanvas` |
+| `src/app/**` | Pages (Next.js routes) | |
+
+Rules:
+- **Use the atoms instead of re-styling.** Pill buttons → `Button` (`variant` primary/outline/accent/quiet, `size` sm/md/lg, `pressed` for toggles, `href` makes it a link). Links → `Anchor`/`TextLink` (external URLs get `target=_blank` automatically; never hand-write `rel`). Section/act labels → `Kicker` (`no="09"`). Chips → `Tag`. Form inputs → `FormField`.
+- A component may import only from its own level or below (atoms never import molecules, etc.). `motion/` and `templates/` can be used by any level that needs them.
+- Import by full path (`@/components/atoms/Button`) — no barrel `index.ts` files.
+- Every atom and molecule gets a colocated `*.stories.tsx`.
+- Hooks and helpers live in `src/lib/` (`useInView`, `tornEdge`, `fonts`, `motion`, `storyStore`).
+
 ## Architecture
 
 Root layout: `<SmoothScroll />`, `<Cursor />`, `<EditorialNav />`, `{children}`, `<FooterBar />`, `<Analytics />`.
@@ -65,17 +90,17 @@ All content lives in **`src/lib/portfolioData.ts`** (SITE, `storyScenes` copy, p
 
 ### The story stage
 
-- **`StoryScenes.tsx`** — one component per scene, each a `Scene` (`data-scene`, `id`) filled with collage `Layer`s plus a Copy layer. Scene copy comes from `storyScenes`; compositions (positions, rotations) live here.
-- **`Collage.tsx`** — the kit: `Layer`, `Scrap` (torn paper, `light`/`dark`/`accent`), `Tape`, `Halftone`, `Stamp`, `Scribble` (paths with `data-draw` are drawn on), `Keyframe`, `FilmStrip`, `tornEdge()` (seeded clip-path, deterministic for SSR).
-- **`Layer`** props drive everything: `enter` (how it arrives), `depth` (scroll drift + pointer parallax), `rotate`, `drag` (Draggable, fine pointers), `intro` (first-scene load animation), `name` (shown in keyframe view). It nests three boxes so the timeline (outer), Draggable/intro (middle) and parallax/rotation (inner) never share a transform — keep that structure.
-- **`StoryStage.tsx`** — builds one GSAP timeline scrubbed by ScrollTrigger over a tall section with a sticky stage (`.story-live` in globals.css). Per scene: dissolve (outgoing layers drift up and fade, incoming layers settle in with short, soft moves — no full-screen wipes or flashes) → label (`tl.addLabel(sceneId)`) → hold with depth drift; stamps (`data-spin`) turn with scroll. Also: pointer parallax via `--mx/--my`, scene-anchor clicks (`#work` etc.) redirected to `labelToScroll`, Play (Lenis `scrollTo` at a 60s runtime; any manual input stops it), keyframe view (`data-craft="on"`).
-- **`StoryTimeline.tsx`** — editor bar: play/pause, timecode, clickable scene markers, playhead, layer keyframe ticks, Keyframes toggle.
+- **`organisms/story/scenes/*Scene.tsx`** — one file per scene, each a `Scene` template (`data-scene`, `id`) filled with collage `Layer`s plus a Copy layer. Scene copy comes from `storyScenes` (via `getScene(id)`); compositions (positions, rotations) live in the scene file. `StoryScenes.tsx` renders them in order.
+- **Collage kit** — atoms `Tape`, `Halftone`, `Stamp`, `Scribble` (paths with `data-draw` are drawn on), `Keyframe`; molecules `Scrap` (torn paper, `light`/`dark`/`accent`), `FilmStrip`, `CaseCard`; `tornEdge()` in `src/lib/tornEdge.ts` (seeded clip-path, deterministic for SSR).
+- **`motion/Layer`** props drive everything: `enter` (how it arrives), `depth` (scroll drift + pointer parallax), `rotate`, `drag` (Draggable, fine pointers), `intro` (first-scene load animation), `name` (shown in keyframe view). It nests three boxes so the timeline (outer), Draggable/intro (middle) and parallax/rotation (inner) never share a transform — keep that structure.
+- **`organisms/story/StoryStage.tsx`** — builds one GSAP timeline scrubbed by ScrollTrigger over a tall section with a sticky stage (`.story-live` in globals.css). Per scene: dissolve (outgoing layers drift up and fade, incoming layers settle in with short, soft moves — no full-screen wipes or flashes) → label (`tl.addLabel(sceneId)`) → hold with depth drift; stamps (`data-spin`) turn with scroll. Also: pointer parallax via `--mx/--my`, scene-anchor clicks (`#work` etc.) redirected to `labelToScroll`, Play (Lenis `scrollTo` at a 60s runtime; any manual input stops it), keyframe view (`data-craft="on"`).
+- **`organisms/story/StoryTimeline.tsx`** — editor bar: play/pause, timecode, clickable scene markers, playhead, layer keyframe ticks, Keyframes toggle.
 - **`src/lib/storyStore.ts`** — `useStory()` lets the nav follow the active scene.
-- To add a scene: add copy to `storyScenes`, a composition in `StoryScenes.tsx`, and render it in order. Markers/timecode update automatically.
+- To add a scene: add copy to `storyScenes`, create `organisms/story/scenes/<Name>Scene.tsx`, and render it in order in `StoryScenes.tsx`. Markers/timecode update automatically.
 
 ### WebGL & placeholders
 
-- `HeroBackdrop` (behind the stage) always paints a CSS poster, then lazy-loads `HeroCanvas` (R3F fluid shader) via `next/dynamic` only when WebGL2 is available, `hardwareConcurrency >= 4` and motion is allowed. The canvas stops rendering offscreen. Keep three.js out of every other component.
+- `HeroBackdrop` (behind the stage) always paints a CSS poster, then lazy-loads `HeroCanvas` (a plain WebGL2 fluid shader on a full-screen triangle) via `next/dynamic` only when WebGL2 is available, `hardwareConcurrency >= 4` and motion is allowed. The canvas stops rendering offscreen. Don't add three.js/R3F for this — one quad doesn't need ~900 KB.
 - `ShaderFrame` renders a seeded, token-coloured CSS placeholder — or `next/image` once a `cover`/`src` exists. **To add real images:** drop files in `public/` and set `cover` on a project or `src` on a film frame.
 
 ### Motion rules
@@ -90,6 +115,7 @@ All content lives in **`src/lib/portfolioData.ts`** (SITE, `storyScenes` copy, p
 - `"use client"` only for components with hooks/events/browser APIs
 - Never hardcode hex — use tokens / Tailwind token utilities
 - `SITE.resume` points to `public/Suraj-Banthot-Resume.pdf` — add that file or the Résumé CTA 404s
+- Pages are static: metadata is static (`metadataBase` = `SITE.url`, never `headers()`), and each page exports `dynamic = "force-static"` so both Next and vinext prerender it. Keep builds and `npm run lint` warning-free (lint ignores `dist/`, `.vinext/`, `.wrangler/`)
 
 ## Routes
 
@@ -117,10 +143,10 @@ These rules define how to translate Figma inputs into code for this project. Fol
 
 ### Component Organization
 
-- UI components live in `src/components/` — flat structure, PascalCase filenames (e.g. `MyCard.tsx`)
+- UI components live in `src/components/` organised by atomic design (`atoms/`, `molecules/`, `organisms/`, `templates/`, `motion/` — see **Component architecture**), PascalCase filenames (e.g. `molecules/MyCard.tsx`)
 - Page files live in `src/app/<route>/page.tsx` (Next.js App Router)
 - Shared utilities/hooks live in `src/lib/`
-- IMPORTANT: Check `src/components/` for an existing component before creating a new one
+- IMPORTANT: Check `src/components/` (and Storybook) for an existing atom/molecule before creating a new one; map Figma components to the matching atomic level
 
 ### Styling Rules
 

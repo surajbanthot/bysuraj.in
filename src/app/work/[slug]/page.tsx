@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Reveal from "@/components/Reveal";
-import ShaderFrame from "@/components/ShaderFrame";
+import Kicker from "@/components/atoms/Kicker";
+import Tag from "@/components/atoms/Tag";
+import ShaderFrame from "@/components/molecules/ShaderFrame";
+import Reveal from "@/components/motion/Reveal";
+import SubpageShell from "@/components/templates/SubpageShell";
 import { getProject, projects } from "@/lib/portfolioData";
 
 type Params = { params: Promise<{ slug: string }> };
+
+// No request-time data: prerender at build (also lets vinext classify the route).
+export const dynamic = "force-static";
 
 export const dynamicParams = false;
 
@@ -31,17 +37,15 @@ export default async function CasePage({ params }: Params) {
   const next = projects[(index + 1) % projects.length];
 
   return (
-    <main id="top" className="pt-28">
-      <article className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+    <SubpageShell after={<NextCase slug={next.slug} title={next.title} />}>
+      <article>
         <Link href="/#work" className="label transition-colors hover:!text-accent">
           ← All work
         </Link>
 
         <header className="mt-10 grid gap-8 md:grid-cols-12">
           <div className="md:col-span-9">
-            <p className="label text-accent">
-              Case {project.no} — {project.client}
-            </p>
+            <Kicker no={`Case ${project.no}`}>{project.client}</Kicker>
             <h1 className="display hero-letter mt-5 text-6xl leading-[0.9] text-ink sm:text-8xl">
               {project.title}
             </h1>
@@ -74,11 +78,8 @@ export default async function CasePage({ params }: Params) {
           <Reveal className="md:col-span-4 md:col-start-9" delay={100}>
             <ul className="flex flex-wrap gap-2">
               {project.tags.map((tag) => (
-                <li
-                  key={tag}
-                  className="rounded-full border border-border px-3 py-1 font-mono text-sm uppercase tracking-wider text-muted"
-                >
-                  {tag}
+                <li key={tag}>
+                  <Tag>{tag}</Tag>
                 </li>
               ))}
             </ul>
@@ -94,7 +95,7 @@ export default async function CasePage({ params }: Params) {
                 <ol className="space-y-4">
                   {project.approach.map((step, i) => (
                     <li key={i} className="flex gap-4">
-                      <span className="label pt-1.5 text-accent">{String(i + 1).padStart(2, "0")}</span>
+                      <Kicker as="span" no={String(i + 1).padStart(2, "0")} className="pt-1.5" />
                       <span>{step}</span>
                     </li>
                   ))}
@@ -117,24 +118,29 @@ export default async function CasePage({ params }: Params) {
           my contribution without private product details.
         </p>
       </article>
+    </SubpageShell>
+  );
+}
 
-      <Link
-        href={`/work/${next.slug}`}
-        data-cursor="Next"
-        className="display-hover group mt-28 block border-t border-border"
-      >
-        <div className="mx-auto flex w-full max-w-7xl items-end justify-between gap-6 px-5 py-16 sm:px-8 sm:py-24">
-          <div>
-            <span className="label">Next case</span>
-            <p className="display mt-4 text-5xl leading-none text-ink transition-colors group-hover:text-accent sm:text-8xl">
-              {next.title}
-            </p>
-          </div>
-          <span aria-hidden="true" className="display text-6xl text-accent transition-transform group-hover:translate-x-2">
-            →
-          </span>
+/** Full-bleed link to the next case study, below the article. */
+function NextCase({ slug, title }: { slug: string; title: string }) {
+  return (
+    <Link
+      href={`/work/${slug}`}
+      data-cursor="Next"
+      className="display-hover group mt-28 block border-t border-border"
+    >
+      <div className="mx-auto flex w-full max-w-7xl items-end justify-between gap-6 px-5 py-16 sm:px-8 sm:py-24">
+        <div>
+          <span className="label">Next case</span>
+          <p className="display mt-4 text-5xl leading-none text-ink transition-colors group-hover:text-accent sm:text-8xl">
+            {title}
+          </p>
         </div>
-      </Link>
-    </main>
+        <span aria-hidden="true" className="display text-6xl text-accent transition-transform group-hover:translate-x-2">
+          →
+        </span>
+      </div>
+    </Link>
   );
 }

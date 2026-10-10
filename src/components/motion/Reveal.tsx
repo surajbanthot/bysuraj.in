@@ -1,6 +1,6 @@
 "use client";
 
-import { useInView } from "@/components/useInView";
+import { useInView } from "@/lib/useInView";
 
 type RevealProps = {
   children: React.ReactNode;

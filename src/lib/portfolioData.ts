@@ -9,6 +9,8 @@ export const SITE = {
   intro:
     "Eight years shipping React at Microsoft Teams scale, now building conversational AI. On the side I make motion work and shoot medium-format film.",
   location: "Bengaluru, India",
+  /** Canonical origin — used for metadata, OG images and canonical URLs. */
+  url: "https://bysuraj.in",
   email: "surajcommercial@gmail.com",
   contra: "https://contra.com/suraj_kumar_b_c_0uicot57",
   instagram: "https://www.instagram.com/bysuraj.in/",
@@ -297,6 +299,12 @@ export const storyScenes: StoryScene[] = [
     body: "Three projects, from brief to ship. Open any one for the full story.",
   },
 ];
+
+export const getScene = (id: string) => {
+  const scene = storyScenes.find((s) => s.id === id);
+  if (!scene) throw new Error(`Unknown story scene: ${id}`);
+  return scene;
+};
 
 // Home anchors. "top" and "work" live inside the story stage; the rest are
 // regular sections after it.

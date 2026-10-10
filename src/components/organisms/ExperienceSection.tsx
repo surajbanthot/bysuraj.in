@@ -1,4 +1,5 @@
-import Reveal from "@/components/Reveal";
+import Kicker from "@/components/atoms/Kicker";
+import Reveal from "@/components/motion/Reveal";
 import { SITE, experience } from "@/lib/portfolioData";
 
 /** Experience as the piece's end credits. */
@@ -7,7 +8,7 @@ export default function ExperienceSection() {
     <section id="experience" className="px-5 py-24 sm:px-8 sm:py-36">
       <div className="mx-auto max-w-3xl text-center">
         <Reveal>
-          <p className="label text-accent">09 — Credits</p>
+          <Kicker no="09">Credits</Kicker>
           <h2 className="display mt-4 text-6xl leading-none text-ink sm:text-8xl">
             In order of <em className="text-accent">appearance</em>
           </h2>

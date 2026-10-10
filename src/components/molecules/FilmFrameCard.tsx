@@ -1,7 +1,7 @@
 "use client";
 
-import ShaderFrame from "@/components/ShaderFrame";
-import { useInView } from "@/components/useInView";
+import ShaderFrame from "@/components/molecules/ShaderFrame";
+import { useInView } from "@/lib/useInView";
 import type { FilmFrame } from "@/lib/portfolioData";
 
 /** A film frame that starts as a negative and develops once it scrolls in. */

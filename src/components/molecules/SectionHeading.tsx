@@ -1,4 +1,5 @@
-import Reveal from "@/components/Reveal";
+import Kicker from "@/components/atoms/Kicker";
+import Reveal from "@/components/motion/Reveal";
 
 type SectionHeadingProps = {
   no: string;
@@ -12,7 +13,7 @@ export default function SectionHeading({ no, title, kicker }: SectionHeadingProp
     <Reveal>
       <div className="flex items-end justify-between gap-4 border-b border-border pb-6">
         <div className="flex items-baseline gap-5">
-          <span className="label text-accent">{no}</span>
+          <Kicker as="span" no={no} />
           <h2 className="display text-5xl leading-none text-ink sm:text-7xl">{title}</h2>
         </div>
         {kicker && <span className="label hidden pb-2 sm:block">{kicker}</span>}

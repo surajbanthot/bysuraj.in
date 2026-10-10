@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import FilmFrameCard from "@/components/FilmFrameCard";
-import Reveal from "@/components/Reveal";
+import Kicker from "@/components/atoms/Kicker";
+import TextLink from "@/components/atoms/TextLink";
+import FilmFrameCard from "@/components/molecules/FilmFrameCard";
+import Reveal from "@/components/motion/Reveal";
+import SubpageShell from "@/components/templates/SubpageShell";
 import { SITE, camera, filmFrames } from "@/lib/portfolioData";
+
+// No request-time data: prerender at build (also lets vinext classify the route).
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Film",
@@ -12,11 +17,10 @@ export const metadata: Metadata = {
 
 export default function FilmPage() {
   return (
-    <main id="top" className="pt-28">
-      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+    <SubpageShell>
         <header className="grid gap-10 border-b border-border pb-12 md:grid-cols-12">
           <div className="md:col-span-8">
-            <p className="label text-accent">Contact sheet · {camera.name}</p>
+            <Kicker>Contact sheet · {camera.name}</Kicker>
             <h1 className="display hero-letter mt-5 text-7xl leading-[0.85] text-ink sm:text-[10rem]">
               On <em className="text-accent">film</em>
             </h1>
@@ -27,14 +31,9 @@ export default function FilmPage() {
               I look for quiet light, strong geometry and subjects with texture. Frames start
               out as negatives here and develop as you scroll.
             </p>
-            <a
-              href={SITE.instagram}
-              target="_blank"
-              rel="noreferrer"
-              className="link-underline mt-6 inline-flex font-mono text-sm uppercase tracking-wider text-ink"
-            >
+            <TextLink href={SITE.instagram} mono className="mt-6">
               More frames on Instagram ↗
-            </a>
+            </TextLink>
           </div>
         </header>
 
@@ -47,12 +46,11 @@ export default function FilmPage() {
         <Reveal className="my-28 border-t border-border pt-10">
           <p className="display max-w-3xl text-4xl leading-tight text-ink">
             I take portrait and editorial commissions on 6×7.{" "}
-            <Link href="/#contact" className="link-underline text-accent">
+            <TextLink href="/#contact" className="text-accent">
               Book a shoot →
-            </Link>
+            </TextLink>
           </p>
         </Reveal>
-      </div>
-    </main>
+    </SubpageShell>
   );
 }
