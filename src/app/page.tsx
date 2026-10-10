@@ -1,25 +1,19 @@
 import HeroSection from "@/components/HeroSection";
-import SelectedWorkSection from "@/components/SelectedWorkSection";
-import AboutSection from "@/components/AboutSection";
+import WorkStrip from "@/components/WorkStrip";
+import CapabilitiesSection from "@/components/CapabilitiesSection";
 import ExperienceSection from "@/components/ExperienceSection";
-import StackSection from "@/components/StackSection";
-import ServicesSection from "@/components/ServicesSection";
-import FilmSection from "@/components/FilmSection";
+import FilmTeaser from "@/components/FilmTeaser";
 import ContactSection from "@/components/ContactSection";
-import { DarkroomEasterEgg } from "@/components/PortfolioInteractions";
 
 export default function Home() {
   return (
-    <main className="relative z-[2]">
+    <main>
       <HeroSection />
-      <SelectedWorkSection />
-      <AboutSection />
+      <WorkStrip />
+      <CapabilitiesSection />
       <ExperienceSection />
-      <StackSection />
-      <ServicesSection />
-      <FilmSection />
+      <FilmTeaser />
       <ContactSection />
-      <DarkroomEasterEgg />
     </main>
   );
 }

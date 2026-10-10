@@ -1,20 +1,24 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 
 import EditorialNav from "@/components/EditorialNav";
 import FooterBar from "@/components/FooterBar";
+import SmoothScroll from "@/components/SmoothScroll";
+import Cursor from "@/components/Cursor";
+import { SITE } from "@/lib/portfolioData";
 
 import "./globals.css";
 
-const themeInitializer = `
-  try {
-    const saved = localStorage.getItem("suraj-portfolio-theme");
-    if (saved === "paper" || saved === "darkroom") {
-      document.documentElement.dataset.theme = saved;
-    }
-  } catch {}
-`;
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["SOFT", "WONK", "opsz"],
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
@@ -22,13 +26,12 @@ export async function generateMetadata(): Promise<Metadata> {
   const forwardedProto = requestHeaders.get("x-forwarded-proto");
   const protocol = forwardedProto ?? (host.startsWith("localhost") ? "http" : "https");
   const origin = `${protocol}://${host}`;
-  const title = "Suraj Banthot — Design Engineer & Film Photographer";
-  const description =
-    "Design engineer building precise interfaces and conversational AI, with a practice in motion and medium-format film. Based in Bengaluru.";
+  const title = `${SITE.fullName} — ${SITE.role}`;
+  const description = `${SITE.role} in ${SITE.location}. ${SITE.headline}`;
 
   return {
     metadataBase: new URL(origin),
-    title,
+    title: { default: title, template: `%s — ${SITE.fullName}` },
     description,
     alternates: { canonical: "/" },
     openGraph: {
@@ -41,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: `${origin}/og.png`,
           width: 1680,
           height: 945,
-          alt: "Suraj — Design Engineer and Film Photographer in Bengaluru",
+          alt: `${SITE.fullName} — ${SITE.role} in ${SITE.location}`,
         },
       ],
     },
@@ -60,11 +63,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="darkroom" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitializer }} />
-      </head>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable}`}
+      suppressHydrationWarning
+    >
       <body className="antialiased">
+        <SmoothScroll />
+        <Cursor />
         <EditorialNav />
         {children}
         <FooterBar />

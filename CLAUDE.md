@@ -4,23 +4,26 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this project is
 
-Personal portfolio website for Suraj — a design engineer who also shoots medium-format film and does cinematography/motion. A **single long-scroll editorial page** (the "Viewfinder" identity) that introduces him and serves as a hiring front door. Hosted at bysuraj.in, deployed on Vercel. Dedicated work/creative pages are planned later.
+Personal portfolio website for Suraj — a design engineer who also shoots medium-format film and does cinematography/motion. A bold, motion-heavy **"Darkroom"** site that pitches him equally for **full-time roles** and **freelance commissions**. Hosted at bysuraj.in, deployed on Vercel.
 
 ## Tech stack
 
 - **Framework:** Next.js 16 (App Router) + React 19 + TypeScript (strict)
-- **Styling:** Tailwind CSS 4 + custom tokens/utilities in `src/app/globals.css`
+- **Styling:** Tailwind CSS 4 + tokens/helpers in `src/app/globals.css`
+- **Motion:** GSAP + ScrollTrigger (`@gsap/react`), Lenis smooth scroll
+- **WebGL:** three + `@react-three/fiber` (hero shader only, lazy-loaded)
 - **Email:** Resend (via `/api/send` route)
 - **Analytics:** Vercel Analytics (`track()` calls placed directly in event handlers)
-- **Fonts:** Geist (sans/body), Geist Mono (labels/marginalia), Fraunces (`--font-display`, editorial serif headings) — loaded in `layout.tsx`
+- **Fonts:** Geist (body), Geist Mono (labels), Fraunces variable with `SOFT`/`WONK`/`opsz` axes (`--font-display`) — loaded via `next/font` in `layout.tsx`
 
 ## Commands
 
 ```bash
-npm run dev       # Start dev server (localhost:3000)
-npm run build     # Production build
-npm run start     # Start production server
-npm run lint      # ESLint (flat config, eslint.config.mjs)
+npm run dev          # Start dev server (localhost:3000)
+npm run build        # Production build
+npm run build:sites  # vinext / Cloudflare build (outputs to dist/)
+npm run start        # Start production server
+npm run lint         # ESLint (flat config, eslint.config.mjs)
 ```
 
 Storybook and Vitest are configured for component development and testing.
@@ -30,55 +33,62 @@ Storybook and Vitest are configured for component development and testing.
 - `.env.local` must contain `RESEND_API_KEY` for the `/api/send` email route
 - Deployed on Vercel. Push to `main` triggers production deploy.
 
-## Current design language
+## Design language — Darkroom
 
-The live site uses the **Viewfinder** identity — a single fixed warm-paper editorial theme (**no light/dark toggle**). The signature accent is **Safelight Amber** (the darkroom safelight: legible on light and dark alike, which is why no toggle is needed).
+A single fixed **dark** theme (no toggle, no `dark:` variants): near-black stock, warm ink, lit by a **safelight orange** accent. The site plays on developing a photograph — letters "develop" in, film frames start as orange negatives and develop on scroll.
 
 Tokens (defined once in `src/app/globals.css` `:root` + `@theme inline` — the **source of truth**):
 
-- `--paper` `#F4EFE6` — page canvas · `--paper-raised` `#E6DECF` — cards/wells
-- `--border` `#E0D8C9` — hairline dividers
-- `--ink` `#1A1714` — headings/primary · `--muted` `#5C564C` — body · `--faint` `#8A8276` — labels/marginalia
-- `--accent` `#FF7A29` (safelight amber) · `--accent-press` `#E0651A`
+- `--paper` `#0e0c0a` — canvas · `--paper-raised` `#1a1612` — cards/wells
+- `--border` `#2e2721` — hairlines
+- `--ink` `#f2ebe0` — headings/primary · `--muted` `#b5aa9b` — body · `--faint` `#9a8f81` — labels
+- `--accent` `#ff5b24` (safelight) · `--accent-press` `#ff7a4a`
 
-Use them as Tailwind utilities (`bg-paper`, `text-ink`, `text-muted`, `text-accent`, `border-border`, …). Helper classes: `.display` (Fraunces headings), `.label` (mono uppercase marginalia), `.reveal`/`.is-visible` (scroll reveal), `.link-underline` (amber underline-on-hover). There are **no** `dark:` variants — the theme is fixed.
+Shaders can't read CSS vars, so `src/lib/palette.ts` mirrors the tokens — keep the two in sync.
 
-## Architecture & layout system
+Helpers: `.display` (Fraunces; goes soft/wonky/italic inside a `.display-hover` parent on hover), `.label` (mono uppercase marginalia), `.reveal`/`.is-visible`, `.link-underline`, `.develop` (negative → positive), `.hero-letter` (CSS develop-in keyframe).
 
-The root layout (`layout.tsx`) is intentionally thin: `<EditorialNav />`, `{children}`, `<FooterBar />`, `<Analytics />`. No theme provider, no easter eggs, no chrome-sizer.
+**Type floor:** nothing smaller than 13px. `.label` is 13px; mono buttons/tags use `text-sm`. Don't use `text-xs` or arbitrary sub-`0.8rem` sizes.
 
-- **`EditorialNav`** — sticky top bar with the wordmark, in-page anchor links, IST clock, and a mobile "Index" menu. Highlights the active section via `IntersectionObserver`. Section ids come from `navSections` in `src/lib/portfolioData.ts`.
-- **`FooterBar`** — slim colophon: email, social icons, back-to-top. Uses `data-site-footer`.
-- **Sticky-header offset** is handled in CSS via `scroll-padding-top` on `html` (no JS measurement).
+## Architecture
 
-The homepage (`src/app/page.tsx`) composes flat section components — `HeroSection`, `AboutSection`, `ExperienceSection`, `StackSection`, `ServicesSection`, `FilmSection`, `ContactSection` — each a `<section id>` matching `navSections`. All page content/data lives in **`src/lib/portfolioData.ts`** (experience, skillGroups, services, socials, SITE constants).
+Root layout: `<SmoothScroll />`, `<Cursor />`, `<EditorialNav />`, `{children}`, `<FooterBar />`, `<Analytics />`.
 
-### Scroll reveals
+- **`EditorialNav`** — fixed top bar (transparent until scrolled), anchor links (`/#id` on subpages via `usePathname`), IST clock, full-screen mobile menu.
+- **`SmoothScroll`** — Lenis driven by the GSAP ticker, synced to ScrollTrigger.
+- **`Cursor`** — lens ring for fine pointers; elements opt into a label with `data-cursor="View"`.
+- **`src/lib/motion.ts`** — registers GSAP plugins once; always import `gsap`/`ScrollTrigger`/`useGSAP` from here.
 
-`useInView` (IntersectionObserver hook) + `Reveal` wrapper apply the `.reveal` fade/rise. Reduced-motion users are handled purely in CSS (`.reveal` is forced visible under `prefers-reduced-motion`) — never call `setState` in the hook for that.
+Home (`src/app/page.tsx`): `HeroSection` → `WorkStrip` → `CapabilitiesSection` (Hire me / Commission me lanes) → `ExperienceSection` → `FilmTeaser` → `ContactSection`. Section ids match `navSections`.
 
-### API routes
+All content lives in **`src/lib/portfolioData.ts`** (SITE, projects, experience, lanes, filmFrames, camera, socials, navSections).
 
-- `/api/send` — email sending via Resend (used by the Contact section form; the route still supports the legacy film/phone field shapes)
+### WebGL & placeholders
+
+- `HeroBackdrop` always paints a CSS poster, then lazy-loads `HeroCanvas` (R3F fluid shader) via `next/dynamic` only when WebGL2 is available, `hardwareConcurrency >= 4` and motion is allowed. The canvas stops rendering offscreen. Keep three.js out of every other component.
+- `ShaderFrame` renders a seeded, token-coloured CSS placeholder — or `next/image` once a `cover`/`src` exists. **To add real images:** drop files in `public/` and set `cover` on a project or `src` on a film frame.
+
+### Motion rules
+
+- Reduced motion: no Lenis, no cursor, no WebGL, no pinning; `.reveal`/`.develop`/`.hero-letter`/marquee are neutralised in CSS. Gate GSAP work with `prefersReducedMotion()` or `gsap.matchMedia`.
+- The work strip pins and scrolls sideways only at `lg` + motion allowed; otherwise it's a vertical stack.
+- Hero text is server-rendered and animated with CSS (not GSAP) so it never flashes and stays the LCP element.
+- Don't `setState` synchronously in effects for environment checks — use `useSyncExternalStore` (see `Cursor`, `HeroBackdrop`).
 
 ## Key conventions
 
-- Interactive components (forms, nav, reveals) use the `"use client"` directive; sections without interactivity stay server components
-- `suppressHydrationWarning` on `<html>`; `IstClock` carries its own
-- Never hardcode hex — use the `--*` tokens / Tailwind token utilities (`text-accent`, `bg-paper`, …)
-- Drop a PDF at `public/Suraj-Banthot-Resume.pdf` to wire up the `SITE.resume` link
+- `"use client"` only for components with hooks/events/browser APIs
+- Never hardcode hex — use tokens / Tailwind token utilities
+- `SITE.resume` points to `public/Suraj-Banthot-Resume.pdf` — add that file or the Résumé CTA 404s
 
-## Pages & nav
+## Routes
 
-Single-page app. Nav links are in-page anchors (`#about`, `#experience`, `#stack`, `#services`, `#film`, `#contact`).
-
-| Route | Status | Notes |
-|-------|--------|-------|
-| `/` | Live | The whole site — single long-scroll editorial page |
-| `/api/send` | Live | Resend email endpoint (Contact form) |
-
-Dedicated work/photography pages are planned but not built yet.
-
+| Route | Notes |
+|-------|-------|
+| `/` | Home — hero, work, two lanes, experience, film teaser, contact |
+| `/work/[slug]` | Case study, statically generated from `projects` |
+| `/film` | Film contact sheet |
+| `/api/send` | Resend email endpoint (Contact form) |
 
 ---
 
@@ -106,9 +116,9 @@ These rules define how to translate Figma inputs into code for this project. Fol
 
 - Use **Tailwind CSS v4** utility classes — there is no `tailwind.config.js`; all customization is CSS-based
 - Design tokens (colors, fonts) are defined in `src/app/globals.css` via `:root {}` and `@theme inline {}`
-- IMPORTANT: Never hardcode hex colors — use the Viewfinder token utilities (`text-ink`, `text-muted`, `text-faint`, `text-accent`, `bg-paper`, `bg-paper-raised`, `border-border`) or `var(--*)`
+- IMPORTANT: Never hardcode hex colors — use the Darkroom token utilities (`text-ink`, `text-muted`, `text-faint`, `text-accent`, `bg-paper`, `bg-paper-raised`, `border-border`) or `var(--*)`
 - Single fixed theme — do **not** add `dark:` variants
-- Accent is `--accent` (#FF7A29). Flat aesthetic: avoid gradients/glows beyond a faint amber
+- Accent is `--accent` (#FF5B24). Glows/light leaks in accent are part of the Darkroom look; keep them soft
 - Source of truth for all colour values: `:root` and `@theme inline` blocks in `globals.css`
 
 ### Typography
@@ -135,8 +145,8 @@ These rules define how to translate Figma inputs into code for this project. Fol
 
 ### Layout & Viewport
 
-- Single long-scroll page composed of `<section id>` blocks; each section sets its own vertical rhythm (`py-20 sm:py-28`) inside `max-w-6xl` containers
-- The hero uses `min-h-[calc(100svh-3.5rem)]` (nav height); sticky-nav anchor offset is handled by `scroll-padding-top` on `html`
+- Home is composed of `<section id>` blocks; sections use `py-24 sm:py-36` inside `max-w-7xl px-5 sm:px-8` containers
+- The hero is `min-h-svh` under a fixed nav; anchor offset is handled by `scroll-padding-top` on `html` and Lenis `anchors.offset`
 - Wrap entering content in `<Reveal>` for the scroll-in animation
 
 ### Implementation Checklist
@@ -144,7 +154,7 @@ These rules define how to translate Figma inputs into code for this project. Fol
 When implementing a Figma design:
 - [ ] Fetched `get_design_context` for the node
 - [ ] Fetched `get_screenshot` for visual reference
-- [ ] Replaced any hardcoded hex values with Viewfinder token utilities (`text-ink`, `bg-paper`, `text-accent`, …)
+- [ ] Replaced any hardcoded hex values with Darkroom token utilities (`text-ink`, `bg-paper`, `text-accent`, …)
 - [ ] Did NOT add `dark:` variants (single fixed theme)
 - [ ] Used `@/` imports
 - [ ] Added `"use client"` only if the component uses hooks or browser APIs

@@ -4,48 +4,32 @@ import { experience } from "@/lib/portfolioData";
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-      <SectionHeading no="03" title="Experience" kicker="A working ledger" />
+    <section id="experience" className="mx-auto w-full max-w-7xl px-5 py-24 sm:px-8 sm:py-36">
+      <SectionHeading no="03" title="Experience" kicker={`${experience.length} roles · since 2018`} />
 
-      <ol className="mt-8">
-        {experience.map((entry, i) => (
-          <Reveal as="li" key={entry.org} delay={i * 60}>
-            <article className="experience-row group grid gap-4 border-b border-border py-8 md:grid-cols-12 md:gap-8">
-              {/* number + period */}
-              <div className="experience-meta md:col-span-3">
-                <div className="flex items-center gap-3">
-                  <span className="experience-number label">{entry.no}</span>
-                  {entry.current && (
-                    <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-accent">
-                      <span className="h-2 w-2 animate-pulse rounded-full bg-accent" />
-                      Now
-                    </span>
-                  )}
-                </div>
-                <p className="mt-2 font-mono text-sm text-faint">{entry.period}</p>
-              </div>
-
-              {/* org + role + notes */}
-              <div className="experience-body md:col-span-9">
-                <h3 className="experience-org display text-2xl text-ink sm:text-3xl">
-                  {entry.org}
-                </h3>
-                <p className="mt-1 font-mono text-sm uppercase tracking-widest text-accent">
-                  {entry.role}
-                </p>
-                <ul className="mt-4 space-y-2 text-lg leading-relaxed text-muted">
-                  {entry.notes.map((note) => (
-                    <li key={note} className="flex gap-3">
-                      <span className="experience-bullet mt-2 h-px w-4 flex-shrink-0 bg-border" />
-                      <span>{note}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </article>
+      <ol className="mt-6">
+        {experience.map((job, i) => (
+          <Reveal as="li" key={job.org} delay={i * 60}>
+            <div className="display-hover group grid gap-2 border-b border-border py-7 transition-colors hover:bg-paper-raised/50 md:grid-cols-12 md:items-baseline md:gap-6 md:px-4">
+              <span className="label md:col-span-2">{job.period}</span>
+              <h3 className="display text-3xl leading-tight text-ink sm:text-4xl md:col-span-4">
+                {job.org}
+                {job.current && (
+                  <span className="label ml-3 align-middle !text-accent">Now</span>
+                )}
+              </h3>
+              <span className="font-mono text-sm uppercase tracking-wider text-muted md:col-span-2">
+                {job.role}
+              </span>
+              <p className="leading-relaxed text-muted md:col-span-4">{job.note}</p>
+            </div>
           </Reveal>
         ))}
       </ol>
+
+      <Reveal className="mt-6">
+        <p className="label">B.E. Information Science — Ramaiah Institute of Technology, 2018</p>
+      </Reveal>
     </section>
   );
 }

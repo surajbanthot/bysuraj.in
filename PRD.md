@@ -1,78 +1,49 @@
 # PRD — bysuraj.in
 
 **Owner:** Suraj
-**Type:** Personal portfolio + hiring platform
-**Status:** Active development
+**Type:** Personal portfolio + hiring front door
+**Status:** Darkroom redesign (Oct 2026)
 
 ---
 
 ## Goal
 
-Build a memorable, technically impressive personal website that:
-1. Showcases skills in frontend dev, 3D graphics, motion design, and AI/ML
-2. Converts visitors into hires (full-time roles or freelance clients)
-3. Acts as a creative playground — experiments in UI, animation, and interactivity
+1. Win **full-time design-engineer / product-engineer roles** and **freelance commissions** in equal measure.
+2. Prove design-engineering range through the site itself: motion, WebGL, typography, performance and accessibility together.
+3. Stay easy to update. All content lives in `src/lib/portfolioData.ts`.
 
----
+## Positioning
+
+> **Design Engineer.** I build interfaces, AI products and moving images.
+
+Eight years shipping React at Microsoft Teams scale, now building conversational AI. On the side: motion work and medium-format film.
+
+Two lanes, equal weight:
+- **Hire me:** full-time roles. CTAs: résumé, email.
+- **Commission me:** motion graphics, Rive interactions, AI builds, film portraits. CTAs: enquiry form, Contra.
 
 ## Pages
 
-### `/` — Home
-- Pixelated video background with CRT scanlines and vignette
-- Real-time IST clock with contextual activity emoji (sleeping/coding/exercising etc.)
-- 3D retro computer (Three.js) as hero element
-- Easter egg animated characters: Superman, SpiderMan, Johnny Bravo, F1 car
+| Route | Content |
+|---|---|
+| `/` | WebGL hero, pinned horizontal work strip, two lanes, experience timeline, film teaser, contact form with Hire/Commission toggle |
+| `/work/[slug]` | Case study: problem, approach, outcome, tags, next case |
+| `/film` | Contact-sheet gallery where frames develop from negative on scroll |
+| `/api/send` | Resend email endpoint |
 
-### `/code` — Skills
-- Grid of tech skills across 7 categories (languages, frameworks, tools, etc.)
-- 25+ tools with branded gradient icons
-- Featured projects section
+## Design system — Darkroom
 
-### `/hireme` — Hire Me
-- Tab switcher: Full-time roles vs Freelance services
-- Full-time: experience timeline, tech stack, resume download
-- Freelance: service cards (UI/UX, frontend, motion, 3D)
-- Floating "Top" + "Resume" buttons (tab-aware)
-
-### `/social` — Socials
-- Links to Instagram, YouTube
-- Medium format film photography enquiry form (via Resend email)
-
-### `/motiongraphics` — Motion Graphics *(WIP)*
-- Showcase reel for motion graphics work
-- Not linked in nav until ready
-
----
-
-## Design system — Arctic Shore
-
-**Aesthetic:** Retro-futuristic — pixelation, CRT scanlines, sky-blue glow accents
-**Primary palette:** Sky (`sky-600` #0284C7 light / `sky-400` #38BDF8 dark)
-**Secondary accent:** Cyan (`cyan-400` #22D3EE) — glows, lightning bolt decorations
-**Tertiary accent:** Teal (`teal-400`/`teal-600`)
-**Neutrals:** `sky-*` for surfaces/borders, `slate-*` for muted text
-**Page bg light:** `sky-50` (#F0F9FF)
-**Page bg dark:** `sky-950` (#082F49) — deep navy, not pitch black
-**Glow shadow:** `rgba(2,132,199,…)` (sky-600)
-**Dark mode:** Full support via `dark:` Tailwind variants
-**Fonts:** VT323 (retro), Bungee (display/nav), Bungee Spice (hero), Quantico (UI labels), Geist Sans/Mono (body/code)
-**Motion:** Character animations, micro-interactions, hover effects, lightning bolts
-
----
+See CLAUDE.md for tokens and rules. In short: single dark theme, safelight orange accent, Fraunces display type with variable-axis hover, Geist/Geist Mono, film grain, and develop-in motion. 13px minimum type size.
 
 ## Non-goals
 
-- No blog (for now)
-- No CMS — content is hardcoded in components
-- No auth
-- No database — WIP state stored in flat file via API route
+- No blog, CMS, auth or database
+- No light/dark toggle
 
----
+## Open items
 
-## Open / WIP items
-
-- [ ] `/motiongraphics` page — content + layout needed
-- [ ] Resume button — needs actual resume PDF linked
-- [ ] Film photography form — verify Resend integration end-to-end
-- [ ] Performance audit on lower-end devices (animation-heavy)
-- [ ] OG image / social preview meta tags
+- [ ] Real assets: project covers (`projects[].cover`), film scans (`filmFrames[].src`), optional motion reel
+- [ ] Résumé PDF at `public/Suraj-Banthot-Resume.pdf`
+- [ ] Review rewritten copy in `portfolioData.ts`, especially case-study problem/approach/outcome wording
+- [ ] Refresh `public/og.png` to match the Darkroom look
+- [ ] Lighthouse pass on a real mid-range phone

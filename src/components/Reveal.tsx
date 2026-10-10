@@ -20,8 +20,8 @@ export default function Reveal({
   delay = 0,
   as = "div",
 }: RevealProps) {
-  const { ref, inView } = useInView<HTMLElement>();
-  const Tag = as as React.ElementType;
+  const { ref, inView } = useInView<HTMLDivElement>();
+  const Tag = as as "div";
 
   return (
     <Tag

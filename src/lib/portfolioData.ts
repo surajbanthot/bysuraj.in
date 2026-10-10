@@ -1,17 +1,23 @@
-// Single source of truth for the Viewfinder single-page portfolio.
-// Sections import from here so the JSX stays about layout, not data.
+// Single source of truth for the Darkroom portfolio.
+// Sections and pages import from here so the JSX stays about layout, not data.
 
 export const SITE = {
   name: "Suraj",
   fullName: "Suraj Banthot",
-  role: "Design Engineer & Frontend Developer",
-  tagline:
-    "I design and build digital products — from precise interfaces to conversational AI — and shoot medium-format film to keep my eye honest.",
+  role: "Design Engineer",
+  headline: "I build interfaces, AI products and moving images.",
+  intro:
+    "Eight years shipping React at Microsoft Teams scale, now building conversational AI. On the side I make motion work and shoot medium-format film.",
   location: "Bengaluru, India",
   email: "surajcommercial@gmail.com",
   contra: "https://contra.com/suraj_kumar_b_c_0uicot57",
+  instagram: "https://www.instagram.com/bysuraj.in/",
+  // Drop the PDF at public/Suraj-Banthot-Resume.pdf to activate this link.
+  resume: "/Suraj-Banthot-Resume.pdf",
   estYear: "2018",
 } as const;
+
+export const disciplines = ["Interfaces", "AI products", "Motion", "Film"] as const;
 
 export type Social = {
   label: string;
@@ -20,198 +26,213 @@ export type Social = {
 };
 
 export const socials: Social[] = [
-  { label: "Instagram", handle: "@bysuraj.in", href: "https://www.instagram.com/bysuraj.in/" },
+  { label: "Instagram", handle: "@bysuraj.in", href: SITE.instagram },
   { label: "X", handle: "@SurajBanthot", href: "https://x.com/SurajBanthot" },
   { label: "Threads", handle: "@bysuraj.in", href: "https://www.threads.com/@bysuraj.in" },
   { label: "Contra", handle: "for freelance", href: SITE.contra },
 ];
 
 export type Project = {
+  slug: string;
   no: string;
   title: string;
-  context: string;
+  client: string;
   period: string;
+  role: string;
   summary: string;
-  contribution: string;
+  problem: string;
+  approach: string[];
+  outcome: string;
   tags: string[];
+  /** Cover image in /public. Until one exists, a seeded generative frame renders instead. */
+  cover?: string;
+  /** Seed for the generative placeholder (colour + grain + leak position). */
+  seed: number;
 };
 
 export const projects: Project[] = [
   {
+    slug: "enterprise-knowledge-copilot",
     no: "01",
     title: "Enterprise Knowledge Copilot",
-    context: "Quantzig × Shell",
+    client: "Quantzig × Shell",
     period: "2026",
+    role: "Full-stack engineer — retrieval to interface",
     summary:
-      "A conversational interface that turns a sprawling enterprise knowledge base into an answerable, traceable system.",
-    contribution:
-      "Building the full experience across the RAG retrieval pipeline, LLM orchestration, API layer, and front-end chat interface.",
+      "A conversational interface that turns a sprawling enterprise knowledge base into answers you can trace back to a source.",
+    problem:
+      "Shell's internal knowledge lived across thousands of documents. Finding the right answer meant knowing where to look, and trusting it meant reading the whole thing.",
+    approach: [
+      "Designed a RAG retrieval pipeline that chunks, embeds and ranks documents so answers stay grounded in sources.",
+      "Orchestrated LLM calls behind a typed API layer, with streaming responses and citation metadata.",
+      "Built the chat interface so every answer shows where it came from, which made people trust the tool enough to use it.",
+    ],
+    outcome:
+      "Natural-language search over the knowledge base, with answers cited back to their source documents.",
     tags: ["Conversational AI", "RAG", "Next.js", "Python"],
+    seed: 0.17,
   },
   {
+    slug: "teams-at-enterprise-scale",
     no: "02",
     title: "Teams at enterprise scale",
-    context: "Tech Mahindra × Microsoft",
+    client: "Tech Mahindra × Microsoft",
     period: "2024—25",
+    role: "Senior software engineer — front end",
     summary:
-      "Feature-rich React interfaces designed to feel fast, dependable, and inclusive inside Microsoft Teams.",
-    contribution:
-      "Shipped reusable components, improved performance, and strengthened WCAG compliance with distributed product teams.",
+      "React interfaces inside Microsoft Teams built to feel fast, dependable and inclusive for a very large audience.",
+    problem:
+      "At Teams' scale, every component ships to a huge, varied audience. Performance regressions and accessibility gaps get noticed quickly.",
+    approach: [
+      "Built reusable React components that distributed teams could adopt without re-solving the same problems.",
+      "Profiled and optimised render paths to keep interactions responsive.",
+      "Made WCAG compliance part of the definition of done, covering keyboard paths, focus management and screen-reader semantics.",
+    ],
+    outcome:
+      "Feature updates shipped with distributed product teams, with stronger accessibility compliance and faster interfaces.",
     tags: ["React", "Accessibility", "Design Systems", "Performance"],
+    seed: 0.52,
   },
   {
+    slug: "stories-for-every-screen",
     no: "03",
     title: "Stories built for every screen",
-    context: "Mirafra × Pratham Books",
+    client: "Mirafra × Pratham Books",
     period: "2022—23",
+    role: "Senior software engineer — interaction",
     summary:
-      "A responsive digital storytelling experience that makes illustrated stories inviting across devices and reading contexts.",
-    contribution:
-      "Translated visual direction into pixel-precise interactions, responsive layouts, and engagement-focused product improvements.",
+      "A digital storytelling platform that makes illustrated children's books inviting on any device.",
+    problem:
+      "Pratham Books' readers use everything from low-end phones to classroom projectors. The illustrations had to look right on all of them, and reading had to feel easy.",
+    approach: [
+      "Worked closely with designers to turn their visual direction into pixel-accurate interactions.",
+      "Rebuilt layouts to be fully responsive, so reading feels right at every size.",
+      "Made product changes aimed at engagement and measured their effect.",
+    ],
+    outcome:
+      "A responsive reading experience that lifted engagement metrics across devices.",
     tags: ["Frontend", "Interaction", "Responsive UI", "Storytelling"],
+    seed: 0.83,
   },
 ];
 
+export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
+
 export type ExperienceEntry = {
-  no: string;
   org: string;
   role: string;
   period: string;
   current?: boolean;
-  notes: string[];
+  note: string;
 };
 
 export const experience: ExperienceEntry[] = [
   {
-    no: "06",
     org: "Quantzig",
     role: "Full Stack Developer",
-    period: "Jun 2026 — Present",
+    period: "2026 — Now",
     current: true,
-    notes: [
-      "Implementing a conversational AI that makes Shell's enterprise knowledge base instantly accessible through natural-language search.",
-      "Building the full stack — from the RAG/LLM retrieval pipeline to the front-end chat interface.",
-    ],
+    note: "Conversational AI over Shell's enterprise knowledge base, built end to end from the RAG pipeline to the chat UI.",
   },
   {
-    no: "05",
     org: "Tech Mahindra",
     role: "Senior Software Engineer",
-    period: "Feb 2024 — Sep 2025",
-    notes: [
-      "Developed scalable front-end components for Microsoft Teams using React.js.",
-      "Optimised performance and ensured accessibility / WCAG compliance across the application.",
-      "Shipped feature-rich updates with cross-functional teams in an agile environment.",
-    ],
+    period: "2024 — 2025",
+    note: "Scalable, accessible React components for Microsoft Teams.",
   },
   {
-    no: "04",
     org: "Mirafra Technologies",
     role: "Senior Software Engineer",
-    period: "Sep 2022 — Nov 2023",
-    notes: [
-      "Built interactive features for the digital storytelling platform PrathamBooks.org.",
-      "Implemented pixel-perfect UI and smooth interactions alongside designers.",
-      "Lifted engagement metrics through responsive design.",
-    ],
+    period: "2022 — 2023",
+    note: "Interactive storytelling features for PrathamBooks.org.",
   },
   {
-    no: "03",
     org: "Liftoff LLC",
-    role: "Front-end Developer (React.js)",
-    period: "Nov 2021 — Feb 2022",
-    notes: [
-      "Developed core features for the Sphere Web platform using React and Redux.",
-      "Integrated complex RESTful APIs and managed application state efficiently.",
-    ],
+    role: "Front-end Developer",
+    period: "2021 — 2022",
+    note: "Core features for the Sphere Web platform in React and Redux.",
   },
   {
-    no: "02",
     org: "Broadridge Financial Solutions",
-    role: "Front-end Developer (React.js)",
-    period: "Jun 2018 — Oct 2020",
-    notes: [
-      "Worked on the Global Post Trade Management system for enterprise clients.",
-      "Migrated legacy UI views to a modern, component-based React architecture.",
-    ],
-  },
-  {
-    no: "01",
-    org: "Ramaiah Institute of Technology",
-    role: "B.E. Information Science & Engineering",
-    period: "Jun 2015 — May 2018",
-    notes: ["Information science fundamentals and software engineering — 7.92 CGPA."],
+    role: "Front-end Developer",
+    period: "2018 — 2020",
+    note: "Migrated a global post-trade management system to component-based React.",
   },
 ];
 
-export type SkillGroup = {
-  category: string;
-  items: string[];
-};
-
-export const skillGroups: SkillGroup[] = [
-  { category: "Design", items: ["Figma", "Framer"] },
-  { category: "3D & Motion", items: ["Three.js", "Spline", "Rive", "Blender 3D"] },
-  { category: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
-  { category: "Backend & APIs", items: ["Node.js", "FastAPI", "Supabase", "PostgreSQL", "Postman"] },
-  { category: "AI & LLM", items: ["LangChain", "RAG", "LLMs", "AI Agents", "Python"] },
-  { category: "Testing", items: ["RTL", "Jest", "Playwright"] },
-  { category: "Workflow", items: ["VS Code", "GitHub", "Jira", "Vercel"] },
-  { category: "Motion Suite", items: ["After Effects", "Premiere Pro", "Illustrator"] },
-];
-
-export type Service = {
-  no: string;
+export type Lane = {
+  id: "hire" | "commission";
+  kicker: string;
   title: string;
-  blurb: string;
-  tags: string[];
-  links: { label: string; href: string }[];
+  pitch: string;
+  items: { title: string; detail: string }[];
+  cta: { label: string; href: string }[];
 };
 
-export const services: Service[] = [
+export const lanes: Lane[] = [
   {
-    no: "01",
-    title: "Motion Graphics",
-    blurb: "Compelling storytelling through motion and visual effects.",
-    tags: ["Premiere Pro", "After Effects", "Illustrator", "Blender 3D"],
-    links: [
-      { label: "Contra", href: SITE.contra },
-      { label: "Email", href: `mailto:${SITE.email}` },
+    id: "hire",
+    kicker: "Full-time",
+    title: "Hire me",
+    pitch:
+      "For design-engineer and product-engineer roles. I take a product from Figma to production and care about the last 10%: motion, accessibility and performance.",
+    items: [
+      { title: "Frontend", detail: "React · Next.js · TypeScript · Tailwind" },
+      { title: "AI & LLM", detail: "RAG · LangChain · Agents · Python · FastAPI" },
+      { title: "Craft", detail: "Design systems · WCAG · Performance · Testing" },
+      { title: "Backend", detail: "Node.js · Supabase · PostgreSQL" },
+    ],
+    cta: [
+      { label: "Résumé", href: SITE.resume },
+      { label: "Email me", href: `mailto:${SITE.email}?subject=Role%20enquiry` },
     ],
   },
   {
-    no: "02",
-    title: "Rive Interactions",
-    blurb: "High-performance interactive UI animations for the web.",
-    tags: ["Rive", "State Machines", "Interactive UI", "Web Runtime"],
-    links: [{ label: "Contra", href: SITE.contra }],
-  },
-  {
-    no: "03",
-    title: "AI Engineering",
-    blurb: "Building intelligent applications with LLMs, RAG, and AI agents.",
-    tags: ["Python", "Next.js", "LangChain", "RAG", "LLMs", "FastAPI"],
-    links: [{ label: "Email", href: `mailto:${SITE.email}` }],
-  },
-  {
-    no: "04",
-    title: "Analogue Photography",
-    blurb: "Portrait and editorial photography on medium-format film.",
-    tags: ["Pentax 67II", "Medium Format", "Portrait", "Editorial"],
-    links: [
-      { label: "Email", href: `mailto:${SITE.email}` },
-      { label: "Instagram", href: "https://www.instagram.com/bysuraj.in/" },
+    id: "commission",
+    kicker: "Freelance",
+    title: "Commission me",
+    pitch:
+      "For studios, founders and brands who need one person who can design it, animate it and ship it.",
+    items: [
+      { title: "Motion graphics", detail: "After Effects · Premiere · Blender" },
+      { title: "Rive interactions", detail: "State machines for interactive UI" },
+      { title: "AI builds", detail: "Chat products, RAG tools, prototypes" },
+      { title: "Film portraits", detail: "Editorial & portrait on 6×7 film" },
+    ],
+    cta: [
+      { label: "Start a project", href: "#contact" },
+      { label: "Contra", href: SITE.contra },
     ],
   },
 ];
 
-// Anchor sections for the editorial nav (ids match each <section id>).
+export type FilmFrame = {
+  /** Scan in /public. Until one exists, a seeded generative frame renders instead. */
+  src?: string;
+  title: string;
+  stock: string;
+  seed: number;
+};
+
+export const filmFrames: FilmFrame[] = [
+  { title: "Morning, Cubbon Park", stock: "Portra 400", seed: 0.11 },
+  { title: "Window light", stock: "HP5+ @ 800", seed: 0.29 },
+  { title: "Coastal geometry", stock: "Ektar 100", seed: 0.44 },
+  { title: "Portrait, studio", stock: "Portra 160", seed: 0.63 },
+  { title: "Old Bangalore", stock: "Tri-X 400", seed: 0.71 },
+  { title: "Last light", stock: "Portra 800", seed: 0.92 },
+];
+
+export const camera = {
+  name: "Pentax 67II",
+  note: "A 6×7 system that handles like a large SLR and is built like a tank. Ten frames a roll makes every frame count.",
+};
+
+// Anchor sections on the home page (ids match each <section id>).
 export const navSections = [
   { id: "work", label: "Work" },
-  { id: "about", label: "About" },
-  { id: "experience", label: "Experience" },
-  { id: "stack", label: "Stack" },
   { id: "services", label: "Services" },
+  { id: "experience", label: "Experience" },
   { id: "film", label: "Film" },
   { id: "contact", label: "Contact" },
 ] as const;
